@@ -1,17 +1,17 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function login({username,password}){
-    return fetch(`${ENDPOINT}/login` , {
+export default function getUserList({jwt}){
+    return fetch(`${ENDPOINT}/Admin/persons` , {
         method: 'POST',
         headers: {
-            "Content-Type": 'application/json'
+            "Content-Type": 'application/json',
+            "Authorization": 'Bearer '+jwt
         },
-        body: JSON.stringify({email:username,password_account:password})
+        body: JSON.stringify({})
     }).then(res => {
         if (!res.ok) throw new Error('Response is not Ok')
         return res.json()
     }).then(res => {
-        const {token, message} = res
         return res
     })
 }

@@ -5,7 +5,9 @@ import logo_dependency from './images/Icon_Dependency.png'
 import logo_users from './images/Icon_Users.png'
 import logo_patients from './images/Icon_Patients.png'
 import logo_user from './images/Icon_Username.png'
+import Main_logo from "./images/Proyecto_Logo_GisVet.png"
 import useUser from "../../hooks/useUser";
+import './styles.css';
 
 
 
@@ -13,40 +15,30 @@ export default function Header() {
     const {islogged, login, logout} = useUser();
 
   return (
-    <nav class="nav-bar">
+    <nav className="nav-bar">
       <ul>
-        <img src="./images/Proyecto_Logo_GisVet.png" width="70" height="70" />
+        <img src={Main_logo} width="70" height="70" />
         <li>
-          <a href="">
             <img src={logo_products} width="45" height="45" />
             Productos
-          </a>
         </li>
         <li>
-          <a href="">
             <img src={logo_dependency} width="45" height="45" />
             Dependencias
-          </a>
         </li>
         <li>
-          <a href="">
             <img src={logo_users} width="45" height="45" />
             Usuarios
-          </a>
         </li>
         <li>
-          <a href="">
             <img src={logo_patients} width="45" height="45" />
             Pacientes
-          </a>
         </li>
-        <li class="username_menu">
-          <a>
+        <li className="username_menu">
             <Link to="/admin">
             Username
             </Link>
             <img src={logo_user} width="45" height="45" />
-          </a>
         </li>
       </ul>
     </nav>
