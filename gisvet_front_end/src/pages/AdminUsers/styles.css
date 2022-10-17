@@ -5,39 +5,37 @@
         .general-users {
             display: flex;
             flex-direction: column;
+            align-items: center;
             border-radius: 20px;
 
         }
         .general-users > h1{
-            margin-left: 10%;
-            margin-right: 0%;
             font-family: 'Inter', sans-serif;
             font-weight: bold;
             font-size: 20px;
+            display: flex;
         }
         .table-users{
             display: flex;
             flex-direction: column;
             border-radius: 15px;
             box-shadow: 0 5px 0 var(--white-color);
-            margin-left: 10%;
+            margin: 0% 10%;
+            width: 80%;
             align-items: center;
             justify-content: center;
             background-color: var(--tinte-7-color);
-            margin-right: 10%;
+          
             
-        }
-        div.buscador:nth-child(1){
-          margin-left: 5%;
         }
         .filter-users{
             flex: auto;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: space-around;
             width: 100%;
             height: 15%;
-            padding: 3% 6%;
+            padding: 3% 0%;
             border-top-left-radius:15px ;
             border-top-right-radius:15px ;
         }
@@ -73,226 +71,7 @@
             position: relative;
             top:1px;
         }
-        .table-data{
-            width: 100%;
-            margin-left: 10%;
-            margin-right: 10%;
-            height: 350px;
-            justify-content: center;
-            overflow: scroll;
-            scrollbar-color: var(--shade-5-color) var(--principal-color);
-            position: relative;
 
-        }
-
-        .table-format{
-            border-collapse: collapse;
-            margin-left: 5%;
-            width: 90%;
-            margin-right: 5%;
-            font-family: 'Inter', sans-serif;
-            font-weight: normal;
-            font-size: 16px;
-            color: white;
-            margin-bottom: 3%;
-            border: black 1px solid;
-
-        }
-
-        .table-format > tbody> tr > th{
-            width: 100px;
-            height: 60px;
-            color: white;
-            background-color: var(--shade-5-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .table-format > tbody> tr:nth-child(odd){
-            width: 100px;
-            height: 40px;
-            text-align: center;
-            background-color: var(--white-color);
-            color: black;
-            margin: 0;
-            padding: 0;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-        }
-
-        .table-format > tbody> tr:nth-child(even){
-            width: 100px;
-            height: 40px;
-            text-align: center;
-            color: black;
-            border-top: 1px solid black;
-            border-bottom: 1px solid black;
-            background-color: var(--tinte-6-color);
-            margin: 0;
-            padding: 0;
-        }
-
-        .options-admin{
-            margin-right: 70%;
-            position: absolute;
-            margin-top: 25%;
-            background-color: var(--shade-6-color);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-        } 
-        
-        .options-admin-visible{
-            visibility: hidden;
-            display: flex;
-            flex-direction: row;
-            position: absolute;
-            margin-top: 25%;
-            margin-right: 64%;
-            background-color: var(--shade-6-color);
-            width: 150px;
-            height: 60px;
-            border-bottom-left-radius: 50px;
-            border-top-left-radius: 50px;
-            border-bottom-right-radius: 30px;
-            border-top-right-radius: 30px;
-        } 
-
-        .options-admin > input{
-            position: absolute;
-            z-index: 2;
-            margin-right: 10%;
-            margin-left: 10%;
-            margin-top: 10%;
-        }
-        .options-admin-visible > input{
-            margin-top: 4%;
-            margin-left: 8%;
-        }
-        .options-admin-visible > input > img:nth-child(2){
-            margin-top: 5%;
-            margin-left: 10%;
-        }
-
-        .form_add_user_general{
-            visibility: hidden;
-            display: flex;
-            flex-direction: column;
-            border-radius: 15px;
-            box-shadow: 0px 0px 5px var(--black-color);
-            background-color: var(--tinte-7-color);
-            position: absolute;
-            z-index: 3;
-            width: 45%;
-            height: 80%;
-          }
-          .form_add_user{
-            display: flex;
-            flex-direction: column;
-            width: 75%;
-            margin-left: 15%;
-            margin-right: 10%;
-          }
-          .title_image > h1{
-            margin-left: 0%;
-            font-family: 'Inter', sans-serif;
-            font-weight: bold;
-            font-size: 18px;
-            color: black;
-          }
-    
-          .title_image{
-            display: flex;
-            flex-direction: row;
-            justify-content: start;
-            align-items: center;
-            margin-left: 10%;
-            margin-top: 2%;
-          }
-          .form_add_user > label:nth-child(1){
-              margin-top: 5%;
-              text-align: left;
-              font-family: 'Inter', sans-serif;
-              font-size: 16px;
-          }
-          .form_add_user label{
-              margin-top: 2%;
-              text-align: left;
-              font-family: 'Inter', sans-serif;
-              font-size: 16px;
-          }
-    
-          .form_add_user select{
-            margin-top: 2%;
-            border-radius: 10px;
-            height: 25px;
-            width: 80%;
-            background-color: var(--gray-color);
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-            border: 0;
-            box-shadow: 0px 1px 3px var(--black-color); 
-          }
-    
-          .form_add_user option{
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-            font-size: 50px;
-            color: var(--gray-color);
-          }
-    
-          .form_add_user input{
-            margin-top: 2%;
-            border-radius: 10px;
-            height: 25px;
-            width: 80%;
-            background-color: var(--gray-color);
-            text-align: left;
-            font-family: 'Inter', sans-serif;
-            border: 0;
-            box-shadow: 0px 1px 3px var(--black-color);
-          }
-    
-          .form_add_user > input{
-            width: 90%;
-          }
-    
-          .form_add_user input[type=submit]:nth-child(1){
-            margin-top: 3%;
-            background-color:var(--shade-5-color);
-            height: 45px;
-            width: 200px;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--white-color);
-          }
-    
-          .form_add_user input[type=submit]:nth-child(2){
-            margin-left: 10%;
-            margin-top: 3%;
-            background-color:var(--error-button-color);
-            height: 45px;
-            width: 150px;
-            text-align: center;
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            color: var(--black-color);
-            font-weight: bold;
-          }
-    
-          .form_add_user > select{
-            width: 90%;
-          }
-    
-    
-          .form_horizontal{
-            width: 100%;
-            margin-top: 2%;
-            display: flex;
-            flex-direction: row;
-          }
 
           
       .username_option{

@@ -12,6 +12,7 @@ function App() {
 
   return (
     <UserContextProvider>
+      
       <div className="App">
             <Route
               component={adminUser}

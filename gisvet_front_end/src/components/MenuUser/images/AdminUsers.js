@@ -11,6 +11,44 @@ import {useUsersList} from "../../hooks/useAdmin";
 
 
 
+
+
+const data=[
+    {
+        "DOCUMENT_TYPE": "C",
+        "FULL_NAME": "Yilma Estefanía Sora Albornoz",
+        "DOCUMENT": 11111,
+        "GENDER": "F",
+        "PROFESSIONAL_ID": 321312,
+        "ID_DEPARTMENT": 1,
+        "ID": 1
+    }, {
+        "DOCUMENT_TYPE": "C",
+        "FULL_NAME": "Dayana Carolina Vargas Alba",
+        "DOCUMENT": 11111,
+        "GENDER": "F",
+        "PROFESSIONAL_ID": 321312,
+        "ID_DEPARTMENT": 1,
+        "ID": 1
+    },{
+        "DOCUMENT_TYPE": "C",
+        "FULL_NAME": "Emerson Uriel Vargas Alba",
+        "DOCUMENT": 11111,
+        "GENDER": "F",
+        "PROFESSIONAL_ID": 321312,
+        "ID_DEPARTMENT": 1,
+        "ID": 1
+    }, {
+        "DOCUMENT_TYPE": "C",
+        "FULL_NAME": "Juan Esteban Iguavita Monroy",
+        "DOCUMENT": 11111,
+        "GENDER": "F",
+        "PROFESSIONAL_ID": 321312,
+        "ID_DEPARTMENT": 1,
+        "ID": 1
+    }
+]
+
 export default function adminUser(){
 
     const [headers, setHeaders] = useState(usersAdmin)
@@ -35,6 +73,13 @@ export default function adminUser(){
 
                 <Table header={headers} data={datas}/>  
                 <SettingsAdminUser /> 
+
+            <div className="form_add_user_general">
+              <div className="title_image"> 
+                <img src={icon_User_Form} width="40" height="40"/>
+                 <h1> Registro de Usuarios</h1>
+              </div>
+          </div>
             
             </div>
           
