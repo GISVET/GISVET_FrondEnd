@@ -4,17 +4,14 @@ import Table from "../../components/Table/Table";
 import './styles.css';
 import icon_Search from  "./images/Icon_Search.png"
 import icon_Filter from "./images/Icon_Filter.png"
-import icon_User_Form from "./images/Icon_Add_User_Form.png"
 import SettingsAdminUser from "../../components/SettingsAdminUser/index";
-import { usersAdmin } from "../../constants/headersTables";
-import {useUsersList} from "../../hooks/useAdmin";
+import {useUsersAdmin} from "../../hooks/useAdminUsers";
 
 
 
 export default function adminUser(){
+    const {loading, users,setUsers,headers,getUsers} = useUsersAdmin()
 
-    const [headers, setHeaders] = useState(usersAdmin)
-    const [datas, setData] = useState(useUsersList().userList)
 
     return (
         <div className="general-admin">
@@ -33,12 +30,9 @@ export default function adminUser(){
                         </div>
                     </div>
 
-                <Table header={headers} data={datas}/>  
+                <Table headers={headers} data={users}/>  
                 <SettingsAdminUser /> 
-            
             </div>
-          
-
         </div>
     </div>
     )

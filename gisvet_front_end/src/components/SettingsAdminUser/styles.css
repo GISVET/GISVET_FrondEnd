@@ -3,8 +3,9 @@
             display: flex;
             justify-content: center;
             position: absolute;
-            top: 99%;
-            left: 12%;
+            z-index: 6;
+            top: 85%;
+            left: 2%;
             background-color: var(--shade-6-color);
             width: 4rem;
             height: 4rem;
@@ -18,8 +19,9 @@
             align-items: center;
             flex-direction: row;
             position: absolute;
-            top: 99%;
-            left: 12%;
+            z-index: 6;
+            top: 85%;
+            left: 2%;
             background-color: var(--shade-6-color);
             width: 9rem;
             height: 4rem;

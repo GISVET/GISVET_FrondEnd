@@ -1,8 +1,8 @@
 
       .username_option{
-        visibility: hidden;
+        visibility: visible;
         position: absolute;
-        z-index: 6;
+        z-index: 8;
         background-color: var(--tinte-7-color);
         justify-content: center;
         width: 20%;

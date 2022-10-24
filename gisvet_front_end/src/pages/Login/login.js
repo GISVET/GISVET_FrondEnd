@@ -43,15 +43,16 @@ function login(){
                   <input name="username" type="text" onChange={handleInputChange} value={data.username} required='required' placeholder="   clinicauptc@uptc.edu.co"/>
                   <h3>Contraseña</h3>
                   <input name="password" type="password" onChange={handleInputChange} value={data.password} required='required' placeholder="   **********" />
+                  {
+                    (errorMessage!= "" || errorMessage== undefined) &&
+                        <h3 className="error-message">{errorMessage}</h3>
+                  }
+                  
                   <input type="submit" value="Ingresar"/>
                  
                   <a><h4>¿Olvidaste tu contraseña?</h4></a>
               </form>
-                {
-                    
-                    (errorMessage!= "" || errorMessage== undefined) &&
-                        <strong>{errorMessage}</strong>
-                }
+                
             </div>
       </div>    
     )

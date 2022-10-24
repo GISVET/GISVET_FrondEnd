@@ -5,19 +5,20 @@
   border-radius: 10px;
   box-shadow: 0px 0px 3px var(--black-color);
   background-color: var(--tinte-7-color);
-  top: 0;
+  top: 10;
   left: 0;
-  margin-left: 20%;
+  margin-left: 17%;
   width: 60%;
   height: auto;
-  padding: 2% 2%;
+  padding: 3% 3% 5% 2%;
   overflow-y: "auto";
 }
 .form_add_user{
   display: flex;
+  justify-items: center;
   flex-direction: column;
   width: 80%;
-  margin-left: 16%;
+  margin-left: 13%;
 }
 .title_image > h1{
   margin-left: 2%;
@@ -51,27 +52,36 @@
 .form_add_user select{
   margin-top: 2%;
   border-radius: 3px;
-  height: 25px;
-  width: 90%;
+  height: 2rem;
+  width: 95%;
   background-color: var(--gray-color);
   text-align: left;
   font-family: 'Inter', sans-serif;
   border: 0;
+  padding: 0.5rem 1rem;
   box-shadow: 0px 1px 3px var(--black-color); 
 }
 
 .form_add_user option{
   text-align: left;
   font-family: 'Inter', sans-serif;
-  font-size: 50px;
-  color: var(--gray-color);
+  font-size: 14px;
+  color: var(--shade-5-color);
+}
+.form_add_user option:hover{
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  background-color: var(--shade-5-color);
+  color: var(--shade-5-color);
 }
 
 .form_add_user input{
   margin-top: 2%;
-  padding: 0.1rem 0.5rem;
+  padding: 0.5rem 1rem;
+  float: right;
   border-radius: 3px;
-  width: 80%;
+  width:90%;
   background-color: var(--gray-color);
   text-align: left;
   font-family: 'Inter', sans-serif;
@@ -80,7 +90,7 @@
 }
 
 .form_add_user > input{
-  width: 90%;
+  width: 95%;
 }
 
 .form_add_user input[type=submit]:nth-child(1){
@@ -109,13 +119,30 @@
 }
 
 .form_add_user > select{
-  width: 90%;
+  width: 100%;
 }
 
+.input_horizontal{
+  padding: 2%;
+}
 
 .form_horizontal{
   width: 100%;
   margin-top: 2%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
+
+.form_horizontal input{
+  width: 93%;
+  margin-top: 2%;
+  float: left;
+}
+.form_horizontal select[class=gender]{
+  width: 90%;
+  margin-top: 2%;
+  float: right;
+  padding: 0.5rem 7rem 0.5rem 1rem;
+}
+
