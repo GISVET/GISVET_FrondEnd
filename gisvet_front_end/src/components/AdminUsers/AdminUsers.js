@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header/header";
-import Table from "../../components/Table/Table";
+import Header from "../Header/header";
+import Table from "../Table/Table";
 import './styles.css';
 import icon_Search from  "./images/Icon_Search.png"
 import icon_Filter from "./images/Icon_Filter.png"
-import SettingsAdminUser from "../../components/SettingsAdminUser/index";
+import SettingsAdminUser from "../SettingsAdminUser/index";
 import {useUsersAdmin} from "../../hooks/useAdminUsers";
 
 
 
-export default function adminUser(){
-    const {loading, users,setUsers,headers,getUsers} = useUsersAdmin()
+export default function AdminUser(){
+    const {loading, users,headers} = useUsersAdmin()
+
 
 
     return (
-        <div className="general-admin">
-            <Header />
-            <div className="general-users">
+        <div className="general-users">
             <h1>Gestión de Usuarios</h1>
                 <div className="table-users">
                     <div className="filter-users">
@@ -34,7 +33,6 @@ export default function adminUser(){
                 <SettingsAdminUser /> 
             </div>
         </div>
-    </div>
     )
 
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, link } from "wouter";
+import {useLocation } from "wouter"
 import logo_products from './images/Icon_Products.png'
 import logo_dependency from './images/Icon_Dependency.png'
 import logo_users from './images/Icon_Users.png'
@@ -15,6 +16,7 @@ import './styles.css';
 export default function Header() {
     const {islogged, login, logout} = useUser();
     const [showMenuUser, setShowMenuUser] = useState(false)
+    const [,navigate] = useLocation()
 
     const showUserOptions = async(event) =>{
       event.preventDefault();
@@ -29,19 +31,19 @@ export default function Header() {
     <nav className="nav-bar">
       <ul>
         <img src={Main_logo} width="70" height="70" />
-        <li>
+        <li onClick={()=>{navigate("/AdminUser")}}>
             <img src={logo_products} width="45" height="45" />
             Productos
         </li>
-        <li>
+        <li onClick={()=>{navigate("/AdminUser")}}>
             <img src={logo_dependency} width="45" height="45" />
             Dependencias
         </li>
-        <li>
+        <li onClick={()=>{navigate("/AdminUser")}}>
             <img src={logo_users} width="45" height="45" />
             Usuarios
         </li>
-        <li>
+        <li onClick={()=>{navigate("/AdminUser")}}>
             <img src={logo_patients} width="45" height="45" />
             Pacientes
         </li>

@@ -54,7 +54,7 @@ export default function AdminUser({handleChange, onSubmit, onClose}){
                     <div className="form_horizontal">
                         <div className="input-horizontal">
                             <label htmlFor="professional_id">Tarjeta Profesional</label>
-                            <input className="professional_id" required={true} onChange={handleChange}  type="number" name="professional_id" />    
+                            <input className="professional_id" required={false} onChange={handleChange}  type="number" name="professional_id" value="" />    
                         </div>
                         <div className="input-horizontal">
                             <label htmlFor="gender">Genero</label>
@@ -74,9 +74,23 @@ export default function AdminUser({handleChange, onSubmit, onClose}){
                                     </option>
                                 )
                             }
-                    </select>  
+                    </select>
+
+                    <label htmlFor="email">Correo Electronico</label>
+                    <input name="email" onChange={handleChange}  required={true} type="email" />
                     
-                   
+
+                    <div className="form_horizontal">
+                        <div className="input-horizontal">
+                            <label htmlFor="password">Contraseña</label>
+                            <input className="password" required={true} onChange={handleChange}  type="password" name="password" />    
+                        </div>
+                        <div className="input-horizontal">
+                            <label htmlFor="ValidatePassword">Confirmar contraseña</label>
+                            <input className="ValidatePassword" required={true} onChange={handleChange}  type="password" name="validatePassword" />    
+                        </div> 
+                    </div>  
+                     
                     <div className="form_horizontal">
                         <input className="button_accept" type="submit" onClick={onSubmit} value="Agregar"/>
                         <input className="button_cancel" type="submit" onClick={onClose} value="Cancelar"/>

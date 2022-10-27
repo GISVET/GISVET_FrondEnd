@@ -1,4 +1,4 @@
-import React, {useContext ,useEffect, useState} from "react";
+import React, {useCallback, useContext ,useEffect, useState} from "react";
 import userContext from "../context/UserContext"
 import getUsersList from "../services/getUserList"
 import { typeDoc } from "../constants/constants";
@@ -43,8 +43,9 @@ export function AdminUserContextProvider({children}){
     const {jwt} = useContext(userContext)
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
+    const [updateUsers, isUpdateUsers] = useState(false)
     let errorMessage = ""
-
+    
     
     useEffect(()=>{
         setLoading(true)
@@ -53,6 +54,7 @@ export function AdminUserContextProvider({children}){
                 if(res.message === undefined){
                     setLoading(false)
                     setUsers(formatListUsers(res))
+                    isUpdateUsers(false)
                 }else{
                     setLoading(false)
                     errorMessage = res.message
@@ -61,7 +63,7 @@ export function AdminUserContextProvider({children}){
             .catch(err => {
                 console.error(err)
             })
-    }, [users])
+    }, [updateUsers,jwt])
 
     return <Context.Provider value={
         {   
@@ -69,7 +71,8 @@ export function AdminUserContextProvider({children}){
             setUsers, 
             errorMessage, 
             loading, 
-            setLoading
+            setLoading,
+            isUpdateUsers
         }}>
         {children}
     </Context.Provider>

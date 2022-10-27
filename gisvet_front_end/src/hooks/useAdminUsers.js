@@ -8,8 +8,9 @@ import addNewUser from "../services/addNewUser"
 
 export function useUsersAdmin() {
     const {jwt} = useContext(userContext)
-    const {users, setUsers,loading, setLoading } = useContext(adminUserContext)
+    const {users,loading, setLoading, isUpdateUsers} = useContext(adminUserContext)
     let errorMessage = ""
+    
 
     const addUser = useCallback(({full_name,document_type,document,gender, professional_id,id_department})=>{
         setLoading(true)
@@ -20,7 +21,8 @@ export function useUsersAdmin() {
                 }else{
                     setLoading(false)
                     errorMessage = res.message
-                    setUsers(users)
+                    isUpdateUsers(true)
+                    
                 }
             })
             .catch(err => {
@@ -33,9 +35,8 @@ export function useUsersAdmin() {
      return {
        loading, 
        users,
-       setUsers,
        headers: usersAdmin,
-       addUser
+       addUser,
     }
 }
 

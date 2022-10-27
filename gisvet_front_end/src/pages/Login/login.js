@@ -18,10 +18,10 @@ function  login(){
         password: ""
     });
 
-    const className = (errorMessage!= "" || errorMessage== undefined)?"error-message":"no-error";
+    const className = (errorMessage!== "" || errorMessage== undefined)?"error-message":"no-error";
 
     useEffect(()=>{
-        if (islogged) navigate("/admin")
+        if (islogged) navigate("/AdminUser")
      },[islogged, navigate])
 
     const handleInputChange = (event)=>{

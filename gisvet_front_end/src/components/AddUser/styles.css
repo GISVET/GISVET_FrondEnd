@@ -1,6 +1,8 @@
 
 .form_add_user_general{
   display: flex;
+  scroll-behavior: auto;
+  overflow:scroll;
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0px 0px 3px var(--black-color);
@@ -9,7 +11,7 @@
   left: 0;
   margin-left: 17%;
   width: 60%;
-  height: auto;
+  height: 100%;
   padding: 3% 3% 5% 2%;
   overflow-y: "auto";
 }
@@ -135,7 +137,7 @@
 }
 
 .form_horizontal input{
-  width: 93%;
+  width: 83%;
   margin-top: 2%;
   float: left;
 }
