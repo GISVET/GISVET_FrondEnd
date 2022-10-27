@@ -1,36 +1,27 @@
 import React, {useContext ,useEffect, useState} from "react";
 import userContext from "../context/UserContext"
 import getUsersList from "../services/getUserList"
-import { typeDoc } from "../constants/constants";
-import { gender } from "../constants/constants";
-import { role } from "../constants/constants";
-
-
 
 const Context = React.createContext({})
 
 function formatListUsers(data){
     let dataFormated = []
     data.map((person)=>{
-        const doc = typeDoc.find(element => element.id === person.DOCUMENT_TYPE);  
-        const genderOption = gender.find(element => element.id === person.GENDER);   
-        const roleOption = role.find(element => element.id === person.ID_ROL);    
-        const profesionalIdValidation  = (person.PROFESSIONAL_ID==='null')?"No aplica":person.PROFESSIONAL_ID;     
         let personData={
-            tipoDoc:doc.name,
+            tipoDoc:person.DOCUMENT_TYPE,
             document:person.DOCUMENT,
             name:person.FULL_NAME,
-            gender:genderOption.name,
-            professional_id:profesionalIdValidation,
+            gender:person.GENDER,
+            professional_id:person.PROFESSIONAL_ID,
             dependencie:person.dependencies.DEPARTMENT_NAME,
             rol:''       
         }
-        if(person.user_roles.length == 0  ){
-            personData.rol= role.find(element => element.id === 0).name;  
+        if(person.user_roles.length ==0  ){
+            personData.rol= ''
             dataFormated.push(personData);
         }else{
             person.user_roles.map((personRol)=>{
-                personData.rol = role.find(element => element.id === personRol.ID_ROL).name;
+                personData.rol = personRol.ID_ROL
                 dataFormated.push(Object.assign({}, personData));
             })
         }

@@ -4,9 +4,12 @@ import logo from './images/Proyecto_Logo_GisVet.png'
 import {useLocation } from "wouter"
 import { useState } from 'react';
 import useUser from "../../hooks/useUser";
+import {loginErrorMessage} from "../../constants/constants";
 
 
-function login(){
+function  login(){
+  
+
     const {login, islogged, errorMessage} = useUser()
     const [,navigate] = useLocation()
 
@@ -14,6 +17,8 @@ function login(){
         username: "",
         password: ""
     });
+
+    const className = (errorMessage!= "" || errorMessage== undefined)?"error-message":"no-error";
 
     useEffect(()=>{
         if (islogged) navigate("/admin")
@@ -39,19 +44,20 @@ function login(){
           </div>
           <div className="left">
             <form className="login_div" onSubmit={handleSubmit}>
+
                   <h3>Correo electrónico</h3>
-                  <input name="username" type="text" onChange={handleInputChange} value={data.username} required='required' placeholder="   clinicauptc@uptc.edu.co"/>
+                  <input className={className} name="username" type="text" onChange={handleInputChange} value={data.username} required='required' placeholder="clinicauptc@uptc.edu.co"/>
                   <h3>Contraseña</h3>
-                  <input name="password" type="password" onChange={handleInputChange} value={data.password} required='required' placeholder="   **********" />
+                  <input className={className} name="password" type="password" onChange={handleInputChange} value={data.password} required='required' placeholder="**********" />
                   {
-                    (errorMessage!= "" || errorMessage== undefined) &&
-                        <h3 className="error-message">{errorMessage}</h3>
-                  }
-                  
+                  (errorMessage!= "" || errorMessage== undefined)&&
+                  <h3 className={className}>{loginErrorMessage}</h3>
+}
+                                   
                   <input type="submit" value="Ingresar"/>
                  
                   <a><h4>¿Olvidaste tu contraseña?</h4></a>
-              </form>
+              </form>🎬 
                 
             </div>
       </div>    

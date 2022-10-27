@@ -6,10 +6,12 @@ import { usersAdmin } from "../constants/headersTables";
 import addNewUser from "../services/addNewUser"
 
 
-export function useUsersAdmin() {
+
+export function userAdminPatients() {
     const {jwt} = useContext(userContext)
     const {users, setUsers,loading, setLoading } = useContext(adminUserContext)
     let errorMessage = ""
+
 
     const addUser = useCallback(({full_name,document_type,document,gender, professional_id,id_department})=>{
         setLoading(true)
