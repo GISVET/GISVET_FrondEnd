@@ -5,20 +5,17 @@ import './styles.css';
 import icon_Search from  "./images/Icon_Search.png"
 import icon_Filter from "./images/Icon_Filter.png"
 import SettingsAdminUser from "../SettingsAdminUser/index";
-import {useUsersAdmin} from "../../hooks/useAdminUsers";
+import {useDependenciesAdmin} from "../../hooks/useAdminDependencies";
 
 
 
-export default function AdminUser(){
-    const {loading, users,headers} = useUsersAdmin()
-
-
-
+export default function AdminDependencies(){
+    const {loading, dependencies,headers} = useDependenciesAdmin()
     return (
         <div className="general-users">
-            <h1>Gestión de Usuarios</h1>
+            <h1>Gestión de Dependencias</h1>
                 <div className="table-users">
-                    <div className="filter-users">
+                <div className="filter-users">
                         <div className="buscador">
                                 <input className="buscar" placeholder="Buscar" type="text" />
                                 <input className="image_buscar" type="image" src={icon_Search} />
@@ -30,7 +27,7 @@ export default function AdminUser(){
                         </div>
                     </div>
 
-                <Table headers={headers} data={users}/>  
+                <Table headers={headers} data={dependencies}/>  
                 <SettingsAdminUser /> 
             </div>
         </div>

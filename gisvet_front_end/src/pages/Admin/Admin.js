@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/Header/header";
+import Header from "../../components/HeaderAdmin/header";
 import Table from "../../components/Table/Table";
 import './styles.css';
 import icon_Search from  "./images/Icon_Search.png"

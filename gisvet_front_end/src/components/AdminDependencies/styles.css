@@ -17,6 +17,7 @@
             display: flex;
         }
         .table-users{
+            position: relative;
             display: flex;
             flex-direction: column;
             border-radius: 15px;
@@ -30,12 +31,15 @@
             
         }
         .filter-users{
+            flex: auto;
             display: flex;
+            flex-direction: row;
+            justify-content: space-around;
             width: 100%;
         }
     
-        .buscador{
-            display: inline-flex;
+        div.buscador {
+	        border:1px solid #d7d7d7;
             height: 50%;
             width: 25%;        
             align-items: center;
@@ -44,20 +48,24 @@
             border : 1px solid black;
             box-sizing:border-box;
         }
-        .buscador > .buscar {
+        input.buscar {
             border: 0px;
-            width: 80%;
+            width: 240px;
             height: 15px;
             text-indent: 20px;
+            position: relative;
             background: transparent;
             font-family: 'Inter', sans-serif;
             font-weight: normal;
-            font-size: 15px;
+            font-size: 10px;
         }
+        input.buscar:nth-child(1) {
+            text-indent: 0px;
 
-        .buscador > .image_buscar {
-            width: 8%;
-            margin-left: 10%;
+        }
+        input.image_buscar {
+            width: 20px;
             border: 0px;
+            position: relative;
             top:1px;
         }

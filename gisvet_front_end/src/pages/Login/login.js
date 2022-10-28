@@ -21,7 +21,7 @@ function  login(){
     const className = (errorMessage!== "" || errorMessage== undefined)?"error-message":"no-error";
 
     useEffect(()=>{
-        if (islogged) navigate("/AdminUser")
+        if (islogged) navigate("/AdminDependencies")
      },[islogged, navigate])
 
     const handleInputChange = (event)=>{
