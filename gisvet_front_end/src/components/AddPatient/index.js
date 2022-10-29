@@ -21,6 +21,7 @@ export default function addPatient({handleChange, onSubmit, onClose}){
                     <img src={icon_Dependency_Form} width="40" height="40"/>
                     <h1> Registro de Pacientes</h1>
                 </div>
+                
                 <form className="form_add_user" onSubmit={nonSubmit}>
                     <label htmlFor="full_name">Historia clínica del paciente</label>
                     <input name="full_name" onChange={handleChange}  required={true} type="number" placeholder="Inserte el nombre completo del paciente"/>
