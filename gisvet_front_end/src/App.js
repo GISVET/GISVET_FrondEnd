@@ -34,7 +34,6 @@ function App() {
                 </Route> 
             </AdminPatientsContextProvider>         
         </AdminUserContextProvider>
-
       </div>   
     </UserContextProvider> 
   );

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import './styles.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_User from "./images/Icon_Add_User.png"
+import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
 import { Modal } from "../../components/Modal/Index"; 
 import AdminUser from "../../components/AddUser";
+import AssignDependency from "../../components/AssignDependency";
 import {useLocation } from "wouter"
 import { useUsersAdmin } from "../../hooks/useAdminUsers";
 
@@ -11,18 +13,10 @@ import { useUsersAdmin } from "../../hooks/useAdminUsers";
 export default function SettingsAdminUser(){
     const [activeMenu, setActiveMenu] = useState(false)
     const [showModal, setShowModal] = useState(false)
+    const [childModal, setchildModal] = useState(<></>)
     const [,navigate] = useLocation()
     const {loading,addUser} = useUsersAdmin()
     
-
-    const [data, setData] = useState({
-        full_name:'',
-        document_type:'',
-        document:'',
-        gender:'', 
-        professional_id:'',
-        id_department:''
-    });
 
     const setVisibleMenu = async(event) =>{
         event.preventDefault();
@@ -31,24 +25,38 @@ export default function SettingsAdminUser(){
 
     const showAddUserMenu = async(event) =>{
         event.preventDefault();
-        return setShowModal(true)
+        setShowModal(true)
+        setchildModal(<AdminUser
+            onClose={handleCloseModal} 
+            onSubmit={onsubmitAddUser} 
+           />)
     }
+
+    
+    const showAssignMenu = async(event) =>{
+        event.preventDefault();
+        setShowModal(true)
+        setchildModal(<AssignDependency
+            onClose={handleCloseModal} 
+            onSubmit={onsubmitAssignDependency} 
+           />) 
+    }
+    
 
     const handleCloseModal = ()=>{
         setShowModal(false)
     }
 
-    const onsubmit = async(event)=>{
-        event.preventDefault();
-        addUser(data)
+    const onsubmitAddUser = (dataForm)=>{
+        addUser(dataForm)
         setShowModal(false)
     }
 
-    const handleInputChange = (event)=>{
-        let {name, value} = event.target;
-        let newData = {...data, [name]: value}
-        setData(newData);
+    const onsubmitAssignDependency = (dataForm)=>{
+        addUser(dataForm)
+        setShowModal(false)
     }
+
 
     if (!activeMenu) {
         return (<div className="options-admin" >
@@ -59,13 +67,19 @@ export default function SettingsAdminUser(){
         return (<>
                     <div className="options-admin-visible" >
                         <input className="settings-hide" type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                        <input className="add_user_form" type="image" onClick={showAddUserMenu} src={icon_Add_User} width="45" height="45"/>
+                        <div className="item_floatMenu">
+                            <input className="add_user_form" type="image" onClick={showAddUserMenu} src={icon_Add_User} width="45" height="45"/>
+                            <p>Agregar</p>
+                        </div>
+                        
+                        <div className="item_floatMenu">
+                            <input className="add_user_form" type="image" onClick={showAssignMenu} src={icon_asign_dependencie} width="45" height="45"/>
+                            <p>Assignar</p>
+                        </div>
+
+                        
                     </div>
-                    {showModal && <Modal><AdminUser
-                         onClose={handleCloseModal} 
-                         onSubmit={onsubmit} 
-                         handleChange={handleInputChange}
-                        /></Modal>
+                    {showModal && <Modal>{childModal}</Modal>
                         
                     }
                 </>

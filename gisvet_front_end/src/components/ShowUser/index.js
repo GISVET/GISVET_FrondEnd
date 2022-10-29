@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import './styles.css';
-import icon_User_Form from "./images/Icon_Add_User_Form.png"
+import icon_User_settings from "./images/Icon_settings.png"
 import { useRolesList } from "../../hooks/useRoles";
 
 import { typeDoc } from "../../constants/constants";
 
 
-export default function AddUser({onSubmit, onClose}){
+export default function ShowUser({onSubmit, onClose}){
     const {loading, listRoles} = useRolesList();
     const [isMatchPassword, setIsMatchPassword] = useState(true)
+    const [isDisable , setIsDisable] = useState(true)
     let OthersRoles = Object.assign([], listRoles);
     const typeDocuments = typeDoc
     let classPassword = "no-error"
@@ -55,12 +56,12 @@ export default function AddUser({onSubmit, onClose}){
     return (
             <div className="form_add_user_general">
                 <div className="title_image"> 
-                    <img src={icon_User_Form} width="40" height="40"/>
-                    <h1> Registro de Usuarios</h1>
+                    <img src={icon_User_settings} width="40" height="40"/>
+                    <h1> Detalle Usuario</h1>
                 </div>
                 <form className="form_add_user" onSubmit={doSubmit}>
                     <label htmlFor="full_name">Nombre completo de usuario</label>
-                    <input name="full_name" onChange={handleChange}  required={true} type="text" placeholder="inserte el nombre completo del usuario"/>
+                    <input name="full_name" disabled={isDisable} onChange={handleChange}  required={true} type="text"/>
                     <div className="form_horizontal">
                         <div className="input-horizontal">
                             <label htmlFor="document_type">Tipo de Documento</label>
@@ -127,6 +128,5 @@ export default function AddUser({onSubmit, onClose}){
                     </div>
                 </form>
             </div>
-            
     )
 }
