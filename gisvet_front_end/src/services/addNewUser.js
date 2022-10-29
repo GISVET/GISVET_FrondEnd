@@ -1,16 +1,8 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function addNewUser({jwt,full_name,document_type,document,gender, professional_id,id_department}){
-    let user = {
-        full_name:full_name,
-        document_type: document_type,
-        document:document,
-        gender:gender,
-        professional_id: professional_id,
-        id_department: new Number(id_department)
-    }
-    let jsonUser = JSON.stringify(user)
-    return fetch(`${ENDPOINT}/Admin/createUser`, {
+export default function addNewUser({jwt,data}){
+    let jsonUser = JSON.stringify(data)
+    return fetch(`${ENDPOINT}/Admin/Users/createUser`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

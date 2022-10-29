@@ -1,7 +1,7 @@
 const ENDPOINT = 'http://localhost:3001'
 
 export default function getRolesList({jwt}){
-    return fetch(`${ENDPOINT}/Admin/getRoles` , {
+    return fetch(`${ENDPOINT}/Admin/Users/getRoles` , {
         method: 'GET',
         headers: {
             "Authorization": 'Bearer '+jwt

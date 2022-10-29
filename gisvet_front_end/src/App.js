@@ -23,16 +23,11 @@ function App() {
             <Route path = "/AdminUser">
               <Admin><AdminUser/></Admin>
             </Route>
-            
-        </AdminUserContextProvider>
-
-        <AdminUserContextProvider>
             <Route path = "/AdminDependencies">
               <Admin><AdminDependencies/></Admin>
             </Route>
             
         </AdminUserContextProvider>
-            
       </div>   
     </UserContextProvider> 
   );
