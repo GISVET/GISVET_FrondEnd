@@ -1,49 +1,38 @@
 import React, {useContext ,useEffect, useState} from "react";
 import userContext from "../context/UserContext"
-import getUsersList from "../services/getUserList"
+import getPatientsList from "../services/getPatientsList"
 
 const Context = React.createContext({})
 
-function formatListUsers(data){
+
+function formatListPatients(data){
     let dataFormated = []
-    data.map((person)=>{
-        let personData={
-            tipoDoc:person.DOCUMENT_TYPE,
-            document:person.DOCUMENT,
-            name:person.FULL_NAME,
-            gender:person.GENDER,
-            professional_id:person.PROFESSIONAL_ID,
-            dependencie:person.dependencies.DEPARTMENT_NAME,
-            rol:''       
+    data.map((patient)=>{
+        let patientData={
+            id_clinic_history:patient.ID_CLINIC_HISTORY,
+            name_patient:patient.NAME_PATIENT
         }
-        if(person.user_roles.length ==0  ){
-            personData.rol= ''
-            dataFormated.push(personData);
-        }else{
-            person.user_roles.map((personRol)=>{
-                personData.rol = personRol.ID_ROL
-                dataFormated.push(Object.assign({}, personData));
-            })
-        }
-    })
-   
+        dataFormated.push(Object.assign({}, patientData));
+    }) 
     return dataFormated
 }
 
-export function AdminUserContextProvider({children}){
+export function AdminPatientsContextProvider({children}){
+    console.log("PASO POR EL CONTEXT PROVIDER")
     const {jwt} = useContext(userContext)
-    const [users, setUsers] = useState([])
+    const [patients, setPatients] = useState([])
     const [loading, setLoading] = useState(false)
+    const [updatePatients, isUpdatePatient] = useState(false)
     let errorMessage = ""
 
-    
     useEffect(()=>{
         setLoading(true)
-        getUsersList({jwt})
+        getPatientsList({jwt})
             .then(res => {
                 if(res.message === undefined){
                     setLoading(false)
-                    setUsers(formatListUsers(res))
+                    setPatients(formatListPatients(res))
+                    isUpdatePatient(false)
                 }else{
                     setLoading(false)
                     errorMessage = res.message
@@ -52,15 +41,16 @@ export function AdminUserContextProvider({children}){
             .catch(err => {
                 console.error(err)
             })
-    }, [users])
+    }, [updatePatients,jwt])
 
     return <Context.Provider value={
         {   
-            users, 
-            setUsers, 
+            patients, 
+            setPatients, 
             errorMessage, 
             loading, 
-            setLoading
+            setLoading,
+            isUpdatePatient
         }}>
         {children}
     </Context.Provider>

@@ -42,7 +42,7 @@ export default function HeaderAdmin() {
             Usuarios
         </li>
 
-        <li onClick={()=>{navigate("/AdminUser")}}>
+        <li onClick={()=>{navigate("/AdminPatients")}}>
             <img src={logo_patients} width="45" height="45" />
             Pacientes
         </li>

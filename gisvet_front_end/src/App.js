@@ -3,10 +3,12 @@ import './App.css';
 import { Route } from "wouter";
 import login from "./pages/Login/login";
 import { UserContextProvider } from "./context/UserContext";
+import { AdminPatientsContextProvider } from "./context/AdminPatientsContext";
 import AdminUser from "./components/AdminUsers/AdminUsers";
 import { AdminUserContextProvider } from "./context/AdminUserContext";
 import Admin from "./pages/Admin/Admin"
 import AdminDependencies from "./components/AdminDependencies/AdminDependencies";
+import AdminPatients from "./components/AdminPatients/AdminPatients";
 
 const home = React.lazy(()=>import("./pages/Login/login"))
 
@@ -26,7 +28,11 @@ function App() {
             <Route path = "/AdminDependencies">
               <Admin><AdminDependencies/></Admin>
             </Route>
-            
+            <AdminPatientsContextProvider>
+                <Route path = "/AdminPatients">
+                  <Admin><AdminPatients/></Admin>
+                </Route> 
+            </AdminPatientsContextProvider>         
         </AdminUserContextProvider>
       </div>   
     </UserContextProvider> 

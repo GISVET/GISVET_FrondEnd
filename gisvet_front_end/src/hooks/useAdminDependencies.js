@@ -6,7 +6,7 @@ import { dependenciesAdmin } from "../constants/headersTables";
 import addNewDependency from "../services/addNewUser"
 
 
-export function useDependenciesAdmin() {
+export function useAdminDependencies() {
     const {jwt} = useContext(userContext)
     const {dependencies,loading, setLoading, isUpdateDependencies} = useContext(adminDependencyContext)
     let errorMessage = ""

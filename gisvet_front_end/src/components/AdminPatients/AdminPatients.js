@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Header from "../HeaderAdmin/header";
 import Table from "../Table/Table";
 import './styles.css';
 import icon_Search from  "./images/Icon_Search.png"
 import icon_Filter from "./images/Icon_Filter.png"
-import {useAdminDependencies} from "../../hooks/useAdminDependencies";
-import SettingsAdminDepedencies from "../SettingsAdminDependencies";
+import {useAdminPatients} from "../../hooks/useAdminPatients";
+import SettingsAdminPatients from "../SettingsAdminPatients";
 
 
 
-export default function AdminDependencies(){
-    const {loading, dependencies,headers} = useAdminDependencies()
+export default function AdminPatients(){
+    const {loading, patients,headers} = useAdminPatients()
     return (
         <div className="general-users">
-            <h1>Gestión de Dependencias</h1>
+            <h1>Gestión de Pacientes</h1>
                 <div className="table-users">
                 <div className="filter-users">
                         <div className="buscador">
@@ -27,8 +26,8 @@ export default function AdminDependencies(){
                         </div>
                     </div>
 
-                <Table headers={headers} data={dependencies}/>  
-                <SettingsAdminDepedencies/> 
+                <Table headers={headers} data={patients}/>  
+                <SettingsAdminPatients/> 
             </div>
         </div>
     )
