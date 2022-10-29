@@ -30,6 +30,7 @@
     background-color: var(--shade-5-color);
     box-shadow: 0px 0px 5px var(--black-color);
     justify-content: end;
+    justify-content: center;
 }
 .login_div{
     display: flex;
@@ -42,10 +43,11 @@
 }
 
 .logo_div > img{
-    margin-top: 25%;
     width: 70%;
-    height: 60%;
-    margin-right: 15%;   
+    height: auto;
+    
+    align-self: center;
+
 }
 .login_div > h3{
     margin-left: 20%;
@@ -62,13 +64,17 @@
     border-radius: 10px;
     height: 7%;
     margin-left: 20%;
-    width: 40%;
+    width: 50%;
+    text-indent: 10%;
     background-color: var(--gray-color);
-    text-align: left;
     font-family: 'Inter', sans-serif;
     border: 0;
+    font-size: 15px;
+    padding-left: 10p;
     box-shadow: 0px 1px 3px var(--black-color);
 }
+
+
 .login_div > input[type=submit]{
     margin-top: 5%;
     border-radius: 10px;
@@ -88,6 +94,22 @@
     margin-top: 1%;
     margin-left: 20%;
     text-align: left;
+}
+
+.login_div > a > h4{
+    font-size: 15px;    
+}
+
+
+input.error-message {
+    border: 1px solid var(--error-text-color);
+}
+
+h3.error-message{
+    margin-top: 5%;
+    text-align: center;
+    width: 50%;
+    color: var(--error-text-color);
 }
 
 .login_div > a:hover{
