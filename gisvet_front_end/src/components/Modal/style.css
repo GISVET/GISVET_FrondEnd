@@ -1,4 +1,5 @@
 .modal{
+    padding-top: 5%;
     background-color: rgba(0, 0, 0, 0.632);
     position: fixed;
     backdrop-filter: blur(4px);

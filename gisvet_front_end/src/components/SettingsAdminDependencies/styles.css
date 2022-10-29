@@ -1,0 +1,46 @@
+
+        .options-admin{
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            z-index: 6;
+            top: 85%;
+            left: 2%;
+            background-color: var(--shade-6-color);
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            align-items: center;
+        } 
+        
+        .options-admin-visible{
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            flex-direction: row;
+            position: absolute;
+            z-index: 6;
+            top: 85%;
+            left: 2%;
+            background-color: var(--shade-6-color);
+            width: 9rem;
+            height: 4rem;
+            border-bottom-left-radius: 50px;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 30px;
+            border-top-right-radius: 30px;
+        } 
+
+        .options-admin > input{
+            position: absolute;
+            z-index: 2;
+
+        }
+        .options-admin-visible > input{
+            z-index: 2;
+            padding: 0 0.8em;
+        }
+        .options-admin-visible > input > img:nth-child(2){
+            margin-top: 5%;
+            margin-left: 10%;
+        }

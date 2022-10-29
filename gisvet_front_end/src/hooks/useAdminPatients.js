@@ -1,28 +1,28 @@
 
 import { useContext, useCallback, useState } from "react"
 import userContext from "../context/UserContext"
-import adminUserContext from "../context/AdminUserContext"
-import { usersAdmin } from "../constants/headersTables";
-import addNewUser from "../services/addNewUser"
+import adminPatientContext from "../context/AdminPatientsContext"
+import {patientsAdmin } from "../constants/headersTables";
+import addNewPatient from "../services/addNewPatient"
 
 
-
-export function userAdminPatients() {
+export function useAdminPatients() {
     const {jwt} = useContext(userContext)
-    const {users, setUsers,loading, setLoading } = useContext(adminUserContext)
+    const {patients,loading, setLoading, isUpdatePatient} = useContext(adminPatientContext)
     let errorMessage = ""
+    
 
-
-    const addUser = useCallback(({full_name,document_type,document,gender, professional_id,id_department})=>{
+    const addPatient = useCallback(({id_clinic_history,name_patient})=>{
         setLoading(true)
-        addNewUser({jwt,full_name,document_type,document,gender, professional_id,id_department})
+        addNewPatient({jwt,id_clinic_history,name_patient})
             .then(res => {
                 if(res.message === ''){
                     setLoading(false)
                 }else{
                     setLoading(false)
                     errorMessage = res.message
-                    setUsers(users)
+                    isUpdatePatient(true)
+                    
                 }
             })
             .catch(err => {
@@ -34,10 +34,9 @@ export function userAdminPatients() {
 
      return {
        loading, 
-       users,
-       setUsers,
-       headers: usersAdmin,
-       addUser
+       patients,
+       headers: patientsAdmin,
+       addPatient,
     }
 }
 

@@ -1,8 +1,4 @@
-    .body{
-        border-radius: 10px;
-    }
-
-        .general-admin{
+.general-admin{
             display: flex;
             flex-direction: column;
         }
