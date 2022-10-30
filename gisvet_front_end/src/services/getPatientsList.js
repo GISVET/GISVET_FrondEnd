@@ -4,7 +4,7 @@ export default function getUsersList({jwt}){
     return fetch(`${ENDPOINT}/Admin/getPatient` , {
         method: 'GET',
         headers: {
-            //"Content-Type": 'application/json',
+            "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
         }
     }).then(res => {

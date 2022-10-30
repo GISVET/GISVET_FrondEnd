@@ -6,15 +6,16 @@ import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
 export default function addPatient({handleChange, onSubmit, onClose}){
 
     const [data, setData] = useState({
-        id:'',
-        name:''
+        id_clinic_history:'',
+        name_patient:''
     });
  
     const nonSubmit = async(event) =>{
         event.preventDefault();
         return false
     }
-    
+
+
     return (
             <div className="form_add_user_general">
                 <div className="title_image"> 
@@ -23,10 +24,10 @@ export default function addPatient({handleChange, onSubmit, onClose}){
                 </div>
                 
                 <form className="form_add_user" onSubmit={nonSubmit}>
-                    <label htmlFor="full_name">Historia clínica del paciente</label>
-                    <input name="full_name" onChange={handleChange}  required={true} type="number" placeholder="Inserte el nombre completo del paciente"/>
-                    <label htmlFor="full_name">Nombre del paciente</label>
-                    <input name="full_name" onChange={handleChange}  required={true} type="text" placeholder="Inserte el nombre completo del paciente"/>
+                    <label htmlFor="id_clinic_history">Historia clínica del paciente</label>
+                    <input name="id_clinic_history" onChange={handleChange}  required={true} type="number" placeholder="Inserte el nombre completo del paciente"/>
+                    <label htmlFor="name_patient">Nombre del paciente</label>
+                    <input name="name_patient" onChange={handleChange}  required={true} type="text" placeholder="Inserte el nombre completo del paciente"/>
  
 
                   

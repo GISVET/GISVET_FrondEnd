@@ -1,9 +1,10 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function getDependencies({jwt}){
-    return fetch(`${ENDPOINT}/Admin/getRoles` , {
+export default function getPatientsAZ({jwt}){
+    return fetch(`${ENDPOINT}/Admin/getPatientsOrderAZ` , {
         method: 'GET',
         headers: {
+            "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
         }
     }).then(res => {

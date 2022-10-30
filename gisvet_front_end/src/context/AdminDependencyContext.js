@@ -9,11 +9,9 @@ const Context = React.createContext({})
 function formatListDependencies(data){
     let dataFormated = []
     data.map((dependencie)=>{
-        const roleOption = role.find(element => element.id === dependencie.ID_ROL);    
         let dependencyData={
-            id:dependencie.id,
-            name:dependencie.name,
-            rol:roleOption       
+            dependencie_name:dependencie.DEPENDENCIE_NAME,
+            type_dependencie:dependencie.TYPE_DEPENDENCIE       
         }
         dataFormated.push(dependencyData);
     })
