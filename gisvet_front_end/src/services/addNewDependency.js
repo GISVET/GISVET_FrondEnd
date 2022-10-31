@@ -1,18 +1,18 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function addNewDependency({jwt,id,name}){
+export default function addNewDependency({jwt,dependencie_name,type_dependencie}){
     let dependency = {
-        id:full_name,
-        name: document_type
+        dependencie_name:dependencie_name,
+        type_dependencie: type_dependencie
     }
-    let jsonUser = JSON.stringify(user)
-    return fetch(`${ENDPOINT}/Admin/createUser`, {
+    let jsonDependency = JSON.stringify(dependency)
+    return fetch(`${ENDPOINT}/Admin/createDependecie`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
         },
-        body: jsonUser
+        body: jsonDependency
     }).then(res => {
         if (!res.ok) throw new Error('Response is not Ok')
         return res.json()

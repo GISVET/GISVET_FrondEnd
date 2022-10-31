@@ -44,7 +44,16 @@
     
         div.buscador {
 	        border:1px solid #d7d7d7;
-            height: 50%;
+            width: 25%;        
+            align-items: center;
+            border-radius: 10px;
+            background-color: var(--white-color);
+            border : 1px solid black;
+            box-sizing:border-box;
+        }
+
+        div.buscador:nth-child(2) {
+	        border:1px solid #d7d7d7;
             width: 25%;        
             align-items: center;
             border-radius: 10px;
@@ -73,3 +82,23 @@
             position: relative;
             top:1px;
         }
+
+        div.buscador > select[class=filter_dependencies]{
+            border: 0px;
+            font-size: 15px;
+            width: 100px;
+            position: relative;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: normal;
+        }
+        div.buscador > select[class=filter_dependencies_option]{
+            border: 0px;
+            font-size: 15px;
+            width: 100px;
+            position: relative;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: normal;
+        }
+        

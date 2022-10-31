@@ -1,19 +1,22 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
 import userContext from "./UserContext"
 import getDependenciesList from "../services/getDependenciesList"
-import { role } from "../constants/constants";
+import { typeDependencies } from "../constants/constants";
 
 
 const Context = React.createContext({})
 
+
 function formatListDependencies(data){
+    console.log("Entra en el format de las dependencias")
     let dataFormated = []
     data.map((dependencie)=>{
-        const roleOption = role.find(element => element.id === dependencie.ID_ROL);    
+        console.log(dependencie.TYPE_DEPENDENCIE)
+        const typeDependencieData = typeDependencies.find(element => element.id === dependencie.TYPE_DEPENDENCIE);  
         let dependencyData={
-            id:dependencie.id,
-            name:dependencie.name,
-            rol:roleOption       
+            id_dependencie:dependencie.ID_DEPENDENCIE,
+            dependencie_name:dependencie.DEPENDENCIE_NAME,
+            type_dependencie:typeDependencieData.name       
         }
         dataFormated.push(dependencyData);
     })
@@ -29,6 +32,7 @@ export function AdminDependencyContextProvider({children}){
     
     
     useEffect(()=>{
+        console.log("Entra en el useefect de obtener dependencias")
         setLoading(true)
         getDependenciesList({jwt})
             .then(res => {
