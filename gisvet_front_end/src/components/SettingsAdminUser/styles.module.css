@@ -29,8 +29,7 @@
             border-top-left-radius: 50px;
             border-bottom-right-radius: 30px;
             border-top-right-radius: 30px;
-        } 
-
+        }
         
         .options_admin_visible > input{
             z-index: 2;

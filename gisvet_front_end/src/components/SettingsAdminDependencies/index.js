@@ -14,13 +14,6 @@ export default function SettingsAdminDepedencies(){
     const [,navigate] = useLocation()
     const {loading,addDependency} = useAdminDependencies()
     
-
-    const [data, setData] = useState({
-        id:'',
-        name:'',
-        role:''
-    });
-
     const setVisibleMenu = async(event) =>{
         event.preventDefault();
         activeMenu?setActiveMenu(false):setActiveMenu(true)
@@ -35,16 +28,9 @@ export default function SettingsAdminDepedencies(){
         setShowModal(false)
     }
 
-    const onsubmit = async(event)=>{
-        event.preventDefault();
+    const onsubmit = (data)=>{
         addDependency(data)
         setShowModal(false)
-    }
-
-    const handleInputChange = (event)=>{
-        let {name, value} = event.target;
-        let newData = {...data, [name]: value}
-        setData(newData);
     }
 
     if (!activeMenu) {
@@ -75,7 +61,6 @@ export default function SettingsAdminDepedencies(){
                     {showModal && <Modal><AddDependency
                          onClose={handleCloseModal} 
                          onSubmit={onsubmit} 
-                         handleChange={handleInputChange}
                         /></Modal>
                         
                     }

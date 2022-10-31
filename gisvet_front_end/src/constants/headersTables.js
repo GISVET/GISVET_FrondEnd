@@ -13,7 +13,7 @@ export const patientsAdmin = [
 export const dependenciesAdmin = [
     "Id de la dependencia",
     "Nombre de la dependencia",
-    "Rol asignado"
+    "Tipo asignado"
 ]
 
 export const dependenciesByUser = [
