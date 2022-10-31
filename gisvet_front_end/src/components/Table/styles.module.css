@@ -1,9 +1,8 @@
 
-.table-data{
+.table_data{
+    box-sizing: border-box;
     width: 100%;
-    margin-left: 10%;
-    margin-right: 10%;
-    height: 350px;
+    max-height: 350px;
     justify-content: center;
     overflow: scroll;
     scrollbar-color: var(--shade-5-color) var(--principal-color);
@@ -11,7 +10,7 @@
 
 }
 
-.table-format{
+.table_format{
     border-collapse: collapse;
     margin-left: 5%;
     width: 90%;
@@ -25,11 +24,11 @@
 
 }
 
-.table-format > thead> tr > th{
+.table_format > thead> tr > th{
     position: sticky;
     top: 0;
-    width: 100px;
-    height: 60px;
+    width: 10%;
+    height: 3rem;
     color: white;
     text-align: center;
     background-color: var(--shade-5-color);
@@ -37,9 +36,9 @@
     padding: 0;
 }
 
-.table-format > tbody> tr:nth-child(odd){
-    width: 100px;
-    height: 40px;
+.table_format > tbody> tr:nth-child(odd){
+    width: 10%;
+    height: 3rem;
     text-align: center;
     background-color: var(--white-color);
     color: black;
@@ -49,9 +48,9 @@
     border-bottom: 1px solid black;
 }
 
-.table-format > tbody> tr:nth-child(even){
-    width: 100px;
-    height: 40px;
+.table_format > tbody> tr:nth-child(even){
+    width: 10%;
+    height: 3rem;
     text-align: center;
     color: black;
     border-top: 1px solid black;
@@ -59,4 +58,15 @@
     background-color: var(--tinte-6-color);
     margin: 0;
     padding: 0;
+}
+
+.button_table_goTo{
+    margin-top: 0%;
+    padding:0%;
+    border-radius: 0%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    border: 0;
+    box-shadow: 0% var(--black-color);
+    justify-items: center;
 }

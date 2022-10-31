@@ -1,0 +1,31 @@
+
+
+ 
+    
+        .buscador{
+            display: inline-flex;
+            height: 50%;
+            width: 25%;        
+            align-items: center;
+            border-radius: 10px;
+            background-color: var(--white-color);
+            border : 1px solid black;
+            box-sizing:border-box;
+        }
+        .buscador > .buscar {
+            border: 0px;
+            width: 80%;
+            height: 15px;
+            text-indent: 20px;
+            background: transparent;
+            font-family: 'Inter', sans-serif;
+            font-weight: normal;
+            font-size: 15px;
+        }
+
+        .buscador > .image_buscar {
+            width: 8%;
+            margin-left: 10%;
+            border: 0px;
+            top:1px;
+        }

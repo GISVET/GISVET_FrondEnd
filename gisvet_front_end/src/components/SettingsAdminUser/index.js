@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import css from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_User from "./images/Icon_Add_User.png"
 import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
@@ -65,15 +65,15 @@ export default function SettingsAdminUser(){
         )
     }else{
         return (<>
-                    <div className="options-admin-visible" >
-                        <input className="settings-hide" type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                        <div className="item_floatMenu">
-                            <input className="add_user_form" type="image" onClick={showAddUserMenu} src={icon_Add_User} width="45" height="45"/>
+                    <div className={css.options_admin_visible} >
+                        <input className={css.settings_hide} type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
+                        <div className={css.item_floatMenu}>
+                            <input className={css.add_user_form} type="image" onClick={showAddUserMenu} src={icon_Add_User} width="45" height="45"/>
                             <p>Agregar</p>
                         </div>
                         
-                        <div className="item_floatMenu">
-                            <input className="add_user_form" type="image" onClick={showAssignMenu} src={icon_asign_dependencie} width="45" height="45"/>
+                        <div className={css.item_floatMenu}>
+                            <input className={css.add_user_form} type="image" onClick={showAssignMenu} src={icon_asign_dependencie} width="45" height="45"/>
                             <p>Assignar</p>
                         </div>
 

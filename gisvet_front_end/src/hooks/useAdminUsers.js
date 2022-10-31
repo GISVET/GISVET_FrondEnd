@@ -9,7 +9,7 @@ import getUsersByDocument from "../services/getUserByDocument"
 
 export function useUsersAdmin() {
     const {jwt} = useContext(userContext)
-    const {users,loading, setLoading, isUpdateUsers} = useContext(adminUserContext)
+    const {users,loading, setLoading, isUpdateUsers, formatListUserToTable} = useContext(adminUserContext)
     const [userByDocument, setUserById] = useState({})
     let errorMessage = ""
     
@@ -66,6 +66,7 @@ export function useUsersAdmin() {
                 console.error(err)
             })
     }, [setLoading])
+
     /*const AssignDependency = useCallback(({document,id_dependency})=>{
         setLoading(true)
         addNewUser({jwt,document,id_dependency})
@@ -92,7 +93,8 @@ export function useUsersAdmin() {
        headers: usersAdmin,
        addUser,
        GetUserByDocument,
-       userByDocument
+       userByDocument,
+       listUserToTable: formatListUserToTable(users)
     }
 }
 
