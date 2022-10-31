@@ -6,6 +6,7 @@ import {patientsAdmin } from "../constants/headersTables";
 import addNewPatient from "../services/addNewPatient"
 import getPatientsAZ from "../services/getPatientsAZ";
 import getPatientsZA from "../services/getPatientsZA";
+import getNamePatients from "../services/getNamePatients";
 
 export function useAdminPatients() {
     const {jwt} = useContext(userContext)
@@ -64,6 +65,23 @@ export function useAdminPatients() {
         }
     }, [setLoading])
 
+    const askPatientName = useCallback((name_patient)=>{
+        console.log(`El name en el use es ${name_patient}`)
+        setLoading(true)
+        getNamePatients({jwt,name_patient})
+            .then(res => {
+                if(res.message === ''){
+                    setLoading(false)
+                }else{
+                    setLoading(false)
+                    errorMessage = res.message    
+                    setPatients(res)                
+                }
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }, [setLoading])
 
 
      return {
@@ -72,6 +90,7 @@ export function useAdminPatients() {
        headers: patientsAdmin,
        addPatient,
        orderPatient,
+       askPatientName,
     }
 }
 

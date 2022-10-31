@@ -2,24 +2,31 @@ import React, { useEffect, useState } from "react";
 import './styles.css';
 import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
 import { useRolesList } from "../../hooks/useRoles";
-import { typeDoc } from "../../constants/constants";
+import { typeDependencies } from "../../constants/constants";
 
 
-export default function addDependency({handleChange, onSubmit, onClose}){
-    const {loading, listRoles} = useRolesList();
-    const typeDocuments = typeDoc
+export default function addDependency({onSubmit, onClose}){
 
     const [data, setData] = useState({
-        id:'',
-        name:'',
-        role:''
+        dependencie_name:'',
+        type_dependencie:'',
     });
+
+    const doSubmit = (event)=>{
+        event.preventDefault();
+        onSubmit(data)     
+    }
  
     const nonSubmit = async(event) =>{
         event.preventDefault();
         return false
     }
-    
+
+    const handleTypeDependencie = (event)=>{
+        let {name, value} = event.target;
+        let newData = {...data, [name]: value}
+        setData(newData);
+    }
     return (
             <div className="form_add_user_general">
                 <div className="title_image"> 
@@ -28,21 +35,19 @@ export default function addDependency({handleChange, onSubmit, onClose}){
                 </div>
                 <form className="form_add_user" onSubmit={nonSubmit}>
                     <label htmlFor="full_name">Nombre del departamento</label>
-                    <input name="full_name" onChange={handleChange}  required={true} type="text" placeholder="Inserte el nombre completo del usuario"/>
+                    <input name="dependencie_name" onChange={handleTypeDependencie}  required={true} type="text" placeholder="Inserte el nombre completo del usuario"/>
  
-                    <select className="dependency" onChange={handleChange}  required={true} name="id_department">
-                            <option></option>
-                            { listRoles.map(rol=>
-                                    <option key={rol.ID_ROL} value={rol.ID_ROL}>
-                                        {rol.NAME_ROL}
+                    <select className="document_type" onChange={handleTypeDependencie}  required={true} name="type_dependencie">
+                            <option disabled={true} selected></option>
+                            { typeDependencies.map(typeDependency=>
+                                    <option key={typeDependency.id} value={typeDependency.id}>
+                                        {typeDependency.name}
                                     </option>
                                 )
                             }
                     </select>
-
-                  
                     <div className="form_horizontal">
-                        <input className="button_accept" type="submit" onClick={onSubmit} value="Agregar"/>
+                        <input className="button_accept" type="submit" onClick={doSubmit} value="Agregar"/>
                         <input className="button_cancel" type="submit" onClick={onClose} value="Cancelar"/>
                     </div>
                 </form>

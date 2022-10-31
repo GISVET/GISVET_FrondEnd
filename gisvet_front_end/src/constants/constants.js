@@ -41,6 +41,21 @@ export const filterPatients = [
         'name': "Nombre descendente (Z-A)"
     }
 ]
+
+export const typeDependencies = [
+    {
+        'id':"B",
+        'name': "Bodega"
+    },
+    {
+        'id':"F",
+        'name': "Farmacia"
+    },
+    {
+        'id':"C",
+        'name': "Consultorio"
+    }
+]
 export const role = [
     {
         'id':1,
