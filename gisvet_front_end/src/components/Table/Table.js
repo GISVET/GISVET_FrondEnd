@@ -45,6 +45,7 @@ export default function Table({headers, data, actionItem, keyName}){
                                             <input className="add_user_form" type="image" onClick={onClickItem} src={icon_see_detalle} width="20" height="20" value ={element[keyName]}/>
                                         </td>
                                         :<></>
+                                        
                                     }
 
                                 </tr> 
