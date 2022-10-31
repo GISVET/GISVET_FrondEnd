@@ -15,10 +15,12 @@ import { Modal } from "../../components/Modal/Index";
 
 
 export default function AdminPatients(){
-    const {loading, patients,headers,orderPatient} = useAdminPatients()
+    const {loading, patients,headers,orderPatient,askPatientName} = useAdminPatients()
     const [showModal, setShowModal] = useState(false)
     const [childModal, setchildModal] = useState(<></>)
     const [orderBy,setOrderBy] = useState();
+    const [askName,setAskName] = useState();
+
     
 
     const showUserMenu = async(identifier) =>{
@@ -27,9 +29,16 @@ export default function AdminPatients(){
     const handleChange = (event)=>{
         setOrderBy(event.target.value);
     }
+    const handleName = (event)=>{
+        setAskName(event.target.value);
+    }
 
     const orderPatients=()=>{
         orderPatient(orderBy);
+    }
+
+    const askPatients=()=>{
+        askPatientName(askName);
     }
 
     return (
@@ -39,8 +48,8 @@ export default function AdminPatients(){
                 <div className="table-users">
                 <div className="filter-users">
                         <div className="buscador">
-                                <input className="buscar" placeholder="Buscar" type="text" />
-                                <input className="image_buscar" type="image" src={icon_Search} />
+                                <input className="buscar" onChange={handleName} placeholder="Buscar" type="text" />
+                                <input className="image_buscar" onClick={askPatients} type="image" src={icon_Search} />
                         </div>
                         <div className="buscador">
                         <select placeholder="Filtrar" onChange={handleChange} className="filter_patients" type="text" >

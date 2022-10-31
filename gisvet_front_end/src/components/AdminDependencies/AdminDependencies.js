@@ -10,15 +10,32 @@ import SettingsAdminDepedencies from "../SettingsAdminDependencies";
 
 
 export default function AdminDependencies(){
-    const {loading, dependencies,headers} = useAdminDependencies()
+
+    const [askName,setAskName] = useState();
+    const {loading, dependencies,headers,orderDependency,askDependencyName} = useAdminDependencies()
+
+
+
+    const showUserMenu = async(identifier) =>{
+    }
+
+    const askDependency=()=>{
+        askDependencyName(askName);
+    }
+
+    const handleName = (event)=>{
+        setAskName(event.target.value);
+    }
+
+    console.log("Entra en el admin dependencies")
     return (
         <div className="general-users">
             <h1>Gestión de Dependencias</h1>
                 <div className="table-users">
                 <div className="filter-users">
                         <div className="buscador">
-                                <input className="buscar" placeholder="Buscar" type="text" />
-                                <input className="image_buscar" type="image" src={icon_Search} />
+                                <input className="buscar" placeholder="Buscar" onChange={handleName} type="text" />
+                                <input className="image_buscar" onClick={askDependency} type="image" src={icon_Search} />
                         </div>
                         <div className="buscador">
                         <select placeholder="Filtrar" type="text" className="buscar"></select>
@@ -27,7 +44,9 @@ export default function AdminDependencies(){
                         </div>
                     </div>
 
-                <Table headers={headers} data={dependencies}/>  
+                <Table headers={headers} data={dependencies}
+                        keyName={'id_dependencie'}
+                        actionItem={showUserMenu}/>  
                 <SettingsAdminDepedencies/> 
             </div>
         </div>

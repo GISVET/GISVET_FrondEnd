@@ -9,6 +9,8 @@ import { AdminUserContextProvider } from "./context/AdminUserContext";
 import Admin from "./pages/Admin/Admin"
 import AdminDependencies from "./components/AdminDependencies/AdminDependencies";
 import AdminPatients from "./components/AdminPatients/AdminPatients";
+import { AdminDependencyContextProvider } from "./context/AdminDependencyContext";
+
 
 const home = React.lazy(()=>import("./pages/Login/login"))
 
@@ -22,17 +24,24 @@ function App() {
               path = "/"
          />
         <AdminUserContextProvider>
+
             <Route path = "/AdminUser">
               <Admin><AdminUser/></Admin>
             </Route>
-            <Route path = "/AdminDependencies">
-              <Admin><AdminDependencies/></Admin>
-            </Route>
+
+            <AdminDependencyContextProvider>
+              <Route path = "/AdminDependencies">
+                <Admin><AdminDependencies/></Admin>
+              </Route>
+            </AdminDependencyContextProvider>
+
+
             <AdminPatientsContextProvider>
                 <Route path = "/AdminPatients">
                   <Admin><AdminPatients/></Admin>
                 </Route> 
-            </AdminPatientsContextProvider>         
+            </AdminPatientsContextProvider>      
+
         </AdminUserContextProvider>
       </div>   
     </UserContextProvider> 
