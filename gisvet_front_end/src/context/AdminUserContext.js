@@ -1,9 +1,7 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
 import userContext from "../context/UserContext"
 import getUsersList from "../services/getUserList"
-import { typeDoc } from "../constants/constants";
-import { gender } from "../constants/constants";
-import { role } from "../constants/constants";
+import { typeDoc, gender, role } from "../constants/constants";
 
 
 
@@ -22,7 +20,6 @@ function formatListUsers(data){
             name:person.FULL_NAME,
             gender:genderOption.name,
             professional_id:profesionalIdValidation,
-            dependencie:person.dependencies.DEPARTMENT_NAME,
             rol:''       
         }
         if(person.user_roles.length == 0  ){
@@ -31,6 +28,32 @@ function formatListUsers(data){
         }else{
             person.user_roles.map((personRol)=>{
                 personData.rol = role.find(element => element.id === personRol.ID_ROL).name;
+                dataFormated.push(Object.assign({}, personData));
+            })
+        }
+    })
+   
+    return dataFormated
+}
+
+function formatListUserToTable(data){
+    let dataFormated = []
+    data.map((person)=>{
+        const doc = typeDoc.find(element => element.id === person.DOCUMENT_TYPE);   
+        const profesionalIdValidation  = (person.PROFESSIONAL_ID==='null')?"No aplica":person.PROFESSIONAL_ID;     
+        let personData={
+            tipoDoc:doc.name,
+            document:person.DOCUMENT,
+            name:person.FULL_NAME,
+            professional_id:profesionalIdValidation,
+            rol:''       
+        }
+        if(person.user_roles.length == 0  ){
+            personData.rol= role.find(element => element.id == 0).name;  
+            dataFormated.push(personData);
+        }else{
+            person.user_roles.map((personRol)=>{
+                personData.rol = role.find(element => element.id == personRol.ID_ROL).name;
                 dataFormated.push(Object.assign({}, personData));
             })
         }
@@ -53,7 +76,7 @@ export function AdminUserContextProvider({children}){
             .then(res => {
                 if(res.message === undefined){
                     setLoading(false)
-                    setUsers(formatListUsers(res))
+                    setUsers(res)
                     isUpdateUsers(false)
                 }else{
                     setLoading(false)
@@ -72,7 +95,8 @@ export function AdminUserContextProvider({children}){
             errorMessage, 
             loading, 
             setLoading,
-            isUpdateUsers
+            isUpdateUsers,
+            formatListUserToTable
         }}>
         {children}
     </Context.Provider>

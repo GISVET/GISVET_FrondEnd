@@ -87,7 +87,7 @@
   color: var(--shade-5-color);
 }
 
-.form_add_user input{
+.form_add_user input:not(.button_table_goTo){
   margin-top: 2%;
   padding: 0.5rem 1rem;
   float: right;

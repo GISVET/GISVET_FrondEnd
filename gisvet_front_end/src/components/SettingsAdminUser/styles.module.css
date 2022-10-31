@@ -1,5 +1,5 @@
 
-        .options-admin{
+        .options_admin{
             display: flex;
             justify-content: center;
             position: absolute;
@@ -13,7 +13,7 @@
             align-items: center;
         } 
         
-        .options-admin-visible{
+        .options_admin_visible{
             display: flex;
             justify-content: left;
             align-items: center;
@@ -29,9 +29,9 @@
             border-top-left-radius: 50px;
             border-bottom-right-radius: 30px;
             border-top-right-radius: 30px;
-        } 
- 
-        .options-admin-visible > input{
+        }
+        
+        .options_admin_visible > input{
             z-index: 2;
             padding: 0 0.8rem;
         }

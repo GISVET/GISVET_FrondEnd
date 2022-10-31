@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import './styles.css';
 import Icon_pase_seguridad from "./images/Icon_pase_seg.png"
 import { useRolesList } from "../../hooks/useRoles";
-
+import PanelSearch from "../../components/PanelSearch";
 import { typeDoc } from "../../constants/constants";
 
 
-export default function AssignDependency({onSubmit, onClose}){
+export default function AssignDependency({onSearch,onSubmit, onClose}){
     const {loading, listRoles} = useRolesList();
     const [isMatchPassword, setIsMatchPassword] = useState(true)
     let OthersRoles = Object.assign([], listRoles);
@@ -38,6 +38,9 @@ export default function AssignDependency({onSubmit, onClose}){
         let newData = {...data, [name]: value}
         setData(newData);
     }
+    const search = function(Keyword){
+        console.log(Keyword+' a buscar')
+    }
 
     
     return (
@@ -46,6 +49,7 @@ export default function AssignDependency({onSubmit, onClose}){
                     <img src={Icon_pase_seguridad} width="50" height="50"/>
                     <h1> Assignacion de dependencia</h1>
                 </div>
+                <PanelSearch onSubmit={search}/>
                 <form className="form_add_user" onSubmit={doSubmit}>
                     <select className="document_type" onChange={handleChange}  required={true} name="document_type" >
                         <option disabled={true} selected></option>

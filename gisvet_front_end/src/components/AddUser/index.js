@@ -11,7 +11,7 @@ export default function AddUser({onSubmit, onClose}){
     const [isMatchPassword, setIsMatchPassword] = useState(true)
     let OthersRoles = Object.assign([], listRoles);
     const typeDocuments = typeDoc
-    let classPassword = "no-error"
+    let classPassword = "non-error"
 
     const [data, setData] = useState({
         full_name:'',
@@ -41,11 +41,11 @@ export default function AddUser({onSubmit, onClose}){
     const verifyPassword = async(event)=>{
         if(data.password == (event.target.value)){
             setIsMatchPassword(true)
-            classPassword = "no-error"
+            classPassword = "non-error"
         }
         else{
             setIsMatchPassword(false)
-            classPassword = "error-message"
+            classPassword = "error-messages"
         }
     }
 

@@ -2,7 +2,7 @@ const ENDPOINT = 'http://localhost:3001'
 
 export default function getUsersList({jwt}){
     return fetch(`${ENDPOINT}/Admin/Users/persons` , {
-        method: 'GET',
+        method: 'POST',
         headers: {
             //"Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt

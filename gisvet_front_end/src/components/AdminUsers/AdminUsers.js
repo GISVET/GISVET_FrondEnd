@@ -2,24 +2,25 @@ import React, { useEffect, useState } from "react";
 import Header from "../HeaderAdmin/header";
 import Table from "../Table/Table";
 import './styles.css';
-import icon_Search from  "./images/Icon_Search.png"
 import icon_Filter from "./images/Icon_Filter.png"
 import SettingsAdminUser from "../SettingsAdminUser/index";
 import {useUsersAdmin} from "../../hooks/useAdminUsers";
 import { Modal } from "../../components/Modal/Index"; 
 import AddUser from "../../components/AddUser";
 import ShowUser from "../../components/ShowUser";
+import PanelSearch from "../../components/PanelSearch";
 
 
 
 export default function AdminUser(){
-    const {loading, users,headers} = useUsersAdmin()
+    const {loading, users,listUserToTable,headers} = useUsersAdmin()
     const [showModal, setShowModal] = useState(false)
     const [childModal, setchildModal] = useState(<></>)
 
     const showUserMenu = async(identifier) =>{
         setShowModal(true)
         setchildModal(<ShowUser
+            id={identifier}
             onClose={handleCloseModal} 
             onSubmit={handleCloseModal} 
            />) 
@@ -27,6 +28,9 @@ export default function AdminUser(){
 
     const handleCloseModal = ()=>{
         setShowModal(false)
+    }
+    const search = function(Keyword){
+        console.log(Keyword+' a buscar')
     }
 
 
@@ -38,10 +42,7 @@ export default function AdminUser(){
             <h1>Gestión de Usuarios</h1>
                 <div className="table-users">
                     <div className="filter-users">
-                        <div className="buscador">
-                                <input className="buscar" placeholder="Buscar" type="text" />
-                                <input className="image_buscar" type="image" src={icon_Search} />
-                        </div>
+                        <PanelSearch onSubmit={search}/>
                         <div className="buscador">
                         <select placeholder="Filtrar" type="text" className="buscar"></select>
                             <select placeholder="Filtrar" type="text" className="buscar"></select>
@@ -50,7 +51,7 @@ export default function AdminUser(){
                     </div>
 
                 <Table headers={headers} 
-                        data={users}
+                        data={listUserToTable}
                         keyName={'document'}
                         actionItem={showUserMenu}
                         />  

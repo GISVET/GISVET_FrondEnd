@@ -4,10 +4,6 @@ export const typeDoc = [
         'name': "Cedula de Ciudadanía"
     },
     {
-        'id':"C",
-        'name': "Cedula de Ciudadanía"
-    },
-    {
         'id':"CE",
         'name': "Cedula de extranjería"
     },
@@ -28,6 +24,10 @@ export const gender = [
     {
         'id':"F",
         'name': "Femenino"
+    },
+    {
+        'id':"O",
+        'name': "Otro"
     }
 ]
 
@@ -85,15 +85,11 @@ export const role = [
     },
     {
         'id':2,
-        'name': "Médico Veterinario"
+        'name': "Usuario"
     },
     {
         'id':3,
-        'name': "Regente en Farmacia"
-    },
-    {
-        'id':4,
-        'name': "Oficios varios"
+        'name': "Auditor"
     },
     {
         'id':0,

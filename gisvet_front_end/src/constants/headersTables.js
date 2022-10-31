@@ -2,9 +2,7 @@ export const usersAdmin = [
     "Tipo documento",
     "Identificación",
     "Nombre",
-    "Género",
     "Tarjeta profesional",
-    "Dependencia",
     "Rol asignado"
 ]
 
@@ -16,4 +14,9 @@ export const dependenciesAdmin = [
     "Id de la dependencia",
     "Nombre de la dependencia",
     "Tipo asignado"
+]
+
+export const dependenciesByUser = [
+    "Id de la dependencia",
+    "Nombre de la dependencia"
 ]

@@ -87,7 +87,7 @@
   color: var(--shade-5-color);
 }
 
-.form_add_user input{
+.form_add_user input:not(.button_table_goTo){
   margin-top: 2%;
   padding: 0.5rem 1rem;
   float: right;
@@ -157,11 +157,11 @@
   padding: 0.5rem 7rem 0.5rem 1rem;
 }
 
-.input-horizontal > input .error-message {
+.input-horizontal > input .error-messages {
   border: 1px solid var(--error-text-color);
 }
 
-.form_add_user_general > h3.error-message{
+.form_add_user_general > h3.error-messages{
   margin-top: 5%;
   text-align: center;
   width: 50%;
