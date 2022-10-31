@@ -97,7 +97,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                             type="text"/>
                     
                         <div className={styles.form_horizontal}>
-                            <div className={styles.input-horizontal}>
+                            <div className={styles.input_horizontal}>
                             {isDisable?
                                 <>
                                     <label htmlFor="documentshow">
@@ -130,7 +130,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                 </>
                             }
                             </div>
-                            <div className={styles.input-horizontal}>
+                            <div className={styles.input_horizontal}>
                                 <label htmlFor="document">
                                     Número de Identificación
                                 </label>
@@ -147,7 +147,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                     
                     
                     <div className={styles.form_horizontal}>
-                        <div className={styles.input-horizontal}>
+                        <div className={styles.input_horizontal}>
                             <label htmlFor="professional_id">
                                 Tarjeta Profesional
                             </label>
@@ -159,7 +159,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                     type="number" 
                                     name="professional_id"/>    
                         </div>
-                        <div className={styles.input-horizontal}>
+                        <div className={styles.input_horizontal}>
                         {isDisable?
                         <>
                             <label htmlFor="gendershow">
@@ -268,7 +268,7 @@ export default function ShowUser({id, onSubmit, onClose}){
 
                     {isDisable?<></>:
                         <div className={styles.form_horizontal}>
-                            <div className={styles.input-horizontal}>
+                            <div className={styles.input_horizontal}>
                                 <label htmlFor="password" >
                                     Contraseña
                                 </label>
@@ -279,7 +279,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                         type="password" 
                                         name="password" />    
                             </div>
-                            <div className={styles.input-horizontal}>
+                            <div className={styles.input_horizontal}>
                                 <label htmlFor="validatePassword">
                                     Confirmar contraseña
                                 </label>

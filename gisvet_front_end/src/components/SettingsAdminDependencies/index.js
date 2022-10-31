@@ -34,7 +34,7 @@ export default function SettingsAdminDepedencies(){
     }
 
     if (!activeMenu) {
-        return (<div className={styles.options-admin} >
+        return (<div className={styles.options_admin} >
                     <input type="image"  
                             onClick={setVisibleMenu} 
                             src={icon_Settings} 
@@ -44,8 +44,8 @@ export default function SettingsAdminDepedencies(){
         )
     }else{
         return (<>
-                    <div className={styles.options-admin-visible} >
-                        <input className={styles.settings-hide} 
+                    <div className={styles.options_admin_visible} >
+                        <input className={styles.settings_hide} 
                                 type="image" 
                                 onClick={setVisibleMenu} 
                                 src={icon_Settings} 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import css from './styles.module.css';
+import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_User from "./images/Icon_Add_User.png"
 import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
@@ -59,7 +59,7 @@ export default function SettingsAdminUser(){
 
 
     if (!activeMenu) {
-        return (<div className="options-admin" >
+        return (<div className={styles.options_admin} >
                     <input type="image"  
                             onClick={setVisibleMenu} 
                             src={icon_Settings} 
@@ -69,16 +69,16 @@ export default function SettingsAdminUser(){
         )
     }else{
         return (<>
-                    <div className={css.options_admin_visible} >
-                        <input className={css.settings_hide} 
+                    <div className={styles.options_admin_visible} >
+                        <input className={styles.settings_hide} 
                                 type="image" 
                                 onClick={setVisibleMenu} 
                                 src={icon_Settings} 
                                 width="45" 
                                 height="45"/>
 
-                        <div className={css.item_floatMenu}>
-                            <input className={css.add_user_form} 
+                        <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
                                     type="image" 
                                     onClick={showAddUserMenu} 
                                     src={icon_Add_User} 
@@ -88,8 +88,8 @@ export default function SettingsAdminUser(){
                             <p>Agregar</p>
                         </div>
                         
-                        <div className={css.item_floatMenu}>
-                            <input className={css.add_user_form} 
+                        <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
                                     type="image" 
                                     onClick={showAssignMenu} 
                                     src={icon_asign_dependencie} 

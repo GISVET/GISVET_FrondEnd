@@ -7,7 +7,7 @@ import styles from "./style.module.css"
 function Modalcontent({children, onClose}) {
     return (
         <div className={styles.modal}>
-            <div className={styles.modal-content}>
+            <div className={styles.modal_content}>
                 {children}
             </div>
         </div>
