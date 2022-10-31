@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400;100&display=swap');
 :root {
     --shade-5-color: #435535;
     --gray-color:#E4E0E0;
@@ -13,6 +13,7 @@
     --tinte-5-color:#E2F4D5;
     --principal-color:#B3E28E;
     --error-button-color:#FFCDC2;
+    --error-text-color:#e63a13;
     --shade-2-color : #86A96B;
 }
 body{
