@@ -6,6 +6,8 @@ import { dependenciesAdmin } from "../constants/headersTables";
 import addNewDependency from "../services/addNewDependency"
 import getDependenciesName from "../services/getDependenciesName";
 import getDependenciesOrder from "../services/getDependenciesOrder";
+import getDependenciesType from "../services/getDependenciesType";
+
 import { typeDependencies } from "../constants/constants";
 
 
@@ -42,6 +44,26 @@ export function useAdminDependencies() {
         console.log(`El name en el use es ${order_name}`)
         setLoading(true)
         getDependenciesOrder({jwt,order_name})
+            .then(res => {
+                if(res.message === ''){
+                    setLoading(false)
+                }else{
+                    setLoading(false)
+                    errorMessage = res.message    
+                    setDependencies(res)                
+                }
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }, [setLoading])
+
+    const askDependencyType = useCallback((type_dependencie)=>{
+        console.log(`El valor con el que llega al hook es ${type_dependencie}`);
+        setLoading(true)
+        console.log(`El name en el use es ${type_dependencie}`)
+        setLoading(true)
+        getDependenciesType({jwt,type_dependencie})
             .then(res => {
                 if(res.message === ''){
                     setLoading(false)
@@ -96,6 +118,7 @@ export function useAdminDependencies() {
        addDependency,
        orderDependency,
        askDependencyName,
+       askDependencyType,
     }
 }
 

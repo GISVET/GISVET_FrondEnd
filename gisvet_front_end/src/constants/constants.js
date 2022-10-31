@@ -42,6 +42,17 @@ export const filterPatients = [
     }
 ]
 
+export const filterDependenciesName = [
+    {
+        'id':"AZ",
+        'name': "Ascendente (A-Z)"
+    },
+    {
+        'id':"ZA",
+        'name': "Descendente (Z-A)"
+    }
+]
+
 export const typeDependencies = [
     {
         'id':"B",
@@ -54,6 +65,17 @@ export const typeDependencies = [
     {
         'id':"C",
         'name': "Consultorio"
+    }
+]
+
+export const filterDependencies = [
+    {
+        'id':"1",
+        'name': "Nombre"
+    },
+    {
+        'id':"2",
+        'name': "Tipo"
     }
 ]
 export const role = [
