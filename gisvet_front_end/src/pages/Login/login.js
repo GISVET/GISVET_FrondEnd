@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import logo from './images/Proyecto_Logo_GisVet.png'
 import {useLocation } from "wouter"
 import { useState } from 'react';
@@ -18,7 +18,7 @@ function  login(){
         password: ""
     });
 
-    const className = (errorMessage!== "" || errorMessage== undefined)?"error-message":"no-error";
+    const className = (errorMessage!== "" || errorMessage== undefined)?styles.error_message:styles.no_error;
 
     useEffect(()=>{
         if (islogged) navigate("/AdminDependencies")
@@ -36,14 +36,14 @@ function  login(){
     };
     
     return (
-        <div className="general">
-          <div className="rigth">
-              <div className="logo_div">
+        <div className={styles.general}>
+          <div className={styles.rigth}>
+              <div className={styles.logo_div}>
                   <img src={logo} alt="Logo GisVet"/>
               </div>
           </div>
-          <div className="left">
-            <form className="login_div" onSubmit={handleSubmit}>
+          <div className={styles.left}>
+            <form className={styles.login_div} onSubmit={handleSubmit}>
 
                   <h3>Correo electrónico</h3>
                   <input className={className} name="username" type="text" onChange={handleInputChange} value={data.username} required='required' placeholder="clinicauptc@uptc.edu.co"/>
@@ -57,7 +57,7 @@ function  login(){
                   <input type="submit" value="Ingresar"/>
                  
                   <a><h4>¿Olvidaste tu contraseña?</h4></a>
-              </form>🎬 
+              </form>
                 
             </div>
       </div>    

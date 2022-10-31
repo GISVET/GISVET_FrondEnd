@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import ReactDOM  from "react-dom";
-import "./style.css"
+import styles from "./style.module.css"
 
 
 
 function Modalcontent({children, onClose}) {
     return (
-        <div className="modal">
-            <div className="modal-content">
+        <div className={styles.modal}>
+            <div className={styles.modal-content}>
                 {children}
             </div>
         </div>

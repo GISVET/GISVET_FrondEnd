@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import Icon_pase_seguridad from "./images/Icon_pase_seg.png"
 import { useRolesList } from "../../hooks/useRoles";
 import PanelSearch from "../../components/PanelSearch";
@@ -44,14 +44,20 @@ export default function AssignDependency({onSearch,onSubmit, onClose}){
 
     
     return (
-            <div className="form_add_user_general">
-                <div className="title_image"> 
+            <div className={styles.form_add_user_general}>
+                <div className={styles.title_image}> 
                     <img src={Icon_pase_seguridad} width="50" height="50"/>
                     <h1> Assignacion de dependencia</h1>
                 </div>
                 <PanelSearch onSubmit={search}/>
-                <form className="form_add_user" onSubmit={doSubmit}>
-                    <select className="document_type" onChange={handleChange}  required={true} name="document_type" >
+                <form className={styles.form_add_user} 
+                        onSubmit={doSubmit}>
+
+                    <select className={styles.document_type} 
+                            onChange={handleChange}  
+                            required={true} 
+                            name="document_type" >
+
                         <option disabled={true} selected></option>
                         { typeDocuments.map(type=>
                             <option  key={type.id} value={type.id}>
@@ -61,7 +67,11 @@ export default function AssignDependency({onSearch,onSubmit, onClose}){
                         }
                     </select>
 
-                    <select className="document_type" onChange={handleChange}  required={true} name="document_type" >
+                    <select className={styles.document_type} 
+                            onChange={handleChange}  
+                            required={true} 
+                            name="document_type" >
+
                         <option disabled={true} selected></option>
                         { typeDocuments.map(type=>
                             <option  key={type.id} value={type.id}>
@@ -71,9 +81,15 @@ export default function AssignDependency({onSearch,onSubmit, onClose}){
                         }
                     </select> 
                      
-                    <div className="form_horizontal">
-                        <input className="button_accept" type="submit"   value="Asignar Dependencia"/>
-                        <input className="button_cancel" type="submit" onClick={onClose} value="Cancelar"/>
+                    <div className={styles.form_horizontal}>
+                        <input className={styles.button_accept} 
+                                type="submit"   
+                                value="Asignar Dependencia"/>
+
+                        <input className={styles.button_cancel} 
+                                type="submit" 
+                                onClick={onClose} 
+                                value="Cancelar"/>
                     </div>
                 </form>
             </div>

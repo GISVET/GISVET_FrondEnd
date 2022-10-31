@@ -1,4 +1,4 @@
-.nav-bar{
+.nav_bar{
     display: flex;
     flex-direction: row;
     padding: 0;
@@ -9,14 +9,14 @@
     color: var(--white-color);
     align-items: center;
 }
-.nav-bar > ul {
+.nav_bar > ul {
     display: flex;
     flex-direction: row;
     text-decoration: none;
     width: 100%;
 }
 
-.nav-bar > ul > li {
+.nav_bar > ul > li {
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -29,7 +29,7 @@
     align-items: center;
 }
 
-.nav-bar > ul > li:hover{
+.nav_bar > ul > li:hover{
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -37,11 +37,11 @@
     box-shadow: inset 0 -5px 0 var(--white-color);
         }
 
-.nav-bar > ul>li:nth-child(6){
+.nav_bar > ul>li:nth-child(6){
     float: right;
     padding-right: 0%;
 }
-.nav-bar > ul>li:nth-child(1){
+.nav_bar > ul>li:nth-child(1){
     margin-left: 0%;
     margin-right: 0%;
     padding: 0;

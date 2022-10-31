@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_User_settings from "./images/Icon_settings.png"
 import { useRolesList } from "../../hooks/useRoles";
 import { useAdminOneUser} from "../../hooks/useAdminOneUser"
@@ -66,38 +66,60 @@ export default function ShowUser({id, onSubmit, onClose}){
     const verifyPassword = async(event)=>{
         if(data.password == (event.target.value)){
             setIsMatchPassword(true)
-            classPassword = "no-error"
+            classPassword = styles.no_error
         }
         else{
             setIsMatchPassword(false)
-            classPassword = "error-message"
+            classPassword = styles.error_message
         }
     }
 
 
     
     return (
-            <div className="form_add_user_general">
+            <div className={styles.form_add_user_general}>
             {dataReady && <>
-                <div className="title_image"> 
+                <div className={styles.title_image}> 
                     <img src={icon_User_settings} width="40" height="40"/>
                     <h1> Detalle Usuario</h1>
                 </div>
-                <form className="form_add_user" onSubmit={doSubmit}>
-                    <label htmlFor="full_name">Nombre de Usuario</label>
-                    <input name="full_name" disabled={isDisable} onChange={handleChange}  defaultValue={user.FULL_NAME} required={true} type="text"/>
+                <form className={styles.form_add_user} 
+                        onSubmit={doSubmit}>
+
+                    <label htmlFor="full_name">
+                        Nombre de Usuario
+                    </label>
+                    <input name="full_name" 
+                            disabled={isDisable} 
+                            onChange={handleChange}  
+                            defaultValue={user.FULL_NAME} 
+                            required={true} 
+                            type="text"/>
                     
-                        <div className="form_horizontal">
-                            <div className="input-horizontal">
+                        <div className={styles.form_horizontal}>
+                            <div className={styles.input-horizontal}>
                             {isDisable?
                                 <>
-                                    <label htmlFor="documentshow">Tipo Documento</label>
-                                    <input name="documentshow" disabled={isDisable} value={typeDoc.find(element => element.id === user.DOCUMENT_TYPE).name} type="text"/>
+                                    <label htmlFor="documentshow">
+                                        Tipo Documento
+                                    </label>
+                                    <input name="documentshow" 
+                                            disabled={isDisable} 
+                                            value={typeDoc.find(element => element.id === user.DOCUMENT_TYPE).name} 
+                                            type="text"/>
                                 </>
                                 :<>
-                                    <label htmlFor="document_type">Tipo de Documento</label>
-                                    <select className="document_type" onChange={handleChange}  required={true} name="document_type" >
-                                        <option disabled={true} selected></option>
+                                    <label htmlFor="document_type">
+                                        Tipo de Documento
+                                    </label>
+                                    <select className={styles.document_type} 
+                                            onChange={handleChange}  
+                                            required={true} 
+                                            name="document_type" >
+                                            
+                                        <option disabled={true} 
+                                                selected>
+                                        </option>
                                         { typeDocuments.map(type=>
                                             <option  key={type.id} value={type.id}>
                                                 {type.name}
@@ -108,29 +130,58 @@ export default function ShowUser({id, onSubmit, onClose}){
                                 </>
                             }
                             </div>
-                            <div className="input-horizontal">
-                                <label htmlFor="document">Número de Identificación</label>
-                                <input type="number" disabled={isDisable} required={true} onChange={handleChange} defaultValue={user.DOCUMENT}  name="document"className="id_document"/>
+                            <div className={styles.input-horizontal}>
+                                <label htmlFor="document">
+                                    Número de Identificación
+                                </label>
+                                <input type="number" 
+                                        disabled={isDisable} 
+                                        required={true} 
+                                        onChange={handleChange} 
+                                        defaultValue={user.DOCUMENT}  
+                                        name="document"
+                                        className={styles.id_document}/>
                             </div> 
                         </div>
                     
                     
                     
-                    <div className="form_horizontal">
-                        <div className="input-horizontal">
-                            <label htmlFor="professional_id">Tarjeta Profesional</label>
-                            <input className="professional_id" disabled={isDisable} required={false}  onChange={handleChange} defaultValue={user.PROFESSIONAL_ID} type="number" name="professional_id"/>    
+                    <div className={styles.form_horizontal}>
+                        <div className={styles.input-horizontal}>
+                            <label htmlFor="professional_id">
+                                Tarjeta Profesional
+                            </label>
+                            <input className={styles.professional_id} 
+                                    disabled={isDisable} 
+                                    required={false}  
+                                    onChange={handleChange} 
+                                    defaultValue={user.PROFESSIONAL_ID} 
+                                    type="number" 
+                                    name="professional_id"/>    
                         </div>
-                        <div className="input-horizontal">
+                        <div className={styles.input-horizontal}>
                         {isDisable?
                         <>
-                            <label htmlFor="gendershow">Genero</label>
-                            <input name="gendershow" disabled={isDisable} value={gender.find(element => element.id === user.GENDER).name} type="text"/>
+                            <label htmlFor="gendershow">
+                                Genero
+                            </label>
+                            <input name="gendershow" 
+                                    disabled={isDisable} 
+                                    value={gender.find(element => element.id === user.GENDER).name} 
+                                    type="text"/>
                         </>
                         :<>
-                            <label htmlFor="gender">Genero</label>
-                            <select className="gender" onChange={handleChange}  required={true} name="gender">
-                                <option disabled={true} selected></option>
+                            <label htmlFor="gender">
+                                Genero
+                            </label>
+                            <select className={styles.gender} 
+                                onChange={handleChange}  
+                                required={true} 
+                                name="gender">
+
+                                <option disabled={true} 
+                                        selected>
+                                </option>
                                 { gender.map(type=>
                                     <option  key={type.id} value={type.id}>
                                         {type.name}
@@ -144,7 +195,9 @@ export default function ShowUser({id, onSubmit, onClose}){
                     </div>
                     {isDisable?
                         <>
-                            <label htmlFor="rol">Roles Asignados</label>
+                            <label htmlFor="rolShow">
+                                Roles Asignados
+                            </label>
                             {(!loading && roles.length!= 0) &&
                                 <>
                                 { roles.map(rol=>
@@ -160,7 +213,9 @@ export default function ShowUser({id, onSubmit, onClose}){
                            
                             {(dependencies.length != 0) &&
                                 <>
-                                    <label htmlFor="rol">Dependencias Asignadas</label>
+                                    <label htmlFor="rol">
+                                        Dependencias Asignadas
+                                    </label>
                                     <Table headers={headersDependencies} 
                                         data={dependeciesToTable(dependencies)}
                                         keyName={'id_dependencie'}
@@ -170,13 +225,23 @@ export default function ShowUser({id, onSubmit, onClose}){
                             }
                         </>
                         :<>
-                            <label htmlFor="rol">Roles Asignados</label>
+                            <label htmlFor="rol">
+                                Roles Asignados
+                            </label>
                             {!loading && <>
                                 { roles.map(rol=>
                                     <>
-                                        <label htmlFor="rol">Asignar Rol</label>
-                                        <select className="rol" onChange={handleChange}  required={true} name="id_rol">
-                                        <option disabled={true} selected></option>
+                                        <label htmlFor="id_rol">
+                                            Asignar Rol
+                                        </label>
+                                        <select className={styles.rol} 
+                                                onChange={handleChange}    
+                                                required={true} 
+                                                name="id_rol">
+
+                                        <option disabled={true} 
+                                                selected>
+                                        </option>
                                                 { listRoles.map(rol=>
                                                         <option key={rol.ID_ROL} value={rol.ID_ROL}>
                                                             {rol.NAME_ROL}
@@ -191,17 +256,39 @@ export default function ShowUser({id, onSubmit, onClose}){
                         </>
                     }
                     
-                    <label htmlFor="email">Correo Electronico</label>
-                    <input name="email" onChange={handleChange} defaultValue={user.EMAIL} disabled={isDisable}  required={true} type="email" />
+                    <label htmlFor="email">
+                        Correo Electronico
+                    </label>
+                    <input name="email" 
+                            onChange={handleChange} 
+                            defaultValue={user.EMAIL} 
+                            disabled={isDisable}  
+                            required={true}
+                             type="email" />
+
                     {isDisable?<></>:
-                        <div className="form_horizontal">
-                            <div className="input-horizontal">
-                                <label htmlFor="classPassword">Contraseña</label>
-                                <input className="classPassword" disabled={isDisable} required={true} onChange={handleChange}  type="password" name="password" />    
+                        <div className={styles.form_horizontal}>
+                            <div className={styles.input-horizontal}>
+                                <label htmlFor="password" >
+                                    Contraseña
+                                </label>
+                                <input className={styles.classPassword} 
+                                        disabled={isDisable} 
+                                        required={true} 
+                                        onChange={handleChange}  
+                                        type="password" 
+                                        name="password" />    
                             </div>
-                            <div className="input-horizontal">
-                                <label htmlFor={classPassword}>Confirmar contraseña</label>
-                                <input className={classPassword} disabled={isDisable} required={true} onChange={verifyPassword}  type="password" defaultValue='' name="validatePassword" />    
+                            <div className={styles.input-horizontal}>
+                                <label htmlFor="validatePassword">
+                                    Confirmar contraseña
+                                </label>
+                                <input className={classPassword} 
+                                        disabled={isDisable} 
+                                        required={true} 
+                                        onChange={verifyPassword}  
+                                        type="password" defaultValue='' 
+                                        name="validatePassword" />    
                             </div> 
                         </div>
                     } 
@@ -209,9 +296,14 @@ export default function ShowUser({id, onSubmit, onClose}){
                         <h3 className={classPassword}>Las contraseñas no coinciden</h3>
                     }
                      
-                    <div className="form_horizontal">
-                        <input className="button_accept" type="submit"   value="Actualizar Datos"/>
-                        <input className="button_cancel" type="submit" onClick={onClose} value="Cerrar"/>
+                    <div className={styles.form_horizontal}>
+                        <input className={styles.button_accept} 
+                            type="submit"   
+                            value="Actualizar Datos"/>
+                        <input className={styles.button_cancel} 
+                                type="submit" 
+                                onClick={onClose} 
+                                value="Cerrar"/>
                     </div>
                 </form>
             </>

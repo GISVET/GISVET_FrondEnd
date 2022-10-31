@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import css from './styles.module.css';
+import styles from './styles.module.css';
 import icon_see_detalle from "./images/Icon_ver_detalle.png"
 
 
@@ -18,8 +18,8 @@ export default function Table({headers, data, actionItem, keyName}){
     }
 
 
-    return (<div className={css.table_data}>
-                <table className={css.table_format}>
+    return (<div className={styles.table_data}>
+                <table className={styles.table_format}>
                     <thead>
                         <tr>
                             {dataHeaders.map((element, index)=>
@@ -42,7 +42,13 @@ export default function Table({headers, data, actionItem, keyName}){
                                     )}
                                     {actionItem!=undefined &&
                                         <td key={'action'}>
-                                            <input className={css.button_table_goTo} type='image' onClick={onClickItem} src={icon_see_detalle} width="30" height="30" value ={element[keyName]}/>
+                                            <input className={styles.button_table_goTo} 
+                                                    type='image' 
+                                                    onClick={onClickItem} 
+                                                    src={icon_see_detalle} 
+                                                    width="30" 
+                                                    height="30"
+                                                    value ={element[keyName]}/>
                                         </td>
                                     }
 

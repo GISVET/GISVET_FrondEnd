@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Header from "../HeaderAdmin/header";
 import Table from "../Table/Table";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_Filter from "./images/Icon_Filter.png"
 import SettingsAdminUser from "../SettingsAdminUser/index";
 import {useUsersAdmin} from "../../hooks/useAdminUsers";
 import { Modal } from "../../components/Modal/Index"; 
-import AddUser from "../../components/AddUser";
 import ShowUser from "../../components/ShowUser";
 import PanelSearch from "../../components/PanelSearch";
 
@@ -38,15 +36,23 @@ export default function AdminUser(){
 
 
     return (<>
-        <div className="general-users">
+        <div className={styles.general_users}>
             <h1>Gestión de Usuarios</h1>
-                <div className="table-users">
-                    <div className="filter-users">
+                <div className={styles.table_users}>
+                    <div className={styles.filter_users}>
                         <PanelSearch onSubmit={search}/>
-                        <div className="buscador">
-                        <select placeholder="Filtrar" type="text" className="buscar"></select>
-                            <select placeholder="Filtrar" type="text" className="buscar"></select>
-                            <input type="image" src={icon_Filter} className="image_buscar"/>
+                        <div className={styles.buscador}>
+                            <select placeholder="Filtrar" 
+                                    type="text" 
+                                    className={styles.buscar}>
+                            </select>
+                            <select placeholder="Filtrar" 
+                                    type="text" 
+                                    className={styles.buscar}>
+                            </select>
+                            <input type="image" 
+                                    src={icon_Filter} 
+                                    className={styles.image_buscar}/>
                         </div>
                     </div>
 

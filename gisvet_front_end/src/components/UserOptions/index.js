@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import Icon_Username from  "./images/Icon_Username_Option.png"
 import useUser from "../../hooks/useUser";
 import {useLocation } from "wouter"
@@ -21,7 +21,7 @@ export default function MenuUser(){
     };
 
     return (
-        <div className="username_option"> 
+        <div className={styles.username_option}> 
             <img src={Icon_Username} width="200" height="150"/> 
             <label>Administrador</label>
             <ul>

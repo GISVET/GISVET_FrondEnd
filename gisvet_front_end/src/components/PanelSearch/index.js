@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_Search from  "./images/Icon_Search.png"
-import { useRolesList } from "../../hooks/useRoles";
-
-import { typeDoc } from "../../constants/constants";
 
 
 export default function PanelSearch({onSubmit}){
@@ -21,9 +18,15 @@ export default function PanelSearch({onSubmit}){
 
     
     return (
-            <div className="buscador">
-                    <input className="buscar" onChange={handleChange} placeholder="Buscar" type="text" />
-                    <input className="image_buscar" type="image" onClick={searchTerm} src={icon_Search} />
+            <div className={styles.buscador}>
+                    <input className={styles.buscar} 
+                            onChange={handleChange} 
+                            placeholder="Buscar" 
+                            type="text" />
+                            
+                    <input className={styles.image_buscar} 
+                            type="image" onClick={searchTerm} 
+                            src={icon_Search} />
             </div>
     )
 }

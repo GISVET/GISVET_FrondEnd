@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Dependency from "./images/Icon_Add_Dependency.png"
 import { Modal } from "../Modal/Index"; 
@@ -48,15 +48,29 @@ export default function SettingsAdminDepedencies(){
     }
 
     if (!activeMenu) {
-        return (<div className="options-admin" >
-                    <input type="image"  onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
+        return (<div className={styles.options-admin} >
+                    <input type="image"  
+                            onClick={setVisibleMenu} 
+                            src={icon_Settings} 
+                            width="45" 
+                            height="45"/>
                 </div>
         )
     }else{
         return (<>
-                    <div className="options-admin-visible" >
-                        <input className="settings-hide" type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                        <input className="add_user_form" type="image" onClick={showAddDependencyMenu} src={icon_Add_Dependency} width="40" height="50"/>
+                    <div className={styles.options-admin-visible} >
+                        <input className={styles.settings-hide} 
+                                type="image" 
+                                onClick={setVisibleMenu} 
+                                src={icon_Settings} 
+                                width="45" 
+                                height="45"/>
+                        <input className={styles.add_user_form} 
+                                type="image" 
+                                onClick={showAddDependencyMenu} 
+                                src={icon_Add_Dependency} 
+                                width="40" 
+                                height="50"/>
                     </div>
                     {showModal && <Modal><AddDependency
                          onClose={handleCloseModal} 

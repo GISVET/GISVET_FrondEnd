@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Patient from "./images/Icon_Add_Patient.png"
 import { Modal } from "../Modal/Index"; 
@@ -47,15 +47,29 @@ export default function SettingsAdminDepedencies(){
     }
 
     if (!activeMenu) {
-        return (<div className="options-admin" >
-                    <input type="image"  onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
+        return (<div className={styles.options_admin} >
+                    <input type="image"  
+                            onClick={setVisibleMenu} 
+                            src={icon_Settings}
+                            width="45" 
+                            height="45"/>
                 </div>
         )
     }else{
         return (<>
-                    <div className="options-admin-visible" >
-                        <input className="settings-hide" type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                        <input className="add_user_form" type="image" onClick={showAddPatientsMenu} src={icon_Add_Patient} width="40" height="40"/>
+                    <div className={styles.options_admin_visible} >
+                        <input className={styles.settings_hide} 
+                                type="image" 
+                                onClick={setVisibleMenu} 
+                                src={icon_Settings} 
+                                width="45" 
+                                height="45"/>
+                        <input className={styles.add_user_form} 
+                                type="image" 
+                                onClick={showAddPatientsMenu} 
+                                src={icon_Add_Patient} 
+                                width="40" 
+                                height="40"/>
                     </div>
                     {showModal && <Modal><AddPatient
                          onClose={handleCloseModal} 

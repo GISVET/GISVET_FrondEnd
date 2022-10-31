@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link, link } from "wouter";
 import {useLocation } from "wouter"
 import logo_products from './images/Icon_Products.png'
 import logo_dependency from './images/Icon_Dependency.png'
@@ -9,7 +8,7 @@ import logo_user from './images/Icon_Username.png'
 import Main_logo from "./images/Proyecto_Logo_GisVet.png"
 import useUser from "../../hooks/useUser";
 import MenuUser from "../UserOptions/index";
-import './styles.css';
+import styles from './styles.module.css';
 
 
 
@@ -28,7 +27,7 @@ export default function HeaderAdmin() {
     }
 
   return (<>
-    <nav className="nav-bar">
+    <nav className={styles.nav_bar}>
       <ul>
         <img src={Main_logo} width="70" height="70" />
 
@@ -52,7 +51,7 @@ export default function HeaderAdmin() {
             Productos
         </li>
 
-        <li className="username_menu" onClick={showUserOptions}>
+        <li className={styles.username_menu} onClick={showUserOptions}>
             Username
             <img src={logo_user} width="45" height="45" />
         </li>

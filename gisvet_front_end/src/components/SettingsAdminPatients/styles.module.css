@@ -1,5 +1,5 @@
 
-        .options-admin{
+        .options_admin{
             display: flex;
             justify-content: center;
             position: absolute;
@@ -13,7 +13,7 @@
             align-items: center;
         } 
         
-        .options-admin-visible{
+        .options_admin_visible{
             display: flex;
             justify-content: left;
             align-items: center;
@@ -31,16 +31,16 @@
             border-top-right-radius: 30px;
         } 
 
-        .options-admin > input{
+        .options_admin > input{
             position: absolute;
             z-index: 2;
 
         }
-        .options-admin-visible > input{
+        .options_admin_visible > input{
             z-index: 2;
             padding: 0 0.8em;
         }
-        .options-admin-visible > input > img:nth-child(2){
+        .options_admin_visible > input > img:nth-child(2){
             margin-top: 5%;
             margin-left: 10%;
         }

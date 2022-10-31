@@ -157,11 +157,11 @@
   padding: 0.5rem 7rem 0.5rem 1rem;
 }
 
-.input-horizontal > input .error-message {
+.input-horizontal > input .error_message {
   border: 1px solid var(--error-text-color);
 }
 
-.form_add_user_general > h3.error-message{
+.form_add_user_general > h3.error_message{
   margin-top: 5%;
   text-align: center;
   width: 50%;
