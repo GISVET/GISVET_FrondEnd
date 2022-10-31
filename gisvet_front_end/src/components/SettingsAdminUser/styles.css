@@ -30,8 +30,7 @@
             border-bottom-right-radius: 30px;
             border-top-right-radius: 30px;
         } 
-
-        
+ 
         .options-admin-visible > input{
             z-index: 2;
             padding: 0 0.8rem;

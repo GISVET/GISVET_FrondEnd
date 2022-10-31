@@ -30,6 +30,17 @@ export const gender = [
         'name': "Femenino"
     }
 ]
+
+export const filterPatients = [
+    {
+        'id':"AZ",
+        'name': "Nombre ascendente (A-Z)"
+    },
+    {
+        'id':"ZA",
+        'name': "Nombre descendente (Z-A)"
+    }
+]
 export const role = [
     {
         'id':1,
