@@ -29,5 +29,6 @@ export function useRolesList() {
      return {
        loading, 
        listRoles,
+       errorMessage,
     }
 }

@@ -27,6 +27,7 @@ export default function AdminUser(){
     const handleCloseModal = ()=>{
         setShowModal(false)
     }
+    
     const search = function(Keyword){
         console.log(Keyword+' a buscar')
     }

@@ -4,7 +4,7 @@
             justify-content: center;
             position: absolute;
             z-index: 6;
-            top: 85%;
+            top: 80%;
             left: 2%;
             background-color: var(--shade-6-color);
             width: 4rem;
@@ -20,7 +20,7 @@
             flex-direction: row;
             position: absolute;
             z-index: 6;
-            top: 85%;
+            top: 80%;
             left: 2%;
             background-color: var(--shade-6-color);
             width: 9rem;

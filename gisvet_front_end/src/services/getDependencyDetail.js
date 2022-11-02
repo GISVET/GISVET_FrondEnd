@@ -1,9 +1,11 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function getDependenciesType({jwt,type_dependencie}){
-    const objectName = {"type_dependencie":type_dependencie};
+export default function getDependencyDetails({jwt,id_dependencie}){
+    console.log(`El id que llega al endpoint es ${id_dependencie}`)
+    const objectName = {"id_dependencie":parseInt(id_dependencie)};
     let jsonName = JSON.stringify(objectName);
-    return fetch(`${ENDPOINT}/Admin/getDependencies` , {
+    console.log("Entra en el endpoint de buscar dependencia por id")
+    return fetch(`${ENDPOINT}/Admin/getIdDependencies` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

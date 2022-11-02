@@ -23,7 +23,7 @@ export default function addPatient({handleChange, onSubmit, onClose}){
                     <h1> Registro de Pacientes</h1>
                 </div>
                 
-                <form className={styles.form_add_user} onSubmit={nonSubmit}>
+                <form className={styles.form_add_user} onSubmit={onSubmit}>
                     <label htmlFor="id_clinic_history">
                         Historia clínica del paciente
                     </label>
@@ -47,7 +47,6 @@ export default function addPatient({handleChange, onSubmit, onClose}){
                     <div className={styles.form_horizontal}>
                         <input className={styles.button_accept} 
                                 type="submit" 
-                                onClick={onSubmit} 
                                 value="Agregar"/>
                         <input className={styles.button_cancel} 
                                 type="submit" 
