@@ -1,9 +1,10 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function addNewUser({jwt,data}){
+export default function updateUser({jwt,data}){
     let jsonUser = JSON.stringify(data)
-    return fetch(`${ENDPOINT}/Admin/Users/createPersonAll`, {
-        method: 'POST',
+    console.log(jsonUser)
+    return fetch(`${ENDPOINT}/Admin/Users/updatePerson`, {
+        method: 'PUT',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt

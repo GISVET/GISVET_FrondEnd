@@ -18,7 +18,8 @@ export const dependenciesAdmin = [
 
 export const dependenciesByUser = [
     "Id de la dependencia",
-    "Nombre de la dependencia"
+    "Nombre de la dependencia",
+    "Tipo de la dependencia"
 ]
 
 export const usersByDependency = [

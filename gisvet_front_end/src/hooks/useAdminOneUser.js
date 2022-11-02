@@ -3,8 +3,12 @@ import { useContext, useCallback, useState } from "react"
 import userContext from "../context/UserContext"
 import adminUserContext from "../context/AdminUserContext"
 import { dependenciesByUser } from "../constants/headersTables";
+import { typeDependencies } from "../constants/constants";
 import {useRolesList} from "../hooks/useRoles"
+import getUsersByDocument from "../services/getUserByDocument"
 import { useEffect } from "react";
+import updateUser from "../services/updateUser"
+import registerUser from "../services/registerAccount"
 
 const cleanFormat= function(data){
     let userFormat = Object.assign({}, data)
@@ -18,21 +22,42 @@ const cleanFormat= function(data){
 
 export function useAdminOneUser(document) {
     const {jwt} = useContext(userContext)
-    const {users,loading, setLoading, isUpdateUsers} = useContext(adminUserContext)
+    const {loading, setLoading, isUpdateUsers} = useContext(adminUserContext)
     const {listRoles} = useRolesList();
     const loadingListRols = useRolesList().loading;
-    let userTemp = users.find(item => item.DOCUMENT== document)
-    const [user,setUser] = useState(cleanFormat(userTemp))
+    //let userTemp = users.find(item => item.DOCUMENT== document)
+    const [user,setUser] = useState()
     const [roles,setRoles] = useState([])
+    const [loadingUser,setLoadingUser] = useState(true)
     const [dependencies,setDependencies] = useState([])
     let errorMessage = ""
 
+    const getUserById = ()=>{
+        getUsersByDocument({jwt,document})
+            .then(res => {
+                if(res.message === ''){
+                    setLoadingUser(false)
+                }else{
+                    setLoadingUser(false)
+                    errorMessage = res.message
+                    setUser(cleanFormat(res))
+                }
+            })
+            .catch(err => {
+                console.error(err)
+            })
+    }
+
+
     useEffect(()=>{
         if(listRoles.length != 0){
-            setRoles(getUserRoles)
-            setDependencies(getUserDependencies)
+            getUserById(document)
+            if(user != undefined){
+                setRoles(getUserRoles)
+                setDependencies(getUserDependencies)
+            }
         }
-    },[loadingListRols])
+    },[loadingListRols, loadingUser])
 
     const getUserRoles = ()=>{
         let roles =[]
@@ -67,10 +92,63 @@ export function useAdminOneUser(document) {
             let objectAux={}
             objectAux['id_dependencie'] = item.id_dependencie
             objectAux['name_dependencie'] = item.name_dependencie
+            objectAux['type_dependencie'] = (typeDependencies.find(dep=> dep.id ==item.type_dependencie)).name
             dependenciesAux.push(objectAux)
        })
        return dependenciesAux
     }
+
+    const useUpdateUser = useCallback((userToData,{full_name,
+                                    document_type,
+                                    document,
+                                    email,
+                                    password
+                                    }
+        )=>{
+            const userAux = {
+                "id_person": parseInt(userToData.ID_PERSON),
+                "full_name": full_name,
+                "document_type": document_type,
+                "document": document,
+                "gender": userToData.GENDER,
+                "professional_id": userToData.PROFESSIONAL_ID
+            }
+            setLoading(true)
+            updateUser({jwt,data:userAux})
+                .then(res => {
+                    if(res.message === ''){
+                        setLoading(false)
+                    }else{
+                        setLoading(false)
+                        errorMessage = res.message
+                        isUpdateUsers(true)
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+            const accountAux={
+                "email": email,
+                "password_account": password,
+                "id_person":parseInt(userToData.ID_PERSON)
+            }
+            registerUser({jwt,userAccount:accountAux})
+                .then(res => {
+                    if(res.message === ''){
+                        setLoading(false)
+                    }else{
+                        setLoading(false)
+                        errorMessage = res.message
+                        getUserById(document)
+                        isUpdateUsers(true)
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+            }, [setLoading])
+
+
 
 
     
@@ -99,6 +177,8 @@ export function useAdminOneUser(document) {
        user,
        headersDependencies: dependenciesByUser,
        roles,
+       useUpdateUser,
+       getUserById,
        dependencies,
        dependeciesToTable
     }

@@ -5,12 +5,17 @@ import adminUserContext from "../context/AdminUserContext"
 import { usersAdmin } from "../constants/headersTables";
 import addNewUser from "../services/addNewUser"
 import getUsersByDocument from "../services/getUserByDocument"
+import getUsersListName from "../services/getUserListName"
+import getUsersListOrder from "../services/getUserListOrder"
+import {role} from "../constants/constants";
+
 
 
 export function useUsersAdmin() {
     const {jwt} = useContext(userContext)
-    const {users,loading, setLoading, isUpdateUsers, formatListUserToTable} = useContext(adminUserContext)
+    const {users,setUsers, loading, setLoading, isUpdateUsers, formatListUserToTable} = useContext(adminUserContext)
     const [userByDocument, setUserById] = useState({})
+
     let errorMessage = ""
     
 
@@ -24,15 +29,18 @@ export function useUsersAdmin() {
                                     password
                                     }
                                 )=>{
+        const userData ={
+            full_name,
+            document_type,
+            document,
+            gender,
+            professional_id,
+            'name_rol':role.find(item =>item.id == id_rol).name,
+            email,
+            'password_account':password         
+        }
         setLoading(true)
-        addNewUser({jwt,full_name,
-                    document_type,
-                    document,
-                    gender,
-                    professional_id,
-                    id_rol,
-                    email,
-                    password
+        addNewUser({jwt,data:userData
                 })
             .then(res => {
                 if(res.message === ''){
@@ -67,6 +75,45 @@ export function useUsersAdmin() {
             })
     }, [setLoading])
 
+    const findUserByName = useCallback((name_person)=>{
+        setLoading(true)
+        getUsersListName({jwt,'username':name_person})
+        .then(res => {
+            if(res.message === ''){
+                setLoading(false)
+            }else{
+                setLoading(false)
+                errorMessage = res.message
+                setUsers(res)
+
+            }
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }, [setLoading])
+
+    const orderUsers = useCallback((order_name)=>{
+        setLoading(true)
+        getUsersListOrder({ jwt, order_name })
+        .then(res => {
+            if(res.message === ''){
+                setLoading(false)
+            }else{
+                setLoading(false)
+                errorMessage = res.message
+                setUsers(res)
+            }
+        })
+        .catch(err => {
+            console.error(err)
+        })
+    }, [setLoading])
+
+
+
+
+
     /*const AssignDependency = useCallback(({document,id_dependency})=>{
         setLoading(true)
         addNewUser({jwt,document,id_dependency})
@@ -93,6 +140,8 @@ export function useUsersAdmin() {
        headers: usersAdmin,
        addUser,
        GetUserByDocument,
+       findUserByName,
+       orderUsers,
        userByDocument,
        errorMessage,
        listUserToTable: formatListUserToTable(users)

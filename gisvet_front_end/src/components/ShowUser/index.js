@@ -8,12 +8,15 @@ import Table from "../Table/Table";
 
 
 
-export default function ShowUser({id, onSubmit, onClose}){
+export default function ShowUser({id,  onClose}){
     const {user,
            headersDependencies, 
            roles, dependencies, 
-           dependeciesToTable
+           dependeciesToTable,
+           useUpdateUser
         } = useAdminOneUser(id)
+    
+        
 
     const {loading, listRoles} = useRolesList();
     const [isMatchPassword, setIsMatchPassword] = useState(true)
@@ -22,6 +25,7 @@ export default function ShowUser({id, onSubmit, onClose}){
     let OthersRoles = Object.assign([], listRoles);
     const typeDocuments = typeDoc
     const [classPassword, setClassPassword] = useState('')
+   
 
     const [data, setData] = useState({
         full_name:'',
@@ -29,27 +33,36 @@ export default function ShowUser({id, onSubmit, onClose}){
         document:'',
         gender:'', 
         professional_id:'',
-        roles:[],
         email:'', 
         password:''
     });
     useEffect(()=>{
-        if(listRoles.length != 0 &&
-            user != undefined ){
+        if(listRoles.length != 0){
+        if(user != undefined ){
             setDataReady(true)
-        }
+        }}
     },[loading, user])
  
 
     const doSubmit = (event)=>{
         event.preventDefault();
         if(isMatchPassword && !isDisable){
-            onSubmit(data)
+            useUpdateUser(user,data)
+            onClose()
             
         }
     }
 
-    const handleRoles=()=>{
+    const passData=()=>{
+        let newData = {...data,
+            ['full_name']: user.FULL_NAME,
+            ['document_type']: user.DOCUMENT_TYPE,
+            ['document']: user.DOCUMENT,
+            ['gender']: user.GENDER,
+            ['professional_id']: user.PROFESSIONAL_ID,
+            ['email']: user.EMAIL,
+            }
+        setData(newData);
 
     }
 
@@ -60,10 +73,7 @@ export default function ShowUser({id, onSubmit, onClose}){
 
     const setDataUser= function(){
         setIsDisable(false)
-    }
-
-    const seeDependencie = ()=>{
-        console.log('se wa pa la dependecia')
+        passData()
     }
 
     const handleChange = (event)=>{
@@ -88,6 +98,7 @@ export default function ShowUser({id, onSubmit, onClose}){
     return (
             <div className={styles.form_add_user_general}>
             {dataReady && <>
+                
                 <div className={styles.title_image}> 
                     <img src={icon_User_settings} width="40" height="40"/>
                     <h1> Detalle Usuario</h1>
@@ -126,14 +137,17 @@ export default function ShowUser({id, onSubmit, onClose}){
                                         required={true} 
                                         name="document_type" >
                                         
-                                    <option disabled={true} 
-                                            selected>
+                                    <option disabled={true}>
                                     </option>
-                                    { typeDocuments.map(type=>
-                                        <option  key={type.id} value={type.id}>
-                                            {type.name}
-                                        </option>
-                                        )
+                                    { typeDocuments.map(type=> <>
+                                        {(type.id === user.DOCUMENT_TYPE)?
+                                            <option  key={type.id} value={type.id} selected>
+                                                {type.name}
+                                            </option>
+                                            :<option  key={type.id} value={type.id}>
+                                                {type.name}
+                                            </option>
+                                        }</>)
                                     }
                                 </select> 
                             </>
@@ -225,9 +239,9 @@ export default function ShowUser({id, onSubmit, onClose}){
                         <input key={rol.id_rol} 
                                 name="rol" 
                                 defaultValue={rol.name_rol} 
-                                disabled={isDisable} 
+                                disabled={true} 
                         />
-                        {!isDisable && <>
+                        {/*!isDisable && <>
                             { roles.map(rol=>
                                 <>
                                     <label htmlFor="id_rol">
@@ -250,7 +264,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                     </select>
                                 </> 
                             )}
-                        </>}
+                        </>*/}
                     </>)}
                     <label className={styles.label_dependencie} htmlFor="rol">
                         Dependencias Asignadas
@@ -262,23 +276,22 @@ export default function ShowUser({id, onSubmit, onClose}){
                                         No tiene dependencias asignadas
                                     </label>
                                 </div>
-                                <div className={styles.input_horizontal}>
+                                {/*<div className={styles.input_horizontal}>
                                     <input className={styles.button_add_dependencie} 
                                             type="submit"
                                             value="Agregar dependencia"/>
-                                </div>
+                                </div>*/}
                             </div>
                         :<>
                             <Table headers={headersDependencies} 
                                 data={dependeciesToTable(dependencies)}
-                                keyName={'id_dependencie'}
-                                actionItem={seeDependencie}
+                                
                             />
-                            <div className={styles.form_horizontal}>
+                            {/*<div className={styles.form_horizontal}>
                                 <input className={styles.button_accept} 
                                             type="submit"
                                             value="Agregar dependencia"/>
-                            </div>
+                            </div>*/}
                         </>
                     }
                      

@@ -1,15 +1,17 @@
 const ENDPOINT = 'http://localhost:3001'
 
-export default function getUsersByDocument({jwt, document}){
-  const objectBody = {
-    "document": document
-  }
-    return fetch(`${ENDPOINT}/Admin/Users/personsId` , {
+
+export default function getUsersListName({jwt, username}){
+    const useAux = {
+        'name_person':username
+    }
+    return fetch(`${ENDPOINT}/Admin/Users/persons` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
-        }, body:JSON.stringify(objectBody)
+        },
+        body: JSON.stringify(useAux)
     }).then(res => {
         if (!res.ok) throw new Error('Response is not Ok')
         return res.json()
