@@ -94,6 +94,7 @@ export function useUsersAdmin() {
        addUser,
        GetUserByDocument,
        userByDocument,
+       errorMessage,
        listUserToTable: formatListUserToTable(users)
     }
 }

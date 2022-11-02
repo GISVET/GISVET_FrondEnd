@@ -13,12 +13,12 @@ function formatListPatients(data){
             name_patient:patient.NAME_PATIENT
         }
         dataFormated.push(Object.assign({}, patientData));
+        return true
     }) 
     return dataFormated
 }
 
 export function AdminPatientsContextProvider({children}){
-    console.log("PASO POR EL CONTEXT PROVIDER")
     const {jwt} = useContext(userContext)
     const [patients, setPatients] = useState([])
     const [loading, setLoading] = useState(false)

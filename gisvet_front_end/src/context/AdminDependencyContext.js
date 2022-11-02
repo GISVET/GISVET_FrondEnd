@@ -7,11 +7,10 @@ import { typeDependencies } from "../constants/constants";
 const Context = React.createContext({})
 
 
-function formatListDependencies(data){
-    console.log("Entra en el format de las dependencias")
+export function formatListDependencies(data){
+
     let dataFormated = []
     data.map((dependencie)=>{
-        console.log(dependencie.TYPE_DEPENDENCIE)
         const typeDependencieData = typeDependencies.find(element => element.id === dependencie.TYPE_DEPENDENCIE);  
         let dependencyData={
             id_dependencie:dependencie.ID_DEPENDENCIE,
@@ -26,13 +25,13 @@ function formatListDependencies(data){
 export function AdminDependencyContextProvider({children}){
     const {jwt} = useContext(userContext)
     const [dependencies, setDependencies] = useState([])
+    const [dependency, setDependency] = useState([])
     const [loading, setLoading] = useState(false)
     const [updateDependencies, isUpdateDependencies] = useState(false)
     let errorMessage = ""
     
     
     useEffect(()=>{
-        console.log("Entra en el useefect de obtener dependencias")
         setLoading(true)
         getDependenciesList({jwt})
             .then(res => {
@@ -54,9 +53,12 @@ export function AdminDependencyContextProvider({children}){
         {   
             dependencies, 
             setDependencies, 
+            dependency,
+            setDependency,
             errorMessage, 
             loading, 
             setLoading,
+            formatListDependencies,
             isUpdateDependencies
         }}>
         {children}

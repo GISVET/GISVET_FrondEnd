@@ -11,7 +11,6 @@ export default function login({username,password}){
         if (!res.ok) throw new Error('Response is not Ok')
         return res.json()
     }).then(res => {
-        const {token, message} = res
         return res
     })
 }

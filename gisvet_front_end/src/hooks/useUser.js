@@ -10,7 +10,7 @@ export default function useUser() {
     const login =  useCallback(({username, password})=>{
         loginServices({username, password})
             .then(res => {
-                if(res.token == undefined){
+                if(res.token === undefined){
                     setErrorMessage(res.message) 
                 }else{ 
                     console.log(errorMessage)

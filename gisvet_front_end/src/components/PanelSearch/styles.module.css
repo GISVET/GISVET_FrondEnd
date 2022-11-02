@@ -1,5 +1,7 @@
 
 .buscador{
+    margin-top: 20px;
+    margin-left: 100px;
     display: inline-flex;
     height: 50%;
     width: 25%;        
@@ -9,10 +11,13 @@
     border : 1px solid black;
     box-sizing:border-box;
 }
-.buscador > .buscar {
+.buscar {
+    font-size: 20px;
     border: 0px;
+    margin-left: 5%;
     width: 80%;
-    height: 15px;
+    height: 20px;
+    outline: none;
     text-indent: 20px;
     background: transparent;
     font-family: 'Inter', sans-serif;
@@ -20,9 +25,9 @@
     font-size: 15px;
 }
 
-.buscador > .image_buscar {
+.image_buscar {
     width: 8%;
-    margin-left: 10%;
+    margin-left: 0;
     border: 0px;
     top:1px;
 }

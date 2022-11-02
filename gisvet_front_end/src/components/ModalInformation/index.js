@@ -32,7 +32,7 @@ export default function addDependency({onSubmit, onClose}){
                     <img src={icon_Dependency_Form} width="40" height="40"/>
                     <h1> Registro de Dependencias</h1>
                 </div>
-                <form className={styles.form_add_user} onSubmit={doSubmit}>
+                <form className={styles.form_add_user} onSubmit={nonSubmit}>
                     <label htmlFor="full_name">
                         Nombre del departamento
                     </label>
@@ -55,7 +55,7 @@ export default function addDependency({onSubmit, onClose}){
                             }
                     </select>
                     <div className={styles.form_horizontal}>
-                        <input className={styles.button_accept} type="submit" value="Agregar"/>
+                        <input className={styles.button_accept} type="submit" onClick={doSubmit} value="Agregar"/>
                         <input className={styles.button_cancel} type="submit" onClick={onClose} value="Cancelar"/>
                     </div>
                 </form>

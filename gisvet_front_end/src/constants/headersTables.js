@@ -20,3 +20,11 @@ export const dependenciesByUser = [
     "Id de la dependencia",
     "Nombre de la dependencia"
 ]
+
+export const usersByDependency = [
+    "Id del usuario",
+    "Nombre completo",
+    "Identificación",
+    "Género",
+    "Tarjeta Profesional"
+]

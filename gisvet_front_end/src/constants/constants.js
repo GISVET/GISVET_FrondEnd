@@ -42,6 +42,17 @@ export const filterPatients = [
     }
 ]
 
+export const filtersAscDesc = [
+    {
+        'id':"AZ",
+        'name': "asc"
+    },
+    {
+        'id':"ZA",
+        'name': "desc"
+    }
+]
+
 export const filterDependenciesName = [
     {
         'id':"AZ",
@@ -96,4 +107,5 @@ export const role = [
         'name': "Rol no asignado"
     }
 ]
+
 export const loginErrorMessage = "Usuario o contraseña incorrectos por favor verifique nuevamente";

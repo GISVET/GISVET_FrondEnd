@@ -31,8 +31,6 @@ export function useAdminPatients() {
     }, [setLoading])
 
     const orderPatient = useCallback((orderBy)=>{
-        console.log(`El valor con el que llega al hook es ${orderBy}`);
-
         setLoading(true)
         if(orderBy=='AZ'){
         getPatientsAZ({jwt})
@@ -66,7 +64,6 @@ export function useAdminPatients() {
     }, [setLoading])
 
     const askPatientName = useCallback((name_patient)=>{
-        console.log(`El name en el use es ${name_patient}`)
         setLoading(true)
         getNamePatients({jwt,name_patient})
             .then(res => {
