@@ -8,12 +8,13 @@ import { useAdminOneDependency } from "../../hooks/useAdminOneDependency";
 import { usersByDependency } from "../../constants/headersTables";
 
 export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
-  const { dependency, persons, formatListUsers } = useAdminOneDependency(
+  const { dependency, persons, formatListUsers,updateDependencyFunction} = useAdminOneDependency(
     id_dependencie
   );
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [textButtonUpdate, setTextButtonUpdate] = useState();
+
 
   const [data, setData] = useState({
     id_dependencie: "",
@@ -41,11 +42,19 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
 
   const doSubmit = (event) => {
     event.preventDefault();
-    setTextButtonUpdate("Actualizar");
-    setDisable(false);
+    if(textButtonUpdate==="Actualizar"){
+      setDisable(true);
+      updateDependencyFunction(data.id_dependencie,data.dependencie_name)
+      setTextButtonUpdate("Modificar");
+    }else{
+      setTextButtonUpdate("Actualizar");
+      setDisable(false);
+    }
+
   };
 
   const handleChange = (event) => {
+    data.id_dependencie = dependency.ID_DEPENDENCIE
     let { name, value } = event.target;
     let newData = { ...data, [name]: value };
     setData(newData);
@@ -62,7 +71,7 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
           <form className={styles.form_add_user} onSubmit={doSubmit}>
             <label htmlFor="id_dependency">Id del Departamento </label>
             <input
-              name="id_dependency"
+              name="id_dependencie"
               disabled={true}
               onChange={handleChange}
               defaultValue={dependency.ID_DEPENDENCIE}
@@ -71,7 +80,7 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
             />
             <label htmlFor="dependency_name">Nombre de la dependencia </label>
             <input
-              name="dependency_name"
+              name="dependencie_name"
               disabled={isDisable}
               onChange={handleChange}
               defaultValue={dependency.DEPENDENCIE_NAME}

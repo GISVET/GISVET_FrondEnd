@@ -1,8 +1,9 @@
 const ENDPOINT = 'http://localhost:3001'
 
 export default function updateDependency({jwt,id_dependencie,dependencie_name}){
+    console.log(`Llega el id ${id_dependencie}  y el name ${dependencie_name}`)
     let dependency = {
-        id_dependencie: id_dependencie,
+        id_dependencie: parseInt(id_dependencie),
         dependencie_name:dependencie_name
         }
     let jsonDependency = JSON.stringify(dependency)
