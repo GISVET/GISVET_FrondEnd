@@ -23,8 +23,8 @@ export function useAdminOneUser(document) {
     const loadingListRols = useRolesList().loading;
     let userTemp = users.find(item => item.DOCUMENT== document)
     const [user,setUser] = useState(cleanFormat(userTemp))
-    const [roles,setRoles] = useState({})
-    const [dependencies,setDependencies] = useState({})
+    const [roles,setRoles] = useState([])
+    const [dependencies,setDependencies] = useState([])
     let errorMessage = ""
 
     useEffect(()=>{

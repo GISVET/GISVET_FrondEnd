@@ -21,12 +21,7 @@ export default function ShowUser({id, onSubmit, onClose}){
     const [dataReady, setDataReady] = useState(false)
     let OthersRoles = Object.assign([], listRoles);
     const typeDocuments = typeDoc
-    let classPassword = "no-error"
-
-    console.log(user)
-    console.log(listRoles)
-    console.log(roles)
-    console.log(dependencies)
+    const [classPassword, setClassPassword] = useState('')
 
     const [data, setData] = useState({
         full_name:'',
@@ -34,23 +29,37 @@ export default function ShowUser({id, onSubmit, onClose}){
         document:'',
         gender:'', 
         professional_id:'',
-        id_rol:0,
+        roles:[],
         email:'', 
         password:''
     });
     useEffect(()=>{
-        if(listRoles.length != 0){
+        if(listRoles.length != 0 &&
+            user != undefined ){
             setDataReady(true)
         }
-    },[loading])
+    },[loading, user])
  
 
     const doSubmit = (event)=>{
         event.preventDefault();
-        if(isMatchPassword){
+        if(isMatchPassword && !isDisable){
             onSubmit(data)
             
         }
+    }
+
+    const handleRoles=()=>{
+
+    }
+
+    const cancelChanges=(event)=>{
+        event.preventDefault();
+        setIsDisable(true)
+    }
+
+    const setDataUser= function(){
+        setIsDisable(false)
     }
 
     const seeDependencie = ()=>{
@@ -66,11 +75,11 @@ export default function ShowUser({id, onSubmit, onClose}){
     const verifyPassword = async(event)=>{
         if(data.password == (event.target.value)){
             setIsMatchPassword(true)
-            classPassword = styles.no_error
+            setClassPassword('')
         }
         else{
             setIsMatchPassword(false)
-            classPassword = styles.error_message
+            setClassPassword(styles.error_message_input)
         }
     }
 
@@ -96,53 +105,53 @@ export default function ShowUser({id, onSubmit, onClose}){
                             required={true} 
                             type="text"/>
                     
-                        <div className={styles.form_horizontal}>
-                            <div className={styles.input_horizontal}>
-                            {isDisable?
-                                <>
-                                    <label htmlFor="documentshow">
-                                        Tipo Documento
-                                    </label>
-                                    <input name="documentshow" 
-                                            disabled={isDisable} 
-                                            value={typeDoc.find(element => element.id === user.DOCUMENT_TYPE).name} 
-                                            type="text"/>
-                                </>
-                                :<>
-                                    <label htmlFor="document_type">
-                                        Tipo de Documento
-                                    </label>
-                                    <select className={styles.document_type} 
-                                            onChange={handleChange}  
-                                            required={true} 
-                                            name="document_type" >
-                                            
-                                        <option disabled={true} 
-                                                selected>
-                                        </option>
-                                        { typeDocuments.map(type=>
-                                            <option  key={type.id} value={type.id}>
-                                                {type.name}
-                                            </option>
-                                            )
-                                        }
-                                    </select> 
-                                </>
-                            }
-                            </div>
-                            <div className={styles.input_horizontal}>
-                                <label htmlFor="document">
-                                    Número de Identificación
+                    <div className={styles.form_horizontal}>
+                        <div className={styles.input_horizontal}>
+                        {isDisable?
+                            <>
+                                <label htmlFor="documentshow">
+                                    Tipo Documento
                                 </label>
-                                <input type="number" 
+                                <input name="documentshow" 
                                         disabled={isDisable} 
+                                        value={typeDoc.find(element => element.id === user.DOCUMENT_TYPE).name} 
+                                        type="text"/>
+                            </>
+                            :<>
+                                <label htmlFor="document_type">
+                                    Tipo de Documento
+                                </label>
+                                <select className={styles.document_type} 
+                                        onChange={handleChange}  
                                         required={true} 
-                                        onChange={handleChange} 
-                                        defaultValue={user.DOCUMENT}  
-                                        name="document"
-                                        className={styles.id_document}/>
-                            </div> 
+                                        name="document_type" >
+                                        
+                                    <option disabled={true} 
+                                            selected>
+                                    </option>
+                                    { typeDocuments.map(type=>
+                                        <option  key={type.id} value={type.id}>
+                                            {type.name}
+                                        </option>
+                                        )
+                                    }
+                                </select> 
+                            </>
+                        }
                         </div>
+                        <div className={styles.input_horizontal}>
+                            <label htmlFor="document">
+                                Número de Identificación
+                            </label>
+                            <input type="number" 
+                                    disabled={isDisable} 
+                                    required={true} 
+                                    onChange={handleChange} 
+                                    defaultValue={user.DOCUMENT}  
+                                    name="document"
+                                    className={styles.id_document}/>
+                        </div> 
+                    </div>
                     
                     
                     
@@ -152,7 +161,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                 Tarjeta Profesional
                             </label>
                             <input className={styles.professional_id} 
-                                    disabled={isDisable} 
+                                    disabled={true} 
                                     required={false}  
                                     onChange={handleChange} 
                                     defaultValue={user.PROFESSIONAL_ID} 
@@ -160,102 +169,15 @@ export default function ShowUser({id, onSubmit, onClose}){
                                     name="professional_id"/>    
                         </div>
                         <div className={styles.input_horizontal}>
-                        {isDisable?
-                        <>
-                            <label htmlFor="gendershow">
-                                Genero
-                            </label>
-                            <input name="gendershow" 
-                                    disabled={isDisable} 
-                                    value={gender.find(element => element.id === user.GENDER).name} 
-                                    type="text"/>
-                        </>
-                        :<>
                             <label htmlFor="gender">
                                 Genero
                             </label>
-                            <select className={styles.gender} 
-                                onChange={handleChange}  
-                                required={true} 
-                                name="gender">
-
-                                <option disabled={true} 
-                                        selected>
-                                </option>
-                                { gender.map(type=>
-                                    <option  key={type.id} value={type.id}>
-                                        {type.name}
-                                    </option>
-                                    )
-                                }
-                            </select> 
-                        </>
-                        }  
+                            <input name="gender" 
+                                    disabled={true} 
+                                    value={gender.find(element => element.id === user.GENDER).name} 
+                                    type="text"/>
                         </div>
                     </div>
-                    {isDisable?
-                        <>
-                            <label htmlFor="rolShow">
-                                Roles Asignados
-                            </label>
-                            {(!loading && roles.length!= 0) &&
-                                <>
-                                { roles.map(rol=>
-                                            <input key={rol.id_rol} 
-                                                    name="rolShow" 
-                                                    defaultValue={rol.name_rol} 
-                                                    disabled={isDisable} 
-                                            />  
-                                        )
-                                    }
-                                </>
-                            }
-                           
-                            {(dependencies.length != 0) &&
-                                <>
-                                    <label htmlFor="rol">
-                                        Dependencias Asignadas
-                                    </label>
-                                    <Table headers={headersDependencies} 
-                                        data={dependeciesToTable(dependencies)}
-                                        keyName={'id_dependencie'}
-                                        actionItem={seeDependencie}
-                                    /> 
-                                </>
-                            }
-                        </>
-                        :<>
-                            <label htmlFor="rol">
-                                Roles Asignados
-                            </label>
-                            {!loading && <>
-                                { roles.map(rol=>
-                                    <>
-                                        <label htmlFor="id_rol">
-                                            Asignar Rol
-                                        </label>
-                                        <select className={styles.rol} 
-                                                onChange={handleChange}    
-                                                required={true} 
-                                                name="id_rol">
-
-                                        <option disabled={true} 
-                                                selected>
-                                        </option>
-                                                { listRoles.map(rol=>
-                                                        <option key={rol.ID_ROL} value={rol.ID_ROL}>
-                                                            {rol.NAME_ROL}
-                                                        </option>
-                                                    )
-                                                }
-                                        </select>
-                                    </> 
-                                    )
-                                }</>
-                            }
-                        </>
-                    }
-                    
                     <label htmlFor="email">
                         Correo Electronico
                     </label>
@@ -272,7 +194,7 @@ export default function ShowUser({id, onSubmit, onClose}){
                                 <label htmlFor="password" >
                                     Contraseña
                                 </label>
-                                <input className={styles.classPassword} 
+                                <input className={classPassword} 
                                         disabled={isDisable} 
                                         required={true} 
                                         onChange={handleChange}  
@@ -293,17 +215,99 @@ export default function ShowUser({id, onSubmit, onClose}){
                         </div>
                     } 
                     {!isMatchPassword &&
-                        <h3 className={classPassword}>Las contraseñas no coinciden</h3>
+                        <label className={styles.error_message}>Las contraseñas no coinciden</label>
+                    }
+
+                    <label htmlFor="rolShow">
+                        Roles Asignados
+                    </label>
+                    { roles.map(rol=><>
+                        <input key={rol.id_rol} 
+                                name="rol" 
+                                defaultValue={rol.name_rol} 
+                                disabled={isDisable} 
+                        />
+                        {!isDisable && <>
+                            { roles.map(rol=>
+                                <>
+                                    <label htmlFor="id_rol">
+                                        Asignar Rol
+                                    </label>
+                                    <select className={styles.rol} 
+                                            onChange={handleChange}    
+                                            required={true} 
+                                            name="id_rol">
+
+                                    <option disabled={true} 
+                                            selected>
+                                    </option>
+                                            { listRoles.map(rol=>
+                                                    <option key={rol.ID_ROL} value={rol.ID_ROL}>
+                                                        {rol.NAME_ROL}
+                                                    </option>
+                                                )
+                                            }
+                                    </select>
+                                </> 
+                            )}
+                        </>}
+                    </>)}
+                    <label className={styles.label_dependencie} htmlFor="rol">
+                        Dependencias Asignadas
+                    </label>
+                    {dependencies.length == 0?
+                            <div className={styles.form_horizontal}>
+                                <div className={styles.input_horizontal}>
+                                    <label className={styles.no_found_dependencie}>
+                                        No tiene dependencias asignadas
+                                    </label>
+                                </div>
+                                <div className={styles.input_horizontal}>
+                                    <input className={styles.button_add_dependencie} 
+                                            type="submit"
+                                            value="Agregar dependencia"/>
+                                </div>
+                            </div>
+                        :<>
+                            <Table headers={headersDependencies} 
+                                data={dependeciesToTable(dependencies)}
+                                keyName={'id_dependencie'}
+                                actionItem={seeDependencie}
+                            />
+                            <div className={styles.form_horizontal}>
+                                <input className={styles.button_accept} 
+                                            type="submit"
+                                            value="Agregar dependencia"/>
+                            </div>
+                        </>
                     }
                      
                     <div className={styles.form_horizontal}>
-                        <input className={styles.button_accept} 
-                            type="submit"   
-                            value="Actualizar Datos"/>
-                        <input className={styles.button_cancel} 
+                        {isDisable?<>
+                            <input className={styles.button_accept} 
+                                type="submit"
+                                onClick={setDataUser}
+                                value="Actualizar Datos"/>
+                            <input className={styles.button_cancel} 
                                 type="submit" 
                                 onClick={onClose} 
                                 value="Cerrar"/>
+                         </>
+                        :<>
+                            <input className={styles.button_accept} 
+                                type="submit"
+                                value="Confirmar Cambios"/>
+
+                            <input className={styles.button_cancel} 
+                                type="submit" 
+                                onClick={cancelChanges} 
+                                value="Cancelar"/>
+                        
+                        </>
+                        
+                       
+                        }
+                        
                     </div>
                 </form>
             </>
