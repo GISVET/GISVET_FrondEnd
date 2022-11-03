@@ -6,6 +6,7 @@ import { Modal } from "../Modal/Index";
 import AddPatient from "../AddPatient";
 import {useLocation } from "wouter"
 import {useAdminPatients} from "../../hooks/useAdminPatients";
+import MessageConfirm from "../MessageConfirm";
 
 
 export default function SettingsAdminDepedencies(){
@@ -13,6 +14,7 @@ export default function SettingsAdminDepedencies(){
     const [showModal, setShowModal] = useState(false)
     const [,navigate] = useLocation()
     const {loading,addPatient} = useAdminPatients()
+    const [childModal, setchildModal] = useState(<></>)
     
 
     const [data, setData] = useState({
@@ -27,6 +29,10 @@ export default function SettingsAdminDepedencies(){
 
     const showAddPatientsMenu = async(event) =>{
         event.preventDefault();
+        setchildModal(<AddPatient
+            onClose={handleCloseModal} 
+            onSubmit={onsubmit} 
+           />)
         return setShowModal(true)
     }
 
@@ -34,10 +40,16 @@ export default function SettingsAdminDepedencies(){
         setShowModal(false)
     }
 
-    const onsubmit = async(event)=>{
-        event.preventDefault();
-        addPatient(data)
-        setShowModal(false)
+    const onsubmit = async(data)=>{
+       return addPatient(data).then(res =>{
+            console.log(res)
+            setchildModal(<MessageConfirm
+                onClose={handleCloseModal} 
+                isCorrect= {res.message}
+                message={res.status == 200?true:false}
+            />) 
+            return setShowModal(true)
+        })
     }
 
     const handleInputChange = (event)=>{
@@ -71,11 +83,7 @@ export default function SettingsAdminDepedencies(){
                                 width="40" 
                                 height="40"/>
                     </div>
-                    {showModal && <Modal><AddPatient
-                         onClose={handleCloseModal} 
-                         onSubmit={onsubmit} 
-                         handleChange={handleInputChange}
-                        /></Modal>
+                    {showModal && <Modal>{childModal}</Modal>
                         
                     }
                 </>

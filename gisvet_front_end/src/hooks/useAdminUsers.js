@@ -40,21 +40,23 @@ export function useUsersAdmin() {
             'password_account':password         
         }
         setLoading(true)
-        addNewUser({jwt,data:userData
+        return addNewUser({jwt,data:userData
+                    })
+                .then(res => {
+                    if(res.message === ''){
+                        setLoading(false)
+                    }else{
+                        setLoading(false)
+                        isUpdateUsers(true)
+                        console.log(res)
+                        return res
+                        
+                    }
                 })
-            .then(res => {
-                if(res.message === ''){
-                    setLoading(false)
-                }else{
-                    setLoading(false)
-                    errorMessage = res.message
-                    isUpdateUsers(true)
-                    
-                }
-            })
-            .catch(err => {
-                console.error(err)
-            })
+                .catch(err => {
+                    console.log(err.message)
+                    return err.message
+                })
     }, [setLoading])
 
 

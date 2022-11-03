@@ -24,24 +24,24 @@ function App() {
               path = "/"
          />
         <AdminUserContextProvider>
+        <AdminDependencyContextProvider>
 
             <Route path = "/AdminUser">
               <Admin><AdminUser/></Admin>
             </Route>
 
-            <AdminDependencyContextProvider>
+            
               <Route path = "/AdminDependencies">
                 <Admin><AdminDependencies/></Admin>
               </Route>
-            </AdminDependencyContextProvider>
-
+           
 
             <AdminPatientsContextProvider>
                 <Route path = "/AdminPatients">
                   <Admin><AdminPatients/></Admin>
-                </Route> 
+                </Route>
             </AdminPatientsContextProvider>      
-
+        </AdminDependencyContextProvider>
         </AdminUserContextProvider>
       </div>   
     </UserContextProvider> 

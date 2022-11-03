@@ -1,8 +1,8 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function addNewUser({jwt,data}){
     let jsonUser = JSON.stringify(data)
-    return fetch(`${ENDPOINT}/Admin/Users/createPersonAll`, {
+    return fetch(`${endpoint}/Admin/Users/createPersonAll`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
@@ -11,8 +11,10 @@ export default function addNewUser({jwt,data}){
         body: jsonUser
     }).then(res => {
         if (!res.ok) throw new Error('Response is not Ok')
-        return res.json()
-    }).then(res => {
-        return res.message
+        const jsonResponse={
+            'message':res.json(),
+            'status' :res.status
+        }
+        return jsonResponse
     })
 }

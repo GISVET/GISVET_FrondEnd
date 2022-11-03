@@ -1,8 +1,8 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function registerUser({jwt,userAccount}){
     let jsonUser = JSON.stringify(userAccount)
-    return fetch(`${ENDPOINT}/register` , {
+    return fetch(`${endpoint}/register` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

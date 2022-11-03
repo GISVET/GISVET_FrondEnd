@@ -11,23 +11,22 @@ import getNamePatients from "../services/getNamePatients";
 export function useAdminPatients() {
     const {jwt} = useContext(userContext)
     const {patients,setPatients,loading, setLoading, isUpdatePatient} = useContext(adminPatientContext)
-    let errorMessage = ""
 
-    const addPatient = useCallback(({id_clinic_history,name_patient})=>{
+    const addPatient = useCallback(async ({id_clinic_history,name_patient})=>{
         setLoading(true)
-        addNewPatient({jwt,id_clinic_history,name_patient})
-            .then(res => {
-                if(res.message === ''){
-                    setLoading(false)
-                }else{
-                    setLoading(false)
-                    errorMessage = res.message
-                    isUpdatePatient(true)                 
-                }
-            })
-            .catch(err => {
-                console.error(err)
-            })
+        try {
+            const res = await addNewPatient({ jwt, id_clinic_history, name_patient });
+            if (res.message === '') {
+                setLoading(false);
+            } else {
+                setLoading(false);
+                isUpdatePatient(true);
+            }
+            console.log(res)
+            return res;
+        } catch (err) {
+            console.error(err);
+        }
     }, [setLoading])
 
     const orderPatient = useCallback((orderBy)=>{
@@ -39,7 +38,6 @@ export function useAdminPatients() {
                     setLoading(false)
                 }else{
                     setLoading(false)
-                    errorMessage = res.message
                     setPatients(res)
                 }
             })
@@ -52,8 +50,7 @@ export function useAdminPatients() {
                 if(res.message === ''){
                     setLoading(false)
                 }else{
-                    setLoading(false)
-                    errorMessage = res.message    
+                    setLoading(false)   
                     setPatients(res)                
                 }
             })
@@ -70,8 +67,7 @@ export function useAdminPatients() {
                 if(res.message === ''){
                     setLoading(false)
                 }else{
-                    setLoading(false)
-                    errorMessage = res.message    
+                    setLoading(false)   
                     setPatients(res)                
                 }
             })

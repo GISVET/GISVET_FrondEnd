@@ -128,6 +128,7 @@ export function useAdminDependencies() {
     setLoading,
     dependencies,
     dependency,
+    isUpdateDependencies,
     headers: dependenciesAdmin,
     addDependency,
     orderDependency,

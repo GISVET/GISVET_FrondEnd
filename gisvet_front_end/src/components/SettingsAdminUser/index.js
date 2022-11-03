@@ -8,6 +8,7 @@ import AdminUser from "../../components/AddUser";
 import AssignDependency from "../../components/AssignDependency";
 import {useLocation } from "wouter"
 import { useUsersAdmin } from "../../hooks/useAdminUsers";
+import MessageConfirm from "../../components/MessageConfirm";
 
 
 export default function SettingsAdminUser(){
@@ -48,12 +49,25 @@ export default function SettingsAdminUser(){
     }
 
     const onsubmitAddUser = (dataForm)=>{
-        addUser(dataForm)
-        setShowModal(false)
+        addUser(dataForm).then(res =>{
+            console.log('esta es loa que llega')
+            console.log(res)
+            setchildModal(<MessageConfirm
+                onClose={handleCloseModal} 
+                isCorrect= {res.message}
+                message={res.status == 200?true:false}
+               />) 
+    
+            setShowModal(false)
+        })
+       
     }
 
     const onsubmitAssignDependency = (dataForm)=>{
         addUser(dataForm)
+    }
+
+    const closeModal = ()=>{
         setShowModal(false)
     }
 

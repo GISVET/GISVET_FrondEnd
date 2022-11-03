@@ -1,4 +1,4 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function updateDependency({jwt,id_dependencie,dependencie_name}){
     console.log(`Llega el id ${id_dependencie}  y el name ${dependencie_name}`)
@@ -7,7 +7,7 @@ export default function updateDependency({jwt,id_dependencie,dependencie_name}){
         dependencie_name:dependencie_name
         }
     let jsonDependency = JSON.stringify(dependency)
-    return fetch(`${ENDPOINT}/Admin/updateDependecie`, {
+    return fetch(`${endpoint}/Admin/updateDependecie`, {
         method: 'PUT',
         headers: {
             "Content-Type": 'application/json',

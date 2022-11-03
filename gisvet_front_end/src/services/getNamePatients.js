@@ -1,10 +1,10 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getNamePatients({jwt,name_patient}){
     console.log(`El name que llega es ${name_patient}`)
     const objectName = {"name_patient":name_patient};
     let jsonName = JSON.stringify(objectName);
-    return fetch(`${ENDPOINT}/Admin/getNamePatient` , {
+    return fetch(`${endpoint}/Admin/getNamePatient` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

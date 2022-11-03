@@ -1,7 +1,7 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getPatientsAZ({jwt}){
-    return fetch(`${ENDPOINT}/Admin/getPatientsOrderAZ` , {
+    return fetch(`${endpoint}/Admin/getPatientsOrderAZ` , {
         method: 'GET',
         headers: {
             "Content-Type": 'application/json',

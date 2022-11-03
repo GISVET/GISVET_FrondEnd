@@ -1,7 +1,6 @@
-const ENDPOINT = 'http://localhost:3001'
-
+const endpoint = process.env.REACT_APP_ENDPOINT
 export default function addRolToUser({jwt,id_rol,id_person}){
-    return fetch(`${ENDPOINT}/Admin/createUserRoles` , {
+    return fetch(`${endpoint}/Admin/createUserRoles` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

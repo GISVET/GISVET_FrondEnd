@@ -1,9 +1,9 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function updateUser({jwt,data}){
     let jsonUser = JSON.stringify(data)
     console.log(jsonUser)
-    return fetch(`${ENDPOINT}/Admin/Users/updatePerson`, {
+    return fetch(`${endpoint}/Admin/Users/updatePerson`, {
         method: 'PUT',
         headers: {
             "Content-Type": 'application/json',

@@ -1,12 +1,11 @@
-const ENDPOINT = 'http://localhost:3001'
-
+const endpoint = process.env.REACT_APP_ENDPOINT
 export default function addNewDependency({jwt,dependencie_name,type_dependencie}){
     let dependency = {
         dependencie_name:dependencie_name,
         type_dependencie: type_dependencie
     }
     let jsonDependency = JSON.stringify(dependency)
-    return fetch(`${ENDPOINT}/Admin/createDependecie`, {
+    return fetch(`${endpoint}/Admin/createDependecie`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

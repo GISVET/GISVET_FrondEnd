@@ -1,10 +1,10 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getUsersByDocument({jwt, document}){
   const objectBody = {
     "document": document
   }
-    return fetch(`${ENDPOINT}/Admin/Users/personsId` , {
+    return fetch(`${endpoint}/Admin/Users/personsId` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

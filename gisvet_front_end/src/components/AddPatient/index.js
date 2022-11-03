@@ -3,16 +3,24 @@ import styles from './styles.module.css';
 import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
 
 
-export default function addPatient({handleChange, onSubmit, onClose}){
+export default function addPatient({onSubmit, onClose}){
 
     const [data, setData] = useState({
         id_clinic_history:'',
         name_patient:''
     });
+
+    const doSubmit=(event)=>{
+        event.preventDefault()
+        onSubmit(data)
+    }
  
-    const nonSubmit = async(event) =>{
-        event.preventDefault();
-        return false
+  
+
+    const handleChange = (event)=>{
+        let {name, value} = event.target;
+        let newData = {...data, [name]: value}
+        setData(newData);
     }
 
 
@@ -23,7 +31,7 @@ export default function addPatient({handleChange, onSubmit, onClose}){
                     <h1> Registro de Pacientes</h1>
                 </div>
                 
-                <form className={styles.form_add_user} onSubmit={onSubmit}>
+                <form className={styles.form_add_user} onSubmit={doSubmit}>
                     <label htmlFor="id_clinic_history">
                         Historia clínica del paciente
                     </label>
@@ -58,3 +66,4 @@ export default function addPatient({handleChange, onSubmit, onClose}){
     )
 
 }
+

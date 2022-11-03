@@ -1,14 +1,12 @@
 import { filtersAscDesc } from "../constants/constants";
-
-
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 
 export default function getUsersListOrder({jwt, order_name}){
     const option = filtersAscDesc.find(element => element.id === order_name); 
     const objectName = {"order_name":option.name};
     let jsonName = JSON.stringify(objectName);
-    return fetch(`${ENDPOINT}/Admin/Users/persons` , {
+    return fetch(`${endpoint}/Admin/Users/persons` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

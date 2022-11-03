@@ -1,6 +1,5 @@
 import { filtersAscDesc } from "../constants/constants";
-
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 
 export default function getDependenciesOrder({jwt,order_name}){
@@ -10,7 +9,7 @@ export default function getDependenciesOrder({jwt,order_name}){
     const objectName = {"order_name":option.name};
     let jsonName = JSON.stringify(objectName);
     console.log("Entra en el endpoint de ordenar dependencias")
-    return fetch(`${ENDPOINT}/Admin/getDependencies` , {
+    return fetch(`${endpoint}/Admin/getDependencies` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

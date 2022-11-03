@@ -1,7 +1,8 @@
-const ENDPOINT = 'http://localhost:3001'
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function login({username,password}){
-    return fetch(`${ENDPOINT}/login` , {
+    console.log(endpoint)
+    return fetch(`${endpoint}/login` , {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json'

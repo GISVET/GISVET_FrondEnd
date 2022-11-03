@@ -60,12 +60,11 @@
   font-weight: bold;
 }
 
-.form_add_user select{
+.form_add_user > select{
   margin-top: 2%;
   border-radius: 3px;
   height: 2rem;
   width: 95%;
-  background-color: var(--gray-color);
   text-align: left;
   font-family: 'Inter', sans-serif;
   border: 0;
@@ -87,22 +86,18 @@
   color: var(--shade-5-color);
 }
 
-.form_add_user input:not(.button_table_goTo){
+.form_add_user > input{
   margin-top: 2%;
   padding: 0.5rem 1rem;
   float: right;
   border-radius: 3px;
   width:90%;
-  background-color: var(--gray-color);
   text-align: left;
   font-family: 'Inter', sans-serif;
   border: 0;
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user > input{
-  width: 95%;
-}
 
 .form_add_user input[type=submit]:nth-child(1){
   margin-top: 3%;
@@ -114,10 +109,11 @@
   font-size: 16px;
   font-weight: bold;
   color: var(--white-color);
+  border: 0;
+  box-shadow: 0px 1px 3px var(--black-color);
 }
 
 .form_add_user input[type=submit]:nth-child(2){
-  margin-left: 10%;
   margin-top: 3%;
   background-color:var(--error-button-color);
   height: 45px;
@@ -127,41 +123,89 @@
   font-size: 16px;
   color: var(--black-color);
   font-weight: bold;
+  border: 0;
+  box-shadow: 0px 1px 3px var(--black-color);
 }
 
 .form_add_user > select{
-  width: 100%;
-}
-
-.input_horizontal{
-  padding: 2%;
+  width: 95%;
 }
 
 .form_horizontal{
-  width: 100%;
+  box-sizing: border-box;
+  width: 95%;
   margin-top: 2%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+
+}
+.input_horizontal{
+  display: inline-block;
+  box-sizing: border-box;
+  max-width: 90%;
 }
 
-.form_horizontal input{
-  width: 83%;
+.input_horizontal:nth-child(even){
+  padding-left: 1rem;
+}
+
+.input_horizontal > select{
+  margin-top: 2%;
+  border-radius: 3px;
+  height: 2rem;
+  width: 100%;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  border: 0;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 1px 3px var(--black-color); 
+}
+
+.input_horizontal option{
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--shade-5-color);
+}
+.input_horizontal option:hover{
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  background-color: var(--shade-5-color);
+  color: var(--shade-5-color);
+}
+
+.input_horizontal > input{
+  box-sizing: border-box;
   margin-top: 2%;
   float: left;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  width:100%;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0px 1px 3px var(--black-color);
 }
-.form_horizontal select[class=gender]{
-  width: 90%;
+.input_horizontal > input:not(.error_message_input){
+  border: 0;
+}
+
+.input_horizontal > select[name=gender]{
   margin-top: 2%;
   float: right;
   padding: 0.5rem 7rem 0.5rem 1rem;
 }
 
-input .error_messages {
+.error_message_input{
   border: 1px solid var(--error-text-color);
 }
 
-h3 .error_messages{
+.label_dependencie{
+  padding-bottom: 1rem;
+}
+
+.error_message{
   margin-top: 5%;
   text-align: center;
   width: 50%;

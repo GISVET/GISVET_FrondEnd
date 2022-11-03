@@ -1,7 +1,7 @@
-const ENDPOINT = "http://localhost:3001";
+const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getDependenciesList({ jwt }) {
-  return fetch(`${ENDPOINT}/Admin/getDependencies`, {
+  return fetch(`${endpoint}/Admin/getDependencies`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

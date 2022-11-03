@@ -1,7 +1,6 @@
-const ENDPOINT = 'http://localhost:3001'
-
+const endpoint = process.env.REACT_APP_ENDPOINT
 export default function getRolesList({jwt}){
-    return fetch(`${ENDPOINT}/Admin/Users/getRoles` , {
+    return fetch(`${endpoint}/Admin/Users/getRoles` , {
         method: 'GET',
         headers: {
             "Authorization": 'Bearer '+jwt
