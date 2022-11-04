@@ -112,7 +112,7 @@ export function useUsersAdmin() {
     }, [setLoading])
 
 
-    const AssignDependency = useCallback(({id_dependencie,id_person})=>{
+    const assignDependency = useCallback(({id_dependencie,id_person})=>{
         console.log(`Esto llego al hook ${id_dependencie} y el ${id_person}`)
         setLoading(true)
         return assignDependecieUser({jwt,id_dependencie,id_person})
@@ -139,7 +139,7 @@ export function useUsersAdmin() {
        GetUserByDocument,
        findUserByName,
        orderUsers,
-       AssignDependency,
+       assignDependency,
        userByDocument,
        errorMessage,
        listUserToTable: formatListUserToTable(users)

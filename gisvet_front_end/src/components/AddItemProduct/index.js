@@ -39,7 +39,6 @@ export default function AddItemProduct({onSubmit, onClose}){
 
     useEffect(()=>{
         if(products != undefined && brands != undefined && features!=undefined){
-            askDependencyType('B');
             if (dependencies.length >0) {
                 setDataReady(true)
             }

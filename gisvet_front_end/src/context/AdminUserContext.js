@@ -71,6 +71,7 @@ export function AdminUserContextProvider({children}){
     
     
     useEffect(()=>{
+        console.log("Pasa por el useEfect de AdminUserContext")
         setLoading(true)
         getUsersList({jwt})
             .then(res => {

@@ -7,7 +7,6 @@ export default function addNewLote({jwt,expiration_date,quantity_per_unit,price_
         invima:invima,
         manufacturing_date:manufacturing_date
     }
-    console.log(features)
     let statusRes =0
     let jsonFeatures = JSON.stringify(features)
     return fetch(`${endpoint}/Admin/Item/createFeatureProducts`, {

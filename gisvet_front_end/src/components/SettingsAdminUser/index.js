@@ -5,7 +5,7 @@ import icon_Add_User from "./images/Icon_Add_User.png"
 import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
 import { Modal } from "../../components/Modal/Index"; 
 import AdminUser from "../../components/AddUser";
-import AssignDependency from "../../components/AssignDependency";
+import AssignDependency from "../AssignDependency/AssignDependency";
 import {useLocation } from "wouter"
 import { useUsersAdmin } from "../../hooks/useAdminUsers";
 import MessageConfirm from "../../components/MessageConfirm";
@@ -17,7 +17,7 @@ export default function SettingsAdminUser(){
     const [showModal, setShowModal] = useState(false)
     const [childModal, setchildModal] = useState(<></>)
     const [,navigate] = useLocation()
-    const {loading,addUser,AssignDependency} = useUsersAdmin()
+    const {loading,addUser,assignDependency} = useUsersAdmin()
     
 
     const setVisibleMenu = async(event) =>{
@@ -63,7 +63,7 @@ export default function SettingsAdminUser(){
     }
 
     const onsubmitAssignDependency = (dataForm)=>{
-        AssignDependency(dataForm).then(res =>{
+        assignDependency(dataForm).then(res =>{
             setchildModal(<MessageConfirm
                 onClose={handleCloseModal} 
                 isCorrect= {res.status == 200?true:false}

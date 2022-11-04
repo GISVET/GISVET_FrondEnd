@@ -20,6 +20,7 @@ export default function AssignDependency({onSubmit, onClose}){
 
     useEffect(()=>{
         isUpdateDependencies()
+        console.log('Entramos en el efecto del assign')
         if(dependencies != undefined && users != undefined){
             setIsReadyData(true)
         }
