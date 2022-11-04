@@ -137,14 +137,6 @@ export const measurement_units = [
         'name': "Unidad"
     },
     {
-        'id':'C',
-        'name': "Caja"
-    },
-    {
-        'id':'P',
-        'name': "Paquete"
-    },
-    {
         'id':'ML',
         'name': "Mililitros"
     },
@@ -163,6 +155,25 @@ export const measurement_units = [
     {
         'id':'OZ',
         'name': "Onzas"
+    }
+]
+
+export const presentations = [
+    {
+        'id':'U',
+        'name': "Unidad"
+    },
+    {
+        'id':'C',
+        'name': "Caja"
+    },
+    {
+        'id':'P',
+        'name': "Paquete"
+    },
+    {
+        'id':'FT',
+        'name': "Frasco"
     }
 ]
 

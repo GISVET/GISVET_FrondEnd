@@ -5,9 +5,7 @@ import { productsAdmin } from "../constants/headersTables";
 import addNewMark from "../services/addNewMark";
 import addNewLote from "../services/addNewLote";
 import addNewProduct from "../services/addNewProduct";
-
-
-
+import addNewItem from "../services/addNewItem";
 import getDependenciesName from "../services/getDependenciesName";
 import getDependenciesOrder from "../services/getDependenciesOrder";
 import getDependenciesType from "../services/getDependenciesType";
@@ -53,6 +51,27 @@ export function useAdminProducts() {
     ({ id_product,product_name,measurement_units,type_product }) => {
       setLoading(true);
       return addNewProduct({ jwt, id_product,product_name,measurement_units,type_product })
+        .then((res) => {
+          if (res.message === "") {
+            setLoading(false);
+          } else {
+            setLoading(false);
+            errorMessage = res.message;
+            isUpdateProducts(true);
+          }
+          return res
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+    [setLoading]
+  );
+
+
+  const addItem = useCallback((data) => {
+      setLoading(true);
+      return addNewItem({ jwt, data })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -181,6 +200,7 @@ export function useAdminProducts() {
     isUpdateProducts,
     headers: productsAdmin,
     addMark,
+    addItem,
     addLote,
     addProduct,
     orderDependency,

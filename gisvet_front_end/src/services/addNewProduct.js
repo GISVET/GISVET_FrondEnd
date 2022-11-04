@@ -8,8 +8,6 @@ export default function addNewMark({jwt,id_product,product_name,measurement_unit
         measurement_units:measurement_units,
         type_product:type_product
     }
-    console.log("El producto que llega al endpoint es")
-    console.log(product)
     let jsonProduct = JSON.stringify(product)
     console.log("El JSON product es : ")
     console.log(jsonProduct)

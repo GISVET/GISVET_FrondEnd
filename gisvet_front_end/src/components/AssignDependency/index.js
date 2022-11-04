@@ -25,8 +25,6 @@ export default function AssignDependency({onSubmit, onClose}){
         }
     },[])
 
-
-
     const [data, setData] = useState({
         id_dependencie:'',
         id_person:''

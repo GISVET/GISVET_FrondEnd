@@ -11,14 +11,15 @@ import AddLote from "../AddLote/AddLote";
 import AddProduct from "../AddProduct/AddProduct";
 import { useLocation } from "wouter";
 import { useAdminProducts } from "../../hooks/useAdminProducts";
-import MessageConfirm from "../../components/MessageConfirm";
+import MessageConfirm from "../MessageConfirm";
+import AddItemProduct from "../AddItemProduct";
 
 export default function SettingsAdminProducts() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
   const [, navigate] = useLocation();
-  const { loading, addMark,addLote,addProduct} = useAdminProducts();
+  const { loading, addMark,addLote,addProduct, addItem} = useAdminProducts();
 
   const setVisibleMenu = async (event) => {
     event.preventDefault();
@@ -49,12 +50,31 @@ export default function SettingsAdminProducts() {
     );
   };
 
+  const ShowAddItemProduct = async (event) => {
+    event.preventDefault();
+    setShowModal(true);
+    setchildModal(
+      <AddItemProduct onClose={handleCloseModal} onSubmit={onsubmitAddItem} />
+    );
+  };
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const onsubmitAddMark = (dataForm) => {
     return addMark(dataForm).then(res =>{
+      setchildModal(<MessageConfirm
+          onClose={handleCloseModal} 
+          isCorrect= {res.status == 200?true:false}
+          message= {res.message}
+      />) 
+      return setShowModal(true)
+  })
+  };
+
+  const onsubmitAddItem = (dataForm) => {
+    return addItem(dataForm).then(res =>{
       console.log(res)
       setchildModal(<MessageConfirm
           onClose={handleCloseModal} 
@@ -159,7 +179,7 @@ export default function SettingsAdminProducts() {
             <input
               className={styles.add_user_form}
               type="image"
-              onClick={""}
+              onClick={ShowAddItemProduct}
               src={icon_Register_Product}
               width="32"
               height="32"
