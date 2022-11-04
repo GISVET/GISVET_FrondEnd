@@ -153,19 +153,6 @@ export default function SettingsAdminProducts() {
             <input
               className={styles.add_user_form}
               type="image"
-              onClick={showAddLote}
-              src={icon_Add_Lote}
-              width="32"
-              height="32"
-            />
-
-            <p>Agregar Lote</p>
-          </div>
-
-          <div className={styles.item_floatMenu}>
-            <input
-              className={styles.add_user_form}
-              type="image"
               onClick={showAddProduct}
               src={icon_Add_Product}
               width="32"

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import icon_User_settings from "./images/Icon_settings.png";
+import icon_dependencie_settings from "./images/icon_show_dep.png";
 import { useRolesList } from "../../hooks/useRoles";
 import { typeDependencies, gender, role } from "../../constants/constants";
 import Table from "../Table/Table";
@@ -76,8 +76,8 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
       {dataReady && (
         <>
           <div className={styles.title_image}>
-            <img src={icon_User_settings} width="40" height="40" />
-            <h1> Detalle Usuario</h1>
+            <img src={icon_dependencie_settings} width="40" height="40" />
+            <h1> Detalle Dependencia</h1>
           </div>
           <form className={styles.form_add_user} onSubmit={doSubmit}>
             <label htmlFor="id_dependency">Id del Departamento </label>
