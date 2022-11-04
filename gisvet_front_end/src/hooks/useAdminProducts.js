@@ -23,6 +23,8 @@ export function useAdminProducts() {
     loading,
     setLoading,
     isUpdateProducts,
+    isUpdateBranches,
+    isUpdateFeatures,
   } = useContext(adminProductsContext);
   let errorMessage = "";
 
@@ -36,7 +38,7 @@ export function useAdminProducts() {
           } else {
             setLoading(false);
             errorMessage = res.message;
-            isUpdateProducts(true);
+            isUpdateBranches(true);
           }
           return res
         })
@@ -78,7 +80,7 @@ export function useAdminProducts() {
           } else {
             setLoading(false);
             errorMessage = res.message;
-            isUpdateProducts(true);
+            isUpdateFeatures(true);
           }
           return res
         })
@@ -99,7 +101,7 @@ export function useAdminProducts() {
           } else {
             setLoading(false);
             errorMessage = res.message;
-            isUpdateProducts(true);
+            isUpdateFeatures(true);
           }
           return res
         })

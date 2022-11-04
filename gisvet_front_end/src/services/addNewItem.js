@@ -5,9 +5,13 @@ export default function addNewItem({jwt,data}){
         'presentation':data.presentation,
         'quantity':parseInt(data.quantity),
         'id_product':parseInt(data.id_product),
-        'id_feature':parseInt(data.id_feature), 
         'id_dependencie':parseInt(data.id_dependencie),
-        'id_brand':parseInt(data.id_brand)
+        'id_brand':parseInt(data.id_brand),
+  		'expiration_date' : data.expiration_date,
+    	'quantity_per_unit': parseInt(data.quantity_per_unit),
+    	'price_per_unit': parseInt(data.price_per_unit),
+  		'invima': data.invima,
+    	'manufacturing_date': data.manufacturing_date,
     }
 
     let jsonUser = JSON.stringify(dataAux)
