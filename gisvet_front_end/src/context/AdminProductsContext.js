@@ -22,6 +22,7 @@ export function formatListProducts(data) {
       product_name: product.PRODUCT_NAME,
       measurement_units: measurement.name,
       type_product: type.name,
+      total_product: product.TOTAL_PRODUCT,
     };
     dataFormated.push(productData);
   });

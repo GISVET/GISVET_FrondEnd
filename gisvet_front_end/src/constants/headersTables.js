@@ -34,5 +34,7 @@ export const productsAdmin = [
     "Id del producto",
     "Nombre del producto",
     "Unidad de medida",
-    "Tipo de producto"
+    "Tipo de producto",
+    "Cantidad total de producto"
+
 ]
