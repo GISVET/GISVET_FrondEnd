@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_User_Form from "./images/Icon_Add_User_Form.png"
 import { useRolesList } from "../../hooks/useRoles";
-import { typeDoc } from "../../constants/constants";
+import { typeDoc, gender } from "../../constants/constants";
 
 
 export default function AddUser({onSubmit, onClose}){
@@ -123,9 +123,13 @@ export default function AddUser({onSubmit, onClose}){
                                     name="gender">
 
                                 <option disabled={true} selected></option>
-                               <option value='M'>Masculino</option>
-                               <option value='F'>Femenino</option>
-                            </select>   
+                                    { gender.map(gdr=>
+                                            <option key={gdr.id} value={gdr.id}>
+                                                {gdr.name}
+                                            </option>
+                                        )
+                                    } 
+                            </select>
                         </div>
                     </div>
                     <label htmlFor="id_rol">Asignar Rol</label>

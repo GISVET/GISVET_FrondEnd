@@ -30,9 +30,9 @@ export function useAdminProducts() {
   let errorMessage = "";
 
   const addMark = useCallback(
-    ({ id_brand, name_brand }) => {
+    ({  name_brand }) => {
       setLoading(true);
-      return addNewMark({ jwt, id_brand, name_brand })
+      return addNewMark({ jwt,  name_brand })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -51,9 +51,9 @@ export function useAdminProducts() {
   );
 
   const addProduct = useCallback(
-    ({ id_product,product_name,measurement_units,type_product }) => {
+    ({ product_name,measurement_units,type_product }) => {
       setLoading(true);
-      return addNewProduct({ jwt, id_product,product_name,measurement_units,type_product })
+      return addNewProduct({ jwt,product_name,measurement_units,type_product })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);

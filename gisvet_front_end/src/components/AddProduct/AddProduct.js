@@ -8,7 +8,6 @@ import { measurement_units } from "../../constants/constants";
 
 export default function addProduct({ onSubmit, onClose }) {
   const [data, setData] = useState({
-    id_product: "",
     product_name: "",
     measurement_units: "",
     type_product: "",
@@ -16,8 +15,6 @@ export default function addProduct({ onSubmit, onClose }) {
 
   const doSubmit = (event) => {
     event.preventDefault();
-    console.log("En el add product la data es ")
-    console.log(data)
     onSubmit(data);
   };
 
@@ -41,14 +38,6 @@ export default function addProduct({ onSubmit, onClose }) {
       </div>
 
       <form className={styles.form_add_user} onSubmit={doSubmit}>
-        <label htmlFor="id_product">Id del Producto</label>
-        <input
-          name="id_product"
-          onChange={handleChange}
-          required={true}
-          type="number"
-          placeholder="Digite el id del producto"
-        />
 
         <label htmlFor="product_name">Nombre del producto</label>
         <input

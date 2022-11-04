@@ -1,7 +1,6 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function addNewMark({jwt,id_brand,name_brand}){
+export default function addNewMark({jwt,name_brand}){
     let mark = {
-        id_brand:parseInt(id_brand),
         name_brand: name_brand
     }
     let jsonMark = JSON.stringify(mark)

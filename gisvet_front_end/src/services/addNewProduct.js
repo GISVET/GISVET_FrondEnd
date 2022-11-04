@@ -1,9 +1,7 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function addNewMark({jwt,id_product,product_name,measurement_units,type_product}){
-    console.log(id_product)
+export default function addNewMark({jwt,product_name,measurement_units,type_product}){
 
     let product = {
-        id_product:parseInt(id_product),
         product_name: product_name,
         measurement_units:measurement_units,
         type_product:type_product

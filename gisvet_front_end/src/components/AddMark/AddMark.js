@@ -7,7 +7,6 @@ import icon_Add_Mark from "./images/Icon_Mark.png"
 export default function addMark({onSubmit, onClose}){
 
     const [data, setData] = useState({
-        id_brand:'',
         name_brand:''
     });
 
@@ -33,14 +32,6 @@ export default function addMark({onSubmit, onClose}){
                 </div>
                 
                 <form className={styles.form_add_user} onSubmit={doSubmit}>
-                    <label htmlFor="id_brand">
-                        Id de la marca
-                    </label>
-                    <input name="id_brand" 
-                            onChange={handleChange} 
-                            required={true} 
-                            type="number" 
-                            placeholder="Inserte el id de la marca"/>
                     
                     <label htmlFor="name_brand">
                             Nombre de la marca
