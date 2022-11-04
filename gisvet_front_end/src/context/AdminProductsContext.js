@@ -1,68 +1,76 @@
-import React, {useCallback, useContext ,useEffect, useState} from "react";
-import userContext from "./UserContext"
-import getDependenciesList from "../services/getDependenciesList"
-import { typeDependencies } from "../constants/constants";
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import userContext from "./UserContext";
+import getProductsAdminList from "../services/getProductsAdminList";
 
+import { measurement_units } from "../constants/constants";
+import { type_product } from "../constants/constants";
 
-const Context = React.createContext({})
+const Context = React.createContext({});
 
+export function formatListProducts(data) {
+  let dataFormated = [];
+  data[0].products.map((product) => {
+    const measurement = measurement_units.find(
+      (element) => element.id === product.MEASUREMENT_UNITS
+    );
+    const type = type_product.find(
+      (element) => element.id === product.TYPE_PRODUCT
+    );
 
-export function formatListDependencies(data){
+    let productData = {
+      id_product: product.ID_PRODUCT,
+      product_name: product.PRODUCT_NAME,
+      measurement_units: measurement.name,
+      type_product: type.name,
+    };
+    dataFormated.push(productData);
+  });
+  return dataFormated;
+}
 
-    let dataFormated = []
-    data.map((dependencie)=>{
-        const typeDependencieData = typeDependencies.find(element => element.id === dependencie.TYPE_DEPENDENCIE);  
-        let dependencyData={
-            id_dependencie:dependencie.ID_DEPENDENCIE,
-            dependencie_name:dependencie.DEPENDENCIE_NAME,
-            type_dependencie:typeDependencieData.name       
+export function AdminProductsContextProvider({ children }) {
+  const { jwt } = useContext(userContext);
+  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [updateProducts, isUpdateProducts] = useState(false);
+  let errorMessage = "";
+
+  useEffect(() => {
+    setLoading(true);
+    getProductsAdminList({ jwt })
+      .then((res) => {
+        if (res.message === undefined) {
+          setLoading(false);
+          setProducts(formatListProducts(res));
+          isUpdateProducts(false);
+        } else {
+          setLoading(false);
+          errorMessage = res.message;
         }
-        dataFormated.push(dependencyData);
-    })
-    return dataFormated
-}
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [updateProducts, jwt]);
 
-export function AdminProductsContextProvider({children}){
-    const {jwt} = useContext(userContext)
-    const [dependencies, setDependencies] = useState([])
-    const [dependency, setDependency] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [updateDependencies, isUpdateDependencies] = useState(false)
-    let errorMessage = ""
-    
-    
-    useEffect(()=>{
-        setLoading(true)
-        getDependenciesList({jwt})
-            .then(res => {
-                if(res.message === undefined){
-                    setLoading(false)
-                    setDependencies(formatListDependencies(res))
-                    isUpdateDependencies(false)
-                }else{
-                    setLoading(false)
-                    errorMessage = res.message
-                }
-            })
-            .catch(err => {
-                console.error(err)
-            })
-    }, [updateDependencies,jwt])
-
-    return <Context.Provider value={
-        {   
-            dependencies, 
-            setDependencies, 
-            dependency,
-            setDependency,
-            errorMessage, 
-            loading, 
-            setLoading,
-            formatListDependencies,
-            isUpdateDependencies
-        }}>
-        {children}
+  return (
+    <Context.Provider
+      value={{
+        products,
+        setProducts,
+        product,
+        setProduct,
+        errorMessage,
+        loading,
+        setLoading,
+        formatListProducts,
+        isUpdateProducts,
+      }}
+    >
+      {children}
     </Context.Provider>
+  );
 }
 
-export default Context
+export default Context;
