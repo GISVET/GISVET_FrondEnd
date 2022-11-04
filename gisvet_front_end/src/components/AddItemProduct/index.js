@@ -29,12 +29,16 @@ export default function AddItemProduct({onSubmit, onClose}){
     const [dataReady, setDataReady] = useState(false)
 
     const [data, setData] = useState({
-        presentation:'',
-        quantity:'',
-        id_product:'',
-        id_feature:'', 
-        id_dependencie:'',
-        id_brand:''
+        id_product: '',
+  		expiration_date : '',
+    	quantity_per_unit: 0,
+    	price_per_unit: 0,
+  		invima: '',
+    	manufacturing_date: '',
+  		presentation: '',
+  		quantity: 0,
+  		id_dependencie: 0,
+        id_brand:0
     });
 
     useEffect(()=>{
@@ -57,7 +61,7 @@ export default function AddItemProduct({onSubmit, onClose}){
     const handleChange = (event)=>{
         let {name, value} = event.target;
         let newData = {...data, [name]: value}
-        setData(newData);
+        setData(newData)
     }
 
     return (
@@ -129,7 +133,11 @@ export default function AddItemProduct({onSubmit, onClose}){
                         }
                     </select>
 
-                    <label htmlFor="id_feature">
+                    <h3 className={styles.title_add_rol}> Registro de productos por lote</h3>
+
+                   
+                    {/*
+                     <label htmlFor="id_feature">
                         Lote al que pertenece
                     </label>
                     <select onChange={handleChange} 
@@ -144,7 +152,51 @@ export default function AddItemProduct({onSubmit, onClose}){
                             )
                         }
                     </select>
-
+                    */}
+                    <label htmlFor="invima">Registro del Lote (INVIMA,ICA...) </label>
+                    <input
+                      name="invima"
+                      onChange={handleChange}
+                      required={true}
+                      type="text"
+                      placeholder="Digite el registro del lote"
+                    />
+            
+                    <label htmlFor="price_per_unit">Precio por unidad de medida </label>
+                    <input
+                      name="price_per_unit"
+                      onChange={handleChange}
+                      required={true}
+                      type="number"
+                      placeholder="Ingrese el precio por unidad de producto"
+                    />
+            
+                    <label htmlFor="quantity_per_unit">Cantidad por unidad de medida </label>
+                    <input
+                      name="quantity_per_unit"
+                      onChange={handleChange}
+                      required={true}
+                      type="number"
+                      placeholder="Ingrese la cantidad por unidad de medida"
+                    />
+            
+                    <label htmlFor="manufacturing_date">Fecha de manufactura</label>
+                    <input
+                      name="manufacturing_date"
+                      onChange={handleChange}
+                      required={true}
+                      type="date"
+                      placeholder="Ingrese la fecha de manufactura del producto"
+                    />
+            
+                    <label htmlFor="expiration_date">Fecha de vencimiento</label>
+                    <input
+                      name="expiration_date"
+                      onChange={handleChange}
+                      required={true}
+                      type="date"
+                      placeholder="Ingrese la fecha de vencimiento del lote"
+                    />
 
                     <label htmlFor="id_dependencie">
                         Dependencia a asignar

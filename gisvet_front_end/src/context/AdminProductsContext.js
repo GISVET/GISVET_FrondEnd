@@ -158,6 +158,8 @@ export function AdminProductsContextProvider({ children }) {
         setLoading,
         formatListProducts,
         isUpdateProducts,
+        isUpdateBranches,
+        isUpdateFeatures,
         updateFeatures,
         updateBranches
       }}
