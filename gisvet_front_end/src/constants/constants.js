@@ -26,6 +26,14 @@ export const gender = [
         'name': "Femenino"
     },
     {
+        'id':"B",
+        'name': "No Binario"
+    },
+    {
+        'id':"P",
+        'name': "Prefiero no decirlo"
+    },
+    {
         'id':"O",
         'name': "Otro"
     }
@@ -110,30 +118,30 @@ export const role = [
 
 export const type_product = [
     {
+        'id':'L',
+        'name': "Laboratorio"
+    },
+    {
         'id':'A',
-        'name': "Accesorio"
+        'name': "Elementos de Aseo"
     },
     {
-        'id':'C',
-        'name': "Clinico"
-    },
-    {
-        'id':'E',
-        'name': "Extra"
+        'id':'H',
+        'name': "Elementos Hospitalarios"
     },
     {
         'id':'M',
-        'name': "Medicamento"
+        'name': "Medicamentos Generales"
     },
     {
-        'id':'AZ',
-        'name': "Accesorio Especial"
+        'id':'Q',
+        'name': "Médico - Quirurjicos"
     }
 ]
 
 export const measurement_units = [
     {
-        'id':'U',
+        'id':'UN',
         'name': "Unidad"
     },
     {
@@ -149,12 +157,12 @@ export const measurement_units = [
         'name': "Kilogramo"
     },
     {
-        'id':'L',
-        'name': "Litro"
+        'id':'GR',
+        'name': "Gramos"
     },
     {
-        'id':'OZ',
-        'name': "Onzas"
+        'id':'GL',
+        'name': "Galón"
     }
 ]
 
@@ -172,7 +180,11 @@ export const presentations = [
         'name': "Paquete"
     },
     {
-        'id':'FT',
+        'id':'A',
+        'name': "Ampolla"
+    },
+    {
+        'id':'F',
         'name': "Frasco"
     }
 ]
