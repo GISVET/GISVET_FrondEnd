@@ -5,6 +5,7 @@ export default function addNewMark({jwt,id_brand,name_brand}){
         name_brand: name_brand
     }
     let jsonMark = JSON.stringify(mark)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/Item/createBrand`, {
         method: 'POST',
         headers: {
@@ -13,9 +14,13 @@ export default function addNewMark({jwt,id_brand,name_brand}){
         },
         body: jsonMark
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        return res.message
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }

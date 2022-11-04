@@ -9,13 +9,8 @@ import { Modal } from "../../components/Modal/Index";
 import AddMark from "../AddMark/AddMark";
 import AddLote from "../AddLote/AddLote";
 import AddProduct from "../AddProduct/AddProduct";
-
-
-import AssignDependency from "../../components/AssignDependency";
 import { useLocation } from "wouter";
-import { useUsersAdmin } from "../../hooks/useAdminUsers";
 import { useAdminProducts } from "../../hooks/useAdminProducts";
-
 import MessageConfirm from "../../components/MessageConfirm";
 
 export default function SettingsAdminProducts() {
@@ -59,20 +54,40 @@ export default function SettingsAdminProducts() {
   };
 
   const onsubmitAddMark = (dataForm) => {
-    addMark(dataForm);
-    setShowModal(false);
+    return addMark(dataForm).then(res =>{
+      console.log(res)
+      setchildModal(<MessageConfirm
+          onClose={handleCloseModal} 
+          isCorrect= {res.status == 200?true:false}
+          message= {res.message}
+      />) 
+      return setShowModal(true)
+  })
   };
 
   const onsubmitAddLote = (dataForm) => {
-    addLote(dataForm);
-    setShowModal(false);
+    return addLote(dataForm).then(res =>{
+      if (res.status == 200) {
+        res.message = 'Se agrego el lote exitosamente'
+      }
+      setchildModal(<MessageConfirm
+          onClose={handleCloseModal} 
+          isCorrect= {res.status == 200?true:false}
+          message= {res.message}
+      />) 
+      return setShowModal(true)
+  })
   };
 
   const onsubmitAddProduct = (dataForm) => {
-    console.log("El data en settings de addproduct es")
-    console.log(dataForm);
-    addProduct(dataForm);
-    setShowModal(false);
+    return addProduct(dataForm).then(res =>{
+      setchildModal(<MessageConfirm
+          onClose={handleCloseModal} 
+          isCorrect= {res.status == 200?true:false}
+          message= {res.message}
+      />) 
+      return setShowModal(true)
+  })
   };
 
 

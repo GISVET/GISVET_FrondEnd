@@ -13,6 +13,7 @@ export default function addNewMark({jwt,id_product,product_name,measurement_unit
     let jsonProduct = JSON.stringify(product)
     console.log("El JSON product es : ")
     console.log(jsonProduct)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/Item/createProducts`, {
         method: 'POST',
         headers: {
@@ -21,11 +22,13 @@ export default function addNewMark({jwt,id_product,product_name,measurement_unit
         },
         body: jsonProduct
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        console.log("El mensaje que arroja el endpoint es")
-        console.log(res.message)
-        return res.message
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }

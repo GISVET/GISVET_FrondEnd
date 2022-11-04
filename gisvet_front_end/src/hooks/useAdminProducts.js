@@ -31,7 +31,7 @@ export function useAdminProducts() {
   const addMark = useCallback(
     ({ id_brand, name_brand }) => {
       setLoading(true);
-      addNewMark({ jwt, id_brand, name_brand })
+      return addNewMark({ jwt, id_brand, name_brand })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -40,6 +40,7 @@ export function useAdminProducts() {
             errorMessage = res.message;
             isUpdateProducts(true);
           }
+          return res
         })
         .catch((err) => {
           console.error(err);
@@ -51,7 +52,7 @@ export function useAdminProducts() {
   const addProduct = useCallback(
     ({ id_product,product_name,measurement_units,type_product }) => {
       setLoading(true);
-      addNewProduct({ jwt, id_product,product_name,measurement_units,type_product })
+      return addNewProduct({ jwt, id_product,product_name,measurement_units,type_product })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -60,6 +61,7 @@ export function useAdminProducts() {
             errorMessage = res.message;
             isUpdateProducts(true);
           }
+          return res
         })
         .catch((err) => {
           console.error(err);
@@ -71,7 +73,7 @@ export function useAdminProducts() {
   const addLote= useCallback(
     ({ expiration_date,quantity_per_unit,price_per_unit,invima,manufacturing_date}) => {
       setLoading(true);
-      addNewLote({ jwt, expiration_date,quantity_per_unit,price_per_unit,invima,manufacturing_date})
+      return addNewLote({ jwt, expiration_date,quantity_per_unit,price_per_unit,invima,manufacturing_date})
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -80,6 +82,7 @@ export function useAdminProducts() {
             errorMessage = res.message;
             isUpdateProducts(true);
           }
+          return res
         })
         .catch((err) => {
           console.error(err);

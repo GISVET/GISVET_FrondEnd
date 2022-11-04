@@ -8,7 +8,7 @@ export default function addNewLote({jwt,expiration_date,quantity_per_unit,price_
         manufacturing_date:manufacturing_date
     }
     console.log(features)
-
+    let statusRes =0
     let jsonFeatures = JSON.stringify(features)
     return fetch(`${endpoint}/Admin/Item/createFeatureProducts`, {
         method: 'POST',
@@ -18,12 +18,13 @@ export default function addNewLote({jwt,expiration_date,quantity_per_unit,price_
         },
         body: jsonFeatures
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        console.log("El mensaje de error en el endpoint es:")
-        console.log(res.message)
-        return res.message
-        
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }
