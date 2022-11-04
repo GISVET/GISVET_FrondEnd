@@ -5,6 +5,7 @@ export default function addNewPatient({jwt,id_clinic_history,name_patient}){
         name_patient: name_patient
     }
     let jsonUser = JSON.stringify(patient)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/createPatient`, {
         method: 'POST',
         headers: {
@@ -13,14 +14,13 @@ export default function addNewPatient({jwt,id_clinic_history,name_patient}){
         },
         body: jsonUser
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
+        return res.json()
+    }).then(res => {
         const resAux={
-            'message' : res.json(),
-            'status' :res.status
+            'message':res.message,
+            'status':statusRes
         }
         return resAux
-    }).then(res => {
-        res.message = res.message.message
-        return res
     })
 }

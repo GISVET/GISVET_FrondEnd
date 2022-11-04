@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400;100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400&display=swap');
 :root {
     --shade-5-color: #435535;
     --gray-color:#E4E0E0;

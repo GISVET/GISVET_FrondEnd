@@ -8,8 +8,9 @@ import { typeDoc } from "../../constants/constants";
 export default function AddUser({onSubmit, onClose}){
     const {loading, listRoles} = useRolesList();
     const [isMatchPassword, setIsMatchPassword] = useState(true)
+    const [errorMessage, setErrorMessage] = useState('')
     const typeDocuments = typeDoc
-    let classPassword = styles.non_error
+    const [classPassword, setClassPassword] = useState('')
 
     const [data, setData] = useState({
         full_name:'',
@@ -21,7 +22,6 @@ export default function AddUser({onSubmit, onClose}){
         email:'', 
         password:''
     });
- 
 
     const doSubmit = (event)=>{
         event.preventDefault();
@@ -34,16 +34,24 @@ export default function AddUser({onSubmit, onClose}){
         let {name, value} = event.target;
         let newData = {...data, [name]: value}
         setData(newData);
+        if (name == 'password') {
+            verifyPassword(event)
+        }
     }
 
     const verifyPassword = async(event)=>{
-        if(data.password == (event.target.value)){
+        if(data.password == (event.target.value) && data.password.length >=8){
             setIsMatchPassword(true)
-            classPassword = "non-error"
+            setClassPassword('')
         }
         else{
+            if (data.password.length <8) {
+                setErrorMessage('La contraseña debe contener minimo 8 caracteres')
+            }else{
+                setErrorMessage('Las contraseñas no coinciden')
+            }
             setIsMatchPassword(false)
-            classPassword = "error-messages"
+            setClassPassword(styles.error_message_input)
         }
     }
 
@@ -165,7 +173,7 @@ export default function AddUser({onSubmit, onClose}){
                         </div> 
                     </div>  
                     {!isMatchPassword &&
-                        <h3 className={classPassword}>Las contraseñas no coinciden</h3>
+                        <h3 className={styles.error_message}>{errorMessage}</h3>
                     }
                      
                     <div className={styles.form_horizontal}>

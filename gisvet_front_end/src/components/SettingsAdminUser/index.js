@@ -9,6 +9,7 @@ import AssignDependency from "../../components/AssignDependency";
 import {useLocation } from "wouter"
 import { useUsersAdmin } from "../../hooks/useAdminUsers";
 import MessageConfirm from "../../components/MessageConfirm";
+import { useAdminOneUser} from "../../hooks/useAdminOneUser"
 
 
 export default function SettingsAdminUser(){
@@ -16,7 +17,7 @@ export default function SettingsAdminUser(){
     const [showModal, setShowModal] = useState(false)
     const [childModal, setchildModal] = useState(<></>)
     const [,navigate] = useLocation()
-    const {loading,addUser} = useUsersAdmin()
+    const {loading,addUser,AssignDependency} = useUsersAdmin()
     
 
     const setVisibleMenu = async(event) =>{
@@ -50,27 +51,29 @@ export default function SettingsAdminUser(){
 
     const onsubmitAddUser = (dataForm)=>{
         addUser(dataForm).then(res =>{
-            console.log('esta es loa que llega')
-            console.log(res)
             setchildModal(<MessageConfirm
                 onClose={handleCloseModal} 
-                isCorrect= {res.message}
-                message={res.status == 200?true:false}
+                isCorrect= {res.status == 200?true:false}
+                message= {res.message}
                />) 
     
-            setShowModal(false)
+            return setShowModal(true)
         })
        
     }
 
     const onsubmitAssignDependency = (dataForm)=>{
-        addUser(dataForm)
-    }
+        AssignDependency(dataForm).then(res =>{
+            setchildModal(<MessageConfirm
+                onClose={handleCloseModal} 
+                isCorrect= {res.status == 200?true:false}
+                message= {res.message}
+                />) 
+    
+            return setShowModal(true)
+        })
 
-    const closeModal = ()=>{
-        setShowModal(false)
     }
-
 
     if (!activeMenu) {
         return (<div className={styles.options_admin} >

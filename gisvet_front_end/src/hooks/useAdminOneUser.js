@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import updateUser from "../services/updateUser"
 import registerUser from "../services/registerAccount"
 
+
 const cleanFormat= function(data){
     let userFormat = Object.assign({}, data)
     userFormat.PROFESSIONAL_ID = data.PROFESSIONAL_ID== 'null'?'sin agregar':data.PROFESSIONAL_ID
@@ -25,7 +26,6 @@ export function useAdminOneUser(document) {
     const {loading, setLoading, isUpdateUsers} = useContext(adminUserContext)
     const {listRoles} = useRolesList();
     const loadingListRols = useRolesList().loading;
-    //let userTemp = users.find(item => item.DOCUMENT== document)
     const [user,setUser] = useState()
     const [roles,setRoles] = useState([])
     const [loadingUser,setLoadingUser] = useState(true)
@@ -114,63 +114,39 @@ export function useAdminOneUser(document) {
                 "professional_id": userToData.PROFESSIONAL_ID
             }
             setLoading(true)
-            updateUser({jwt,data:userAux})
-                .then(res => {
-                    if(res.message === ''){
-                        setLoading(false)
-                    }else{
-                        setLoading(false)
-                        errorMessage = res.message
-                        isUpdateUsers(true)
-                    }
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-            const accountAux={
+            const userAccount={
                 "email": email,
                 "password_account": password,
                 "id_person":parseInt(userToData.ID_PERSON)
             }
-            registerUser({jwt,userAccount:accountAux})
+            return updateUser({jwt,data:userAux})
                 .then(res => {
                     if(res.message === ''){
                         setLoading(false)
                     }else{
                         setLoading(false)
-                        errorMessage = res.message
-                        getUserById(document)
                         isUpdateUsers(true)
                     }
+                    registerUser({jwt,userAccount})
+                        .then(resAC => {
+                            if(resAC.message === ''){
+                                setLoading(false)
+                            }else{
+                                setLoading(false)
+                                getUserById(document)
+                                isUpdateUsers(true)
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err)
+                        })
+                    return res
                 })
                 .catch(err => {
                     console.error(err)
                 })
+            
             }, [setLoading])
-
-
-
-
-    
-    /*const AssignDependency = useCallback(({document,id_dependency})=>{
-        setLoading(true)
-        addNewUser({jwt,document,id_dependency})
-            .then(res => {
-                if(res.message === ''){
-                    setLoading(false)
-                }else{
-                    setLoading(false)
-                    errorMessage = res.message
-                    isUpdateUsers(true)
-                    
-                }
-            })
-            .catch(err => {
-                console.error(err)
-            })
-    }, [setLoading])
-
-*/
 
      return {
        loading, 

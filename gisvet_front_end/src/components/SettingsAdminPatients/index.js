@@ -42,11 +42,10 @@ export default function SettingsAdminDepedencies(){
 
     const onsubmit = async(data)=>{
        return addPatient(data).then(res =>{
-            console.log(res)
             setchildModal(<MessageConfirm
                 onClose={handleCloseModal} 
-                isCorrect= {res.message}
-                message={res.status == 200?true:false}
+                isCorrect= {res.status == 200?true:false}
+                message= {res.message}
             />) 
             return setShowModal(true)
         })

@@ -2,7 +2,7 @@ const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function updateUser({jwt,data}){
     let jsonUser = JSON.stringify(data)
-    console.log(jsonUser)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/Users/updatePerson`, {
         method: 'PUT',
         headers: {
@@ -11,9 +11,13 @@ export default function updateUser({jwt,data}){
         },
         body: jsonUser
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        return res.message
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }

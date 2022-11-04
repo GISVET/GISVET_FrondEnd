@@ -5,10 +5,11 @@ import { useRolesList } from "../../hooks/useRoles";
 import { useAdminOneUser} from "../../hooks/useAdminOneUser"
 import { typeDoc, gender, role } from "../../constants/constants";
 import Table from "../Table/Table";
+import MessageConfirm from "../MessageConfirm";
 
 
 
-export default function ShowUser({id,  onClose}){
+export default function ShowUser({id, onClose}){
     const {user,
            headersDependencies, 
            roles, dependencies, 
@@ -22,9 +23,11 @@ export default function ShowUser({id,  onClose}){
     const [isMatchPassword, setIsMatchPassword] = useState(true)
     const [isDisable , setIsDisable] = useState(true)
     const [dataReady, setDataReady] = useState(false)
-    let OthersRoles = Object.assign([], listRoles);
+    const [errorMessage, setErrorMessage] = useState('')
     const typeDocuments = typeDoc
     const [classPassword, setClassPassword] = useState('')
+    const [showModal, setShowModal] = useState(false)
+    const [childModal, setchildModal] = useState(<></>)
    
 
     const [data, setData] = useState({
@@ -42,13 +45,21 @@ export default function ShowUser({id,  onClose}){
             setDataReady(true)
         }}
     },[loading, user])
+
  
 
     const doSubmit = (event)=>{
         event.preventDefault();
         if(isMatchPassword && !isDisable){
-            useUpdateUser(user,data)
-            onClose()
+            useUpdateUser(user,data).then((res)=>{
+                setShowModal(true)
+                setchildModal(<MessageConfirm
+                    onClose={onClose} 
+                    isCorrect= {res.status == 200?true:false}
+                    message= {res.message}
+                />)
+            })
+            
             
         }
     }
@@ -80,14 +91,22 @@ export default function ShowUser({id,  onClose}){
         let {name, value} = event.target;
         let newData = {...data, [name]: value}
         setData(newData);
+        if (name == 'password') {
+            verifyPassword(event)
+        }
     }
 
     const verifyPassword = async(event)=>{
-        if(data.password == (event.target.value)){
+        if(data.password == (event.target.value) && data.password.length >=8){
             setIsMatchPassword(true)
             setClassPassword('')
         }
         else{
+            if (data.password.length <8) {
+                setErrorMessage('La contraseña debe contener minimo 8 caracteres')
+            }else{
+                setErrorMessage('Las contraseñas no coinciden')
+            }
             setIsMatchPassword(false)
             setClassPassword(styles.error_message_input)
         }
@@ -95,8 +114,8 @@ export default function ShowUser({id,  onClose}){
 
 
     
-    return (
-            <div className={styles.form_add_user_general}>
+    return (<>{showModal? <>{childModal}</>
+            :<div className={styles.form_add_user_general}>
             {dataReady && <>
                 
                 <div className={styles.title_image}> 
@@ -229,7 +248,7 @@ export default function ShowUser({id,  onClose}){
                         </div>
                     } 
                     {!isMatchPassword &&
-                        <label className={styles.error_message}>Las contraseñas no coinciden</label>
+                        <label className={styles.error_message}>{errorMessage}</label>
                     }
 
                     <label htmlFor="rolShow">
@@ -326,5 +345,5 @@ export default function ShowUser({id,  onClose}){
             </>
             }
         </div>
-    )
+    }</>)
 }

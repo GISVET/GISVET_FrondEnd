@@ -8,6 +8,7 @@ import getUsersByDocument from "../services/getUserByDocument"
 import getUsersListName from "../services/getUserListName"
 import getUsersListOrder from "../services/getUserListOrder"
 import {role} from "../constants/constants";
+import assignDependecieUser from "../services/assignDependecieUser"
 
 
 
@@ -47,15 +48,13 @@ export function useUsersAdmin() {
                         setLoading(false)
                     }else{
                         setLoading(false)
-                        isUpdateUsers(true)
-                        console.log(res)
-                        return res
-                        
+                        isUpdateUsers(true)  
                     }
+                    return res
                 })
                 .catch(err => {
-                    console.log(err.message)
-                    return err.message
+                    console.log(err)
+                    return err
                 })
     }, [setLoading])
 
@@ -113,28 +112,24 @@ export function useUsersAdmin() {
     }, [setLoading])
 
 
-
-
-
-    /*const AssignDependency = useCallback(({document,id_dependency})=>{
+    const AssignDependency = useCallback(({id_dependencie,id_person})=>{
+        console.log(`Esto llego al hook ${id_dependencie} y el ${id_person}`)
         setLoading(true)
-        addNewUser({jwt,document,id_dependency})
+        return assignDependecieUser({jwt,id_dependencie,id_person})
             .then(res => {
                 if(res.message === ''){
                     setLoading(false)
                 }else{
                     setLoading(false)
-                    errorMessage = res.message
                     isUpdateUsers(true)
-                    
                 }
+                return res
             })
             .catch(err => {
-                console.error(err)
+                console.log(err)
             })
     }, [setLoading])
 
-*/
 
      return {
        loading, 
@@ -144,6 +139,7 @@ export function useUsersAdmin() {
        GetUserByDocument,
        findUserByName,
        orderUsers,
+       AssignDependency,
        userByDocument,
        errorMessage,
        listUserToTable: formatListUserToTable(users)

@@ -6,6 +6,7 @@ import { Modal } from "../Modal/Index";
 import AddDependency from "../AddDependency";
 import {useLocation } from "wouter"
 import {useAdminDependencies} from "../../hooks/useAdminDependencies";
+import MessageConfirm from "../MessageConfirm";
 
 
 export default function SettingsAdminDepedencies(){
@@ -13,6 +14,7 @@ export default function SettingsAdminDepedencies(){
     const [showModal, setShowModal] = useState(false)
     const [,navigate] = useLocation()
     const {loading,addDependency} = useAdminDependencies()
+    const [childModal, setchildModal] = useState(<></>)
     
     const setVisibleMenu = async(event) =>{
         event.preventDefault();
@@ -21,6 +23,10 @@ export default function SettingsAdminDepedencies(){
 
     const showAddDependencyMenu = async(event) =>{
         event.preventDefault();
+        setchildModal(<AddDependency
+            onClose={handleCloseModal} 
+            onSubmit={onsubmit} 
+           />)
         return setShowModal(true)
     }
 
@@ -29,8 +35,14 @@ export default function SettingsAdminDepedencies(){
     }
 
     const onsubmit = (data)=>{
-        addDependency(data)
-        setShowModal(false)
+       return addDependency(data).then(res =>{
+            setchildModal(<MessageConfirm
+                onClose={handleCloseModal} 
+                isCorrect= {res.status == 200?true:false}
+                message= {res.message}
+            />) 
+            return setShowModal(true)
+        })
     }
 
     if (!activeMenu) {
@@ -58,10 +70,7 @@ export default function SettingsAdminDepedencies(){
                                 width="40" 
                                 height="50"/>
                     </div>
-                    {showModal && <Modal><AddDependency
-                         onClose={handleCloseModal} 
-                         onSubmit={onsubmit} 
-                        /></Modal>
+                    {showModal && <Modal>{childModal}</Modal>
                         
                     }
                 </>

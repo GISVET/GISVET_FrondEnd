@@ -6,11 +6,10 @@ import icon_information from "./images/icon_information.png"
 export default function MessageConfirm({isCorrect,message,onClose}){
     const [classText, setClassText] = useState()
     const [classButton, setClassButton] = useState()
-    console.log("Estamos mostrando un mensaje XD")
     
 
     useEffect(()=>{
-        if(isCorrect){
+        if(!isCorrect){
             setClassText(styles.errorMessage)
             setClassButton(styles.button_accept_error)
         }else{

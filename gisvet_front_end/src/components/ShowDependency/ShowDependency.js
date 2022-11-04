@@ -6,6 +6,7 @@ import { typeDependencies, gender, role } from "../../constants/constants";
 import Table from "../Table/Table";
 import { useAdminOneDependency } from "../../hooks/useAdminOneDependency";
 import { usersByDependency } from "../../constants/headersTables";
+import MessageConfirm from "../MessageConfirm";
 
 export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   const { dependency, persons, formatListUsers,updateDependencyFunction} = useAdminOneDependency(
@@ -14,6 +15,8 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [textButtonUpdate, setTextButtonUpdate] = useState();
+  const [childModal, setchildModal] = useState(<></>)
+  const [showModal, setShowModal] = useState(false)
 
 
   const [data, setData] = useState({
@@ -44,7 +47,15 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
     event.preventDefault();
     if(textButtonUpdate==="Actualizar"){
       setDisable(true);
-      updateDependencyFunction(data.id_dependencie,data.dependencie_name)
+      updateDependencyFunction(data.id_dependencie,data.dependencie_name).then(res =>{
+        setchildModal(<MessageConfirm
+            onClose={onClose} 
+            isCorrect= {res.status == 200?true:false}
+            message= {res.message}
+            />) 
+
+        return setShowModal(true)
+    })
       setTextButtonUpdate("Modificar");
     }else{
       setTextButtonUpdate("Actualizar");
@@ -60,8 +71,8 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
     setData(newData);
   };
 
-  return (
-    <div className={styles.form_add_user_general}>
+  return (<>{showModal? <>{childModal}</>
+  :<div className={styles.form_add_user_general}>
       {dataReady && (
         <>
           <div className={styles.title_image}>
@@ -124,5 +135,5 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
         </>
       )}
     </div>
-  );
+  }</>);
 }

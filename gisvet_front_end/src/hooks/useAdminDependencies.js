@@ -26,7 +26,7 @@ export function useAdminDependencies() {
   const addDependency = useCallback(
     ({ dependencie_name, type_dependencie }) => {
       setLoading(true);
-      addNewDependency({ jwt, dependencie_name, type_dependencie })
+     return addNewDependency({ jwt, dependencie_name, type_dependencie })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -35,6 +35,7 @@ export function useAdminDependencies() {
             errorMessage = res.message;
             isUpdateDependencies(true);
           }
+          return res
         })
         .catch((err) => {
           console.error(err);

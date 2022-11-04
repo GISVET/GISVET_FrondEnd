@@ -34,9 +34,7 @@ export function useAdminOneDependency(id_dependencie) {
   const updateDependencyFunction = useCallback(
     ( id_dependencie, dependencie_name ) => {
       setLoading(true);
-      console.log("Antes de enviar el endpoint")
-      console.log(`En el hookk Llega el id ${id_dependencie}  y el name ${dependencie_name}`)
-      updateDependency({ jwt, id_dependencie, dependencie_name })
+      return updateDependency({ jwt, id_dependencie, dependencie_name })
         .then((res) => {
           if (res.message === "") {
             setLoading(false);
@@ -44,6 +42,7 @@ export function useAdminOneDependency(id_dependencie) {
             setLoading(false);
             errorMessage = res.message;
           }
+          return res
         })
         .catch((err) => {
           console.error(err);

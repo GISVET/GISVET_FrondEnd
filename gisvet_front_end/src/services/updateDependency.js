@@ -7,6 +7,7 @@ export default function updateDependency({jwt,id_dependencie,dependencie_name}){
         dependencie_name:dependencie_name
         }
     let jsonDependency = JSON.stringify(dependency)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/updateDependecie`, {
         method: 'PUT',
         headers: {
@@ -15,9 +16,13 @@ export default function updateDependency({jwt,id_dependencie,dependencie_name}){
         },
         body: jsonDependency
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        return res.message
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }

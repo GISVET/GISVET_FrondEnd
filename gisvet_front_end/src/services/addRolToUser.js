@@ -1,5 +1,6 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
 export default function addRolToUser({jwt,id_rol,id_person}){
+    let statusRes =0
     return fetch(`${endpoint}/Admin/createUserRoles` , {
         method: 'POST',
         headers: {
@@ -10,9 +11,13 @@ export default function addRolToUser({jwt,id_rol,id_person}){
             id_rol,
             id_person})
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
-    }).then(res =>{
-        return res
+    }).then(res => {
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }

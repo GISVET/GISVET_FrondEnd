@@ -22,7 +22,6 @@ export function useAdminPatients() {
                 setLoading(false);
                 isUpdatePatient(true);
             }
-            console.log(res)
             return res;
         } catch (err) {
             console.error(err);

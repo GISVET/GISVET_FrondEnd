@@ -5,6 +5,7 @@ export default function addNewDependency({jwt,dependencie_name,type_dependencie}
         type_dependencie: type_dependencie
     }
     let jsonDependency = JSON.stringify(dependency)
+    let statusRes =0
     return fetch(`${endpoint}/Admin/createDependecie`, {
         method: 'POST',
         headers: {
@@ -13,9 +14,13 @@ export default function addNewDependency({jwt,dependencie_name,type_dependencie}
         },
         body: jsonDependency
     }).then(res => {
-        if (!res.ok) throw new Error('Response is not Ok')
+        statusRes = res.status
         return res.json()
     }).then(res => {
-        return res.message
+        const resAux={
+            'message':res.message,
+            'status':statusRes
+        }
+        return resAux
     })
 }
