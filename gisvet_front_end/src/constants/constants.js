@@ -130,6 +130,10 @@ export const type_product = [
         'name': "Elementos Hospitalarios"
     },
     {
+        'id':'G',
+        'name': "Elementos Generales"
+    },
+    {
         'id':'M',
         'name': "Medicamentos Generales"
     },
