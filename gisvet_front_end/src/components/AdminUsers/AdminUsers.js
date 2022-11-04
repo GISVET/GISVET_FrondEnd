@@ -11,7 +11,7 @@ import {filterPatients} from "../../constants/constants";
 
 
 
-export default function AdminUser(){
+export default function AdminUsers(){
     const {loading, 
             users,
             listUserToTable,
