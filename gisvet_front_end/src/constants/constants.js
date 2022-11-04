@@ -108,4 +108,62 @@ export const role = [
     }
 ]
 
+export const type_product = [
+    {
+        'id':'A',
+        'name': "Accesorio"
+    },
+    {
+        'id':'C',
+        'name': "Clinico"
+    },
+    {
+        'id':'E',
+        'name': "Extra"
+    },
+    {
+        'id':'M',
+        'name': "Medicamento"
+    },
+    {
+        'id':'AZ',
+        'name': "Accesorio Especial"
+    }
+]
+
+export const measurement_units = [
+    {
+        'id':'U',
+        'name': "Unidad"
+    },
+    {
+        'id':'C',
+        'name': "Caja"
+    },
+    {
+        'id':'P',
+        'name': "Paquete"
+    },
+    {
+        'id':'ML',
+        'name': "Mililitros"
+    },
+    {
+        'id':'LB',
+        'name': "Libra"
+    },
+    {
+        'id':'KG',
+        'name': "Kilogramo"
+    },
+    {
+        'id':'L',
+        'name': "Litro"
+    },
+    {
+        'id':'OZ',
+        'name': "Onzas"
+    }
+]
+
 export const loginErrorMessage = "Usuario o contraseña incorrectos por favor verifique nuevamente";

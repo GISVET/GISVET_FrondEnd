@@ -14,13 +14,16 @@ import SettingsAdminProducts from "../../components/SettingsAdminProducts/Settin
 
 
 export default function AdminProducts(){
-    const {loading, dependencies,headers} = useAdminProducts()
+    const {loading, products,headers} = useAdminProducts()
     const [typeFilter, setTypeFilter] = useState([]);
     const [typeFilterId, setTypeFilterId] = useState(0);
 
     const search = function(Keyword){
         console.log(Keyword+' a buscar')
     }
+
+    const showUserMenu = async (id_dependencie) => {
+    };
 
     return (
         <div className={styles.general_users}>
@@ -95,7 +98,11 @@ export default function AdminProducts(){
           </div>
         </div>
 
-                <Table headers={headers} data={dependencies}/>  
+                <Table headers={headers} 
+                data={products}
+                          keyName={"id_product"}
+                          actionItem={showUserMenu}
+                />  
                 <SettingsAdminProducts /> 
             </div>
         </div>

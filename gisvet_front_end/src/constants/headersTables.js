@@ -29,3 +29,10 @@ export const usersByDependency = [
     "Género",
     "Tarjeta Profesional"
 ]
+
+export const productsAdmin = [
+    "Id del producto",
+    "Nombre del producto",
+    "Unidad de medida",
+    "Tipo de producto"
+]
