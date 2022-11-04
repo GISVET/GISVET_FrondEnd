@@ -4,12 +4,19 @@ import styles from './styles.module.css';
 import PanelSearch from "../../components/PanelSearch";
 import icon_Filter from "./images/Icon_Filter.png"
 import SettingsAdminUser from "../SettingsAdminUser/index";
-import {useDependenciesAdmin} from "../../hooks/useAdminDependencies";
+import {useAdminProducts} from "../../hooks/useAdminProducts";
+import {
+    filterDependencies,
+    filterDependenciesName,
+  } from "../../constants/constants";
+import SettingsAdminProducts from "../../components/SettingsAdminProducts/SettingsAdminProducts";
 
 
 
-export default function AdminDependencies(){
-    const {loading, dependencies,headers} = useDependenciesAdmin()
+export default function AdminProducts(){
+    const {loading, dependencies,headers} = useAdminProducts()
+    const [typeFilter, setTypeFilter] = useState([]);
+    const [typeFilterId, setTypeFilterId] = useState(0);
 
     const search = function(Keyword){
         console.log(Keyword+' a buscar')
@@ -17,30 +24,79 @@ export default function AdminDependencies(){
 
     return (
         <div className={styles.general_users}>
-            <h1>Gestión de Dependencias</h1>
+            <h1>Gestión de Productos</h1>
                 <div className={styles.table_users}>
                 <div className={styles.filter_users}>
-                        <PanelSearch onSubmit={search}/>
-                        <div className={styles.buscador}>
-
-                            <select placeholder="Filtrar" 
-                                    type="text" 
-                                    className={styles.buscar}>
-                            </select>
-
-                            <select placeholder="Filtrar" 
-                                    type="text" 
-                                    className={styles.buscar}>
-
-                            </select>
-                            <input type="image" 
-                                    src={icon_Filter} 
-                                    className={styles.image_buscar}/>
-                        </div>
-                    </div>
+          <PanelSearch onSubmit={""} />
+          <div className={styles.buscador}>
+            <select
+              placeholder="Filtrar"
+              onChange={""}
+              className={styles.filter_dependencies}
+              type="text"
+            >
+              {filterDependencies.map((type, index) => {
+                if (index == 0) {
+                  return (
+                    <>
+                      <option key={0} disabled={""} defaultValue={true}>
+                        Seleccionar
+                      </option>
+                      <option key={type.id} value={type.id}>
+                        {type.name}
+                      </option>
+                    </>
+                  );
+                } else {
+                  return (
+                    <option key={type.id} value={type.id}>
+                      {type.name}
+                    </option>
+                  );
+                }
+              })}
+              ;
+            </select>
+            <select
+              selected
+              placeholder="Filtrar"
+              onChange={""}
+              className={styles.filter_dependencies_option}
+              type="text"
+            >
+              {typeFilter.map((type, index) => {
+                if (index == 0) {
+                  return (
+                    <>
+                      <option key={0} disabled={""} defaultValue={true}>
+                        Seleccionar
+                      </option>
+                      <option key={type.id} value={type.id}>
+                        {type.name}
+                      </option>
+                    </>
+                  );
+                } else {
+                  return (
+                    <option key={type.id} value={type.id}>
+                      {type.name}
+                    </option>
+                  );
+                }
+              })}
+              ;
+            </select>
+            <input
+              type="image"
+              src={icon_Filter}
+              onClick={""}
+              className={styles.image_buscar}
+            />
+          </div>
+        </div>
 
                 <Table headers={headers} data={dependencies}/>  
-                <SettingsAdminUser /> 
+                <SettingsAdminProducts /> 
             </div>
         </div>
     )
