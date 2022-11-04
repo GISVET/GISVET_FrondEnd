@@ -10,6 +10,7 @@ import getDependenciesName from "../services/getDependenciesName";
 import getDependenciesOrder from "../services/getDependenciesOrder";
 import getDependenciesType from "../services/getDependenciesType";
 import getDependencyDetails from "../services/getDependencyDetail";
+import getProductsName from "../services/getProductsName";
 
 
 export function useAdminProducts() {
@@ -63,6 +64,26 @@ export function useAdminProducts() {
         })
         .catch((err) => {
           console.error(err);
+        });
+    },
+    [setLoading]
+  );
+
+  const askProductName = useCallback(
+    (value) => {
+      setLoading(true);
+      getProductsName({ jwt, value })
+        .then((res) => {
+          if (res.message === "") {
+            setLoading(false);
+          } else {
+            setLoading(false);
+            errorMessage = res.message;
+            setProducts(formatListProducts(res));
+          }
+        })
+        .catch((err) => {
+          setProducts([]);
         });
     },
     [setLoading]
@@ -153,44 +174,6 @@ export function useAdminProducts() {
     [setLoading]
   );
 
-  const askDependency = useCallback(
-    (dependencie_name) => {
-      setLoading(true);
-      getDependencyDetails({ jwt, dependencie_name })
-        .then((res) => {
-          if (res.message === "") {
-            setLoading(false);
-          } else {
-            setLoading(false);
-            errorMessage = res.message;
-            setDependency(res);
-          }
-        })
-        .catch((err) => {
-        });
-    },
-    [setLoading]
-  );
-
-  const askDependencyName = useCallback(
-    (dependencie_name) => {
-      setLoading(true);
-      getDependenciesName({ jwt, dependencie_name })
-        .then((res) => {
-          if (res.message === "") {
-            setLoading(false);
-          } else {
-            setLoading(false);
-            errorMessage = res.message;
-            setProducts(formatListProducts(res));
-          }
-        })
-        .catch((err) => {
-          setProducts([]);
-        });
-    },
-    [setLoading]
-  );
 
   return {
     loading,
@@ -204,8 +187,7 @@ export function useAdminProducts() {
     addLote,
     addProduct,
     orderDependency,
-    askDependencyName,
+    askProductName,
     askDependencyType,
-    askDependency,
   };
 }
