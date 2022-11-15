@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Patient from "./images/Icon_Add_Patient.png"
-import { Modal } from "../Modal/Index"; 
-import AddPatient from "../AddPatient";
+import { Modal } from "components/Modal/Index"; 
+import AddPatient from "components/AddPatient";
 import {useLocation } from "wouter"
-import {useAdminPatients} from "../../hooks/useAdminPatients";
-import MessageConfirm from "../MessageConfirm";
+import {useAdminPatients} from "hooks/useAdminPatients";
+import MessageConfirm from "components/MessageConfirm";
 
 
 export default function SettingsAdminDepedencies(){

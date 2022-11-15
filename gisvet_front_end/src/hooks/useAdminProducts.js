@@ -1,16 +1,16 @@
 import { useContext, useCallback, useState } from "react";
-import userContext from "../context/UserContext";
-import adminProductsContext, { formatListProducts } from "../context/AdminProductsContext";
-import { productsAdmin } from "../constants/headersTables";
-import addNewMark from "../services/addNewMark";
-import addNewLote from "../services/addNewLote";
-import addNewProduct from "../services/addNewProduct";
-import addNewItem from "../services/addNewItem";
-import getDependenciesName from "../services/getDependenciesName";
-import getDependenciesOrder from "../services/getDependenciesOrder";
-import getDependenciesType from "../services/getDependenciesType";
-import getDependencyDetails from "../services/getDependencyDetail";
-import getProductsName from "../services/getProductsName";
+import userContext from "context/UserContext";
+import adminProductsContext, { formatListProducts } from "context/AdminProductsContext";
+import { productsAdmin } from "constants/headersTables";
+import addNewMark from "services/addNewMark";
+import addNewLote from "services/addNewLote";
+import addNewProduct from "services/addNewProduct";
+import addNewItem from "services/addNewItem";
+import getDependenciesName from "services/getDependenciesName";
+import getDependenciesOrder from "services/getDependenciesOrder";
+import getDependenciesType from "services/getDependenciesType";
+import getDependencyDetails from "services/getDependencyDetail";
+import getProductsName from "services/getProductsName";
 
 
 export function useAdminProducts() {

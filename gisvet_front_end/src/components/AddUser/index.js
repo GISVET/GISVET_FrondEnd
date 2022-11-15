@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_User_Form from "./images/Icon_Add_User_Form.png"
-import { useRolesList } from "../../hooks/useRoles";
-import { typeDoc, gender } from "../../constants/constants";
+import { useRolesList } from "hooks/useRoles";
+import { typeDoc, gender } from "constants/constants";
 
 
 export default function AddUser({onSubmit, onClose}){

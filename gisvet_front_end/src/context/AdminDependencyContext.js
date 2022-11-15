@@ -1,7 +1,7 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
 import userContext from "./UserContext"
-import getDependenciesList from "../services/getDependenciesList"
-import { typeDependencies } from "../constants/constants";
+import getDependenciesList from "services/getDependenciesList"
+import { typeDependencies } from "constants/constants";
 
 
 const Context = React.createContext({})

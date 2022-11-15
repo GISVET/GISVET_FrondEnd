@@ -3,8 +3,8 @@ import styles from './styles.module.css';
 import logo from './images/Proyecto_Logo_GisVet.png'
 import {useLocation } from "wouter"
 import { useState } from 'react';
-import useUser from "../../hooks/useUser";
-import {loginErrorMessage} from "../../constants/constants";
+import useUser from "hooks/useUser";
+import {loginErrorMessage} from "constants/constants";
 
 
 function  login(){

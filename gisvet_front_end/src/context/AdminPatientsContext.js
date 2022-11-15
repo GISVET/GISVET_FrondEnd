@@ -1,6 +1,6 @@
 import React, {useContext ,useEffect, useState} from "react";
-import userContext from "../context/UserContext"
-import getPatientsList from "../services/getPatientsList"
+import userContext from "context/UserContext"
+import getPatientsList from "services/getPatientsList"
 
 const Context = React.createContext({})
 

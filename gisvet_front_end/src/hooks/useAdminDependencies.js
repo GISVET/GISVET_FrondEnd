@@ -1,12 +1,12 @@
 import { useContext, useCallback, useState } from "react";
-import userContext from "../context/UserContext";
-import adminDependencyContext from "../context/AdminDependencyContext";
-import { dependenciesAdmin } from "../constants/headersTables";
-import addNewDependency from "../services/addNewDependency";
-import getDependenciesName from "../services/getDependenciesName";
-import getDependenciesOrder from "../services/getDependenciesOrder";
-import getDependenciesType from "../services/getDependenciesType";
-import getDependencyDetails from "../services/getDependencyDetail";
+import userContext from "context/UserContext";
+import adminDependencyContext from "context/AdminDependencyContext";
+import { dependenciesAdmin } from "constants/headersTables";
+import addNewDependency from "services/addNewDependency";
+import getDependenciesName from "services/getDependenciesName";
+import getDependenciesOrder from "services/getDependenciesOrder";
+import getDependenciesType from "services/getDependenciesType";
+import getDependencyDetails from "services/getDependencyDetail";
 
 
 export function useAdminDependencies() {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../components/HeaderAdmin/header";
+import Header from "components/HeaderAdmin/header";
 import styles from './styles.module.css';
 
 

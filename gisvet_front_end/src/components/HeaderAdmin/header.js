@@ -6,8 +6,8 @@ import logo_users from './images/Icon_Users.png'
 import logo_patients from './images/Icon_Patients.png'
 import logo_user from './images/Icon_Username.png'
 import Main_logo from "./images/Proyecto_Logo_GisVet.png"
-import useUser from "../../hooks/useUser";
-import MenuUser from "../UserOptions/index";
+import useUser from "hooks/useUser";
+import MenuUser from "components/UserOptions/index";
 import styles from './styles.module.css';
 
 

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Table from "../Table/Table";
+import Table from "components/Table/Table";
 import styles from "./styles.module.css";
-import PanelSearch from "../../components/PanelSearch";
+import PanelSearch from "components/PanelSearch";
 import icon_Filter from "./images/Icon_Filter.png";
-import SettingsAdminUser from "../SettingsAdminUser/index";
-import { useAdminProducts } from "../../hooks/useAdminProducts";
+import SettingsAdminUser from "components/SettingsAdminUser/index";
+import { useAdminProducts } from "hooks/useAdminProducts";
 import {
   filterDependencies,
   filterDependenciesName,
-} from "../../constants/constants";
-import SettingsAdminProducts from "../../components/SettingsAdminProducts/SettingsAdminProducts";
+} from "constants/constants";
+import SettingsAdminProducts from "components/SettingsAdminProducts/SettingsAdminProducts";
 
 export default function AdminProducts() {
   const { loading, products, headers, askProductName } = useAdminProducts();

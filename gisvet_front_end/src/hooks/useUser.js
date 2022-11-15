@@ -1,6 +1,6 @@
 import { useCallback, useContext, useState } from "react"
-import Context from "../context/UserContext"
-import loginServices from "../services/login"
+import Context from "context/UserContext"
+import loginServices from "services/login"
 
 
 export default function useUser() {

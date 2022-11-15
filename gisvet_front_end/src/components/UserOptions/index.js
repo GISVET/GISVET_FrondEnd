@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import Icon_Username from  "./images/Icon_Username_Option.png"
-import useUser from "../../hooks/useUser";
+import useUser from "hooks/useUser";
 import {useLocation } from "wouter"
 
 

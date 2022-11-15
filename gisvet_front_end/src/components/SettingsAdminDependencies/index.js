@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Dependency from "./images/Icon_Add_Dependency.png"
-import { Modal } from "../Modal/Index"; 
-import AddDependency from "../AddDependency";
+import { Modal } from "components/Modal/Index"; 
+import AddDependency from "components/AddDependency";
 import {useLocation } from "wouter"
-import {useAdminDependencies} from "../../hooks/useAdminDependencies";
-import MessageConfirm from "../MessageConfirm";
+import {useAdminDependencies} from "hooks/useAdminDependencies";
+import MessageConfirm from "components/MessageConfirm";
 
 
 export default function SettingsAdminDepedencies(){

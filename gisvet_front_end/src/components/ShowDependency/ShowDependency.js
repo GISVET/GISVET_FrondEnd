@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import icon_dependencie_settings from "./images/icon_show_dep.png";
-import { useRolesList } from "../../hooks/useRoles";
-import { typeDependencies, gender, role } from "../../constants/constants";
-import Table from "../Table/Table";
-import { useAdminOneDependency } from "../../hooks/useAdminOneDependency";
-import { usersByDependency } from "../../constants/headersTables";
-import MessageConfirm from "../MessageConfirm";
+import { useRolesList } from "hooks/useRoles";
+import { typeDependencies, gender, role } from "constants/constants";
+import Table from "components/Table/Table";
+import { useAdminOneDependency } from "hooks/useAdminOneDependency";
+import { usersByDependency } from "constants/headersTables";
+import MessageConfirm from "components/MessageConfirm";
 
 export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   const { dependency, persons, formatListUsers,updateDependencyFunction} = useAdminOneDependency(

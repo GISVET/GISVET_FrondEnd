@@ -12,6 +12,25 @@ import AdminDependencies from "./components/AdminDependencies/AdminDependencies"
 import AdminPatients from "./components/AdminPatients/AdminPatients";
 import { AdminDependencyContextProvider } from "./context/AdminDependencyContext";
 import { AdminProductsContextProvider } from "./context/AdminProductsContext";
+//=====primeReact====
+import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
+import "primereact/resources/primereact.min.css";                  //core css
+import "primeicons/primeicons.css";                                 //icons
+import "primeflex/primeflex.css";
+import { StyleClass } from 'primereact/styleclass';
+import PrimeReact from 'primereact/api';
+
+PrimeReact.ripple = true;
+PrimeReact.autoZIndex = true;
+PrimeReact.zIndex = {
+  modal: 1100,    // dialog, sidebar
+  overlay: 1000,  // dropdown, overlaypanel
+  menu: 1000,     // overlay menus
+  tooltip: 1100,   // tooltip
+  toast: 1200     // toast
+}
+PrimeReact.appendTo = 'self';
+PrimeReact.ripple = true;
 
 
 

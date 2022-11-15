@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_User_settings from "./images/Icon_settings.png"
-import { useRolesList } from "../../hooks/useRoles";
-import { useAdminOneUser} from "../../hooks/useAdminOneUser"
-import { typeDoc, gender, role } from "../../constants/constants";
-import Table from "../Table/Table";
-import MessageConfirm from "../MessageConfirm";
+import { useRolesList } from "hooks/useRoles";
+import { useAdminOneUser} from "hooks/useAdminOneUser"
+import { typeDoc, gender, role } from "constants/constants";
+import Table from "components/Table/Table";
+import MessageConfirm from "components/MessageConfirm";
 
 
 

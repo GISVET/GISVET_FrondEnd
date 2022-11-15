@@ -1,12 +1,12 @@
 
 import { useContext, useCallback, useState } from "react"
-import userContext from "../context/UserContext"
-import adminPatientContext from "../context/AdminPatientsContext"
-import {patientsAdmin } from "../constants/headersTables";
-import addNewPatient from "../services/addNewPatient"
-import getPatientsAZ from "../services/getPatientsAZ";
-import getPatientsZA from "../services/getPatientsZA";
-import getNamePatients from "../services/getNamePatients";
+import userContext from "context/UserContext"
+import adminPatientContext from "context/AdminPatientsContext"
+import {patientsAdmin } from "constants/headersTables";
+import addNewPatient from "services/addNewPatient"
+import getPatientsAZ from "services/getPatientsAZ";
+import getPatientsZA from "services/getPatientsZA";
+import getNamePatients from "services/getNamePatients";
 
 export function useAdminPatients() {
     const {jwt} = useContext(userContext)

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Table from "../Table/Table";
+import Table from "components/Table/Table";
 import styles from './styles.module.css';
-import PanelSearch from "../../components/PanelSearch";
+import PanelSearch from "components/PanelSearch";
 import icon_Filter from "./images/Icon_Filter.png"
-import {useAdminPatients} from "../../hooks/useAdminPatients";
-import SettingsAdminPatients from "../SettingsAdminPatients";
-import {filterPatients} from "../../constants/constants";
-import { Modal } from "../../components/Modal/Index"; 
+import {useAdminPatients} from "hooks/useAdminPatients";
+import SettingsAdminPatients from "components/SettingsAdminPatients";
+import {filterPatients} from "constants/constants";
+import { Modal } from "components/Modal/Index"; 
 
 export default function AdminPatients(){
     const {loading, patients,headers,orderPatient,askPatientName} = useAdminPatients()

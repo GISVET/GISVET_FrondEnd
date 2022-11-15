@@ -1,9 +1,9 @@
 import { useContext, useCallback, useState, useEffect } from "react";
-import userContext from "../context/UserContext";
-import { dependenciesAdmin } from "../constants/headersTables";
-import getDependencyDetails from "../services/getDependencyDetail";
-import updateDependency from "../services/updateDependency";
-import { gender } from "../constants/constants";
+import userContext from "context/UserContext";
+import { dependenciesAdmin } from "constants/headersTables";
+import getDependencyDetails from "services/getDependencyDetail";
+import updateDependency from "services/updateDependency";
+import { gender } from "constants/constants";
 
 export function useAdminOneDependency(id_dependencie) {
   const { jwt } = useContext(userContext);

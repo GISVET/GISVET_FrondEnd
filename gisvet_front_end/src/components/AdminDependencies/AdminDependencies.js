@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import Table from "../Table/Table";
+import Table from "components/Table/Table";
 import styles from "./styles.module.css";
 import icon_Filter from "./images/Icon_Filter.png";
-import { useAdminDependencies } from "../../hooks/useAdminDependencies";
-import SettingsAdminDepedencies from "../SettingsAdminDependencies";
+import { useAdminDependencies } from "hooks/useAdminDependencies";
+import SettingsAdminDepedencies from "components/SettingsAdminDependencies";
 import {
   filterDependencies,
   filterDependenciesName,
-} from "../../constants/constants";
-import { typeDependencies } from "../../constants/constants";
-import PanelSearch from "../../components/PanelSearch";
-import { Modal } from "../../components/Modal/Index"; 
-import ShowDependency from "../ShowDependency/ShowDependency";
+} from "constants/constants";
+import { typeDependencies } from "constants/constants";
+import PanelSearch from "components/PanelSearch";
+import { Modal } from "components/Modal/Index"; 
+import ShowDependency from "components/ShowDependency/ShowDependency";
 
 export default function AdminDependencies() {
   const [typeFilter, setTypeFilter] = useState([]);

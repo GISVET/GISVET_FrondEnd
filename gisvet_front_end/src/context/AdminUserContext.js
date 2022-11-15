@@ -1,7 +1,7 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
-import userContext from "../context/UserContext"
-import getUsersList from "../services/getUserList"
-import { typeDoc, gender, role } from "../constants/constants";
+import userContext from "context/UserContext"
+import getUsersList from "services/getUserList"
+import { typeDoc, gender, role } from "constants/constants";
 
 
 

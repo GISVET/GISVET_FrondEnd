@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import Icon_pase_seguridad from "./images/Icon_pase_seg.png";
-import { useAdminDependencies } from "../../hooks/useAdminDependencies";
-import { useUsersAdmin } from "../../hooks/useAdminUsers";
+import { useAdminDependencies } from "hooks/useAdminDependencies";
+import { useUsersAdmin } from "hooks/useAdminUsers";
 
 export default function AssignDependency({ onSubmit, onClose }) {
   const { users } = useUsersAdmin();

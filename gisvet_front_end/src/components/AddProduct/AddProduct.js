@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import icon_Product from "./images/Icon_Product.png";
-import { type_product } from "../../constants/constants";
+import { type_product } from "constants/constants";
 
-import { measurement_units } from "../../constants/constants";
+import { measurement_units } from "constants/constants";
 
 
 export default function addProduct({ onSubmit, onClose }) {

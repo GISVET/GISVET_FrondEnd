@@ -1,10 +1,10 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import userContext from "./UserContext";
-import getProductsAdminList from "../services/getProductsAdminList";
-import getBranchList from "../services/getBranchList";
-import getFeaturesList from "../services/getFeaturesList";
-import { measurement_units } from "../constants/constants";
-import { type_product } from "../constants/constants";
+import getProductsAdminList from "services/getProductsAdminList";
+import getBranchList from "services/getBranchList";
+import getFeaturesList from "services/getFeaturesList";
+import { measurement_units } from "constants/constants";
+import { type_product } from "constants/constants";
 
 const Context = React.createContext({});
 

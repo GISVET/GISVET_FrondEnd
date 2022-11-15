@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
-import { typeDependencies } from "../../constants/constants";
+import { typeDependencies } from "constants/constants";
 
 
 export default function addDependency({onSubmit, onClose}){

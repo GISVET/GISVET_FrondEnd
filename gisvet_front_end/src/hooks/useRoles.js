@@ -1,7 +1,7 @@
 
 import { useContext, useEffect, useState } from "react"
-import Context from "../context/UserContext"
-import getRolesList from "../services/getRolesList"
+import Context from "context/UserContext"
+import getRolesList from "services/getRolesList"
 
 export function useRolesList() {
     const {jwt} = useContext(Context)

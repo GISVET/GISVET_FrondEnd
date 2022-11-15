@@ -1,10 +1,10 @@
 import React, { useContext,useEffect, useState } from "react";
 import styles from './styles.module.css';
-import adminProductsContext from "../../context/AdminProductsContext";
+import adminProductsContext from "context/AdminProductsContext";
 import icon_User_Form from "./images/Icon_Add_User_Form.png"
-import { typeDoc } from "../../constants/constants";
-import { useAdminDependencies } from "../../hooks/useAdminDependencies";
-import { presentations } from "../../constants/constants";
+import { typeDoc } from "constants/constants";
+import { useAdminDependencies } from "hooks/useAdminDependencies";
+import { presentations } from "constants/constants";
 
 
 export default function AddItemProduct({onSubmit, onClose}){

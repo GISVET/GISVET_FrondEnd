@@ -1,14 +1,14 @@
 
 import { useContext, useCallback, useState } from "react"
-import userContext from "../context/UserContext"
-import adminUserContext from "../context/AdminUserContext"
-import { dependenciesByUser } from "../constants/headersTables";
-import { typeDependencies } from "../constants/constants";
-import {useRolesList} from "../hooks/useRoles"
-import getUsersByDocument from "../services/getUserByDocument"
+import userContext from "context/UserContext"
+import adminUserContext from "context/AdminUserContext"
+import { dependenciesByUser } from "constants/headersTables";
+import { typeDependencies } from "constants/constants";
+import {useRolesList} from "hooks/useRoles"
+import getUsersByDocument from "services/getUserByDocument"
 import { useEffect } from "react";
-import updateUser from "../services/updateUser"
-import registerUser from "../services/registerAccount"
+import updateUser from "services/updateUser"
+import registerUser from "services/registerAccount"
 
 
 const cleanFormat= function(data){

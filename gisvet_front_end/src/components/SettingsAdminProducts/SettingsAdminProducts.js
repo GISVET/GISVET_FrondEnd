@@ -5,14 +5,14 @@ import icon_Add_Product from "./images/Icon_Add_Product.png";
 import icon_Add_Lote from "./images/Icon_Add_Lote.png";
 import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
-import { Modal } from "../../components/Modal/Index";
-import AddMark from "../AddMark/AddMark";
-import AddLote from "../AddLote/AddLote";
-import AddProduct from "../AddProduct/AddProduct";
+import { Modal } from "components/Modal/Index";
+import AddMark from "components/AddMark/AddMark";
+import AddLote from "components/AddLote/AddLote";
+import AddProduct from "components/AddProduct/AddProduct";
 import { useLocation } from "wouter";
-import { useAdminProducts } from "../../hooks/useAdminProducts";
-import MessageConfirm from "../MessageConfirm";
-import AddItemProduct from "../AddItemProduct";
+import { useAdminProducts } from "hooks/useAdminProducts";
+import MessageConfirm from "components/MessageConfirm";
+import AddItemProduct from "components/AddItemProduct";
 
 export default function SettingsAdminProducts() {
   const [activeMenu, setActiveMenu] = useState(false);
