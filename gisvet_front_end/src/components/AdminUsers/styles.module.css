@@ -11,7 +11,7 @@
 }
 .general_users > h1{
     
-    font-family: 'Inter', sans-serif;
+    font-family: var(--text-principal-font );
     font-weight: bold;
     font-size: 20px;
     display: flex;

@@ -1,5 +1,5 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
-import userContext from "./UserContext"
+import AdminContext from "./AdminContext"
 import getDependenciesList from "services/getDependenciesList"
 import { typeDependencies } from "constants/constants";
 
@@ -23,7 +23,7 @@ export function formatListDependencies(data){
 }
 
 export function AdminDependencyContextProvider({children}){
-    const {jwt} = useContext(userContext)
+    const {jwt} = useContext(AdminContext)
     const [dependencies, setDependencies] = useState([])
     const [dependency, setDependency] = useState([])
     const [loading, setLoading] = useState(false)

@@ -1,4 +1,7 @@
-
+.general_admin{
+    display: flex;
+    flex-direction: column;
+}
 .general_users {
     display: flex;
     flex-direction: column;
@@ -6,25 +9,6 @@
     border-radius: 20px;
 
 }
-
-.table_data{
-    box-sizing: border-box;
-    width: 100%;
-    max-height: 350px;
-    justify-content: center;
-    overflow: scroll;
-    scrollbar-color: var(--shade-5-color) var(--principal-color);
-    position: relative;
-}
-
-.table_new .table-header{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: blue;
-}
-
-
 .general_users > h1{
     
     font-family: 'Inter', sans-serif;

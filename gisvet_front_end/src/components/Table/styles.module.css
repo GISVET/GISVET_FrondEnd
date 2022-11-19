@@ -7,7 +7,6 @@
     overflow: scroll;
     scrollbar-color: var(--shade-5-color) var(--principal-color);
     position: relative;
-
 }
 
 .table_format{

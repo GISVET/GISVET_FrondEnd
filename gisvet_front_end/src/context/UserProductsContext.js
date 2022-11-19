@@ -75,7 +75,7 @@ export function formatListFeatures(data) {
   return dataFormated;
 }
 
-export function AdminProductsContextProvider({ children }) {
+export function UserProductsContextProvider({ children }) {
   const { jwt } = useContext(AdminContext);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState([]);

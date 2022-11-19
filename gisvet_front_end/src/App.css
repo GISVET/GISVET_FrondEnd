@@ -2,31 +2,66 @@
   text-align: center;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@123;135;181;400&display=swap");
+
 :root {
-    --shade-5-color: #435535;
-    --gray-color:#E4E0E0;
-    --white-color:#FFFFFF;
+
+  /*/ Gama de colores verde /*/
+  --shade-5-color: #009688;
+  --color-button : #009688;
+  --gray-color: #e4e0e0;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --shade-6-color: #2d3824;
+  --tinte-7-color: #F7FCFB;
+  --tinte-5-color: #e2f4d5;
+  --principal-color: #b3e28e;
+  --error-button-color: #ffcdc2;
+  --error-text-color: #e63a13;
+  --shade-2-color: #86a96b;
+
+    /*/ Gama de colores verde 
+    --shade-5-color: #597147;
+    --color-button : #597147;
+    --gray-color: #e4e0e0;
+    --white-color: #ffffff;
     --black-color: #000000;
-    --shade-6-color:#2D3824;
-    --tinte-7-color:#F5FBF1;
-    --tinte-5-color:#E2F4D5;
-    --principal-color:#B3E28E;
-    --error-button-color:#FFCDC2;
-    --error-text-color:#e63a13;
-    --shade-2-color : #86A96B;
+    --shade-6-color: #2d3824;
+    --tinte-7-color: #f5fbf1;
+    --tinte-5-color: #e2f4d5;
+    --principal-color: #b3e28e;
+    --error-button-color: #ffcdc2;
+    --error-text-color: #e63a13;
+    --shade-2-color: #86a96b;  /*/
+
+  /*/ Gama de colores amarillo 
+  --shade-5-color: #6E5C09;
+  --gray-color: #e4e0e0;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --shade-6-color: #524506;
+  --tinte-7-color: #FBF6E1;
+  --tinte-5-color: #EDDB88;
+  --principal-color: #DCB811  ;
+  --error-button-color: #ffcdc2;
+  --error-text-color: #e63a13;
+  --shade-2-color: #86a96b; /*/
+
+  --text-principal-font: "Inter", sans-serif;
+  --text-size-h1: 20px;
 }
-body{
-    margin: 0;
-    padding: 0;
+
+body {
+  margin: 0;
+  padding: 0;
 }
-h3{
-    font-family: 'Inter', sans-serif;
-    font-weight: normal;
-    font-size: 16px;
+h3 {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-size: 16px;
 }
-h4{
-    font-family: 'Inter', sans-serif;
-    font-weight: normal;
-    font-size: 14px;
+h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+  font-size: 14px;
 }
