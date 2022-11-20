@@ -26,9 +26,24 @@ function  login(){
       ? styles.error_message
       : styles.no_error;
 
-  useEffect(() => {
-    if (islogged) navigate("/AdminDependencies");
-  }, [islogged, navigate]);
+  useEffect(()=>{
+    if (islogged && role != null) {
+        switch (role) {
+            case 'Administrador':
+                navigate("/admin/listUsers")
+                break;
+            case 'Usuario':
+                selectDependecieToShow()
+                break;
+            case 'Auditor':
+                navigate("/auditor")
+                break;
+            default:
+                navigate("/unauthorized")
+                break;
+        }
+    }
+  },[islogged,role, navigate])
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
@@ -40,24 +55,7 @@ function  login(){
     event.preventDefault();
     login(data);
   };
-    useEffect(()=>{
-        if (islogged && role != null) {
-            switch (role) {
-                case 'Administrador':
-                    navigate("/admin/listUsers")
-                    break;
-                case 'Usuario':
-                    selectDependecieToShow()
-                    break;
-                case 'Auditor':
-                    navigate("/auditor")
-                    break;
-                default:
-                    navigate("/unauthorized")
-                    break;
-            }
-        }
-     },[islogged,role, navigate])
+  
 
     const selectDependecieToShow = ()=>{
         console.log(dependencieActive)
