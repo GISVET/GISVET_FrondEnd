@@ -6,7 +6,7 @@ import { type_product } from "constants/constants";
 import { measurement_units } from "constants/constants";
 
 
-export default function addProduct({ onSubmit, onClose }) {
+export default function AddProduct({ onSubmit, onClose }) {
   const [data, setData] = useState({
     product_name: "",
     measurement_units: "",

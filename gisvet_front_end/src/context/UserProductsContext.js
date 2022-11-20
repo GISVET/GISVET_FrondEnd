@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import AdminContext from "./AdminContext"
+import UserContext from "context/UserContext"
 import getProductsAdminList from "services/getProductsAdminList";
 import getBranchList from "services/getBranchList";
 import getFeaturesList from "services/getFeaturesList";
@@ -76,7 +76,7 @@ export function formatListFeatures(data) {
 }
 
 export function UserProductsContextProvider({ children }) {
-  const { jwt } = useContext(AdminContext);
+  const { jwt } = useContext(UserContext);
   const [products, setProducts] = useState([]);
   const [product, setProduct] = useState([]);
   const [brands, setBrands] = useState([]);

@@ -3,7 +3,7 @@ import styles from './styles.module.css';
 import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
 
 
-export default function addPatient({onSubmit, onClose}){
+export default function AddPatient({onSubmit, onClose}){
 
     const [data, setData] = useState({
         id_clinic_history:'',

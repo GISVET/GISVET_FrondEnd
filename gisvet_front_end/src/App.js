@@ -1,12 +1,8 @@
 import React from "react";
 import "./App.css";
-import { Route } from "wouter";
+import { Route, useRoute, Switch } from "wouter";
 import login from "./pages/Login/login";
-import userProducts from "./components/UserProducts/UserProducts";
-
-import { AdminContextProvider } from "./context/AdminContext";
 import { UserContextProvider } from "./context/UserContext";
-import { UserProductsContextProvider } from "./context/UserProductsContext";
 
 /** Importaciones para el tipo de usuario - Administrador **/
 import { AdminPatientsContextProvider } from "./context/AdminPatientsContext";
@@ -29,7 +25,7 @@ import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.css";
 import { StyleClass } from "primereact/styleclass";
 import PrimeReact from "primereact/api";
-import User from "pages/User/User";
+import User from "pages/User";
 
 PrimeReact.ripple = true;
 PrimeReact.autoZIndex = true;
@@ -46,15 +42,18 @@ PrimeReact.ripple = true;
 const home = React.lazy(() => import("./pages/Login/login"));
 
 function App() {
-  let option = "ADMIN";
 
-  if (option === "ADMIN") {
-    return (
-      <UserContextProvider>
-        <div className="App">
-          <Route component={login} path="/" />
-          <AdminUserContextProvider>
-            <AdminDependencyContextProvider>
+  return (
+    <UserContextProvider>
+      <div className="App">
+      <Switch>
+        <Route component={login} path="/" />
+        <Route path="/user">
+          <User></User>
+        </Route> 
+        <Route>404 no encontrada</Route>
+        <AdminUserContextProvider>
+          <AdminDependencyContextProvider>
               <Route path="/AdminUser">
                 <Admin>
                   <AdminUser />
@@ -65,83 +64,26 @@ function App() {
                   <AdminDependencies />
                 </Admin>
               </Route>
-              <AdminPatientsContextProvider>
+            <AdminPatientsContextProvider>
                 <Route path="/AdminPatients">
                   <Admin>
                     <AdminPatients />
                   </Admin>
                 </Route>
-              </AdminPatientsContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/AdminProducts">
-                  <Admin>
-                    <AdminProducts />
-                  </Admin>
-                </Route>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  } else if (option === "AUDITOR") {
-    return (
-      <UserContextProvider>
-        <div className="App">
-          <Route component={login} path="/" />
-          <AdminUserContextProvider>
-            <AdminDependencyContextProvider>
-              <Route path="/AdminUser">
-                <Admin>
-                  <AdminUser />
-                </Admin>
-              </Route>
-              <Route path="/AdminDependencies">
+            </AdminPatientsContextProvider>
+            <AdminProductsContextProvider>
+              <Route path="/AdminProducts">
                 <Admin>
                   <AdminDependencies />
                 </Admin>
               </Route>
-              <AdminPatientsContextProvider>
-                <Route path="/AdminPatients">
-                  <Admin>
-                    <AdminPatients />
-                  </Admin>
-                </Route>
-              </AdminPatientsContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/AdminProducts">
-                  <Admin>
-                    <AdminProducts />
-                  </Admin>
-                </Route>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  } else if (option === "FARMACIA") {
-    return (
-      <UserContextProvider>
-        <div className="App">
-          <Route component={login} path="/" />
-          <AdminUserContextProvider>
-            <AdminDependencyContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/UserProducts">
-                  <User>
-                    <UserProducts />
-                  </User>
-                </Route>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  } else if (option === "BODEGA") {
-  } else if (option === "CONSULTORIO") {
-  }
+            </AdminProductsContextProvider>
+          </AdminDependencyContextProvider>
+        </AdminUserContextProvider>
+      </Switch>
+      </div>
+    </UserContextProvider>
+  );
 }
 
 export default App;
