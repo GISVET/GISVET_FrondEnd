@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef  } from "react";
 import styles from './styles.module.css';
 import Icon_Username from  "./images/Icon_Username_Option.png"
 import useUser from "hooks/useUser";
@@ -21,6 +21,8 @@ let items = [
     }
 ]
 
+console.log(styles)
+
 
 
 export default function MenuUser(){
@@ -33,6 +35,7 @@ export default function MenuUser(){
     const [,navigate] = useLocation()
     const menu = useRef(null);
     const toast = useRef(null);
+    console.log(dependencies)
 
 
     useEffect(()=>{
@@ -44,19 +47,19 @@ export default function MenuUser(){
         logout();
     };
 
-    return (
+    return (<>
+        <Toast ref={toast} position="top-left"></Toast>
         <div className={styles.username_option}> 
-            <Toast ref={toast}></Toast>
-            <img src={Icon_Username} width="200" height="150"/> 
+            <Menu className={styles.menu_content} model={items} popup ref={menu} id="popup_menu"/>
+            <img src={Icon_Username} width="100" height="80"/> 
             <label>{role}</label>
-            <ul>
-            <Menu model={items} popup ref={menu} />
-            <Button label="Show" icon="pi pi-bars" onClick={(event) => menu.current.toggle(event)}/>    
+            <ul className={styles.user_menulist}> 
                 <li><a>Perfil</a></li>
-                <li><a>Configuración</a></li>
+                <li><a onClick={(event) => menu.current.toggle(event)} aria-controls="popup_menu" aria-haspopup >Cambiar Rol</a></li>
                 <li><a onClick={handleSubmit}>Cerrar sesión</a></li>
             </ul>
         </div>
+    </>
     )
 
 }

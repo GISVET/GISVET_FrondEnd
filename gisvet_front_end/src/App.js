@@ -25,7 +25,7 @@ import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.css";
 import { StyleClass } from "primereact/styleclass";
 import PrimeReact from "primereact/api";
-import User from "pages/User/User";
+import User from "pages/User";
 import Error from "pages/Error/Error";
 
 PrimeReact.ripple = true;
@@ -79,58 +79,15 @@ function App() {
                   </Route>
                   <Route>404 no encontrada</Route>
                 </Switch>
-              </AdminPatientsContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/AdminProducts">
-                  <Admin>
-                    <AdminProducts />
-                  </Admin>
-                </Route>
+                </AdminPatientsContextProvider>
               </AdminProductsContextProvider>
             </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  } else if (option === "FARMACIA") {
-    return (
-      <UserContextProvider>
-        <div className="App">
-          <Route component={login} path="/" />
-          <AdminUserContextProvider>
-            <AdminDependencyContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/UserProducts">
-                  <User>
-                    <UserProducts />
-                  </User>
-                </Route>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  } else if (option === "BODEGA") {
-  } else if (option === "CONSULTORIO") {
-  } else if (option === "ERROR") {
-    return (
-      <UserContextProvider>
-        <div className="App">
-          <Route component={login} path="/" />
-          <AdminUserContextProvider>
-            <AdminDependencyContextProvider>
-              <AdminProductsContextProvider>
-                <Route path="/ErrorPage">
-                  <Error></Error>
-                </Route>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-          </AdminUserContextProvider>
-        </div>
-      </UserContextProvider>
-    );
-  }
+        </AdminUserContextProvider>
+        <Route>404 no encontrada</Route>
+      </Switch>
+      </div>
+    </UserContextProvider>
+   )
 }
 
 export default App;

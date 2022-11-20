@@ -7,8 +7,6 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 
 
-import "./table-style.css";
-
 export default function TableProducts({ headers, data, actionItem }) {
   const dataHeaders = headers;
   const [dataBody, setDataBody] = useState(data);

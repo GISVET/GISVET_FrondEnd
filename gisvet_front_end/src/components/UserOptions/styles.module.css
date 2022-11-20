@@ -1,60 +1,70 @@
 
-      .username_option{
-        visibility: visible;
-        position: absolute;
-        z-index: 8;
-        background-color: var(--tinte-7-color);
-        justify-content: center;
-        width: 20%;
-        height: 400px;
-        margin-left: 80%;
-        margin-top: 5%;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        box-shadow: 0px 0px 5px var(--black-color);
+.username_option{
+  visibility: visible;
+  position: absolute;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--tinte-7-color);
+  justify-content: center;
+  width: 18vw;
+  height: auto;
+  margin-left: 81.5vw;
+  margin-top: 12.2vh;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 0px 5px var(--black-color);
+}
 
+.username_option > img{
+  justify-content: center;
+  border-radius: 100%;
+  align-self: center;
+}
 
-      }
+.username_option > label{
+  font-family: 'Inter', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+}
 
-      .username_option > img{
-        margin-left: 15%;
-      }
+ul.user_menulist{
+  font-family: 'Inter', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  padding: 0;
+  margin-bottom: 0;
+}
+.user_menulist li {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  list-style: none;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+}
 
-      .username_option > label{
-        font-family: 'Inter', sans-serif;
-        font-weight: normal;
-        font-size: 16px;
-        margin-left: 30%;
-      }
+.user_menulist li:hover{
+  list-style: none;
+  font-weight: bold;
+  background-color: var(--shade-2-color);
+}
 
-      .username_option ul{
-        font-family: 'Inter', sans-serif;
-        font-weight: normal;
-        font-size: 16px;
-        margin-top: 20%;
-        padding: 0;
-      }
-      .username_option li {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        height: 20px;
-        list-style: none;
-        text-align: center;
-        vertical-align: middle;
-        align-items: center;
-        justify-content: center;
-      }
+.user_menulist a{
+  font-family: 'Inter', sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  text-decoration: none;  
+}
 
-      .username_option li:hover{
-        list-style: none;
-        font-weight: bold;
-        background-color: var(--shade-2-color);
-      }
+.menu_content {
+  top: 9vh !important; 
+  left: -15vw !important;
+}
 
-      .username_option a{
-        font-family: 'Inter', sans-serif;
-        font-weight: normal;
-        font-size: 16px;
-        text-decoration: none;  
-      }
+.menu_content * [class=p-menuitem-link]{
+  background-color: var(--black-color);
+}
+
 

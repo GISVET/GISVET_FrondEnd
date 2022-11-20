@@ -1,24 +1,20 @@
-.p-menubar	{
+.p-menubar{
     background-color: var(--shade-5-color) !important;
     border-radius: 0px;
     height: 80px;
 }
 
-.p-menuitem-text{
+.p-menubar > .p-menuitem-text{
     font-family: var(--text-principal-font);
     color: var(--white-color) !important;
     font-size: 18px;
 }
-
-
-
-.p-menubar-start{
+.p-menubar > .p-menubar-start{
     margin-left: 1%;
 }
 
-.p-menubar-button	{
+.p-menubar > .p-menubar-button	{
     background-color: var(--shade-5-color) !important;
-
     transition: background-color 0.2s, white 0.2s, box-shadow 0.2s;
     transition-duration: 0.2s, 0.2s, 0.2s;
     transition-timing-function: ease, ease, ease;
@@ -26,11 +22,11 @@
     transition-property: background-color, white, box-shadow;
 }
 
-.pi-bars::before{
+.p-menubar > .pi-bars::before{
     color: white;
 }
 
-.p-menubar-end:hover{
+.p-menubar > .p-menubar-end:hover{
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -38,16 +34,16 @@
     box-shadow: inset 0 -5px 0 var(--white-color);
 }
 
-.p-menubar-button:hover	{
+.p-menubar > .p-menubar-button:hover	{
     color: white !important;
 }
 
-.p-menuitem-link	{
+.p-menubar > .p-menuitem-link	{
     background-color: var(--shade-5-color) !important;
     margin-left: 45px;
 }
 
-.p-menuitem-link:hover{
+.p-menubar > .p-menuitem-link:hover{
     text-decoration: none;
     display: flex;
     flex-direction: row;
@@ -56,7 +52,7 @@
 }
 
 
-.p-menubar-icon{
+.p-menubar > .p-menubar-icon{
     background-color: var(--white-color) !important;
 }
 

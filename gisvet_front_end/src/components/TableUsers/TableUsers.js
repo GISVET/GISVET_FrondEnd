@@ -7,8 +7,6 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 
 
-import "./table-style.css";
-
 export default function TableUsers({
   headers,
   data,
