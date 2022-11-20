@@ -1,29 +1,38 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import AdminContext from "./AdminContext"
+import AdminContext from "./UserContext"
 import getProductsAdminList from "services/getProductsAdminList";
 import getBranchList from "services/getBranchList";
 import getFeaturesList from "services/getFeaturesList";
 import { measurement_units } from "constants/constants";
 import { type_product } from "constants/constants";
+import { presentations } from "constants/constants";
+
 
 const Context = React.createContext({});
 
 export function formatListProducts(data) {
+  console.log("Lo que llega para formatear")
+  console.log(data)
   let dataFormated = [];
-  data[0].products.map((product) => {
+  data.map((product) => {
     const measurement = measurement_units.find(
       (element) => element.id === product.MEASUREMENT_UNITS
+    );
+
+    const presentation_data = presentations.find(
+      (element) => element.id === product.PRESENTATION
     );
     const type = type_product.find(
       (element) => element.id === product.TYPE_PRODUCT
     );
 
     let productData = {
-      id_product: product.ID_PRODUCT,
+      id_product: product.ID_ITEM,
       product_name: product.PRODUCT_NAME,
+      presentation: presentation_data.name,
       measurement_units: measurement.name,
       type_product: type.name,
-      total_product: product.TOTAL_PRODUCT,
+      quantity: product.QUANTITY,
     };
     
     dataFormated.push(productData);

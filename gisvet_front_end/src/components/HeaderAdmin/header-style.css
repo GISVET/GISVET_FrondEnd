@@ -1,0 +1,94 @@
+.p-menubar	{
+    background-color: var(--shade-5-color) !important;
+    border-radius: 0px;
+    height: 80px;
+}
+
+.p-menuitem-text{
+    font-family: var(--text-principal-font);
+    color: var(--white-color) !important;
+    font-size: 18px;
+}
+
+
+
+.p-menubar-start{
+    margin-left: 1%;
+}
+
+.p-menubar-button	{
+    background-color: var(--shade-5-color) !important;
+
+    transition: background-color 0.2s, white 0.2s, box-shadow 0.2s;
+    transition-duration: 0.2s, 0.2s, 0.2s;
+    transition-timing-function: ease, ease, ease;
+    transition-delay: 0s, 0s, 0s;
+    transition-property: background-color, white, box-shadow;
+}
+
+.pi-bars::before{
+    color: white;
+}
+
+.p-menubar-end:hover{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    box-shadow: inset 0 -5px 0 var(--white-color);
+}
+
+.p-menubar-button:hover	{
+    color: white !important;
+}
+
+.p-menuitem-link	{
+    background-color: var(--shade-5-color) !important;
+    margin-left: 45px;
+}
+
+.p-menuitem-link:hover{
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    box-shadow: inset 0 -5px 0 var(--white-color);
+}
+
+
+.p-menubar-icon{
+    background-color: var(--white-color) !important;
+}
+
+
+/*Rutas de las imagenes del nav*/
+
+.img_dependencies {
+    background-size: contain;
+    background-image: url(./images/Icon_Dependency.png) !important;
+    height:50px ;
+    width:50px ;
+}
+
+.img_users {
+    background-size: contain;
+    background-image: url(./images/Icon_Users.png) !important;
+    height:50px ;
+    width:50px ;
+}
+
+.img_patients {
+    background-size: contain;
+    background-image: url(./images/Icon_Patients.png) !important;
+    height:50px ;
+    width:50px ;
+}
+
+.img_products {
+    background-size: contain;
+    background-image: url(./images/Icon_Products.png) !important;
+    height:45px ;
+    width:45px ;
+}
+
+

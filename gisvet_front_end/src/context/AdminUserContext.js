@@ -1,5 +1,5 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
-import AdminContext from "./AdminContext"
+import AdminContext from "./UserContext"
 import getUsersList from "services/getUserList"
 import { typeDoc, gender, role } from "constants/constants";
 

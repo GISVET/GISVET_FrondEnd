@@ -1,5 +1,5 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
-import AdminContext from "./AdminContext"
+import AdminContext from "./UserContext"
 import getDependenciesList from "services/getDependenciesList"
 import { typeDependencies } from "constants/constants";
 

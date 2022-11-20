@@ -39,6 +39,7 @@
 .options_admin_visible > input{
     z-index: 2;
     padding: 0 0.8em;
+    width: 65px;
 }
 .options_admin_visible > input > img:nth-child(2){
     margin-top: 5%;

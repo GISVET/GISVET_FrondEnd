@@ -1,65 +1,38 @@
-import React, { useEffect, useState } from "react";
-import {useLocation } from "wouter"
-import logo_products from './images/Icon_Products.png'
-import logo_dependency from './images/Icon_Dependency.png'
-import logo_users from './images/Icon_Users.png'
-import logo_patients from './images/Icon_Patients.png'
-import logo_user from './images/Icon_Username.png'
-import Main_logo from "./images/Proyecto_Logo_GisVet.png"
-import useUser from "hooks/useUser";
+import React, { useState } from "react";
+import Main_logo from "./images/Proyecto_Logo_GisVet.png";
 import MenuUser from "components/UserOptions/index";
-import styles from './styles.module.css';
+import { Menubar } from "primereact/menubar";
+import { itemsNav } from "constants/menuConstants";
+import logo_user from "./images/Icon_Username.png";
 
+import styles from "./styles.module.css";
 
+import "./header-style.css";
 
 export default function HeaderAdmin() {
-    const {islogged, login, logout} = useUser();
-    const [showMenuUser, setShowMenuUser] = useState(false)
-    const [,navigate] = useLocation()
+  const [showMenuUser, setShowMenuUser] = useState(false);
 
-    const showUserOptions = async(event) =>{
-      event.preventDefault();
-      if (showMenuUser){
-        return setShowMenuUser(false)
-      }else{
-        return setShowMenuUser(true)
-      }
+  const showUserOptions = async (event) => {
+    event.preventDefault();
+    if (showMenuUser) {
+      return setShowMenuUser(false);
+    } else {
+      return setShowMenuUser(true);
     }
+  };
 
-  return (<>
-    <nav className={styles.nav_bar}>
-      <ul>
-        <img src={Main_logo} width="70" height="70" />
+  const start = <img alt="logo" src={Main_logo} height="70" width="70"></img>;
+  const end = (
+    <li className={styles.username_menu} onClick={showUserOptions}>
+      Mi cuenta
+      <img src={logo_user} width="45" height="45" />
+    </li>
+  );
 
-        <li onClick={()=>{navigate("/AdminDependencies")}}>
-            <img src={logo_dependency} width="45" height="45" />
-            Dependencias
-        </li>
-
-        <li onClick={()=>{navigate("/AdminUser")}}>
-            <img src={logo_users} width="45" height="45" />
-            Usuarios
-        </li>
-
-        <li onClick={()=>{navigate("/AdminPatients")}}>
-            <img src={logo_patients} width="45" height="45" />
-            Pacientes
-        </li>
-
-        <li onClick={()=>{navigate("/AdminProducts")}}>
-            <img src={logo_products} width="45" height="45" />
-            Productos
-        </li>
-
-        <li className={styles.username_menu} onClick={showUserOptions}>
-            Username
-            <img src={logo_user} width="45" height="45" />
-        </li>
-      </ul>
-    </nav>
-    {showMenuUser && 
-      <MenuUser></MenuUser>
-    }
+  return (
+    <>
+      <Menubar model={itemsNav} start={start} end={end} />
+      {showMenuUser && <MenuUser></MenuUser>}
     </>
   );
 }

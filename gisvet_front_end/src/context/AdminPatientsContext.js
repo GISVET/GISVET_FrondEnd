@@ -1,5 +1,5 @@
 import React, {useContext ,useEffect, useState} from "react";
-import AdminContext from "./AdminContext"
+import AdminContext from "./UserContext"
 import getPatientsList from "services/getPatientsList"
 
 const Context = React.createContext({})

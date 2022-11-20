@@ -1,8 +1,8 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getProductsAdminList({ jwt }) {
-  return fetch(`${endpoint}/Admin/Item/getProduct`, {
-    method: "POST",
+  return fetch(`${endpoint}/Admin/Item/getItemProduct`, {
+    method: "GET",
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + jwt,

@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Table from "components/Table/Table";
+import Table from "components/TableProducts/TableProducts";
 import styles from "./styles.module.css";
-import PanelSearch from "components/PanelSearch";
-import icon_Filter from "./images/Icon_Filter.png";
-import SettingsAdminUser from "components/SettingsAdminUser/index";
 import { useAdminProducts } from "hooks/useAdminProducts";
-import {
-  filterDependencies,
-  filterDependenciesName,
-} from "constants/constants";
-import SettingsAdminProducts from "components/SettingsAdminProducts/SettingsAdminProducts";
-
 export default function UserProducts() {
   const { loading, products, headers, askProductName } = useAdminProducts();
   const [typeFilter, setTypeFilter] = useState([]);
@@ -29,20 +20,13 @@ export default function UserProducts() {
 
   return (
     <div className={styles.general_users}>
-      <h1>Gestión de Productos</h1>
-      <div className={styles.table_users}>
-        <div className={styles.filter_users}>
-          <PanelSearch onSubmit={askProduct} />
-        </div>
-
+      <h1>Productos en Bodega</h1>
         <Table
           headers={headers}
           data={products}
           keyName={"id_product"}
           actionItem={showUserMenu}
         />
-        <SettingsAdminProducts />
-      </div>
     </div>
   );
 }

@@ -34,6 +34,7 @@
 .options_admin_visible > input{
     z-index: 2;
     padding: 0 0.8rem;
+    width: 70px;
 }
 
 .item_floatMenu{

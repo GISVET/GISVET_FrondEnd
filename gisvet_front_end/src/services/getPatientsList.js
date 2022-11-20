@@ -1,6 +1,6 @@
 
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function getUsersList({jwt}){
+export default function getPatientsList({jwt}){
     return fetch(`${endpoint}/Admin/getPatient` , {
         method: 'GET',
         headers: {

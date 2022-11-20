@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Table from "components/Table/Table";
+import Table from "components/TableDependencies/TableDependencies";
 import styles from "./styles.module.css";
 import icon_Filter from "./images/Icon_Filter.png";
 import { useAdminDependencies } from "hooks/useAdminDependencies";
 import SettingsAdminDepedencies from "components/SettingsAdminDependencies";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 import {
   filterDependencies,
   filterDependenciesName,
@@ -14,7 +12,6 @@ import { typeDependencies } from "constants/constants";
 import PanelSearch from "components/PanelSearch";
 import { Modal } from "components/Modal/Index";
 import ShowDependency from "components/ShowDependency/ShowDependency";
-import "./table-style.css";
 
 export default function AdminDependencies() {
   const [typeFilter, setTypeFilter] = useState([]);
@@ -91,109 +88,7 @@ export default function AdminDependencies() {
     <>
       <div className={styles.general_users}>
         <h1>Gestión de Dependencias</h1>
-        <div className={styles.table_users}>
-          <div className={styles.filter_users}>
-            <PanelSearch onSubmit={askDependency} />
-            <div className={styles.buscador}>
-              <select
-                placeholder="Filtrar"
-                onChange={handleTypeFilter}
-                className={styles.filter_dependencies}
-                type="text"
-              >
-                {filterDependencies.map((type, index) => {
-                  if (index == 0) {
-                    return (
-                      <>
-                        <option
-                          key={0}
-                          disabled={disableItems}
-                          defaultValue={true}
-                        >
-                          Seleccionar
-                        </option>
-                        <option key={type.id} value={type.id}>
-                          {type.name}
-                        </option>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <option key={type.id} value={type.id}>
-                        {type.name}
-                      </option>
-                    );
-                  }
-                })}
-                ;
-              </select>
-              <select
-                selected
-                placeholder="Filtrar"
-                onChange={handleAskFilter}
-                className={styles.filter_dependencies_option}
-                type="text"
-              >
-                {typeFilter.map((type, index) => {
-                  if (index == 0) {
-                    return (
-                      <>
-                        <option
-                          key={0}
-                          disabled={disableSelectFilters}
-                          defaultValue={true}
-                        >
-                          Seleccionar
-                        </option>
-                        <option key={type.id} value={type.id}>
-                          {type.name}
-                        </option>
-                      </>
-                    );
-                  } else {
-                    return (
-                      <option key={type.id} value={type.id}>
-                        {type.name}
-                      </option>
-                    );
-                  }
-                })}
-                ;
-              </select>
-              <input
-                type="image"
-                src={icon_Filter}
-                onClick={filterDependenciesFunction}
-                className={styles.image_buscar}
-              />
-            </div>
-          </div>
-          <div className={styles.table_data}>
-            <DataTable
-              className="myTable"
-              headerClassName="header-table-style"
-              rowClassName="row-accessories"
-              value={dependencies}
-              responsiveLayout="stack"
-            >
-              <Column
-                field="id_dependencie"
-                header="Id de la dependencia"
-                sortable
-              ></Column>
-              <Column
-                field="dependencie_name"
-                header="Nombre de la dependencia"
-                sortable
-              ></Column>
-              <Column
-                field="type_dependencie"
-                header="Tipo de dependencia"
-                sortable
-              ></Column>
-              <Column field="" header="Ver detalle"></Column>
-            </DataTable>
-          </div>
+
           <Table
             headers={headers}
             data={dependencies}
@@ -201,7 +96,6 @@ export default function AdminDependencies() {
             actionItem={showUserMenu}
           />
           <SettingsAdminDepedencies />
-        </div>
       </div>
       {showModal && <Modal>{childModal}</Modal>}
     </>

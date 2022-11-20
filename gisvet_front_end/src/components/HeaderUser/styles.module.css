@@ -1,3 +1,14 @@
+.username_menu{
+    background-color: var(--shade-5-color) !important;
+    margin-left: 45px;
+    font-family: var(--text-principal-font);
+    color: var(--white-color) !important;
+    font-size: 18px;
+    text-decoration: none;
+    display: flex;
+    margin-right: 45px;   
+    align-items: center;
+}
 .nav_bar{
     display: flex;
     flex-direction: row;

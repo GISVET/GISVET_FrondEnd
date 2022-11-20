@@ -54,6 +54,10 @@ export function useAdminOneDependency(id_dependencie) {
   function formatListUsers() {
     let dataFormated = [];
     const dataPersons = dependency.person_dependencies;
+    console.log("El person que llega al formatList de OneDependency")
+    console.log(dataPersons)
+    console.log("El res que llega al formatList de OneDependency")
+    console.log(dependency)
     dataPersons.map((person) => {
       const gender_person = gender.find(
         (element) => element.id === person.persons.GENDER
