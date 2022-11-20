@@ -4,7 +4,7 @@ import icon_Dependency_Form from "./images/Icon_Add_Dependency_Form.png"
 import { typeDependencies } from "constants/constants";
 
 
-export default function addDependency({onSubmit, onClose}){
+export default function AddDependency({onSubmit, onClose}){
 
     const [data, setData] = useState({
         dependencie_name:'',

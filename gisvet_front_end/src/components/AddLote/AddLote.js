@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import icon_Add_Lote from "./images/Icon_Lote.png";
 
-export default function addLote({ onSubmit, onClose }) {
+export default function AddLote({ onSubmit, onClose }) {
   const [data, setData] = useState({
     expiration_date: "",
     quantity_per_unit: "",

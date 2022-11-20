@@ -5,10 +5,16 @@ import { useLocation } from "wouter";
 import { useState } from "react";
 import useUser from "hooks/useUser";
 import { loginErrorMessage } from "constants/constants";
+  
+function  login(){
+    const {login, 
+            islogged,
+            role,
+            IdUser,
+            dependencieActive,
+            errorMessage} = useUser()
+    const [,navigate] = useLocation()
 
-function login() {
-  const { login, islogged, errorMessage } = useUser();
-  const [, navigate] = useLocation();
 
   const [data, setData] = useState({
     username: "",
@@ -20,9 +26,24 @@ function login() {
       ? styles.error_message
       : styles.no_error;
 
-  useEffect(() => {
-    if (islogged) navigate("/AdminDependencies");
-  }, [islogged, navigate]);
+  useEffect(()=>{
+    if (islogged && role != null) {
+        switch (role) {
+            case 'Administrador':
+                navigate("/AdminDependencies")
+                break;
+            case 'Usuario':
+                selectDependecieToShow()
+                break;
+            case 'Auditor':
+                navigate("/auditor")
+                break;
+            default:
+                navigate("/unauthorized")
+                break;
+        }
+    }
+  },[islogged,role, navigate])
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
@@ -34,6 +55,29 @@ function login() {
     event.preventDefault();
     login(data);
   };
+  
+
+    const selectDependecieToShow = ()=>{
+        console.log(dependencieActive)
+         if (Object.entries(dependencieActive).length !== 0 && dependencieActive !== null) {
+            switch (dependencieActive.DEPENDECIE_TYPE) {
+                case 'B':
+                    navigate("/user")
+                    break;
+                case 'F':
+                    navigate("/user")
+                    break;
+                case 'C':
+                    navigate("/user")
+                    break;
+                default:
+                    navigate("/user/noAssigned")
+                    break;
+            }
+        }else{
+            navigate("/user/noAssigned")
+        }
+    }
 
   return (
     <div className={styles.general}>

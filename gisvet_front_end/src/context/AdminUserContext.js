@@ -1,5 +1,5 @@
 import React, {useCallback, useContext ,useEffect, useState} from "react";
-import AdminContext from "./UserContext"
+import UserContext from "context/UserContext"
 import getUsersList from "services/getUserList"
 import { typeDoc, gender, role } from "constants/constants";
 
@@ -63,7 +63,7 @@ function formatListUserToTable(data){
 }
 
 export function AdminUserContextProvider({children}){
-    const {jwt} = useContext(AdminContext)
+    const {jwt} = useContext(UserContext)
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
     const [updateUsers, isUpdateUsers] = useState(false)
@@ -71,7 +71,6 @@ export function AdminUserContextProvider({children}){
     
     
     useEffect(()=>{
-        console.log("Pasa por el useEfect de AdminUserContext")
         setLoading(true)
         getUsersList({jwt})
             .then(res => {
