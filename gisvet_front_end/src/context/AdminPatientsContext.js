@@ -1,5 +1,5 @@
 import React, {useContext ,useEffect, useState} from "react";
-import AdminContext from "./AdminContext"
+import UserContext from "context/UserContext"
 import getPatientsList from "services/getPatientsList"
 
 const Context = React.createContext({})
@@ -19,7 +19,7 @@ function formatListPatients(data){
 }
 
 export function AdminPatientsContextProvider({children}){
-    const {jwt} = useContext(AdminContext)
+    const {jwt} = useContext(UserContext)
     const [patients, setPatients] = useState([])
     const [loading, setLoading] = useState(false)
     const [updatePatients, isUpdatePatient] = useState(false)

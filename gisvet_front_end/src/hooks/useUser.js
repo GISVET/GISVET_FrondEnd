@@ -1,38 +1,62 @@
 import { useCallback, useContext, useState } from "react"
-import Context from "context/AdminContext"
+import Context from "context/UserContext"
 import loginServices from "services/login"
 
 
 export default function useUser() {
-    const {jwt, setJWT} = useContext(Context)
+    const {jwt,
+            role,
+            IdUser,
+            setRole,
+            dependencies,
+            dependencieActive, 
+            setDependencieActive,
+            setJWT} = useContext(Context)
     const [errorMessage, setErrorMessage] = useState('')
 
-    const login =  useCallback(({username, password})=>{
+    const login = useCallback(({username, password})=>{
+        loginServices({username, password})
+            .then(res => {
+                if(res.token === undefined){
+                    setErrorMessage(res.message) 
+                }else{
+                    setJWT(res.token)
+                }
+            })
+            .catch(err => {
+                window.sessionStorage.removeItem('Auth')
+                console.error(err)
+            })
+    }, [setJWT])
+
+    const changeRol =  useCallback(({username, password})=>{
         loginServices({username, password})
             .then(res => {
                 if(res.token === undefined){
                     setErrorMessage(res.message) 
                 }else{ 
-                    console.log(errorMessage)
-                    window.sessionStorage.setItem('jwt',res.token)
+                    console.log(res)
                     setJWT(res.token)
-                   
                 }
             })
             .catch(err => {
-                window.sessionStorage.removeItem('jwt')
+                window.sessionStorage.removeItem('Auth')
                 console.error(err)
             })
     }, [setJWT])
 
     const logout =  useCallback(()=>{
-        window.sessionStorage.removeItem('jwt')
+        window.sessionStorage.removeItem('Auth')
         setJWT(null)
     }, [setJWT])
 
     return {
         islogged: Boolean(jwt),
         login,
+        role,
+        IdUser,
+        dependencies,
+        dependencieActive,
         logout,
         errorMessage
     }

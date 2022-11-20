@@ -4,7 +4,7 @@ import icon_Add_Mark from "./images/Icon_Mark.png"
 
 
 
-export default function addMark({onSubmit, onClose}){
+export default function AddMark({onSubmit, onClose}){
 
     const [data, setData] = useState({
         name_brand:''

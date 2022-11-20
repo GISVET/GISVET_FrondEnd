@@ -1,12 +1,8 @@
 import React from "react";
 import "./App.css";
-import { Route } from "wouter";
+import { Route, useRoute, Switch } from "wouter";
 import login from "./pages/Login/login";
-import userProducts from "./components/UserProducts/UserProducts";
-
-import { AdminContextProvider } from "./context/AdminContext";
 import { UserContextProvider } from "./context/UserContext";
-import { UserProductsContextProvider } from "./context/UserProductsContext";
 
 /** Importaciones para el tipo de usuario - Administrador **/
 import { AdminPatientsContextProvider } from "./context/AdminPatientsContext";
@@ -29,7 +25,7 @@ import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.css";
 import { StyleClass } from "primereact/styleclass";
 import PrimeReact from "primereact/api";
-import User from "pages/User/User";
+import User from "pages/User";
 
 PrimeReact.ripple = true;
 PrimeReact.autoZIndex = true;
@@ -48,27 +44,32 @@ const home = React.lazy(() => import("./pages/Login/login"));
 function App() {
 
   return (
-    <AdminContextProvider>
+    <UserContextProvider>
       <div className="App">
+      <Switch>
         <Route component={login} path="/" />
+        <Route path="/user">
+          <User></User>
+        </Route> 
+        <Route>404 no encontrada</Route>
         <AdminUserContextProvider>
           <AdminDependencyContextProvider>
-            <Route path="/AdminUser">
-              <Admin>
-                <AdminUser />
-              </Admin>
-            </Route>
-            <Route path="/AdminDependencies">
-              <Admin>
-                <AdminDependencies />
-              </Admin>
-            </Route>
-            <AdminPatientsContextProvider>
-              <Route path="/AdminPatients">
+              <Route path="/AdminUser">
                 <Admin>
-                  <AdminPatients />
+                  <AdminUser />
                 </Admin>
               </Route>
+              <Route path="/AdminDependencies">
+                <Admin>
+                  <AdminDependencies />
+                </Admin>
+              </Route>
+            <AdminPatientsContextProvider>
+                <Route path="/AdminPatients">
+                  <Admin>
+                    <AdminPatients />
+                  </Admin>
+                </Route>
             </AdminPatientsContextProvider>
             <AdminProductsContextProvider>
               <Route path="/AdminProducts">
@@ -79,10 +80,9 @@ function App() {
             </AdminProductsContextProvider>
           </AdminDependencyContextProvider>
         </AdminUserContextProvider>
+      </Switch>
       </div>
-    </AdminContextProvider>
-
-    
+    </UserContextProvider>
   );
 }
 
