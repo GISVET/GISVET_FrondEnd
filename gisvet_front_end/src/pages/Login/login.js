@@ -30,7 +30,7 @@ function  login(){
     if (islogged && role != null) {
         switch (role) {
             case 'Administrador':
-                navigate("/admin/listUsers")
+                navigate("/AdminDependencies")
                 break;
             case 'Usuario':
                 selectDependecieToShow()

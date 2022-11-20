@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, useRoute, Switch } from "wouter";
+import { Route, Router, Switch } from "wouter";
 import login from "./pages/Login/login";
 import { UserContextProvider } from "./context/UserContext";
 
@@ -50,36 +50,39 @@ function App() {
         <Route component={login} path="/" />
         <Route path="/user">
           <User></User>
-        </Route> 
-        <Route>404 no encontrada</Route>
+        </Route>
         <AdminUserContextProvider>
           <AdminDependencyContextProvider>
-              <Route path="/AdminUser">
-                <Admin>
-                  <AdminUser />
-                </Admin>
-              </Route>
-              <Route path="/AdminDependencies">
-                <Admin>
-                  <AdminDependencies />
-                </Admin>
-              </Route>
-            <AdminPatientsContextProvider>
-                <Route path="/AdminPatients">
-                  <Admin>
-                    <AdminPatients />
-                  </Admin>
-                </Route>
-            </AdminPatientsContextProvider>
             <AdminProductsContextProvider>
-              <Route path="/AdminProducts">
-                <Admin>
-                  <AdminDependencies />
-                </Admin>
-              </Route>
+              <AdminPatientsContextProvider>
+                <Switch>
+                  <Route path="/AdminUser">
+                    <Admin>
+                      <AdminUser />
+                    </Admin>
+                  </Route>
+                  <Route path="/AdminDependencies">
+                    <Admin>
+                      <AdminDependencies />
+                    </Admin>
+                  </Route>
+                  <Route path="/AdminPatients">
+                    <Admin>
+                      <AdminPatients />
+                    </Admin>
+                  </Route>
+                  <Route path="/AdminProducts">
+                    <Admin>
+                      <AdminDependencies />
+                    </Admin>
+                  </Route>
+                  <Route>404 no encontrada</Route>
+                </Switch>
+              </AdminPatientsContextProvider>
             </AdminProductsContextProvider>
           </AdminDependencyContextProvider>
         </AdminUserContextProvider>
+        <Route>404 no encontrada</Route>
       </Switch>
       </div>
     </UserContextProvider>
