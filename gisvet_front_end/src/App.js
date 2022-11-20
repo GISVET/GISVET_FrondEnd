@@ -30,6 +30,7 @@ import "primeflex/primeflex.css";
 import { StyleClass } from "primereact/styleclass";
 import PrimeReact from "primereact/api";
 import User from "pages/User/User";
+import Error from "pages/Error/Error";
 
 PrimeReact.ripple = true;
 PrimeReact.autoZIndex = true;
@@ -141,6 +142,23 @@ function App() {
     );
   } else if (option === "BODEGA") {
   } else if (option === "CONSULTORIO") {
+  } else if (option === "ERROR") {
+    return (
+      <UserContextProvider>
+        <div className="App">
+          <Route component={login} path="/" />
+          <AdminUserContextProvider>
+            <AdminDependencyContextProvider>
+              <AdminProductsContextProvider>
+                <Route path="/ErrorPage">
+                  <Error></Error>
+                </Route>
+              </AdminProductsContextProvider>
+            </AdminDependencyContextProvider>
+          </AdminUserContextProvider>
+        </div>
+      </UserContextProvider>
+    );
   }
 }
 

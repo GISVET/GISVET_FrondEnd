@@ -87,7 +87,6 @@ export default function AdminDependencies() {
   return (
     <>
       <div className={styles.general_users}>
-        <h1>Gestión de Dependencias</h1>
 
           <Table
             headers={headers}

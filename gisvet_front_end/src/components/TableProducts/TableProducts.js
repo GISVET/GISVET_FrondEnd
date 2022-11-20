@@ -4,6 +4,8 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
+
 
 import "./table-style.css";
 
@@ -25,6 +27,19 @@ export default function TableProducts({ headers, data, actionItem }) {
     );
   };
 
+  const [globalFilter, setGlobalFilter] = useState(null);
+
+
+  const header = (
+    <div className="table-header">
+        <h1 className="title_header_ask">Gestión de Productos</h1>
+        <span className="p-input-icon-left">
+            <i className="pi pi-search" />
+            <InputText className="myask" type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Buscar ..." />
+        </span>
+    </div>
+);
+
   let boton = document.getElementsByClassName("p-c");
   boton.innerText = "Texto";
 
@@ -39,6 +54,8 @@ export default function TableProducts({ headers, data, actionItem }) {
     <div className={styles.table_data}>
       <DataTable
         className="table_products"
+        header={header}
+        globalFilter={globalFilter}
         rowClassName="row-accessories"
         paginator
         rows={9}

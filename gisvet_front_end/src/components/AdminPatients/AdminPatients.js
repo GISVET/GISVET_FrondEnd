@@ -21,7 +21,6 @@ export default function AdminPatients() {
   return (
     <>
       <div className={styles.general_users}>
-        <h1>Gestión de Pacientes</h1>
           <Table
             headers={headers}
             data={patients}

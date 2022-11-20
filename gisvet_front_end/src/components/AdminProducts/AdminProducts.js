@@ -23,7 +23,6 @@ export default function AdminProducts() {
 
   return (
     <div className={styles.general_users}>
-      <h1>Gestión de Productos</h1>
       <Table
         headers={headers}
         data={products}

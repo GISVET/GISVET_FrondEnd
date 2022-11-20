@@ -4,6 +4,8 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { Dropdown } from "primereact/dropdown";
+import { InputText } from "primereact/inputtext";
+
 
 import "./table-style.css";
 
@@ -33,6 +35,19 @@ export default function TableUsers({
   boton.innerText = "Texto";
 
   const statuses = ["Usuario", "Administrador", "Auditor"];
+
+  const [globalFilter, setGlobalFilter] = useState(null);
+
+
+  const header = (
+    <div className="table-header">
+        <h1 className="title_header_ask">Gestión de Usuarios</h1>
+        <span className="p-input-icon-left">
+            <i className="pi pi-search" />
+            <InputText className="myask" type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Buscar ..." />
+        </span>
+    </div>
+);
 
   const statusItemTemplate = (option) => {
     return <span className={`customer-badge status-${option}`}>{option}</span>;
@@ -65,6 +80,8 @@ export default function TableUsers({
   return (
     <div className={styles.table_data}>
       <DataTable
+              header={header}
+              globalFilter={globalFilter}
         className="myTable"
         headerClassName="header-table-style"
         rowClassName="row-accessories"

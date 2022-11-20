@@ -45,7 +45,6 @@ export default function AdminUsers() {
   return (
     <>
       <div className={styles.general_users}>
-        <h1>Gestión de Usuarios</h1>
 
         <Table
           headers={headers}

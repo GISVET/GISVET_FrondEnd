@@ -58,7 +58,7 @@
   font-weight: normal;
   font-size: 15px;
   color: white !important;
-  text-align: center !important;
+  text-align: left !important;
   background-color: var(--shade-5-color) !important;
   margin: 0;
   font-family: var(--text-principal-font);
