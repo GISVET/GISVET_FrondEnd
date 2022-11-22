@@ -16,7 +16,8 @@ import { AdminDependencyContextProvider } from "./context/AdminDependencyContext
 import { AdminProductsContextProvider } from "./context/AdminProductsContext";
 
 /** Importaciones para el tipo de usuario - User **/
-import UserProducts from "./components/UserProducts/UserProducts";
+import User from "pages/User";
+import Error from "pages/Error/Error";
 
 //=====primeReact====
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
@@ -25,8 +26,7 @@ import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.css";
 import { StyleClass } from "primereact/styleclass";
 import PrimeReact from "primereact/api";
-import User from "pages/User";
-import Error from "pages/Error/Error";
+
 
 PrimeReact.ripple = true;
 PrimeReact.autoZIndex = true;
@@ -46,46 +46,43 @@ function App() {
 
   return (
     <UserContextProvider>
+      <AdminUserContextProvider>
+          <AdminDependencyContextProvider>
+            <AdminProductsContextProvider>
+              <AdminPatientsContextProvider>
       <div className="App">
       <Switch>
         <Route component={login} path="/" />
         <Route path="/user">
           <User></User>
         </Route>
-        <AdminUserContextProvider>
-          <AdminDependencyContextProvider>
-            <AdminProductsContextProvider>
-              <AdminPatientsContextProvider>
-                <Switch>
-                  <Route path="/AdminUser">
-                    <Admin>
-                      <AdminUser />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminDependencies">
-                    <Admin>
-                      <AdminDependencies />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminPatients">
-                    <Admin>
-                      <AdminPatients />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminProducts">
-                    <Admin>
-                      <AdminDependencies />
-                    </Admin>
-                  </Route>
-                  <Route>404 no encontrada</Route>
-                </Switch>
-                </AdminPatientsContextProvider>
-              </AdminProductsContextProvider>
-            </AdminDependencyContextProvider>
-        </AdminUserContextProvider>
-        <Route>404 no encontrada</Route>
+        <Route path="/AdminUser">
+          <Admin>
+            <AdminUser />
+          </Admin>
+        </Route>
+        <Route path="/AdminDependencies">
+          <Admin>
+            <AdminDependencies />
+          </Admin>
+        </Route>
+        <Route path="/AdminPatients">
+          <Admin>
+            <AdminPatients />
+          </Admin>
+        </Route>
+        <Route path="/AdminProducts">
+          <Admin>
+            <AdminProducts />
+          </Admin>
+        </Route> 
+        <Route component={Error}></Route>
       </Switch>
       </div>
+      </AdminPatientsContextProvider>
+            </AdminProductsContextProvider>
+          </AdminDependencyContextProvider>
+      </AdminUserContextProvider>
     </UserContextProvider>
    )
 }

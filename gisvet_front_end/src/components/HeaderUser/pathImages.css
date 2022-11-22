@@ -1,0 +1,26 @@
+
+
+/*Rutas de las imagenes del nav*/
+
+.img_bodega {
+    background-size: contain;
+    background-image: url(./images/Icon_Products.png) !important;
+    height:45px ;
+    width:45px ;
+}
+
+.img_products {
+    background-size: contain;
+    background-image: url(./images/Icon_Farmacia.png) !important;
+    height:40px ;
+    width:40px ;
+}
+
+.img_consultory {
+    background-size: contain;
+    background-image: url(./images/Icon_Consultory.png) !important;
+    height:40px ;
+    width:40px ;
+}
+
+

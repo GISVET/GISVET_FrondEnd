@@ -58,8 +58,7 @@ function  login(){
   
 
     const selectDependecieToShow = ()=>{
-        console.log(dependencieActive)
-         if (Object.entries(dependencieActive).length !== 0 && dependencieActive !== null) {
+         if (dependencieActive !== undefined && Object.entries(dependencieActive).length !== 0 && dependencieActive !== null) {
             switch (dependencieActive.DEPENDECIE_TYPE) {
                 case 'B':
                     navigate("/user")

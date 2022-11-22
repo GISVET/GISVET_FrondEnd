@@ -11,8 +11,6 @@ import { presentations } from "constants/constants";
 const Context = React.createContext({});
 
 export function formatListProducts(data) {
-  console.log("Lo que llega para formatear")
-  console.log(data)
   let dataFormated = [];
   data.map((product) => {
     const measurement = measurement_units.find(
