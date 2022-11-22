@@ -70,11 +70,11 @@ function  login(){
                     navigate("/user")
                     break;
                 default:
-                    navigate("/user/noAssigned")
+                    navigate("/noAssigned")
                     break;
             }
         }else{
-            navigate("/user/noAssigned")
+            navigate("/noAssigned")
         }
     }
 

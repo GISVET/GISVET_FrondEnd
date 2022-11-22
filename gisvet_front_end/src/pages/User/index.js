@@ -62,9 +62,14 @@ export default function User( {params, children}){
                     </div>
 
     return (<>
-     {isAuthorized &&
-       body}
-      <p>Esto es una prueba</p>
+     {isAuthorized ?
+       body:
+       <>
+       <i className="pi pi-spin pi-refresh" style={{'fontSize': '6em'}}></i>
+       <h2>Cargando Datos</h2>
+       </>
+       
+    }
     </>
 
     )
