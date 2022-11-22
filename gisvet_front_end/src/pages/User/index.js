@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Header from "components/HeaderUser/header";
 import styles from './styles.module.css';
 import useUser from "hooks/useUser";
-import {useLocation } from "wouter"
+import {useLocation } from "wouter";
+import ProductsGrocery from "components/UserGrocery/ProductsGrocery";
 
 
 
@@ -11,10 +12,8 @@ export default function User( {params, children}){
     const [isAuthorized, setIsAuthorized] = useState(false)
     const {islogged,role, dependencieActive} = useUser()
     const [,navigate] = useLocation()
-    console.log("esto es un punto ")
 
     useEffect(()=>{
-        console.log(role)
         if(islogged && role === 'Usuario'){
             selectDepartament()
         }else{
@@ -24,8 +23,7 @@ export default function User( {params, children}){
     },[islogged, role, dependencieActive])
 
     const selectDepartament= ()=>{
-        console.log(dependencieActive)
-        if (Object.entries(dependencieActive).length !== 0 && dependencieActive !== null) {
+        if (dependencieActive !== undefined && Object.entries(dependencieActive).length !== 0 && dependencieActive !== null ) {
             console.log(`sta es la dependencia ${dependencieActive.DEPENDECIE_TYPE}`)
             switch (dependencieActive.DEPENDECIE_TYPE) {
                 case 'B':
@@ -49,7 +47,7 @@ export default function User( {params, children}){
 
     const bodyGrocery= <div className={styles.general_admin}>
                     <Header />
-                    {children}
+                    <ProductsGrocery></ProductsGrocery>
                 </div>
 
 

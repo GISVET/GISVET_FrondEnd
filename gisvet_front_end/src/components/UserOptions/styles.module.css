@@ -48,7 +48,7 @@ ul.user_menulist{
 .user_menulist li:hover{
   list-style: none;
   font-weight: bold;
-  background-color: var(--shade-2-color);
+  background-color: var(--shade-5-color);
 }
 
 .user_menulist a{
@@ -63,8 +63,8 @@ ul.user_menulist{
   left: -15vw !important;
 }
 
-.menu_content * [class=p-menuitem-link]{
-  background-color: var(--black-color);
+.menu_content * [class=p-menuitem-link]:hover{
+  background-color: var(--shade-5-color) !important;
 }
 
 

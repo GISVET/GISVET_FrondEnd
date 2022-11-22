@@ -9,7 +9,7 @@ export default function Error() {
     <div className={styles.general_admin}>
       <div className={styles.principal_error}>
           <img src={banner} alt="Banner de error"></img>
-          <h1>Ops ! Lo sentimos pero en este momento no estamos disponibles</h1>
+          <h2>Ops ! Lo sentimos pero en este momento no estamos disponibles</h2>
       </div>
     </div>
   );

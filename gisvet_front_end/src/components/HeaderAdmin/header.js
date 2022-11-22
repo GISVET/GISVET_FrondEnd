@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import Main_logo from "./images/Proyecto_Logo_GisVet.png";
 import MenuUser from "components/UserOptions/index";
 import { Menubar } from "primereact/menubar";
-import { itemsNav } from "constants/menuConstants";
+import { getItemsAdmin } from "constants/menuConstants";
 import logo_user from "./images/Icon_Username.png";
+import {useLocation } from "wouter"
 
 import styles from "./styles.module.css";
+import "./pathImages.css"
 
-import "./header-style.css";
 
 export default function HeaderAdmin() {
   const [showMenuUser, setShowMenuUser] = useState(false);
+  const [,navigate] = useLocation()
 
   const showUserOptions = async (event) => {
     event.preventDefault();
@@ -31,7 +33,7 @@ export default function HeaderAdmin() {
 
   return (
     <>
-      <Menubar model={itemsNav} start={start} end={end} />
+      <Menubar model={getItemsAdmin(navigate)} start={start} end={end} />
       {showMenuUser && <MenuUser></MenuUser>}
     </>
   );

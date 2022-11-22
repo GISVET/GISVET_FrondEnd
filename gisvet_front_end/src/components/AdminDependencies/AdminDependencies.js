@@ -79,9 +79,6 @@ export default function AdminDependencies() {
     setAskFilter(event.target.value);
   };
 
-  console.log("Las dependencias son : ");
-  console.log(dependencies);
-
   return (
     <>
       <div className={styles.general_users}>

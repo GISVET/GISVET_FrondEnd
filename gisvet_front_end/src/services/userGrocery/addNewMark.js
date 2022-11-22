@@ -1,20 +1,17 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function addNewMark({jwt,product_name,measurement_units,type_product}){
-
-    let product = {
-        product_name: product_name,
-        measurement_units:measurement_units,
-        type_product:type_product
+export default function addNewMark({jwt,name_brand}){
+    let mark = {
+        name_brand: name_brand
     }
-    let jsonProduct = JSON.stringify(product)
+    let jsonMark = JSON.stringify(mark)
     let statusRes =0
-    return fetch(`${endpoint}/Admin/Item/createProducts`, {
+    return fetch(`${endpoint}/Users/Item/createBrand`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
         },
-        body: jsonProduct
+        body: jsonMark
     }).then(res => {
         statusRes = res.status
         return res.json()
