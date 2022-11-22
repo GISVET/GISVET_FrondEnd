@@ -1,8 +1,6 @@
 import { useContext, useCallback, useState } from "react";
 import userContext from "context/UserContext";
-import adminProductsContext, {
-  formatListProducts,
-} from "context/AdminProductsContext";
+import adminProductsContext from "context/AdminProductsContext";
 import { productsAdmin } from "constants/headersTables";
 import addNewMark from "services/addNewMark";
 import addNewLote from "services/addNewLote";
@@ -21,6 +19,9 @@ export function useAdminProducts() {
     isUpdateFeatures,
   } = useContext(adminProductsContext);
   let errorMessage = "";
+
+  console.log("Los productos que llegan al use")
+  console.log(products)
 
   const addMark = useCallback(
     ({ name_brand }) => {

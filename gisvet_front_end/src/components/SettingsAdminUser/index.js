@@ -3,9 +3,13 @@ import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_User from "./images/Icon_Add_User.png"
 import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
+import icon_reports from "./images/Icon_Reports.png"
+
 import { Modal } from "components/Modal/Index"; 
 import AdminUser from "components/AddUser";
 import AssignDependency from "components/AssignDependency/AssignDependency";
+import ShowUsersReports from "components/ShowUsersReports/ShowUserReports";
+
 import {useLocation } from "wouter"
 import { useUsersAdmin } from "hooks/useAdminUsers";
 import MessageConfirm from "components/MessageConfirm";
@@ -39,6 +43,15 @@ export default function SettingsAdminUser(){
         event.preventDefault();
         setShowModal(true)
         setchildModal(<AssignDependency
+            onClose={handleCloseModal} 
+            onSubmit={onsubmitAssignDependency} 
+           />) 
+    }
+
+    const showReports = async(event) =>{
+        event.preventDefault();
+        setShowModal(true)
+        setchildModal(<ShowUsersReports
             onClose={handleCloseModal} 
             onSubmit={onsubmitAssignDependency} 
            />) 
@@ -114,6 +127,17 @@ export default function SettingsAdminUser(){
                                     height="45"/>
                                     
                             <p>Assignar</p>
+                        </div>
+
+                        <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
+                                    type="image" 
+                                    onClick={showReports} 
+                                    src={icon_reports} 
+                                    width="40" 
+                                    height="40"/>
+                                    
+                            <p>Reportes</p>
                         </div>
 
                         

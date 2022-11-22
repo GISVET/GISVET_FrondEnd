@@ -5,10 +5,52 @@
     justify-content: center;
     position: relative;
 }
+/*Header de la tabla con input de buscar y titulo*/
+.table_header{
+    margin-top: 2%;
+    background-color: var(--white-color) !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/*Estilos del botón de limpiar en filtros*/
+.button_clear{
+  background-color: var(--error-button-color) !important;
+  border-color: var(--error-button-color) !important;
+}
+
+/*Estilos del botón de aplicar en filtros*/
+.apply_filter{
+  background-color: var(--shade-5-color) !important;
+  border-color: var(--shade-5-color) !important;
+}
+
+
+/*Header general de las tablas*/
+.table_data  [class~= p-datatable-header]{
+    background-color: var(--white-color) !important;
+}
+
+/*Titulo del header*/
+.title_header_ask{
+    font-size: 20px;
+}
+
+/*Input de buscar */
+.myask{
+    margin-right: 20px !important;
+}
+
 .table_data .title_filters_dependencies{
     text-align: center;
     padding: 0px;
     margin: 5% 0px 0px 0px;
+}
+.table_data .title_filters_dependencies{
+  text-align: center;
+  padding: 0px;
+  margin: 5% 0px 0px 0px;
 }
 .table_data .table_format{
     border-collapse: collapse;
@@ -113,9 +155,9 @@
 }
 
 .table_data [class~=details-colum] {
-  background-color: blue !important;
   margin-left: 25% !important;
 }
+
 
 .table_data [class~=p-datatable] [class~=p-datatable-tbody] > tr > td {
   padding-left: 0rem !important;
@@ -147,7 +189,7 @@
   width: 100% !important;
 }
 .table_data * [class~=p-column-header-content]{
-  margin-left: 50px !important;
+  margin-left: 60px !important;
 }
 .table_data * [class~=p-column-filter]::placeholder{
   font-size: 10px !important;
@@ -159,17 +201,40 @@
   height: 30px !important;
 }
 
-.table_data * [class~=p-column-filter-buttonbar] [class~=p-button]:not(.p-button-icon-only) {
-  background-color: var(--shade-5-color) !important;
-  color: var(--white-color) !important;
-}
+
 .table_data * [class~=p-column-title]{
   width: 100%;
+  font-family: var(--text-principal-font);
+  font-weight: bold;
 }
 
 .table_data * [class~=pi-filter]:before {
   color: var(--white-color) !important;
+  background-color: transparent !important;
 }
+
+.table_data * [class~=p-column-filter-menu-button-active]{
+  background-color: transparent !important;
+  color: var(--shade-5-color) !important;
+}
+
+/*Hover del inputext*/
+.table_data * [class~=p-inputtext]:enabled:hover{
+  border-color: var(--tinte-6-color) !important;
+}
+
+/*Focus cuando el cursor selecciona el input de buscar*/
+.table_data * [class~=p-inputtext]:enabled:focus{
+  background-color: transparent !important;
+  box-shadow: 0 0 0 0.2rem var(--tinte-5-color) !important;
+  color: var(--shade-5-color) !important;
+}
+/*Focus de input buscar cuando esta por fuera*/
+.table_data * [class~=p-inputtext]:enabled:focus-within{
+  border: 1px solid var(--shade-5-color);
+}
+
+
 
 .table_data * [class~=p-column-filter-overlay-menu] [class~=p-column-filter-operator]{
     background-color: var(--white-color) !important;

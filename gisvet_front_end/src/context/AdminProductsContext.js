@@ -11,8 +11,6 @@ import { presentations } from "constants/constants";
 const Context = React.createContext({});
 
 export function formatListProducts(data) {
-  console.log("Lo que llega para formatear")
-  console.log(data)
   let dataFormated = [];
   data.map((product) => {
     const measurement = measurement_units.find(
@@ -27,14 +25,13 @@ export function formatListProducts(data) {
     );
 
     let productData = {
-      id_product: product.ID_ITEM,
+      id_product: product.ID_PRODUCT,
       product_name: product.PRODUCT_NAME,
       presentation: presentation_data.name,
       measurement_units: measurement.name,
       type_product: type.name,
-      quantity: product.QUANTITY,
+      quantity: product.TOTAL_PRODUCT,
     };
-    
     dataFormated.push(productData);
   });
   return dataFormated;
@@ -57,6 +54,7 @@ export function formatListBranches(data) {
       type_product: type.name,
       total_product: product.TOTAL_PRODUCT,
     };
+
     dataFormated.push(productData);
   });
   return dataFormated;

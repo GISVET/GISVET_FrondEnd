@@ -3,6 +3,8 @@ import styles from "./styles.module.css";
 import icon_Settings from "./images/Icon_Settings.png";
 import icon_Add_Product from "./images/Icon_Add_Product.png";
 import icon_Add_Lote from "./images/Icon_Add_Lote.png";
+import icon_reports from "./images/Icon_Reports.png"
+
 import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
 import { Modal } from "components/Modal/Index";
@@ -173,6 +175,19 @@ export default function SettingsAdminProducts() {
             />
 
             <p>Registrar Producto</p>
+          </div>
+
+          <div className={styles.item_floatMenu}>
+            <input
+              className={styles.add_user_form}
+              type="image"
+              onClick={ShowAddItemProduct}
+              src={icon_reports}
+              width="32"
+              height="32"
+            />
+
+            <p>Reportes</p>
           </div>
         </div>
         {showModal && <Modal>{childModal}</Modal>}

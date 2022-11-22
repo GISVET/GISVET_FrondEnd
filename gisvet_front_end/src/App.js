@@ -43,51 +43,50 @@ PrimeReact.ripple = true;
 const home = React.lazy(() => import("./pages/Login/login"));
 
 function App() {
-
   return (
     <UserContextProvider>
       <div className="App">
-      <Switch>
-        <Route component={login} path="/" />
-        <Route path="/user">
-          <User></User>
-        </Route>
-        <AdminUserContextProvider>
-          <AdminDependencyContextProvider>
-            <AdminProductsContextProvider>
-              <AdminPatientsContextProvider>
-                <Switch>
-                  <Route path="/AdminUser">
-                    <Admin>
-                      <AdminUser />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminDependencies">
-                    <Admin>
-                      <AdminDependencies />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminPatients">
-                    <Admin>
-                      <AdminPatients />
-                    </Admin>
-                  </Route>
-                  <Route path="/AdminProducts">
-                    <Admin>
-                      <AdminDependencies />
-                    </Admin>
-                  </Route>
-                  <Route>404 no encontrada</Route>
-                </Switch>
+        <Switch>
+          <Route component={login} path="/" />
+          <Route path="/user">
+            <User></User>
+          </Route>
+          <AdminUserContextProvider>
+            <AdminDependencyContextProvider>
+              <AdminProductsContextProvider>
+                <AdminPatientsContextProvider>
+                  <Switch>
+                    <Route path="/AdminUser">
+                      <Admin>
+                        <AdminUser />
+                      </Admin>
+                    </Route>
+                    <Route path="/AdminDependencies">
+                      <Admin>
+                        <AdminDependencies />
+                      </Admin>
+                    </Route>
+                    <Route path="/AdminPatients">
+                      <Admin>
+                        <AdminPatients />
+                      </Admin>
+                    </Route>
+                    <Route path="/AdminProducts">
+                      <Admin>
+                        <AdminProducts />
+                      </Admin>
+                    </Route>
+                    <Route><Error></Error></Route>
+                  </Switch>
                 </AdminPatientsContextProvider>
               </AdminProductsContextProvider>
             </AdminDependencyContextProvider>
-        </AdminUserContextProvider>
-        <Route>404 no encontrada</Route>
-      </Switch>
+          </AdminUserContextProvider>
+          <Route><Error></Error></Route>
+        </Switch>
       </div>
     </UserContextProvider>
-   )
+  );
 }
 
 export default App;

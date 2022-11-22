@@ -3,12 +3,10 @@ import styles from "./styles.module.css";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-
+import { FilterMatchMode } from "primereact/api";
 
 export default function TableUsers({ headers, data, actionItem }) {
-  const dataHeaders = headers;
   const [dataBody, setDataBody] = useState(data);
 
   useEffect(() => {
@@ -17,22 +15,67 @@ export default function TableUsers({ headers, data, actionItem }) {
 
   const [globalFilter, setGlobalFilter] = useState(null);
 
-
   const header = (
-    <div className="table-header">
-        <h1 className="title_header_ask">Gestión de Pacientes</h1>
-        <span className="p-input-icon-left">
-            <i className="pi pi-search" />
-            <InputText className="myask" type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Buscar ..." />
-        </span>
+    <div className={styles.table_header}>
+      <h1 className={styles.title_header_ask}>Gestión de Pacientes</h1>
+      <span className="p-input-icon-left">
+        <i className="pi pi-search" />
+        <InputText
+          className={styles.myask}
+          type="search"
+          onInput={(e) => setGlobalFilter(e.target.value)}
+          placeholder="Buscar ..."
+        />
+      </span>
     </div>
-);
+  );
+
+  const matchModes = [
+    { label: "Al inicio", value: FilterMatchMode.STARTS_WITH },
+    { label: "Contiene", value: FilterMatchMode.CONTAINS },
+    { label: "No contiene", value: FilterMatchMode.NOT_CONTAINS },
+    { label: "Al final", value: FilterMatchMode.ENDS_WITH },
+    { label: "Es igual a ", value: FilterMatchMode.EQUALS },
+    { label: "No es igual a", value: FilterMatchMode.NOT_EQUALS },
+  ];
+
+  const filterClearTemplate = (options) => {
+    return (
+      <Button
+        type="button"
+        icon="pi pi-times"
+        onClick={options.filterClearCallback}
+        className={styles.button_clear}
+      >
+        {" "}
+        Limpiar
+      </Button>
+    );
+  };
+
+  const filterApplyTemplate = (options) => {
+    return (
+      <Button
+        type="button"
+        icon="pi pi-check"
+        onClick={options.filterApplyCallback}
+        className={styles.apply_filter}
+      >
+        {" "}
+        Aplicar
+      </Button>
+    );
+  };
+
+  const filterHeader = (options) => {
+    return <h3 className={styles.title_filters_dependencies}>Filtros</h3>;
+  };
   const actionDetails = (rowData) => {
     return (
       <Button
         icon="pi pi-arrow-right"
         className="p-button-rounded p-button-details"
-        onClick={() => actionItem(rowData.id_dependencie)}
+        onClick={() => actionItem(rowData)}
       />
     );
   };
@@ -40,13 +83,7 @@ export default function TableUsers({ headers, data, actionItem }) {
   let boton = document.getElementsByClassName("p-c");
   boton.innerText = "Texto";
 
-  const statusItemTemplate = (option) => {
-    return <span className={`customer-badge status-${option}`}>{option}</span>;
-  };
-
-  console.log("Listado de Pacientes");
-  console.log(dataBody);
-
+ 
   return (
     <div className={styles.table_data}>
       <DataTable
@@ -55,17 +92,31 @@ export default function TableUsers({ headers, data, actionItem }) {
         className="myTable"
         rowClassName="row-accessories"
         paginator
-        rows={9}
+        rows={8}
         value={dataBody}
         responsiveLayout="stack"
       >
         <Column
+          filterHeader={filterHeader}
+          filterClear={filterClearTemplate}
+          filterApply={filterApplyTemplate}
+          showFilterOperator={false}
+          showFilterMenu={true}
+          showAddButton={false}
+          filterMatchModeOptions={matchModes}
           field="id_clinic_history"
           header="Historia clinica"
           filter
           sortable
         ></Column>
         <Column
+          filterHeader={filterHeader}
+          filterClear={filterClearTemplate}
+          filterApply={filterApplyTemplate}
+          showFilterOperator={false}
+          showFilterMenu={true}
+          showAddButton={false}
+          filterMatchModeOptions={matchModes}
           filter
           filterMatchMode="contains"
           field="name_patient"

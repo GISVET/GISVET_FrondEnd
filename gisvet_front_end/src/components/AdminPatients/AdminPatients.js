@@ -6,17 +6,36 @@ import icon_Filter from "./images/Icon_Filter.png";
 import { useAdminPatients } from "hooks/useAdminPatients";
 import SettingsAdminPatients from "components/SettingsAdminPatients";
 import { filterPatients } from "constants/constants";
+import ShowPatient from "components/ShowPatient/ShowPatient";
 import { Modal } from "components/Modal/Index";
 
 export default function AdminPatients() {
   const {patients, headers} =
     useAdminPatients();
-  const [showModal] = useState(false);
-  const [childModal] = useState(<></>);
-  const showUserMenu = async (identifier) => {};
+  const [showModal, setShowModal] = useState(false);
+  const [childModal, setchildModal] = useState(<></>);
 
-  console.log("Listado de pacientes en el Admin")
-  console.log(patients)
+
+
+  const showPatientMenu = async (data) => {
+    console.log(`El id en el showPatient es ${data}`);
+    setShowModal(true);
+    setchildModal(
+      <ShowPatient
+      dataPatient={data}
+        onClose={handleCloseModal}
+        onSubmit={onSubmitDependency}
+      />
+    );
+  };
+
+  const onSubmitDependency = () => {
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
 
   return (
     <>
@@ -25,7 +44,7 @@ export default function AdminPatients() {
             headers={headers}
             data={patients}
             keyName={"id_clinic_history"}
-            actionItem={showUserMenu}
+            actionItem={showPatientMenu}
           />
           <SettingsAdminPatients />
       </div>

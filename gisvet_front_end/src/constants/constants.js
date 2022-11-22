@@ -157,6 +157,10 @@ export const measurement_units = [
         'name': "Libra"
     },
     {
+        'id':'OZ',
+        'name': "Onzas"
+    },
+    {
         'id':'KG',
         'name': "Kilogramo"
     },

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Patient from "./images/Icon_Add_Patient.png"
+import icon_reports from "./images/Icon_Reports.png"
+
 import { Modal } from "components/Modal/Index"; 
 import AddPatient from "components/AddPatient";
 import {useLocation } from "wouter"
@@ -75,12 +77,27 @@ export default function SettingsAdminDepedencies(){
                                 src={icon_Settings} 
                                 width="45" 
                                 height="45"/>
-                        <input className={styles.add_user_form} 
-                                type="image" 
-                                onClick={showAddPatientsMenu} 
-                                src={icon_Add_Patient} 
-                                width="40" 
-                                height="40"/>
+                                                       <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
+                                    type="image" 
+                                    onClick={showAddPatientsMenu} 
+                                    src={icon_Add_Patient} 
+                                    width="40" 
+                                    height="40"/>
+                                    
+                            <p>Agregar</p>
+                        </div>
+                        <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
+                                    type="image" 
+                                    onClick={showAddPatientsMenu} 
+                                    src={icon_reports} 
+                                    width="40" 
+                                    height="40"/>
+                                    
+                            <p>Reportes</p>
+                        </div>
+                     
                     </div>
                     {showModal && <Modal>{childModal}</Modal>
                         

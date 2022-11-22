@@ -30,6 +30,18 @@ export const usersByDependency = [
     "Tarjeta Profesional"
 ]
 
+export const patientshistory = [
+    "Fecha de aplicación",   
+    "Identificación del médico",
+    "Nombre del médico",
+    "Id del producto",
+    "Nombre del producto",
+    "Unidad de medida",
+    "Cantidad usada",
+    "Uso empleado"
+
+]
+
 export const productsAdmin = [
     "Id del producto",
     "Nombre del producto",

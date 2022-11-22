@@ -1,27 +1,3 @@
-/*Header de la tabla con input de buscar y titulo*/
-.table_header{
-  margin-top: 2%;
-  background-color: var(--white-color) !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/*Header general de las tablas*/
-.table_data  [class~= p-datatable-header]{
-  background-color: var(--white-color) !important;
-}
-
-/*Titulo del header*/
-.title_header_ask{
-  font-size: 20px;
-}
-
-/*Input de buscar */
-.myask{
-  margin-right: 20px !important;
-}
-
 /*Filas impares de la tabla*/
 .row-accessories:nth-child(odd) {
   font-family: var(--text-principal-font);
@@ -84,9 +60,9 @@
   color: white !important;
   text-align: left !important;
   background-color: var(--shade-5-color) !important;
-  margin: 0;
+  margin: 0px;
   font-family: var(--text-principal-font);
-  padding: 0;
+  padding: 0px !important;
   border-width: 0px 1px 1px 1px !important;
 }
 
@@ -120,15 +96,6 @@
 
 .pi-filter:before {
   color: var(--white-color) !important;
-}
-
-.p-column-filter-overlay
-  .p-component
-  .p-fluid
-  .p-column-filter-overlay-menu
-  .p-connected-overlay-enter-done {
-    z-index: 10000;
-    background-color: var(--white-color) !important;
 }
 
 .p-column-filter-overlay-menu .p-column-filter-operator{
@@ -165,14 +132,20 @@
   color: #343a40;
 }
 
-.myTable {
+.table_products {
   border-collapse: collapse;
-  margin-left: 5%;
-  width: 90%;
-  margin-right: 5%;
-  font-family: var(--text-principal-font);
   font-weight: normal;
+  width: 90% !important;
+  margin-left: 5%;
+  margin-top : 3%;
+  margin-right: 5%;
   font-size: 15px;
   color: white;
   margin-bottom: 3%;
 }
+
+.p-sortable-column{
+  width: 200px !important;
+  padding: 0px;
+}
+

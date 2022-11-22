@@ -9,7 +9,6 @@ import {
   filterDependenciesName,
 } from "constants/constants";
 import { typeDependencies } from "constants/constants";
-import PanelSearch from "components/PanelSearch";
 import { Modal } from "components/Modal/Index";
 import ShowDependency from "components/ShowDependency/ShowDependency";
 
@@ -51,7 +50,6 @@ export default function AdminDependencies() {
   };
 
   const onSubmitDependency = () => {
-    console.log();
   };
 
   const askDependency = (keyword) => {

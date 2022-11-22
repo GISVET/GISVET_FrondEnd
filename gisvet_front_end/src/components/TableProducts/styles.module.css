@@ -1,217 +1,283 @@
-
 .table_data{
-    box-sizing: border-box;
-    width: 100%;
-    max-height: 500px;
-    justify-content: center;
-    position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 500px;
+  justify-content: center;
+  position: relative;
+}
+/*Header de la tabla con input de buscar y titulo*/
+.table_header{
+  margin-top: 2%;
+  background-color: var(--white-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.table_format{
-    border-collapse: collapse;
-    margin-left: 5%;
-    width: 90%;
-    margin-right: 5%;
-    font-family: 'Inter', sans-serif;
-    font-weight: normal;
-    font-size: 15px;
-    color: white;
-    margin-bottom: 3%;
-    border: black 1px solid;
-
+/*Estilos del botón de limpiar en filtros*/
+.button_clear{
+background-color: var(--error-button-color) !important;
+border-color: var(--error-button-color) !important;
 }
 
+/*Estilos del botón de aplicar en filtros*/
+.apply_filter{
+background-color: var(--shade-5-color) !important;
+border-color: var(--shade-5-color) !important;
+}
+
+
+/*Header general de las tablas*/
+.table_data  [class~= p-datatable-header]{
+  background-color: var(--white-color) !important;
+}
+
+/*Titulo del header*/
+.title_header_ask{
+  font-size: 20px;
+}
+
+/*Input de buscar */
+.myask{
+  margin-right: 20px !important;
+}
+
+.table_data .title_filters_dependencies{
+  text-align: center;
+  padding: 0px;
+  margin: 5% 0px 0px 0px;
+}
+.table_data .title_filters_dependencies{
+text-align: center;
+padding: 0px;
+margin: 5% 0px 0px 0px;
+}
+.table_data .table_format{
+  border-collapse: collapse;
+  margin-left: 5%;
+  width: 90%;
+  margin-right: 5%;
+  font-family: 'Inter', sans-serif;
+  font-weight: normal;
+  font-size: 15px;
+  color: white;
+  margin-bottom: 3%;
+  border: black 1px solid;
+
+}
 .table_format > thead> tr > th{
-    position: sticky;
-    top: 0;
-    width: 10%;
-    height: 3rem;
-    color: white;
-    text-align: center;
-    background-color: var(--shade-5-color);
-    margin: 0;
-    padding: 0;
+  position: sticky;
+  top: 0;
+  width: 10%;
+  height: 3rem;
+  color: white;
+  text-align: center;
+  background-color: var(--shade-5-color);
+  margin: 0;
+  padding: 0;
 }
-
-.table_format > tbody> tr:nth-child(odd){
-    width: 10%;
-    height: 3rem;
-    text-align: center;
-    background-color: var(--white-color);
-    color: black;
-    margin: 0;
-    padding: 0;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+.table_data * [class~= table_format]  > tbody> tr:nth-child(odd){
+  width: 10%;
+  height: 3rem;
+  text-align: center;
+  background-color: red !important;
+  color: black;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .table_format > tbody> tr:nth-child(even){
-    width: 10%;
-    height: 3rem;
-    text-align: center;
-    color: black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    background-color: var(--tinte-6-color);
-    margin: 0;
-    padding: 0;
+  width: 10%;
+  height: 3rem;
+  text-align: center;
+  color: black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background-color: var(--tinte-6-color);
+  margin: 0;
+  padding: 0;
 }
 
 .button_table_goTo{
-    margin-top: 0%;
-    padding:0%;
-    border-radius: 0%;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    border: 0;
-    box-shadow: 0% var(--black-color);
-    justify-items: center;
+  margin-top: 0%;
+  padding:0%;
+  border-radius: 0%;
+  text-align: left;
+  font-family: 'Inter', sans-serif;
+  border: 0;
+  box-shadow: 0% var(--black-color);
+  justify-items: center;
 }
 
 
 /*Filas impares de la tabla*/
 .table_data [class~=row-accessories]:nth-child(odd) {
-    font-family: var(--text-principal-font);
-    background-color: var(--white-color) !important;
-    color: black !important;
-    text-align: center !important;
-    font-size: 15px;
-  }
-  
-  /*Filas pares de la tabla*/
-.table_data [class~=row-accessories]:nth-child(even) {
-    font-family: var(--text-principal-font);
-    background-color: var(--tinte-7-color) !important;
-    color: black !important;
-    text-align: center !important;
-    font-size: 15px;
-  }
-  
-  /*Paginación de la tabla*/
-  .table_data [class~=p-paginator] [class~=p-paginator-pages] [class~=p-highlight]{
-    color: var(--shade-5-color) !important;
-  }
-  
-  /*Tamaño de los filtros*/
-  .table_data [class~=p-fluid]{
-    width: 300px;
-  }
-  
-  /*Input de los filtros*/
-  .table_data [class~=p-fluid] [class~=p-dropdown] {
-    width: 200px;
-  }
-  
-  /*Texto dentro del input de los filtros*/
-  .table_data [class~=p-fluid] [class~=p-dropdown] [class~=p-dropdown-label]{
-    font-size: 15px;
-    margin-top: 0px;
-    padding: 5px 0px 0px 0px !important;
-    padding-right: 0px !important;
-    align-items: center;
-  }
+font-family: var(--text-principal-font);
+background-color: var(--white-color) !important;
+color: black !important;
+text-align: center !important;
+font-size: 15px;
+}
 
-  .table_data [class~=details-colum] {
-    background-color: blue !important;
-    margin-left: 25% !important;
-  }
-  
-  .table_data [class~=p-datatable] [class~=p-datatable-tbody] > tr > td {
-    padding-left: 0rem !important;
-    padding-top: 0.2rem !important;
-    padding-right: 0rem !important;
-    padding-bottom: 0.2rem !important;
-    text-align: center !important;
-  }
-  
-  .table_data [class~=p-datatable] [class~=p-datatable-thead] > tr > th {
-    top: 0;
-    width: 10%;
-    font-weight: normal;
-    font-size: 15px;
-    color: white !important;
-    text-align: left !important;
-    background-color: var(--shade-5-color) !important;
-    margin: 0;
-    font-family: var(--text-principal-font);
-    padding: 0;
-    border-width: 0px 1px 1px 1px !important;
-  }
-  
-  .table_data * [class~=p-sortable-column-icon] {
-    color: white !important;
-  }
-  
-  .table_data * [class~=p-column-filter]{
-    width: 100% !important;
-  }
-  .table_data * [class~=p-column-header-content]{
-    margin-left: 50px !important;
-  }
-  .table_data * [class~=p-column-filter]::placeholder{
-    font-size: 10px !important;
-  }
-  
-  .table_data * [class~=p-button-rounded] {
-    background-color: var(--shade-5-color) !important;
-    width: 30px !important;
-    height: 30px !important;
-  }
-  
-  .table_data * [class~=p-column-filter-buttonbar] [class~=p-button]:not(.p-button-icon-only) {
-    background-color: var(--shade-5-color) !important;
-    color: var(--white-color) !important;
-  }
-  .table_data * [class~=p-column-title]{
-    width: 100%;
-  }
-  
-  .table_data * [class~=pi-filter]:before {
-    color: var(--white-color) !important;
-  }
-  
-  .table_data * [class~=p-column-filter-overlay-menu] [class~=p-column-filter-operator]{
-      background-color: var(--white-color) !important;
-      height: 50px;
-      padding: 0px;
-  }
-  
-  .table_data * [class~=p-column-filter-overlay-menu] [class~=p-column-filter-buttonbar]{
-    padding: 0px 20px 10px 20px !important;
-  }
-  
-  .table_data * [class~=p-fluid] [class~=p-dropdown] [class~=p-dropdown-label]{
-      height: 25px;
-  }
-  
-  .table_data * [class~=p-fluid] [class~=p-inputtext]{
-      height: 25px !important;
-  }
-  
-  .table_data * [class~=p-column-filter-buttonbar] {
-    background-color: var(--white-color) !important;
-    color: purple !important;
-  }
-  
-  .table_data * [class~=p-column-filter-menu-button]:hover {
-    background-color: transparent !important;
-    background: transparent !important;
-  }
-  
-  .table_data * [class~=p-column-filter-menu-button-open],
-  .table_data * [class~=p-column-filter-menu-button-open]:hover {
-    background: transparent !important;
-    color: #343a40;
-  }
-  
-  .table_data * [class~=myTable] {
-    border-collapse: collapse;
-    margin-left: 5%;
-    width: 90%;
-    margin-right: 5%;
-    font-family: var(--text-principal-font);
-    font-weight: normal;
-    font-size: 15px;
-    color: white;
-    margin-bottom: 3%;
-  }
+/*Filas pares de la tabla*/
+.table_data [class~=row-accessories]:nth-child(even) {
+font-family: var(--text-principal-font);
+background-color: var(--tinte-7-color) !important;
+color: black !important;
+text-align: center !important;
+font-size: 15px;
+}
+
+/*Paginación de la tabla*/
+.table_data [class~=p-paginator] [class~=p-paginator-pages] [class~=p-highlight]{
+color: var(--shade-5-color) !important;
+}
+
+/*Tamaño de los filtros*/
+.table_data [class~=p-fluid]{
+width: 300px;
+}
+
+/*Input de los filtros*/
+.table_data [class~=p-fluid] [class~=p-dropdown] {
+width: 200px;
+}
+
+/*Texto dentro del input de los filtros*/
+.table_data [class~=p-fluid] [class~=p-dropdown] [class~=p-dropdown-label]{
+font-size: 15px;
+margin-top: 0px;
+padding: 5px 0px 0px 0px !important;
+padding-right: 0px !important;
+align-items: center;
+}
+
+.table_data [class~=details-colum] {
+margin-left: 25% !important;
+}
+
+
+.table_data [class~=p-datatable] [class~=p-datatable-tbody] > tr > td {
+padding-left: 0rem !important;
+padding-top: 0.2rem !important;
+padding-right: 0rem !important;
+padding-bottom: 0.2rem !important;
+text-align: center !important;
+}
+
+.table_data [class~=p-datatable] [class~=p-datatable-thead] > tr > th {
+top: 0;
+width: 10%;
+font-weight: normal;
+font-size: 15px;
+color: white !important;
+text-align: left !important;
+background-color: var(--shade-5-color) !important;
+margin: 0;
+font-family: var(--text-principal-font);
+padding: 0;
+border-width: 0px 1px 1px 1px !important;
+}
+
+.table_data * [class~=p-sortable-column-icon] {
+color: white !important;
+}
+
+.table_data * [class~=p-column-filter]{
+width: 100% !important;
+}
+.table_data * [class~=p-column-header-content]{
+margin-left: 20px !important;
+}
+.table_data * [class~=p-column-filter]::placeholder{
+font-size: 10px !important;
+}
+
+.table_data * [class~=p-button-rounded] {
+background-color: var(--shade-5-color) !important;
+width: 30px !important;
+height: 30px !important;
+}
+
+
+.table_data * [class~=p-column-title]{
+width: 100%;
+font-family: var(--text-principal-font);
+font-weight: bold;
+}
+
+.table_data * [class~=pi-filter]:before {
+color: var(--white-color) !important;
+background-color: transparent !important;
+}
+
+.table_data * [class~=p-column-filter-menu-button-active]{
+background-color: transparent !important;
+color: var(--shade-5-color) !important;
+}
+
+/*Hover del inputext*/
+.table_data * [class~=p-inputtext]:enabled:hover{
+border-color: var(--tinte-6-color) !important;
+}
+
+/*Focus cuando el cursor selecciona el input de buscar*/
+.table_data * [class~=p-inputtext]:enabled:focus{
+background-color: transparent !important;
+box-shadow: 0 0 0 0.2rem var(--tinte-5-color) !important;
+color: var(--shade-5-color) !important;
+}
+/*Focus de input buscar cuando esta por fuera*/
+.table_data * [class~=p-inputtext]:enabled:focus-within{
+border: 1px solid var(--shade-5-color);
+}
+
+
+
+.table_data * [class~=p-column-filter-overlay-menu] [class~=p-column-filter-operator]{
+  background-color: var(--white-color) !important;
+  height: 50px;
+  padding: 0px;
+}
+
+.table_data * [class~=p-column-filter-overlay-menu] [class~=p-column-filter-buttonbar]{
+padding: 0px 20px 10px 20px !important;
+}
+
+.table_data * [class~=p-fluid] [class~=p-dropdown] [class~=p-dropdown-label]{
+  height: 25px;
+}
+
+.table_data * [class~=p-fluid] [class~=p-inputtext]{
+  height: 25px !important;
+}
+
+.table_data * [class~=p-column-filter-buttonbar] {
+background-color: var(--white-color) !important;
+color: purple !important;
+}
+
+.table_data * [class~=p-column-filter-menu-button]:hover {
+background-color: transparent !important;
+background: transparent !important;
+}
+
+.table_data * [class~=p-column-filter-menu-button-open],
+.table_data * [class~=p-column-filter-menu-button-open]:hover {
+background: transparent !important;
+color: #343a40;
+}
+
+.table_data * [class~=myTable] {
+border-collapse: collapse;
+margin-left: 5%;
+width: 90%;
+margin-right: 5%;
+font-family: var(--text-principal-font);
+font-weight: normal;
+font-size: 15px;
+color: white;
+margin-bottom: 3%;
+}
