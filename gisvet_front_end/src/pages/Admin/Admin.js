@@ -1,7 +1,14 @@
+//=====Importaciones de React ====
 import React,{useState, useEffect} from "react";
-import Header from "components/HeaderAdmin/header";
+
+//=====Importaciones de componentes ====
+import Header from "../../components/AdminComponents/HeaderAdmin/header";
+
+//=====Importaciones de estilos ====
 import styles from './styles.module.css';
-import useUser from "hooks/useUser";
+
+//=====Importaciones de hooks ====
+import useUser from "../../hooks/UserHooks/useUser";
 
 
 export default function Admin( {children}){

@@ -127,7 +127,7 @@ h3.error_message {
 
 .rigth {
     display: inline-block;
-    background-color: var(--shade-6-color);
+    background-color: var(--color-button);
     margin: 0;
     padding: 0;
     width: 100%;

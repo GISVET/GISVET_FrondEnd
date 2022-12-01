@@ -24,6 +24,36 @@ export function getItemsAdmin(navigate){
    ];
 }
 
+export function getItemsAuditor(navigate){
+   return [
+      {
+         label:'Dependencias',
+         icon:'img_dependencies',
+         command:()=>{ navigate("/AdminDependencies") }
+      },
+      {
+         label:'Usuarios',
+         icon:'img_users',
+         command:()=>{ navigate("/AdminUser") }
+      },
+      {
+          label:'Pacientes',
+          icon:'img_patients',
+          command:()=>{ navigate("/AdminPatients") }
+       },
+       {
+          label:'Productos',
+          icon:'img_products',
+          command:()=>{ navigate("/AdminProducts") }
+       },
+       {
+         label:'Seguimiento',
+         icon:'img_products',
+         command:()=>{ navigate("/AdminProducts") }
+      }
+   ];
+}
+
 export function getItemsBodega(navigate){
    const other =[
       {

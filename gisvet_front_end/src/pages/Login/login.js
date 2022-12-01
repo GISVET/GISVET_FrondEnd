@@ -1,20 +1,25 @@
-import React, { useEffect } from "react";
-import styles from "./styles.module.css";
-import logo from "../.././images/Proyecto_Logo_GisVet.png";
-import { useLocation } from "wouter";
-import { useState } from "react";
-import useUser from "hooks/useUser";
-import { loginErrorMessage } from "constants/constants";
-  
-function  login(){
-    const {login, 
-            islogged,
-            role,
-            IdUser,
-            dependencieActive,
-            errorMessage} = useUser()
-    const [,navigate] = useLocation()
+//=====Importaciones de reac====  
+import React, { useEffect, useState } from "react";
 
+//=====Importaciones de enrutamiento====  
+import { useLocation } from "wouter";
+
+//=====Importaciones de estilos====  
+import styles from "./styles.module.css";
+
+//=====Importaciones de imagenes y logos====  
+import logo from "../.././images/Proyecto_Logo_GisVet.png";
+
+//=====Importaciones de los hooks====  
+import useUser from "../../hooks/UserHooks/useUser";
+
+//=====Importaciones de constantes====  
+import { loginErrorMessage } from "constants/constants";
+
+function login() {
+  const [, navigate] = useLocation();
+  const { login, islogged, role, IdUser, dependencieActive, errorMessage } =
+    useUser();
 
   const [data, setData] = useState({
     username: "",
@@ -26,24 +31,24 @@ function  login(){
       ? styles.error_message
       : styles.no_error;
 
-  useEffect(()=>{
+  useEffect(() => {
     if (islogged && role != null) {
-        switch (role) {
-            case 'Administrador':
-                navigate("/AdminDependencies")
-                break;
-            case 'Usuario':
-                selectDependecieToShow()
-                break;
-            case 'Auditor':
-                navigate("/auditor")
-                break;
-            default:
-                navigate("/unauthorized")
-                break;
-        }
+      switch (role) {
+        case "Administrador":
+          navigate("/AdminDependencies");
+          break;
+        case "Usuario":
+          selectDependecieToShow();
+          break;
+        case "Auditor":
+          navigate("/AuditorDependencies");
+          break;
+        default:
+          navigate("/unauthorized");
+          break;
+      }
     }
-  },[islogged,role, navigate])
+  }, [islogged, role, navigate]);
 
   const handleInputChange = (event) => {
     let { name, value } = event.target;
@@ -55,28 +60,31 @@ function  login(){
     event.preventDefault();
     login(data);
   };
-  
 
-    const selectDependecieToShow = ()=>{
-         if (dependencieActive !== undefined && Object.entries(dependencieActive).length !== 0 && dependencieActive !== null) {
-            switch (dependencieActive.DEPENDECIE_TYPE) {
-                case 'B':
-                    navigate("/user")
-                    break;
-                case 'F':
-                    navigate("/user")
-                    break;
-                case 'C':
-                    navigate("/user")
-                    break;
-                default:
-                    navigate("/noAssigned")
-                    break;
-            }
-        }else{
-            navigate("/noAssigned")
-        }
+  const selectDependecieToShow = () => {
+    if (
+      dependencieActive !== undefined &&
+      Object.entries(dependencieActive).length !== 0 &&
+      dependencieActive !== null
+    ) {
+      switch (dependencieActive.DEPENDECIE_TYPE) {
+        case "B":
+          navigate("/user");
+          break;
+        case "F":
+          navigate("/user");
+          break;
+        case "C":
+          navigate("/user");
+          break;
+        default:
+          navigate("/noAssigned");
+          break;
+      }
+    } else {
+      navigate("/noAssigned");
     }
+  };
 
   return (
     <div className={styles.general}>

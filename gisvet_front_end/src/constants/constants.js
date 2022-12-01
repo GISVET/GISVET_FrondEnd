@@ -194,6 +194,30 @@ export const presentations = [
     {
         'id':'F',
         'name': "Frasco"
+    },
+    {
+        'id':'ML',
+        'name': "Mililitros"
+    },
+    {
+        'id':'LB',
+        'name': "Libra"
+    },
+    {
+        'id':'OZ',
+        'name': "Onzas"
+    },
+    {
+        'id':'KG',
+        'name': "Kilogramo"
+    },
+    {
+        'id':'GR',
+        'name': "Gramos"
+    },
+    {
+        'id':'GL',
+        'name': "Galón"
     }
 ]
 
