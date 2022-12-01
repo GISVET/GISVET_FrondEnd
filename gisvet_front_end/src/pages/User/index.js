@@ -53,7 +53,7 @@ export default function User( {params, children}){
 
     const bodyPharmacy=<div className={styles.general_admin}>
                             <Header />
-                            {children}
+                            <ProductsGrocery></ProductsGrocery>
                         </div>
 
     const bodySurgery=<div className={styles.general_admin}>

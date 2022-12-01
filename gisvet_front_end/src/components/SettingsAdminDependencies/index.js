@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Dependency from "./images/Icon_Add_Dependency.png"
-import { Modal } from "components/Modal/Index"; 
+import { Modal } from "components/Modal"; 
 import AddDependency from "components/AddDependency";
 import icon_reports from "./images/Icon_Reports.png"
 import {useLocation } from "wouter"

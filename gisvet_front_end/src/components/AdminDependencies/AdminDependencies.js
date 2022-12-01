@@ -9,7 +9,7 @@ import {
   filterDependenciesName,
 } from "constants/constants";
 import { typeDependencies } from "constants/constants";
-import { Modal } from "components/Modal/Index";
+import { Modal } from "components/Modal";
 import ShowDependency from "components/ShowDependency/ShowDependency";
 
 export default function AdminDependencies() {

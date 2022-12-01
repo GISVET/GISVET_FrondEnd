@@ -6,8 +6,35 @@
 
 :root {
 
-  /*/ Gama de colores verde /*/
+  /*/ Gama de colores azul /*/
+  /*/ Sombras/*/
   --shade-5-color: #009789;
+  --shade-0-color: #008478;
+  --shade-1-color: #007167;
+  --shade-2-color: #005E56;
+  --shade-3-color: #004C45;
+  --shade-4-color: #003933;
+  --shade-6-color: #002622;
+  --shade-7-color: #001311;
+
+  /*/ Tintes/*/
+  --dye-0-color: #20A498;
+  --dye-1-color: #40B1A7;
+  --dye-2-color: #60BEB5;
+  --dye-3-color: #80CBC4;
+  --dye-4-color: #9FD8D3;
+  --dye-5-color: #BFE5E2;
+  --dye-6-color: #DFF2F0;
+
+   /*/ Tonos/*/
+   --tone-0-color: #109488;
+   --tone-1-color: #209187;
+   --tone-2-color: #308E85;
+   --tone-3-color: #408B84;
+   --tone-4-color: #508883;
+   --tone-5-color: #608582;
+   --tone-6-color: #708281;
+
   --color-button : #009789;
   --gray-color: #e4e0e0;
   --white-color: #ffffff;

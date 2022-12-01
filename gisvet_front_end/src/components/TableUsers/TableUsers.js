@@ -102,8 +102,8 @@ export default function TableUsers({ headers, data, actionItem }) {
 
   const statuses = ["Usuario", "Administrador", "Auditor"];
   const typeDocuments = [
-    "Cedula de Ciudadanía",
-    "Cedula de extranjería",
+    "Cédula de Ciudadanía",
+    "Cédula de extranjería",
     "Tarjeta de Identidad",
     "Pasaporte",
   ];

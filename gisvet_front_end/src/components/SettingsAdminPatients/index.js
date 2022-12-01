@@ -4,7 +4,7 @@ import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Patient from "./images/Icon_Add_Patient.png"
 import icon_reports from "./images/Icon_Reports.png"
 
-import { Modal } from "components/Modal/Index"; 
+import { Modal } from "components/Modal"; 
 import AddPatient from "components/AddPatient";
 import {useLocation } from "wouter"
 import {useAdminPatients} from "hooks/useAdminPatients";

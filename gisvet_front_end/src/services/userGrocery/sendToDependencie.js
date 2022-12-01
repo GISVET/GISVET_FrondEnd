@@ -1,17 +1,21 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function addNewMark({jwt,name_brand}){
-    let mark = {
-        name_brand: name_brand
+export default function sendProductsToDependecie({jwt,document,token_tem,name_dependecie, dataProducts}){
+
+    let bodySend = {
+        "document": document,
+        "token_tem": token_tem,
+        "name_dependecie": name_dependecie,
+        "products":dataProducts,
     }
-    let jsonMark = JSON.stringify(mark)
+    let jsonProduct = JSON.stringify(bodySend)
     let statusRes =0
-    return fetch(`${endpoint}/Users/Bodega/Item/createBrand`, {
+    return fetch(`${endpoint}/Users/Bodega/sendProducts`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
             "Authorization": 'Bearer '+jwt
         },
-        body: jsonMark
+        body: jsonProduct
     }).then(res => {
         statusRes = res.status
         return res.json()

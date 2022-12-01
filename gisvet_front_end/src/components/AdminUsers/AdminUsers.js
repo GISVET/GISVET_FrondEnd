@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Table from "components/TableUsers/TableUsers";
 import styles from "./styles.module.css";
-import icon_Filter from "./images/Icon_Filter.png";
 import SettingsAdminUser from "components/SettingsAdminUser/index";
 import { useUsersAdmin } from "hooks/useAdminUsers";
-import { Modal } from "components/Modal/Index";
+import { Modal } from "components/Modal";
 import ShowUser from "components/ShowUser";
-import PanelSearch from "components/PanelSearch";
-import { filterPatients } from "constants/constants";
 
 export default function AdminUsers() {
   const {
