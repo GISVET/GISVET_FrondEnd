@@ -7,7 +7,7 @@ import { useAdminPatients } from "hooks/useAdminPatients";
 import SettingsAdminPatients from "components/AdminComponents/AdminPatients/SettingsAdminPatients";
 import { filterPatients } from "constants/constants";
 import ShowPatient from "components/AdminComponents/AdminPatients/ShowPatient/ShowPatient";
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 
 export default function AuditorPatients() {
   const {patients, headers} =

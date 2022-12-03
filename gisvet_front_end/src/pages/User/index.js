@@ -55,29 +55,21 @@ export default function User({children}) {
           navigate("/unauthorized");
           break;
       }
-    }
-  };
+    const bodyGrocery= <div className={styles.general_admin}>
+                    <Header />
+                    <ProductsGrocery></ProductsGrocery>
+                </div>
 
-  const bodyGrocery = (
-    <div className={styles.general_admin}>
-      <Header />
-      <ProductsGrocery/>
-    </div>
-  );
 
-  const bodyPharmacy = (
-    <div className={styles.general_admin}>
-      <Header />
-      {children}
-    </div>
-  );
+    const bodyPharmacy=<div className={styles.general_admin}>
+                            <Header />
+                            <ProductsGrocery></ProductsGrocery>
+                        </div>
 
-  const bodySurgery = (
-    <div className={styles.general_admin}>
-      <Header />
-      {children}
-    </div>
-  );
+    const bodySurgery=<div className={styles.general_admin}>
+                        <Header />
+                        {children}
+                    </div>
 
   return (
     <>

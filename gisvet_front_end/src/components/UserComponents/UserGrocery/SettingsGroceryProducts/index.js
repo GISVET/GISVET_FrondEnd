@@ -11,7 +11,7 @@ import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "../../../../components/GeneralComponents/Modal/Index";
+import { Modal } from "../../../../components/GeneralComponents/Modal";
 import AddMark from "../../../AdminComponents/AdminProducts/AddMark/AddMark";
 import AddProduct from "../../../AdminComponents/AdminProducts/AddProduct/AddProduct";
 import MessageConfirm from "../../../../components/GeneralComponents/MessageConfirm";
@@ -23,7 +23,7 @@ import { useLocation } from "wouter";
 //=====Importaciones de hooks ====
 import { useGroceryProducts } from "../../../../hooks/UserHooks/useGroceryProducts";
 
-export default function SettingsAdminProducts() {
+export default function SettingsAdminProducts({sendProducts,setSendProducts}) {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
@@ -58,6 +58,11 @@ export default function SettingsAdminProducts() {
     setchildModal(
       <AddItemProduct onClose={handleCloseModal} onSubmit={onsubmitAddItem} />
     );
+  };
+
+  const ShowEditableTable = (event) => {
+    event.preventDefault();
+    setSendProducts(sendProducts?false:true)
   };
 
   const handleCloseModal = () => {
@@ -103,6 +108,7 @@ export default function SettingsAdminProducts() {
     return (
       <div className={styles.options_admin}>
         <input
+          className={styles.settings_clicked}
           type="image"
           onClick={setVisibleMenu}
           src={icon_Settings}
@@ -116,7 +122,7 @@ export default function SettingsAdminProducts() {
       <>
         <div className={styles.options_admin_visible}>
           <input
-            className={styles.settings_hide}
+            className={styles.settings_show}
             type="image"
             onClick={setVisibleMenu}
             src={icon_Settings}
@@ -162,6 +168,23 @@ export default function SettingsAdminProducts() {
 
             <p>Registrar Producto</p>
           </div>
+
+          <div className={styles.item_floatMenu}>
+            <input
+              className={styles.add_user_form}
+              type="image"
+              onClick={ShowEditableTable}
+              src={icon_Register_Product}
+              width="32"
+              height="32"
+            />
+
+            <p>Enviar Productos</p>
+          </div>
+
+
+
+
         </div>
         {showModal && <Modal>{childModal}</Modal>}
       </>

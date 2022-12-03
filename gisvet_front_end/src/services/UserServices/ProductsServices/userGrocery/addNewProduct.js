@@ -8,7 +8,7 @@ export default function addNewMark({jwt,product_name,measurement_units,type_prod
     }
     let jsonProduct = JSON.stringify(product)
     let statusRes =0
-    return fetch(`${endpoint}/Users/Item/createProducts`, {
+    return fetch(`${endpoint}/Users/Bodega/Item/createProducts`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

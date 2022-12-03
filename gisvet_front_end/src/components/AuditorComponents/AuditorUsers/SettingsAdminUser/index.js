@@ -5,7 +5,7 @@ import icon_Add_User from "./images/Icon_Add_User.png"
 import icon_asign_dependencie from "./images/Icon_pase_seguridad.png"
 import icon_reports from "./images/Icon_Reports.png"
 
-import { Modal } from "components/GeneralComponents/Modal/Index"; 
+import { Modal } from "components/GeneralComponents/Modal"; 
 import AdminUser from "components/AddUser";
 import AssignDependency from "components/AssignDependency/AssignDependency";
 import ShowUsersReports from "components/AdminComponents/AdminUsers/ShowUsersReports/ShowUserReports";

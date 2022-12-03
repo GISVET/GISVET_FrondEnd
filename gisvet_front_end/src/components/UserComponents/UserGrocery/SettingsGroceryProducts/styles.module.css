@@ -1,7 +1,7 @@
 
 .options_admin{
     display: flex;
-    justify-content: center;
+    
     position: absolute;
     z-index: 6;
     top: 80%;
@@ -10,8 +10,11 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+    justify-content: center;
     align-items: center;
+
 } 
+
 
 .options_admin_visible{
     display: flex;
@@ -22,24 +25,50 @@
     z-index: 6;
     top: 80%;
     left: 2%;
+    width:fit-content;
     background-color: var(--shade-6-color);
-    width: 16rem; 
     height: 4rem;
+    padding-right: 2vh;
     border-bottom-left-radius: 50px;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
+    box-sizing: border-box;
+    animation: openMenu  ease-in-out 1.2s;
+    
 }
 
-.options_admin_visible > input{
+@keyframes openMenu {  
+    from { width:4.5%;}
+    to {width:26%; }
+}
+
+.settings_show{
     z-index: 2;
     padding: 0 0.8rem;
-    width: 70px;
+    width: auto;
+    animation: openSettings  ease-in-out   1s;
 }
+
+.settings_clicked{
+    animation: closeSettings  ease-in-out   1s;
+}
+
+@keyframes openSettings {  
+    from { transform:rotate(0deg);}
+    to { transform: rotate(90deg);}
+ }
+
+ @keyframes closeSettings {  
+    from { transform:rotate(90deg);}
+    to { transform: rotate(0deg);}
+ }
+
 
 .item_floatMenu{
     position: relative;
     height: auto;
+    width: 5vw;
     color: white;
     font-family: 'Inter rev=5', sans-serif;
     font-style: normal;

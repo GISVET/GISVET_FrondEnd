@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import icon_Settings from "./images/Icon_Settings.png";
 import icon_Add_Product from "./images/Icon_Add_Product.png";
-import icon_Add_Lote from "./images/Icon_Add_Lote.png";
 import icon_reports from "./images/Icon_Reports.png"
 
 import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import AddMark from "components/AddMark/AddMark";
 import AddLote from "components/AddLote/AddLote";
 import AddProduct from "components/AddProduct/AddProduct";
@@ -36,13 +35,6 @@ export default function SettingsAdminProducts() {
     );
   };
 
-  const showAddLote = async (event) => {
-    event.preventDefault();
-    setShowModal(true);
-    setchildModal(
-      <AddLote onClose={handleCloseModal} onSubmit={onsubmitAddLote} />
-    );
-  };
 
   const showAddProduct = async (event) => {
     event.preventDefault();
