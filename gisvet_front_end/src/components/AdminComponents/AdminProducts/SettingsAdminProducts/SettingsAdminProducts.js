@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import AddMark from "../AddMark/AddMark";
 import AddLote from "../AddLote/AddLote";
 import AddProduct from "../AddProduct/AddProduct";
@@ -29,7 +29,7 @@ import { useLocation } from "wouter";
 export default function SettingsAdminProducts() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
   const [, navigate] = useLocation();
   const { loading, addMark, addLote, addProduct, addItem } = useAdminProducts();
 
@@ -154,7 +154,6 @@ export default function SettingsAdminProducts() {
             width="45"
             height="45"
           />
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -164,10 +163,8 @@ export default function SettingsAdminProducts() {
               width="32"
               height="32"
             />
-
-            <p>Agregar Marca</p>
+            <p> Agregar Marca </p>{" "}
           </div>
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -177,10 +174,8 @@ export default function SettingsAdminProducts() {
               width="32"
               height="32"
             />
-
-            <p>Agregar Producto</p>
+            <p> Agregar Producto </p>{" "}
           </div>
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -190,10 +185,8 @@ export default function SettingsAdminProducts() {
               width="32"
               height="32"
             />
-
-            <p>Registrar Producto</p>
+            <p> Registrar Producto </p>{" "}
           </div>
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -203,11 +196,10 @@ export default function SettingsAdminProducts() {
               width="32"
               height="32"
             />
-
-            <p>Reportes</p>
-          </div>
-        </div>
-        {showModal && <Modal>{childModal}</Modal>}
+            <p> Reportes </p>{" "}
+          </div>{" "}
+        </div>{" "}
+        {showModal && <Modal> {childModal} </Modal>}{" "}
       </>
     );
   }

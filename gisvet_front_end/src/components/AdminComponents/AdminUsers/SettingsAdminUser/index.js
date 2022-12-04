@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import AdminUser from "../AddUser";
 import AssignDependency from "../../AdminDependencies/AssignDependency";
 import ShowUsersReports from "../ShowUsersReports/ShowUserReports";
@@ -27,7 +27,7 @@ import { useLocation } from "wouter";
 export default function SettingsAdminUser() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
   const [, navigate] = useLocation();
   const { loading, addUser, assignDependency } = useUsersAdmin();
 
@@ -122,7 +122,6 @@ export default function SettingsAdminUser() {
             width="45"
             height="45"
           />
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -132,10 +131,8 @@ export default function SettingsAdminUser() {
               width="45"
               height="45"
             />
-
-            <p>Agregar</p>
+            <p> Agregar </p>{" "}
           </div>
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -145,10 +142,8 @@ export default function SettingsAdminUser() {
               width="45"
               height="45"
             />
-
-            <p>Assignar</p>
+            <p> Assignar </p>{" "}
           </div>
-
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -159,11 +154,10 @@ export default function SettingsAdminUser() {
               width="40"
               height="40"
             />
-
-            <p>Reportes</p>
-          </div>
-        </div>
-        {showModal && <Modal>{childModal}</Modal>}
+            <p> Reportes </p>{" "}
+          </div>{" "}
+        </div>{" "}
+        {showModal && <Modal> {childModal} </Modal>}{" "}
       </>
     );
   }

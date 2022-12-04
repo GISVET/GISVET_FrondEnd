@@ -25,7 +25,7 @@ export default function SettingsAdminDepedencies() {
   const [showModal, setShowModal] = useState(false);
   const [, navigate] = useLocation();
   const { loading, addPatient } = useAdminPatients();
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
 
   const [data, setData] = useState({
     id_clinic_history: "",
@@ -101,9 +101,8 @@ export default function SettingsAdminDepedencies() {
               width="40"
               height="40"
             />
-
-            <p>Agregar</p>
-          </div>
+            <p> Agregar </p>{" "}
+          </div>{" "}
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -113,11 +112,10 @@ export default function SettingsAdminDepedencies() {
               width="40"
               height="40"
             />
-
-            <p>Reportes</p>
-          </div>
-        </div>
-        {showModal && <Modal>{childModal}</Modal>}
+            <p> Reportes </p>{" "}
+          </div>{" "}
+        </div>{" "}
+        {showModal && <Modal> {childModal} </Modal>}{" "}
       </>
     );
   }

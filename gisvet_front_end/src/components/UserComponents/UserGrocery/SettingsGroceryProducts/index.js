@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 //=====Importaciones de React ====
 import React, { useEffect, useState } from "react";
 
@@ -11,7 +12,7 @@ import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import AddMark from "components/AdminComponents/AdminProducts/AddMark/AddMark";
 import AddProduct from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
@@ -23,12 +24,15 @@ import { useLocation } from "wouter";
 //=====Importaciones de hooks ====
 import { useGroceryProducts } from "hooks/UserHooks/useGroceryProducts";
 
-export default function SettingsAdminProducts() {
+export default function SettingsAdminProducts({
+  sendProducts,
+  setSendProducts,
+}) {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
   const [, navigate] = useLocation();
-  const { addMark,addProduct, addItem} = useGroceryProducts();
+  const { addMark, addProduct, addItem } = useGroceryProducts();
 
   const setVisibleMenu = async (event) => {
     event.preventDefault();
@@ -42,7 +46,6 @@ export default function SettingsAdminProducts() {
       <AddMark onClose={handleCloseModal} onSubmit={onsubmitAddMark} />
     );
   };
-
 
   const showAddProduct = async (event) => {
     event.preventDefault();
@@ -60,49 +63,60 @@ export default function SettingsAdminProducts() {
     );
   };
 
+  const ShowEditableTable = (event) => {
+    event.preventDefault();
+    setSendProducts(sendProducts ? false : true);
+  };
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
   const onsubmitAddMark = (dataForm) => {
-    return addMark(dataForm).then(res =>{
-      setchildModal(<MessageConfirm
-          onClose={handleCloseModal} 
-          isCorrect= {res.status == 200?true:false}
-          message= {res.message}
-      />) 
-      return setShowModal(true)
-  })
+    return addMark(dataForm).then((res) => {
+      setchildModal(
+        <MessageConfirm
+          onClose={handleCloseModal}
+          isCorrect={res.status == 200 ? true : false}
+          message={res.message}
+        />
+      );
+      return setShowModal(true);
+    });
   };
 
   const onsubmitAddItem = (dataForm) => {
-    return addItem(dataForm).then(res =>{
-      console.log(res)
-      setchildModal(<MessageConfirm
-          onClose={handleCloseModal} 
-          isCorrect= {res.status == 200?true:false}
-          message= {res.message}
-      />) 
-      return setShowModal(true)
-  })
+    return addItem(dataForm).then((res) => {
+      console.log(res);
+      setchildModal(
+        <MessageConfirm
+          onClose={handleCloseModal}
+          isCorrect={res.status == 200 ? true : false}
+          message={res.message}
+        />
+      );
+      return setShowModal(true);
+    });
   };
 
   const onsubmitAddProduct = (dataForm) => {
-    return addProduct(dataForm).then(res =>{
-      setchildModal(<MessageConfirm
-          onClose={handleCloseModal} 
-          isCorrect= {res.status == 200?true:false}
-          message= {res.message}
-      />) 
-      return setShowModal(true)
-  })
+    return addProduct(dataForm).then((res) => {
+      setchildModal(
+        <MessageConfirm
+          onClose={handleCloseModal}
+          isCorrect={res.status == 200 ? true : false}
+          message={res.message}
+        />
+      );
+      return setShowModal(true);
+    });
   };
-
 
   if (!activeMenu) {
     return (
       <div className={styles.options_admin}>
         <input
+          className={styles.settings_clicked}
           type="image"
           onClick={setVisibleMenu}
           src={icon_Settings}
@@ -116,7 +130,7 @@ export default function SettingsAdminProducts() {
       <>
         <div className={styles.options_admin_visible}>
           <input
-            className={styles.settings_hide}
+            className={styles.settings_show}
             type="image"
             onClick={setVisibleMenu}
             src={icon_Settings}
@@ -134,7 +148,7 @@ export default function SettingsAdminProducts() {
               height="32"
             />
 
-            <p>Agregar Marca</p>
+            <p> Agregar Marca </p>
           </div>
 
           <div className={styles.item_floatMenu}>
@@ -147,7 +161,7 @@ export default function SettingsAdminProducts() {
               height="32"
             />
 
-            <p>Agregar Producto</p>
+            <p> Agregar Producto </p>
           </div>
 
           <div className={styles.item_floatMenu}>
@@ -160,10 +174,23 @@ export default function SettingsAdminProducts() {
               height="32"
             />
 
-            <p>Registrar Producto</p>
+            <p> Registrar Producto </p>
           </div>
-        </div>
-        {showModal && <Modal>{childModal}</Modal>}
+
+          <div className={styles.item_floatMenu}>
+            <input
+              className={styles.add_user_form}
+              type="image"
+              onClick={ShowEditableTable}
+              src={icon_Register_Product}
+              width="32"
+              height="32"
+            />
+
+            <p> Enviar Productos </p>
+          </div>
+        </div>{" "}
+        {showModal && <Modal> {childModal} </Modal>}
       </>
     );
   }

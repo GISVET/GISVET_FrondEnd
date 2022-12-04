@@ -3,17 +3,14 @@ import Table from "components/AdminComponents/AdminDependencies/TableDependencie
 import styles from "./styles.module.css";
 import { useAdminDependencies } from "hooks/AuditorHooks/DependenciesHooks/useAuditorDependencies";
 import { typeDependencies } from "constants/constants";
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import ShowDependency from "components/AdminComponents/AdminDependencies/ShowDependency/ShowDependency";
 
 export default function AuditorDependencies() {
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
 
-  const {
-    dependencies,
-    headers,
-  } = useAdminDependencies();
+  const { dependencies, headers } = useAdminDependencies();
 
   const showUserMenu = async (id_dependencie) => {
     setShowModal(true);
@@ -40,9 +37,9 @@ export default function AuditorDependencies() {
           data={dependencies}
           keyName={"id_dependencie"}
           actionItem={showUserMenu}
-        />
-      </div>
-      {showModal && <Modal>{childModal}</Modal>}
+        />{" "}
+      </div>{" "}
+      {showModal && <Modal> {childModal} </Modal>}{" "}
     </>
   );
 }

@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 import Table from "../TableProducts/TableProducts";
 import SettingsAdminProducts from "../SettingsAdminProducts/SettingsAdminProducts";
 import ShowProducts from "../ShowProducts/ShowProducts";
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 
 //=====Importaciones de hooks ====
 import { useAdminProducts } from "hooks/AdminHooks/ProductsHooks/useAdminProducts";
@@ -16,7 +16,7 @@ import { useAdminProducts } from "hooks/AdminHooks/ProductsHooks/useAdminProduct
 export default function AdminProducts() {
   const { products, headers, askProductName } = useAdminProducts();
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
 
   const showProductsMenu = async (data) => {
     setShowModal(true);
@@ -41,10 +41,10 @@ export default function AdminProducts() {
           data={products}
           keyName={"id_product"}
           actionItem={showProductsMenu}
-        />
+        />{" "}
         <SettingsAdminProducts />
-      </div>
-      {showModal && <Modal>{childModal}</Modal>}
+      </div>{" "}
+      {showModal && <Modal> {childModal} </Modal>}{" "}
     </>
   );
 }

@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "../TableUsers/TableUsers";
 import SettingsAdminUser from "../SettingsAdminUser/index";
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import ShowUser from "../ShowUser";
 
 //=====Importaciones de hooks ====
@@ -30,7 +30,7 @@ export default function AdminUsers() {
   } = useUsersAdmin();
 
   const [showModal, setShowModal] = useState(false);
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<> </>);
   const [orderBy, setOrderBy] = useState();
 
   const showUserMenu = async (identifier) => {
@@ -60,10 +60,10 @@ export default function AdminUsers() {
           data={listUserToTable}
           keyName={"document"}
           actionItem={showUserMenu}
-        />
+        />{" "}
         <SettingsAdminUser />
-      </div>
-      {showModal && <Modal>{childModal}</Modal>}
+      </div>{" "}
+      {showModal && <Modal> {childModal} </Modal>}{" "}
     </>
   );
 }
