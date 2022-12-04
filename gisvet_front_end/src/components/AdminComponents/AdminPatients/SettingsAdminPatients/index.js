@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "components/GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal";
 import AddPatient from "../AddPatient";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
