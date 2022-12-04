@@ -16,7 +16,7 @@ import { Menubar } from "primereact/menubar";
 import MenuUser from "../UserOptions/index";
 
 //=====Importaciones de hooks ====
-import useUser from "../../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de enrutamiento ====
 import {useLocation } from "wouter"

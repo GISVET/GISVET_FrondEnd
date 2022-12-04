@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import Icon_Username from  "./images/Icon_Username_Option.png"
 
 //=====Importaciones de hooks ====
-import useUser from "../../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de componentes de PrimeReact ====
 import { Menu } from 'primereact/menu';

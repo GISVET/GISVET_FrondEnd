@@ -1,5 +1,5 @@
 //=====Importaciones de reac====  
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 
 //=====Importaciones de enrutamiento====  
 import { useLocation } from "wouter";
@@ -11,20 +11,19 @@ import styles from "./styles.module.css";
 import logo from "../.././images/Proyecto_Logo_GisVet.png";
 
 //=====Importaciones de los hooks====  
-import useUser from "../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de constantes====  
 import { loginErrorMessage } from "constants/constants";
 
-function login() {
+function Login() {
   const [, navigate] = useLocation();
-  const { login, islogged, role, IdUser, dependencieActive, errorMessage } =
-    useUser();
+  const { login, islogged, role, IdUser, dependencieActive, errorMessage } = useUser();
 
   const [data, setData] = useState({
-    username: "",
-    password: "",
-  });
+                                      username: "",
+                                      password: "",
+                                    });
 
   const className =
     errorMessage !== "" || errorMessage == undefined
@@ -128,4 +127,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

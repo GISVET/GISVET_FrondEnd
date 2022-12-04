@@ -2,11 +2,11 @@
 import { useContext, useCallback, useState, useEffect } from "react";
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
+import userContext from "context/UserContext/UserContext";
 
 
 //=====Importaciones de servicios ====
-import getPatientById from "../../../services/AdminServices/PatientsServices/getPatientById";
+import getPatientById from "services/AdminServices/PatientsServices/getPatientById";
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";

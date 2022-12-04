@@ -6,15 +6,15 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailPatient/TableDetailPatient";
-import MessageConfirm from "../../../GeneralComponents/MessageConfirm";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de componentes PrimeReact ====
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "../../../../hooks/AdminHooks/GeneralHooks/useRoles";
-import { useAdminOnePatient } from "../../../../hooks/AdminHooks/PatientsHooks/useAdminOnePatient";
+import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
+import { useAdminOnePatient } from "hooks/AdminHooks/PatientsHooks/useAdminOnePatient";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";

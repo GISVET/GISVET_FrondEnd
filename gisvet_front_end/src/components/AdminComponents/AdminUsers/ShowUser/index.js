@@ -9,9 +9,8 @@ import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "../../../../hooks/AdminHooks/GeneralHooks/useRoles";
-import { useAdminOneUser } from "../../../../hooks/AdminHooks/UsersHooks/useAdminOneUser";
-
+import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
+import { useAdminOneUser } from "hooks/AdminHooks/UsersHooks/useAdminOneUser";
 
 //=====Importaciones de imagenes ====
 import icon_User_settings from "./images/Icon_settings.png";
@@ -26,7 +25,7 @@ export default function ShowUser({ id, onClose }) {
     roles,
     dependencies,
     dependeciesToTable,
-    useUpdateUser,
+    updateUser,
   } = useAdminOneUser(id);
 
   const { loading, listRoles } = useRolesList();
@@ -59,7 +58,7 @@ export default function ShowUser({ id, onClose }) {
   const doSubmit = (event) => {
     event.preventDefault();
     if (isMatchPassword && !isDisable) {
-      useUpdateUser(user, data).then((res) => {
+      updateUser(user, data).then((res) => {
         setShowModal(true);
         setchildModal(
           <MessageConfirm

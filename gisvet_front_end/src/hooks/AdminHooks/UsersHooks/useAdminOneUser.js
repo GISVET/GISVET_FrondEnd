@@ -2,21 +2,21 @@
 import { useContext, useCallback, useState ,useEffect } from "react"
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
-import adminProductsContext from "../../../context/AdminContext/AdminProductsContext";
-import adminUserContext from "../../../context/AdminContext/AdminUserContext"
+import userContext from "context/UserContext/UserContext";
+import adminProductsContext from "context/AdminContext/AdminProductsContext";
+import adminUserContext from "context/AdminContext/AdminUserContext"
 
 //=====Importaciones de servicios ====
-import getUsersByDocument from "../../../services/AdminServices/UsersServices/getUserByDocument"
-import updateUser from "../../../services/AdminServices/UsersServices/updateUser"
-import registerUser from "../../../services/LoginServices/registerAccount"
+import getUsersByDocument from "services/AdminServices/UsersServices/getUserByDocument"
+import updateUser from "services/AdminServices/UsersServices/updateUser"
+import registerUser from "services/LoginServices/registerAccount"
 
 //=====Importaciones de constantes ====
 import { dependenciesByUser } from "constants/headersTables";
 import { typeDependencies } from "constants/constants";
 
 //=====Importaciones de hooks ====
-import {useRolesList} from "../../../hooks/AdminHooks/GeneralHooks/useRoles"
+import {useRolesList} from "hooks/AdminHooks/GeneralHooks/useRoles"
 
 
 const cleanFormat= function(data){
@@ -106,7 +106,7 @@ export function useAdminOneUser(document) {
        return dependenciesAux
     }
 
-    const useUpdateUser = useCallback((userToData,{full_name,
+    const updateUser = useCallback(async (userToData,{full_name,
                                     document_type,
                                     document,
                                     email,
@@ -127,32 +127,31 @@ export function useAdminOneUser(document) {
                 "password_account": password,
                 "id_person":parseInt(userToData.ID_PERSON)
             }
-            return updateUser({jwt,data:userAux})
-                .then(res => {
-                    if(res.message === ''){
-                        setLoading(false)
-                    }else{
-                        setLoading(false)
-                        isUpdateUsers(true)
+            try {
+            const res = await updateUser({ jwt, data: userAux });
+            if (res.message === '') {
+                setLoading(false);
+            } else {
+                setLoading(false);
+                isUpdateUsers(true);
+            }
+            registerUser({ jwt, userAccount })
+                .then(resAC => {
+                    if (resAC.message === '') {
+                        setLoading(false);
+                    } else {
+                        setLoading(false);
+                        getUserById(document);
+                        isUpdateUsers(true);
                     }
-                    registerUser({jwt,userAccount})
-                        .then(resAC => {
-                            if(resAC.message === ''){
-                                setLoading(false)
-                            }else{
-                                setLoading(false)
-                                getUserById(document)
-                                isUpdateUsers(true)
-                            }
-                        })
-                        .catch(err => {
-                            console.error(err)
-                        })
-                    return res
                 })
                 .catch(err => {
-                    console.error(err)
-                })
+                    console.error(err);
+                });
+            return res;
+        } catch (err_1) {
+            console.error(err_1);
+        }
             
             }, [setLoading])
 
@@ -161,7 +160,7 @@ export function useAdminOneUser(document) {
        user,
        headersDependencies: dependenciesByUser,
        roles,
-       useUpdateUser,
+       updateUser,
        getUserById,
        dependencies,
        dependeciesToTable

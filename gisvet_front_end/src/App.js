@@ -8,7 +8,7 @@ import "./App.css";
 import { Route, Router, Switch } from "wouter";
 
 //=====Importaciones del login====
-import login from "./pages/Login/login";
+import Login from "./pages/Login/login";
 
 //=====Importaciones del context general====
 import { UserContextProvider } from "./context/UserContext/UserContext";
@@ -41,7 +41,6 @@ import AuditorDependencies from "components/AuditorComponents/AuditorDependencie
 import Error from "pages/Error/Error";
 
 //=====Importaciones de PrimeReact====
-import { StyleClass } from "primereact/styleclass";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
@@ -71,7 +70,7 @@ function App() {
               <AuditorDependencyContextProvider>
                 <div className="App">
                   <Switch>
-                    <Route component={login} path="/" />
+                    <Route component={Login} path="/" />
                     <Route path="/test">
                       <User>
                         <AdminDependencies />

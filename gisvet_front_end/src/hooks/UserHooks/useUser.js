@@ -1,12 +1,12 @@
 //=====Importaciones de React ====
-import { useCallback, useContext, useState, useEffect } from "react"
+import React,{ useCallback, useContext, useState, useEffect } from "react"
 
 //=====Importaciones de contextos ====
-import userContext from "../../context/UserContext/UserContext";
+import userContext from "context/UserContext/UserContext";
 
 //=====Importaciones de servicios ====
-import loginServices from "../../services/LoginServices/login"
-import changeRolService from "../../services/AdminServices/UsersServices/changeRol"
+import loginServices from "services/LoginServices/login"
+import changeRolService from "services/AdminServices/UsersServices/changeRol"
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";

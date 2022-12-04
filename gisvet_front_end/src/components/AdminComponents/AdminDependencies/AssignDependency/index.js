@@ -5,8 +5,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de hooks ====
-import { useAdminDependencies } from "../../../../hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
-import { useUsersAdmin } from "../../../../hooks/AdminHooks/UsersHooks/useAdminUsers";
+import { useAdminDependencies } from "hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
+import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
 
 //=====Importaciones de imagenes ====
 import Icon_pase_seguridad from "./images/Icon_pase_seg.png";

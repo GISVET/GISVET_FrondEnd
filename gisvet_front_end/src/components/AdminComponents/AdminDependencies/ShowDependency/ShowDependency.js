@@ -8,8 +8,8 @@ import styles from "./styles.module.css";
 import icon_dependencie_settings from "./images/icon_show_dep.png";
 
 //===== Importaciones de hooks ====
-import { useRolesList } from "../../../../hooks/AdminHooks/GeneralHooks/useRoles";
-import { useAdminOneDependency } from "../../../../hooks/AdminHooks/DependenciesHooks/useAdminOneDependency";
+import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
+import { useAdminOneDependency } from "hooks/AdminHooks/DependenciesHooks/useAdminOneDependency";
 
 //===== Importaciones de constantes ====
 import { typeDependencies, gender, role } from "constants/constants";
