@@ -8,13 +8,13 @@ import styles from "./styles.module.css";
 import Table from "../TableDetailProducts/TableDetailProducts";
 
 //=====Importaciones de hooks ====
-import { useAdminOneProduct } from "../../../../hooks/AdminHooks/ProductsHooks/useAdminOneProduct";
+import { useAdminOneProduct } from "hooks/AdminHooks/ProductsHooks/useAdminOneProduct";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";
 
 //=====Importaciones de constantes ====
-import { presentations } from "../../../../constants/constants";
+import { presentations } from "constants/constants";
 
 export default function ShowProducts({ dataProduct, onClose }) {
   const presentation = presentations.find(

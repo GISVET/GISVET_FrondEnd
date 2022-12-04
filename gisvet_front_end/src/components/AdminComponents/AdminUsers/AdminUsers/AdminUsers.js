@@ -7,11 +7,11 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "../TableUsers/TableUsers";
 import SettingsAdminUser from "../SettingsAdminUser/index";
-import { Modal } from "../../../GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal/Index";
 import ShowUser from "../ShowUser";
 
 //=====Importaciones de hooks ====
-import { useUsersAdmin } from "../../../../hooks/AdminHooks/UsersHooks/useAdminUsers";
+import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
 
 //=====Importaciones de imagenes ====
 import icon_Filter from "./images/Icon_Filter.png";

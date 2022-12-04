@@ -11,9 +11,9 @@ import SettingsProducts from "../SettingsGroceryProducts";
 //=====Importaciones de componentes de PrimeReact ====
 
 //=====Importaciones de hooks ====
-import { useProductsDependencie } from "../../../../hooks/UserHooks/useProductsDependencie";
-import useUser from "../../../../hooks/UserHooks/useUser";
-import { useGroceryProducts } from "../../../../hooks/UserHooks/useGroceryProducts";
+import { useProductsDependencie } from "hooks/UserHooks/useProductsDependencie";
+import useUser from "hooks/UserHooks/useUser";
+import { useGroceryProducts } from "hooks/UserHooks/useGroceryProducts";
 
 
 

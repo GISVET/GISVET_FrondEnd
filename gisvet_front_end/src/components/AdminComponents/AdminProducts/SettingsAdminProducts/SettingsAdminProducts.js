@@ -5,15 +5,15 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "../../../GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal/Index";
 import AddMark from "../AddMark/AddMark";
 import AddLote from "../AddLote/AddLote";
 import AddProduct from "../AddProduct/AddProduct";
-import MessageConfirm from "../../../GeneralComponents/MessageConfirm";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 import AddItemProduct from "../AddItemProduct";
 
 //=====Importaciones de hooks ====
-import { useAdminProducts } from "../../../../hooks/AdminHooks/ProductsHooks/useAdminProducts";
+import { useAdminProducts } from "hooks/AdminHooks/ProductsHooks/useAdminProducts";
 
 //=====Importaciones de imagenes ====
 import icon_Settings from "./images/Icon_Settings.png";

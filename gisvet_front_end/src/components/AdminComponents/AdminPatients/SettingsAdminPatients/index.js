@@ -5,12 +5,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "../../../GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal/Index";
 import AddPatient from "../AddPatient";
-import MessageConfirm from "../../../GeneralComponents/MessageConfirm";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useAdminPatients } from "../../../../hooks/AdminHooks/PatientsHooks/useAdminPatients";
+import { useAdminPatients } from "hooks/AdminHooks/PatientsHooks/useAdminPatients";
 
 //=====Importaciones de imagenes ====
 import icon_Settings from "./images/Icon_Settings.png";

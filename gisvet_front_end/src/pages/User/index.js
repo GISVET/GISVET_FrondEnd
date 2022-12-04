@@ -2,14 +2,14 @@
 import React,{useState, useEffect} from "react";
 
 //=====Importaciones de componentes ====
-import Header from "../../components/UserComponents/HeaderUser/header";
-import ProductsGrocery from "../../components/UserComponents/UserGrocery/ProductsGrocery";
+import Header from "components/UserComponents/HeaderUser/header";
+import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGrocery";
 
 //=====Importaciones de estilos ====
 import styles from './styles.module.css';
 
 //=====Importaciones de hooks ====
-import useUser from "../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";

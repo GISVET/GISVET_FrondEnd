@@ -8,10 +8,10 @@ import styles from "./styles.module.css";
 import Table from "../TableProducts/TableProducts";
 import SettingsAdminProducts from "../SettingsAdminProducts/SettingsAdminProducts";
 import ShowProducts from "../ShowProducts/ShowProducts";
-import { Modal } from "../../../GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal/Index";
 
 //=====Importaciones de hooks ====
-import { useAdminProducts } from "../../../../hooks/AdminHooks/ProductsHooks/useAdminProducts";
+import { useAdminProducts } from "hooks/AdminHooks/ProductsHooks/useAdminProducts";
 
 export default function AdminProducts() {
   const { products, headers, askProductName } = useAdminProducts();

@@ -2,13 +2,13 @@
 import { useContext, useState, useEffect } from "react";
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
+import userContext from "context/UserContext/UserContext";
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";
 
 //=====Importaciones de servicios ====
-import getProductDetail from "../../../services/AdminServices/ProductsServices/getProductDetail";
+import getProductDetail from "services/AdminServices/ProductsServices/getProductDetail";
 
 export function useAdminOneProduct(id_product, presentation) {
   const { jwt } = useContext(userContext);

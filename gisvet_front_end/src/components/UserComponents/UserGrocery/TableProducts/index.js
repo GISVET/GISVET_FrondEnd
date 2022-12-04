@@ -12,7 +12,7 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 
 //=====Importaciones de hooks ====
-import useUser from "../../../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de constantes ====
 import {presentations, measurement_units, type_product } from "constants/constants"

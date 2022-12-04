@@ -9,8 +9,8 @@ import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "../../../../hooks/AdminHooks/GeneralHooks/useRoles";
-import { useAdminOneUser } from "../../../../hooks/AdminHooks/UsersHooks/useAdminOneUser";
+import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
+import { useAdminOneUser } from "hooks/AdminHooks/UsersHooks/useAdminOneUser";
 
 
 //=====Importaciones de imagenes ====

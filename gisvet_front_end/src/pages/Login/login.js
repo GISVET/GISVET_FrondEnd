@@ -1,5 +1,5 @@
 //=====Importaciones de reac====  
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 
 //=====Importaciones de enrutamiento====  
 import { useLocation } from "wouter";
@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 import logo from "../.././images/Proyecto_Logo_GisVet.png";
 
 //=====Importaciones de los hooks====  
-import useUser from "../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de constantes====  
 import { loginErrorMessage } from "constants/constants";

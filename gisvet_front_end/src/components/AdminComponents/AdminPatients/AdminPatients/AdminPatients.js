@@ -16,7 +16,7 @@ import SettingsAdminPatients from "components/AdminComponents/AdminPatients/Sett
 import ShowPatient from "components/AdminComponents/AdminPatients/ShowPatient/ShowPatient";
 
 //=====Importaciones de hooks ====
-import { useAdminPatients } from "../../../../hooks/AdminHooks/PatientsHooks/useAdminPatients";
+import { useAdminPatients } from "hooks/AdminHooks/PatientsHooks/useAdminPatients";
 
 //=====Importaciones de constantes ====
 import { filterPatients } from "constants/constants";

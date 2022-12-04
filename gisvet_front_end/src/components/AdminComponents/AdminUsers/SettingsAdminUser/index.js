@@ -5,15 +5,15 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "../../../GeneralComponents/Modal/Index";
+import { Modal } from "components/GeneralComponents/Modal/Index";
 import AdminUser from "../AddUser";
 import AssignDependency from "../../AdminDependencies/AssignDependency";
 import ShowUsersReports from "../ShowUsersReports/ShowUserReports";
-import MessageConfirm from "../../../GeneralComponents/MessageConfirm";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useUsersAdmin } from "../../../../hooks/AdminHooks/UsersHooks/useAdminUsers";
-import { useAdminOneUser } from "../../../../hooks/AdminHooks/UsersHooks/useAdminOneUser";
+import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
+import { useAdminOneUser } from "hooks/AdminHooks/UsersHooks/useAdminOneUser";
 
 //=====Importaciones de imagenes ====
 import icon_Settings from "./images/Icon_Settings.png";

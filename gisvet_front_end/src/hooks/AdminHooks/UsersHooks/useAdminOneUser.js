@@ -2,21 +2,21 @@
 import { useContext, useCallback, useState ,useEffect } from "react"
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
-import adminProductsContext from "../../../context/AdminContext/AdminProductsContext";
-import adminUserContext from "../../../context/AdminContext/AdminUserContext"
+import userContext from "context/UserContext/UserContext";
+import adminProductsContext from "context/AdminContext/AdminProductsContext";
+import adminUserContext from "context/AdminContext/AdminUserContext"
 
 //=====Importaciones de servicios ====
-import getUsersByDocument from "../../../services/AdminServices/UsersServices/getUserByDocument"
-import updateUser from "../../../services/AdminServices/UsersServices/updateUser"
-import registerUser from "../../../services/LoginServices/registerAccount"
+import getUsersByDocument from "services/AdminServices/UsersServices/getUserByDocument"
+import updateUser from "services/AdminServices/UsersServices/updateUser"
+import registerUser from "services/LoginServices/registerAccount"
 
 //=====Importaciones de constantes ====
 import { dependenciesByUser } from "constants/headersTables";
 import { typeDependencies } from "constants/constants";
 
 //=====Importaciones de hooks ====
-import {useRolesList} from "../../../hooks/AdminHooks/GeneralHooks/useRoles"
+import {useRolesList} from "hooks/AdminHooks/GeneralHooks/useRoles"
 
 
 const cleanFormat= function(data){

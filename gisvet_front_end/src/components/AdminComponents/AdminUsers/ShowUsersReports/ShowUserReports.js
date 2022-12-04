@@ -15,7 +15,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 //=====Importaciones de hooks ====
-import { useUsersAdmin } from "../../../../hooks/AdminHooks/UsersHooks/useAdminUsers";
+import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";

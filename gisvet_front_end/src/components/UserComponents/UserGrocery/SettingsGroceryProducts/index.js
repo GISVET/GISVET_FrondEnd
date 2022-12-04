@@ -11,17 +11,17 @@ import icon_Add_Mark from "./images/Icon_Mark.png";
 import icon_Register_Product from "./images/Icon_Register_Product.png";
 
 //=====Importaciones de componentes generales ====
-import { Modal } from "../../../../components/GeneralComponents/Modal/Index";
-import AddMark from "../../../AdminComponents/AdminProducts/AddMark/AddMark";
-import AddProduct from "../../../AdminComponents/AdminProducts/AddProduct/AddProduct";
-import MessageConfirm from "../../../../components/GeneralComponents/MessageConfirm";
-import AddItemProduct from "../../../AdminComponents/AdminProducts/AddItemProduct";
+import { Modal } from "components/GeneralComponents/Modal/Index";
+import AddMark from "components/AdminComponents/AdminProducts/AddMark/AddMark";
+import AddProduct from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import AddItemProduct from "components/AdminComponents/AdminProducts/AddItemProduct";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
 
 //=====Importaciones de hooks ====
-import { useGroceryProducts } from "../../../../hooks/UserHooks/useGroceryProducts";
+import { useGroceryProducts } from "hooks/UserHooks/useGroceryProducts";
 
 export default function SettingsAdminProducts() {
   const [activeMenu, setActiveMenu] = useState(false);

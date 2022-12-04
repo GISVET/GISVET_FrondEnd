@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Table from "../../../AdminComponents/AdminDependencies/TableDependencies/TableDependencies";
+import Table from "components/AdminComponents/AdminDependencies/TableDependencies/TableDependencies";
 import styles from "./styles.module.css";
-import { useAdminDependencies } from "../../../../hooks/AuditorHooks/DependenciesHooks/useAuditorDependencies";
-import { typeDependencies } from "../../../../constants/constants";
-import { Modal } from "../../../GeneralComponents/Modal/Index";
-import ShowDependency from "../../../AdminComponents/AdminDependencies/ShowDependency/ShowDependency";
+import { useAdminDependencies } from "hooks/AuditorHooks/DependenciesHooks/useAuditorDependencies";
+import { typeDependencies } from "constants/constants";
+import { Modal } from "components/GeneralComponents/Modal/Index";
+import ShowDependency from "components/AdminComponents/AdminDependencies/ShowDependency/ShowDependency";
 
 export default function AuditorDependencies() {
   const [showModal, setShowModal] = useState(false);
