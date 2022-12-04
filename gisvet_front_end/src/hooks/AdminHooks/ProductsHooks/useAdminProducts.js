@@ -2,17 +2,17 @@
 import { useContext, useCallback, useState } from "react";
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
-import adminProductsContext from "../../../context/AdminContext/AdminProductsContext";
+import userContext from "context/UserContext/UserContext";
+import adminProductsContext from "context/AdminContext/AdminProductsContext";
 
 //=====Importaciones de constantes ====
 import { productsAdmin } from "constants/headersTables";
 
 //=====Importaciones de servicios ====
-import addNewMark from "../../../services/AdminServices/ProductsServices/addNewMark";
-import addNewLote from "../../../services/AdminServices/ProductsServices/addNewLote";
-import addNewProduct from "../../../services/AdminServices/ProductsServices/addNewProduct";
-import addNewItem from "../../../services/AdminServices/ProductsServices/addNewItem";
+import addNewMark from "services/AdminServices/ProductsServices/addNewMark";
+import addNewLote from "services/AdminServices/ProductsServices/addNewLote";
+import addNewProduct from "services/AdminServices/ProductsServices/addNewProduct";
+import addNewItem from "services/AdminServices/ProductsServices/addNewItem";
 
 export function useAdminProducts() {
   const { jwt } = useContext(userContext);

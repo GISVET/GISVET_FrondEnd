@@ -9,7 +9,7 @@ import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGroce
 import styles from './styles.module.css';
 
 //=====Importaciones de hooks ====
-import useUser from "../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";

@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 import icon_User_Form from "./images/Icon_Add_User_Form.png"
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "../../../../hooks/AdminHooks/GeneralHooks/useRoles";
+import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
 
 //=====Importaciones de constantes ====
 import { typeDoc, gender } from "constants/constants";

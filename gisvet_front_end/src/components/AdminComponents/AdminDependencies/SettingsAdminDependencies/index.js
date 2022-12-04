@@ -20,7 +20,7 @@ import AddDependency from "../AddDependency";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useAdminDependencies } from "../../../../hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
+import { useAdminDependencies } from "hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
 
 export default function SettingsAdminDepedencies() {
     const [activeMenu, setActiveMenu] = useState(false);

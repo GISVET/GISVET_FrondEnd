@@ -2,12 +2,12 @@
 import { useContext, useCallback, useState } from "react";
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
-import adminDependencyContext from "../../../context/AdminContext/AdminDependencyContext";
+import userContext from "context/UserContext/UserContext";
+import adminDependencyContext from "context/AdminContext/AdminDependencyContext";
 
 //=====Importaciones de servicios ====
-import addNewDependency from "../../../services/AdminServices/DependenciesServices/addNewDependency";
-import getDependencyDetails from "../../../services/AdminServices/DependenciesServices/getDependencyDetail";
+import addNewDependency from "services/AdminServices/DependenciesServices/addNewDependency";
+import getDependencyDetails from "services/AdminServices/DependenciesServices/getDependencyDetail";
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";

@@ -3,10 +3,10 @@
 import { useContext, useEffect, useState } from "react"
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
+import userContext from "context/UserContext/UserContext";
 
 //=====Importaciones de servicios ====
-import getRolesList from "../../../services/AdminServices/UsersServices/getRolesList"
+import getRolesList from "services/AdminServices/UsersServices/getRolesList"
 
 export function useRolesList() {
     const {jwt} = useContext(userContext)

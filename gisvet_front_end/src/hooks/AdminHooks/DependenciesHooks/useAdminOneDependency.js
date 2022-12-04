@@ -2,12 +2,12 @@
 import { useContext, useCallback, useState, useEffect } from "react";
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
+import userContext from "context/UserContext/UserContext";
 
 
 //=====Importaciones de servicios ====
-import getDependencyDetails from "../../../services/AdminServices/DependenciesServices/getDependencyDetail";
-import updateDependency from "../../../services/AdminServices/DependenciesServices/updateDependency";
+import getDependencyDetails from "services/AdminServices/DependenciesServices/getDependencyDetail";
+import updateDependency from "services/AdminServices/DependenciesServices/updateDependency";
 
 //=====Importaciones de constantes ====
 import { gender } from "constants/constants";

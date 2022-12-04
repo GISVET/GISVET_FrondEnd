@@ -1,5 +1,5 @@
 //=====Importaciones de reac====  
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 
 //=====Importaciones de enrutamiento====  
 import { useLocation } from "wouter";

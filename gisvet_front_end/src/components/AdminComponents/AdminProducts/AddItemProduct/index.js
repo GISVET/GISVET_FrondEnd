@@ -8,7 +8,7 @@ import styles from "./styles.module.css";
 import adminProductsContext from "context/AdminContext/AdminProductsContext";
 
 //=====Importaciones de hooks ====
-import { useAdminDependencies } from "../../../../hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
+import { useAdminDependencies } from "hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
 
 //=====Importaciones de imagenes ====
 import icon_User_Form from "./images/Icon_Add_User_Form.png";

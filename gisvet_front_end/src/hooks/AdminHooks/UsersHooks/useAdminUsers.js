@@ -2,14 +2,14 @@
 import { useContext, useCallback, useState } from "react"
 
 //=====Importaciones de contextos ====
-import userContext from "../../../context/UserContext/UserContext";
-import adminUserContext from "../../../context/AdminContext/AdminUserContext"
+import userContext from "context/UserContext/UserContext";
+import adminUserContext from "context/AdminContext/AdminUserContext"
 
 //=====Importaciones de servicios ====
-import addNewUser from "../../../services/AdminServices/UsersServices/addNewUser"
-import getUsersByDocument from "../../../services/AdminServices/UsersServices/getUserByDocument"
-import getUsersListName from "../../../services/AdminServices/UsersServices/getUserListName"
-import assignDependecieUser from "../../../services/AdminServices/DependenciesServices/assignDependecieUser"
+import addNewUser from "services/AdminServices/UsersServices/addNewUser"
+import getUsersByDocument from "services/AdminServices/UsersServices/getUserByDocument"
+import getUsersListName from "services/AdminServices/UsersServices/getUserListName"
+import assignDependecieUser from "services/AdminServices/DependenciesServices/assignDependecieUser"
 
 //=====Importaciones de constantes ====
 import { usersAdmin } from "constants/headersTables";
