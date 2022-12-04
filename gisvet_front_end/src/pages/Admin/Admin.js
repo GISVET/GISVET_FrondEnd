@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from "react";
-import Header from "../../components/HeaderAdmin/header";
-import Table from "../../components/Table/Table";
-import './styles.css';
-import icon_Search from  "./images/Icon_Search.png"
-import icon_Filter from "./images/Icon_Filter.png"
-import SettingsAdminUser from "../../components/SettingsAdminUser/index";
-import {useUsersAdmin} from "../../hooks/useAdminUsers";
+//=====Importaciones de React ====
+import React,{useState, useEffect} from "react";
 
+//=====Importaciones de componentes ====
+import Header from "../../components/AdminComponents/HeaderAdmin/header";
+
+//=====Importaciones de estilos ====
+import styles from './styles.module.css';
+
+//=====Importaciones de hooks ====
+import useUser from "../../hooks/UserHooks/useUser";
 
 
 export default function Admin( {children}){
-    const {body, setBody} = useState()
+    const [isAuthorized, setIsAuthorized] = useState(false)
+    const {islogged,role} = useUser()
 
-    return (
-        <div className="general-admin">
+    useEffect(()=>{
+        if(islogged && role === 'Administrador'){
+            setIsAuthorized(true)
+        }else{
+            setIsAuthorized(false)
+        }
+
+
+    },[islogged, role])
+
+
+    return (isAuthorized? 
+        <div className={styles.general_admin}>
             <Header />
             {children}
         </div>
+        :
+        <>
+            <h3>Ubicación no disponible</h3>
+        </>
     )
 
 }

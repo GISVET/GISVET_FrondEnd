@@ -26,6 +26,14 @@ export const gender = [
         'name': "Femenino"
     },
     {
+        'id':"B",
+        'name': "No Binario"
+    },
+    {
+        'id':"P",
+        'name': "Prefiero no decirlo"
+    },
+    {
         'id':"O",
         'name': "Otro"
     }
@@ -39,6 +47,17 @@ export const filterPatients = [
     {
         'id':"ZA",
         'name': "Nombre descendente (Z-A)"
+    }
+]
+
+export const filtersAscDesc = [
+    {
+        'id':"AZ",
+        'name': "asc"
+    },
+    {
+        'id':"ZA",
+        'name': "desc"
     }
 ]
 
@@ -96,4 +115,110 @@ export const role = [
         'name': "Rol no asignado"
     }
 ]
+
+export const type_product = [
+    {
+        'id':'L',
+        'name': "Laboratorio"
+    },
+    {
+        'id':'A',
+        'name': "Elementos de Aseo"
+    },
+    {
+        'id':'H',
+        'name': "Elementos Hospitalarios"
+    },
+    {
+        'id':'G',
+        'name': "Elementos Generales"
+    },
+    {
+        'id':'M',
+        'name': "Medicamentos Generales"
+    },
+    {
+        'id':'Q',
+        'name': "Médico - Quirurjicos"
+    }
+]
+
+export const measurement_units = [
+    {
+        'id':'UN',
+        'name': "Unidad"
+    },
+    {
+        'id':'ML',
+        'name': "Mililitros"
+    },
+    {
+        'id':'LB',
+        'name': "Libra"
+    },
+    {
+        'id':'OZ',
+        'name': "Onzas"
+    },
+    {
+        'id':'KG',
+        'name': "Kilogramo"
+    },
+    {
+        'id':'GR',
+        'name': "Gramos"
+    },
+    {
+        'id':'GL',
+        'name': "Galón"
+    }
+]
+
+export const presentations = [
+    {
+        'id':'U',
+        'name': "Unidad"
+    },
+    {
+        'id':'C',
+        'name': "Caja"
+    },
+    {
+        'id':'P',
+        'name': "Paquete"
+    },
+    {
+        'id':'A',
+        'name': "Ampolla"
+    },
+    {
+        'id':'F',
+        'name': "Frasco"
+    },
+    {
+        'id':'ML',
+        'name': "Mililitros"
+    },
+    {
+        'id':'LB',
+        'name': "Libra"
+    },
+    {
+        'id':'OZ',
+        'name': "Onzas"
+    },
+    {
+        'id':'KG',
+        'name': "Kilogramo"
+    },
+    {
+        'id':'GR',
+        'name': "Gramos"
+    },
+    {
+        'id':'GL',
+        'name': "Galón"
+    }
+]
+
 export const loginErrorMessage = "Usuario o contraseña incorrectos por favor verifique nuevamente";

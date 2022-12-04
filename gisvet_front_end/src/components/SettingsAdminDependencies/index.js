@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import './styles.css';
+import styles from './styles.module.css';
 import icon_Settings from "./images/Icon_Settings.png"
 import icon_Add_Dependency from "./images/Icon_Add_Dependency.png"
-import { Modal } from "../Modal/Index"; 
-import AddDependency from "../AddDependency";
+import { Modal } from "components/Modal"; 
+import AddDependency from "components/AddDependency";
+import icon_reports from "./images/Icon_Reports.png"
 import {useLocation } from "wouter"
-import {useAdminDependencies} from "../../hooks/useAdminDependencies";
+import {useAdminDependencies} from "hooks/useAdminDependencies";
+import MessageConfirm from "components/MessageConfirm";
 
 
 export default function SettingsAdminDepedencies(){
@@ -13,6 +15,7 @@ export default function SettingsAdminDepedencies(){
     const [showModal, setShowModal] = useState(false)
     const [,navigate] = useLocation()
     const {loading,addDependency} = useAdminDependencies()
+    const [childModal, setchildModal] = useState(<></>)
     
     const setVisibleMenu = async(event) =>{
         event.preventDefault();
@@ -21,6 +24,10 @@ export default function SettingsAdminDepedencies(){
 
     const showAddDependencyMenu = async(event) =>{
         event.preventDefault();
+        setchildModal(<AddDependency
+            onClose={handleCloseModal} 
+            onSubmit={onsubmit} 
+           />)
         return setShowModal(true)
     }
 
@@ -29,25 +36,61 @@ export default function SettingsAdminDepedencies(){
     }
 
     const onsubmit = (data)=>{
-        addDependency(data)
-        setShowModal(false)
+       return addDependency(data).then(res =>{
+            setchildModal(<MessageConfirm
+                onClose={handleCloseModal} 
+                isCorrect= {res.status == 200?true:false}
+                message= {res.message}
+            />) 
+            return setShowModal(true)
+        })
     }
 
     if (!activeMenu) {
-        return (<div className="options-admin" >
-                    <input type="image"  onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                </div>
-        )
+        return (<div className={styles.options_admin} >
+            <input type="image"  
+                    onClick={setVisibleMenu} 
+                    src={icon_Settings} 
+                    width="45"
+                    height="45"/>
+        </div>
+)
     }else{
         return (<>
-                    <div className="options-admin-visible" >
-                        <input className="settings-hide" type="image" onClick={setVisibleMenu} src={icon_Settings} width="45" height="45"/>
-                        <input className="add_user_form" type="image" onClick={showAddDependencyMenu} src={icon_Add_Dependency} width="40" height="50"/>
+                    <div className={styles.options_admin_visible} >
+                        
+                        <input className={styles.settings_hide} 
+                                type="image" 
+                                onClick={setVisibleMenu} 
+                                src={icon_Settings} 
+                                width="45" 
+                                height="45"/>
+
+<div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
+                                    type="image" 
+                                    onClick={showAddDependencyMenu} 
+                                    src={icon_Add_Dependency} 
+                                    width="40" 
+                                    height="40"/>
+
+                            <p>Agregar</p>
+                        </div>
+
+                        <div className={styles.item_floatMenu}>
+                            <input className={styles.add_user_form} 
+                                    type="image" 
+                                    onClick={showAddDependencyMenu} 
+                                    src={icon_reports} 
+                                    width="40" 
+                                    height="40"/>
+                                    
+                            <p>Reportes</p>
+                        </div>
+
+                                
                     </div>
-                    {showModal && <Modal><AddDependency
-                         onClose={handleCloseModal} 
-                         onSubmit={onsubmit} 
-                        /></Modal>
+                    {showModal && <Modal>{childModal}</Modal>
                         
                     }
                 </>
