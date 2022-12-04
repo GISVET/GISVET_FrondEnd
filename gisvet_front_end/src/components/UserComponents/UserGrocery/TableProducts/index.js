@@ -17,7 +17,7 @@ import { Modal } from "components/GeneralComponents/Modal";
 
 //=====Importaciones de constantes ====
 import {presentations, measurement_units, type_product } from "constants/constants"
-import ValidateDataSendProducts from "components/UserGrocery/ValidateDataSendProducts";
+import ValidateDataSendProducts from "components/UserComponents/ValidateDataSendProducts";
 
 
 export default function TableProducts({actionSendProducts, sendProducts, data, actionItem }) {

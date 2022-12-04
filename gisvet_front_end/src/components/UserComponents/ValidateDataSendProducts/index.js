@@ -6,7 +6,7 @@ const depAux = [
   {
     "id_dependencie": 4,
     "dependencie_name": "Farmacia",
-    "TYPE_DEPENDENCIE": "F"
+    "type_dependencie": "F"
   }
 ]
 
@@ -17,7 +17,8 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
     name_dependecie: "",
   });
 
-  const [dependencies, setdependencies] = useState(depAux)
+  const [dependencies, setDependencies] = useState(depAux)
+  console.log(dependencies)
 
 
   const doSubmit = (event) => {
@@ -31,11 +32,7 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
     setData(newData);
   };
 
-  const handleTypeProduct = (event)=>{
-    let {name, value} = event.target;
-    let newData = {...data, [name]: value}
-    setData(newData);
-}
+
 
   return (
     <div className={styles.form_add_user_general}>
@@ -72,12 +69,13 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
                 name="id_dependencie" >
 
             <option disabled={true} selected></option>
-            { dependencies.map(dependencie=>
-                dependencie.type_dependencie == "Bodega" &&
-                <option  key={dependencie.id_dependencie} value={dependencie.id_dependencie}>
+            { dependencies.map(dependencie=>{
+                if(dependencie.type_dependencie === "F") {
+                  <option  key={dependencie.id_dependencie} value={dependencie.id_dependencie}>
                     {dependencie.dependencie_name}
-                </option>
-                )
+                  </option>
+                }
+              })
             }
         </select>
 
