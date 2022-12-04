@@ -9,9 +9,11 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
+import { InputNumber } from 'primereact/inputnumber';
 
 //=====Importaciones de hooks ====
-import useUser from "../../../../hooks/UserHooks/useUser";
+import useUser from "hooks/UserHooks/useUser";
+import { Modal } from "components/GeneralComponents/Modal";
 
 //=====Importaciones de constantes ====
 import {presentations, measurement_units, type_product } from "constants/constants"

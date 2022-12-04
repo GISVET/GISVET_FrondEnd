@@ -2,8 +2,8 @@
 import React,{useState, useEffect} from "react";
 
 //=====Importaciones de componentes ====
-import Header from "../../components/UserComponents/HeaderUser/header";
-import ProductsGrocery from "../../components/UserComponents/UserGrocery/ProductsGrocery";
+import Header from "components/UserComponents/HeaderUser/header";
+import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGrocery";
 
 //=====Importaciones de estilos ====
 import styles from './styles.module.css';
@@ -35,8 +35,6 @@ export default function User({children}) {
       Object.entries(dependencieActive).length !== 0 &&
       dependencieActive !== null
     ) {
-    console.log(children)
-      console.log(`sta es la dependencia ${dependencieActive.DEPENDECIE_TYPE}`);
       switch (dependencieActive.DEPENDECIE_TYPE) {
         case "B":
           console.log("Entra en el usuario bodega");
@@ -55,21 +53,23 @@ export default function User({children}) {
           navigate("/unauthorized");
           break;
       }
-    const bodyGrocery= <div className={styles.general_admin}>
-                    <Header />
-                    <ProductsGrocery></ProductsGrocery>
-                </div>
+    }
+  }
+  const bodyGrocery= <div className={styles.general_admin}>
+                  <Header />
+                  <ProductsGrocery></ProductsGrocery>
+              </div>
 
 
-    const bodyPharmacy=<div className={styles.general_admin}>
-                            <Header />
-                            <ProductsGrocery></ProductsGrocery>
-                        </div>
+  const bodyPharmacy=<div className={styles.general_admin}>
+                          <Header />
+                          <ProductsGrocery></ProductsGrocery>
+                      </div>
 
-    const bodySurgery=<div className={styles.general_admin}>
-                        <Header />
-                        {children}
-                    </div>
+  const bodySurgery=<div className={styles.general_admin}>
+                      <Header />
+                      {children}
+                  </div>
 
   return (
     <>
