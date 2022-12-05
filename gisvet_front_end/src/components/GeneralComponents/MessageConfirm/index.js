@@ -23,7 +23,7 @@ export default function MessageConfirm({isCorrect,message,onClose}){
             <div className={styles.content_informtion_message}>
              {onClose!= undefined && <>
                 <div className={styles.title_image}> 
-                    <img src={icon_information} width="50" height="50"/>
+                    <img src={icon_information} width="30" height="30"/>
                     <h1 className={classText}>{message}</h1>
                 </div>
 

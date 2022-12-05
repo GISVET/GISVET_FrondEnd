@@ -15,7 +15,7 @@ import { typeDoc, gender } from "constants/constants";
 
 
 export default function AddUser({onSubmit, onClose}){
-    const {loading, listRoles} = useRolesList();
+    const {listRoles} = useRolesList();
     const [isMatchPassword, setIsMatchPassword] = useState(true)
     const [errorMessage, setErrorMessage] = useState('')
     const typeDocuments = typeDoc

@@ -5,7 +5,7 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
-import Table from "../TableProducts";
+import Table from "../../TableProducts";
 import SettingsProducts from "../SettingsGroceryProducts";
 
 //=====Importaciones de componentes de PrimeReact ====
@@ -43,7 +43,7 @@ export default function ProductsGrocery() {
                     setProducts(res)
                 }
             })
-    }, [updateProducts])
+    }, [updateProducts,dependencieActive])
 
 
 
@@ -87,6 +87,7 @@ export default function ProductsGrocery() {
           actionItem = { showUserMenu }
           actionSendProducts = { sendProductsToFarmacy }
           sendProducts = { sendProducts } /> 
+
         <SettingsProducts sendProducts = { sendProducts }
           setSendProducts = { setSendProducts }/> 
         </div>

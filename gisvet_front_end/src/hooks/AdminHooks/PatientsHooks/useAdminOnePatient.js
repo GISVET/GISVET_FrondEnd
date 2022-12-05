@@ -17,46 +17,33 @@ export function useAdminOnePatient(id_clinic_history) {
   const { jwt } = useContext(userContext);
   const [patient, setPatient] = useState();
   const [persons, setPersons] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
 
-  let errorMessage = ""
-  console.log("El id del paciente que llega al OnePatient es : ")
-  console.log(id_clinic_history)
 
-  useEffect(() => {
-    askPatient();
-    console.log("El paciente desde el servicio es ")
-    console.log(patient)
-  }, []);
 
-  const askPatient = () => {
-    setLoading(true);
-    console.log("Inicia en el askPatient")
-    getPatientById({ jwt, id_clinic_history })
-      .then((res) => {
-        if (res.message === "") {
-          setLoading(false);
-        } else {
-          setLoading(false);
-          errorMessage = res.message;
-          console.log("La respuesta que llega es")
+    useEffect(() => {
+      askPatient();
+    }, []);
+
+    const askPatient = () => {
+      setLoading(true);
+      getPatientById({ jwt, id_clinic_history })
+        .then((res) => {
           console.log(res)
-          setPatient(formatListHistory(res));
-        }
-      })
-      .catch((err) => {});
-  };
+          if (res.message !== undefined) {
+            console.log('entramos aca')
+            setLoading(false);
+          } else {
+            setLoading(false);
+            setPatient(formatListHistory(res));
+          }
+        })
+        .catch((err) => {});
+    };
 
   function formatListHistory(dataBody) {
     let dataFormated = [];
-    console.log("El databody que llega al format es ")
-    console.log(dataBody)
     dataBody.map((history) => {
-
-      console.log("El history que pasa por el map es")
-      console.log(history)
-
-      
       const measurement = presentations.find(
         (element) => element.id === history.UNIT_MEASUREMENT
       );

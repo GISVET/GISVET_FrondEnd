@@ -13,16 +13,9 @@ import ShowUser from "../ShowUser";
 //=====Importaciones de hooks ====
 import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
 
-//=====Importaciones de imagenes ====
-import icon_Filter from "./images/Icon_Filter.png";
-
-//=====Importaciones de constantes ====
-import { filterPatients } from "constants/constants";
 
 export default function AdminUsers() {
   const {
-    loading,
-    users,
     listUserToTable,
     findUserByName,
     orderUsers,
@@ -63,7 +56,13 @@ export default function AdminUsers() {
         />{" "}
         <SettingsAdminUser />
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

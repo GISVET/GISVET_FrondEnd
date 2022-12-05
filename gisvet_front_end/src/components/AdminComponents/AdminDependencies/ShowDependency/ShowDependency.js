@@ -18,6 +18,7 @@ import { usersByDependency } from "constants/headersTables";
 //===== Importaciones de componentes ====
 import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //===== Importaciones de componentes PrimeReact ====
 
@@ -27,7 +28,7 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [textButtonUpdate, setTextButtonUpdate] = useState();
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<Loading text="Cargando dependencia"></Loading>);
   const [showModal, setShowModal] = useState(false);
 
   const [data, setData] = useState({
@@ -49,13 +50,14 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   }, [dependency]);
 
   const showPersons = () => {
-    console.log(persons);
     persons.map((person) => {});
   };
 
   const doSubmit = (event) => {
     event.preventDefault();
     if (textButtonUpdate === "Actualizar") {
+      setchildModal(<Loading text="Actualizando dependencia"></Loading>)
+      setShowModal(true)
       setDisable(true);
       updateDependencyFunction(data.id_dependencie, data.dependencie_name).then(
         (res) => {
@@ -90,7 +92,7 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
         <>{childModal}</>
       ) : (
         <div className={styles.form_add_user_general}>
-          {dataReady && (
+          {dataReady? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_dependencie_settings} width="40" height="40" />
@@ -152,7 +154,9 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
                 </div>
               </form>
             </>
-          )}
+          ):
+          <Loading text="Cargando dependencia"></Loading>
+          }
         </div>
       )}
     </>

@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import icon_Product from "./images/Icon_Product.png";
+import Loading from "components/GeneralComponents/Loading";
+import useAssignmentsUser from "hooks/UserHooks/useAssignmentsUser"
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'primereact/button';
+import { Dropdown } from 'primereact/dropdown';
  
-const depAux = [
-  {
-    "id_dependencie": 4,
-    "dependencie_name": "Farmacia",
-    "type_dependencie": "F"
-  }
-]
 
 export default function ValidateDataSendProducts({ onSubmit, onClose }) {
   const [data, setData] = useState({
@@ -16,9 +14,10 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
     token_tem: "",
     name_dependecie: "",
   });
-
-  const [dependencies, setDependencies] = useState(depAux)
-  console.log(dependencies)
+  const [readyToSend, isReadyToSend] = useState(false)
+  const {dependenciesByDocument} = useAssignmentsUser()
+  const [dependenciesToSend, setDependenciesToSend] = useState(null)
+  const [lookingforDependencies, setLookingforDependencies] = useState(false)
 
 
   const doSubmit = (event) => {
@@ -26,11 +25,28 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
     onSubmit(data);
   };
 
+  
+
   const handleChange = (event) => {
     let { name, value } = event.target;
     let newData = { ...data, [name]: value };
     setData(newData);
   };
+
+  const findDocument = () => {
+    findFarmaciesUser(data.document)
+  };
+
+  const findFarmaciesUser= (document) =>{
+    setLookingforDependencies(true)
+    dependenciesByDocument(document)
+      .then(res=>{
+        let response = res.message === undefined?res:null
+        setDependenciesToSend(response)
+        isReadyToSend(true)
+        setLookingforDependencies(false)
+      })
+  }
 
 
 
@@ -43,55 +59,85 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
 
       <form className={styles.form_add_user} onSubmit={doSubmit}>
 
-        <label htmlFor="document">Documento del responsable a recibir </label>
-        <input
-          name="document"
-          onChange={handleChange}
-          required={true}
-          type="text"
-          placeholder="Ingrese el numero de documento"
-        />
-
         
-        <label htmlFor="token_tem">Token de autorización </label>
-        <input
-          name="token_tem"
-          onChange={handleChange}
-          required={true}
-          type="text"
-          placeholder="Ingrese el token de autorización"
-        />
-         <label htmlFor="id_dependencie">
-            Dependencia a asignar
-        </label>
-        <select onChange={handleChange} 
-                required={true} 
-                name="id_dependencie" >
+        <label htmlFor="document">Documento del responsable a recibir </label>
+        <div className="p-inputgroup">
+            <InputText name="document"
+              onChange={handleChange}
+              type="text"
+              placeholder="Documento destinatario"/>
 
-            <option disabled={true} selected></option>
-            { dependencies.map(dependencie=>{
-                if(dependencie.type_dependencie === "F") {
-                  <option  key={dependencie.id_dependencie} value={dependencie.id_dependencie}>
-                    {dependencie.dependencie_name}
-                  </option>
-                }
-              })
-            }
-        </select>
+            <Button 
+              label="consultar"
+              icon="pi pi-search"
+              onClick={findDocument}
+            />
+          
+        </div>
+        {lookingforDependencies?
+          <Loading></Loading>
+          :
+          readyToSend?
+            dependenciesToSend === null?
+            <>
+              <p>No se encontró el documento ingresado, verifique la información y vuelva a intentarlo</p>
+              <div className={styles.form_horizontal}>
+                <input
+                  className={styles.button_cancel}
+                  type="submit"
+                  onClick={onClose}
+                  value="Cancelar"
+                />
+              </div>
+            </>
+            :<>
+              <label htmlFor="token_tem">Token de autorización </label>
+              <InputText
+                name="token_tem"
+                onChange={handleChange}
+                required={true}
+                type="text"
+                placeholder="Ingrese el token de autorización"
+              />
+              <label htmlFor="name_dependecie">
+                  Dependencia a asignar
+              </label>
 
-        <div className={styles.form_horizontal}>
-          <input
-            className={styles.button_accept}
-            type="submit"
-            value="Agregar"
-          />
-          <input
+              <Dropdown value={data.name_dependecie} 
+                        options={dependenciesToSend} 
+                        onChange={handleChange}  
+                        optionLabel="DEPENDENCIE_NAME" 
+                        optionValue="DEPENDENCIE_NAME"
+                        name="name_dependecie"
+                        showClear  
+                        placeholder="seleccione dependencia"
+              />
+
+              <div className={styles.form_horizontal}>
+                <input
+                  className={styles.button_accept}
+                  type="submit"
+                  value="Agregar"
+                />
+                <input
+                  className={styles.button_cancel}
+                  type="submit"
+                  onClick={onClose}
+                  value="Cancelar"
+                />
+              </div>
+            </>
+          :
+          <div className={styles.form_horizontal}>
+            <input
             className={styles.button_cancel}
             type="submit"
             onClick={onClose}
             value="Cancelar"
-          />
-        </div>
+           />
+          </div>
+        }
+      
       </form>
     </div>
   );

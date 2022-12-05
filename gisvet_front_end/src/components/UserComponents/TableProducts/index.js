@@ -31,17 +31,7 @@ export default function TableProducts({
   const [editingRows, setEditingRows] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
-  const {
-    logout,
-    islogged,
-    role,
-    dependencies,
-    rolesUser,
-    changeRol,
-    changeDependencie,
-    dependencieActive,
-    errorMessage,
-  } = useUser();
+  const {dependencieActive} = useUser();
 
   useEffect(() => {
     setDataBody(data);
@@ -67,9 +57,9 @@ export default function TableProducts({
     );
   };
 
-  const getDataToSendProducts = (dataToSend) => {
+  const getDataToSendProducts = async(dataToSend) => {
     dataToSend["dataProducts"] = seletedProducts;
-    const res = actionSendProducts(dataToSend);
+    const res = await actionSendProducts(dataToSend);
     if (res === 200) {
       setEditingRows(null);
       setSelectedProducts(null);
@@ -289,7 +279,13 @@ export default function TableProducts({
           ></Column>
         )}
       </DataTable>
-      {showModal && <Modal>{childModal}</Modal>}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }
     </div>
   );
 }

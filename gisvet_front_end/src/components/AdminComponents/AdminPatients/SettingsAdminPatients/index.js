@@ -115,7 +115,13 @@ export default function SettingsAdminDepedencies() {
             <p> Reportes </p>{" "}
           </div>{" "}
         </div>{" "}
-        {showModal && <Modal> {childModal} </Modal>}{" "}
+        {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
       </>
     );
   }

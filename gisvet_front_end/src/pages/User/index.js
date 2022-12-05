@@ -1,9 +1,14 @@
 //=====Importaciones de React ====
 import React,{useState, useEffect} from "react";
 
+//=====Importaciones de enrutamiento====
+import { Route, Router, Switch } from "wouter";
+
 //=====Importaciones de componentes ====
 import Header from "components/UserComponents/HeaderUser/header";
+import Loading from "components/GeneralComponents/Loading";
 import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGrocery";
+import ProductsFarmacy from "components/UserComponents/UserFarmacy/ProductsFarmacy";
 
 //=====Importaciones de estilos ====
 import styles from './styles.module.css';
@@ -15,11 +20,15 @@ import useUser from "hooks/UserHooks/useUser";
 import { useLocation } from "wouter";
 
 
-export default function User({children}) {
+export default function User({params,children}) {
   const [body, setBody] = useState();
   const [isAuthorized, setIsAuthorized] = useState(false);
   const { islogged, role, dependencieActive } = useUser();
-  const [, navigate] = useLocation();
+  const [location, navigate] = useLocation();
+
+  useEffect(()=>{
+    console.log(params)
+  },[])
 
   useEffect(() => {
     if (islogged && role === "Usuario") {
@@ -37,16 +46,18 @@ export default function User({children}) {
     ) {
       switch (dependencieActive.DEPENDECIE_TYPE) {
         case "B":
-          console.log("Entra en el usuario bodega");
           setIsAuthorized(true);
+          navigate("/user/grocery");
           setBody(bodyGrocery);
           break;
         case "F":
           setIsAuthorized(true);
+          navigate("/user/farmacy");
           setBody(bodyPharmacy);
           break;
         case "C":
           setIsAuthorized(true);
+          navigate("/user/consultory");
           setBody(bodySurgery);
           break;
         default:
@@ -63,7 +74,7 @@ export default function User({children}) {
 
   const bodyPharmacy=<div className={styles.general_admin}>
                           <Header />
-                          <ProductsGrocery></ProductsGrocery>
+                          <ProductsFarmacy></ProductsFarmacy>
                       </div>
 
   const bodySurgery=<div className={styles.general_admin}>
@@ -74,12 +85,19 @@ export default function User({children}) {
   return (
     <>
       {isAuthorized ? (
-        body
+        <Switch>
+          <Route path="/user/grocery">
+            {body}
+          </Route>
+          <Route path="/user/farmacy">
+            {body}
+          </Route>
+          <Route path="/user/consultory">
+            {body}
+          </Route>
+        </Switch>
       ) : (
-        <>
-          <i className="pi pi-spin pi-refresh" style={{ fontSize: "6em" }}></i>
-          <h2>Cargando Datos</h2>
-        </>
+        <Loading text="Cargando Datos"></Loading>
       )}
     </>
   );

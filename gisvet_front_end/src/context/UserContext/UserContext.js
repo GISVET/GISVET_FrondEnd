@@ -6,6 +6,7 @@ const Context = React.createContext({})
 export function UserContextProvider({children}){
     const [jwt, setJWT] = useState(window.sessionStorage.getItem('Auth'))
     const [role, setRole] = useState(null)
+    const [email, setEmail] = useState(null)
     const [rolesUser, setRolesUser] = useState([])
     const [idUser, setIdUser] = useState({})
     const [dependencies, setDependencies] = useState([])
@@ -15,9 +16,9 @@ export function UserContextProvider({children}){
         if(jwt !== null){
             window.sessionStorage.setItem('Auth',jwt)
             const token = decode(jwt)
-            console.log(token.object[0])
+            setEmail(token.object[0].EMAIL)
             setRole(token.object[0].NAME_ROL)
-            setIdUser(token.object[0].ID_USER)
+            setIdUser(token.object[0].ID_PERSON)
             setDependencies(token.object[0].DEPENDECIES)
             setRolesUser(token.object[0].ROLES)
             setDependencieActive(token.object[0].DEPENDECIES.lenght !== 0?token.object[0].DEPENDECIES[0]: {})
@@ -27,6 +28,7 @@ export function UserContextProvider({children}){
             setDependencies(null)
             setDependencieActive(null)
             setRolesUser(null)
+            setEmail(null)
         }
     },[jwt, setJWT])
 
@@ -35,6 +37,7 @@ export function UserContextProvider({children}){
         jwt, 
         setJWT,
         role,
+        email,
         idUser,
         dependencies,
         dependencieActive, 

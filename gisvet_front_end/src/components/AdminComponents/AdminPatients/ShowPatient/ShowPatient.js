@@ -6,26 +6,21 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailPatient/TableDetailPatient";
-import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de componentes PrimeReact ====
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
 import { useAdminOnePatient } from "hooks/AdminHooks/PatientsHooks/useAdminOnePatient";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";
 
 //=====Importaciones de constantes ====
-import { typeDependencies, gender, role } from "constants/constants";
-import { patientshistory } from "constants/headersTables";
 
 
 export default function ShowPatient({ dataPatient, onClose }) {
-  const { patient } = useAdminOnePatient(dataPatient.id_clinic_history);
+  const {loading, patient } = useAdminOnePatient(dataPatient.id_clinic_history);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [textButtonUpdate, setTextButtonUpdate] = useState();
@@ -37,12 +32,11 @@ export default function ShowPatient({ dataPatient, onClose }) {
   });
 
   useEffect(() => {
-    if (patient != undefined) {
-      console.log("El patient en ShowPatient es ");
-      console.log(patient);
+    console.log(loading)
+    if (patient !== undefined) {
       setDataReady(true);
     }
-  }, [patient]);
+  }, [patient, loading]);
 
   const handleChange = (event) => {
     data.id_dependencie = patient.ID_DEPENDENCIE;
@@ -50,9 +44,6 @@ export default function ShowPatient({ dataPatient, onClose }) {
     let newData = { ...data, [name]: value };
     setData(newData);
   };
-
-  console.log("El paciente completo de respuesta que lelga al ShowPatient es ");
-  console.log(patient);
 
   return (
     <>
@@ -87,17 +78,18 @@ export default function ShowPatient({ dataPatient, onClose }) {
                 type="text"
               />
 
-              {dataReady ? (
+              {loading?
+                <Loading text="Cargando Registros"></Loading>
+              :dataReady? (
                 <>
                   <label className={styles.label_table_users}>
                     Registro clínico del paciente
                   </label>
                   <Table data={patient}></Table>
                 </>
-              ) : (
+                ):(
                 <h3>El paciente no tiene registro clinico</h3>
               )}
-
               <div className={styles.form_horizontal}>
                 <input
                   className={styles.button_accept}

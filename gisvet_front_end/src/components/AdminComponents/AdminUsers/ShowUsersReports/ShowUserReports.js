@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableUsers/TableUsers";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de componentes PrimeReact ====
 import { Button } from "primereact/button";
@@ -103,23 +104,18 @@ export default function ShowUserReports({ dataPatient, onClose }) {
   ];
 
   useEffect(() => {
-    console.log("El dato de report es  :");
-    console.log(report);
     if (report == "UL" && users != undefined) {
       setFirst(true);
       setSecond(false);
       setThird(false);
       setNoReport(false);
     } else if (report == "CR" && users != undefined) {
-      console.log("Entra a reporte CR");
       usersByRol();
       setFirst(false);
       setSecond(true);
       setThird(false);
 
       setNoReport(false);
-      console.log("Los usuarios por rol ");
-      console.log(usersRoles);
     } else if (report == "SU" && users != undefined) {
       setFirst(false);
       setSecond(false);
@@ -142,8 +138,6 @@ export default function ShowUserReports({ dataPatient, onClose }) {
     });
   };
 
-  console.log("Los datos de user que llegan son ");
-  console.log(listUserToTable);
   const cols = [
     { field: "tipoDoc", header: "Tipo de Documento" },
     { field: "document", header: "Identificación" },
@@ -231,7 +225,7 @@ export default function ShowUserReports({ dataPatient, onClose }) {
                     type="pie"
                     data={chartData}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
+                    style={{ position: "relative", width: "60%" }}
                   />
                 </>
               )}

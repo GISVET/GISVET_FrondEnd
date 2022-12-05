@@ -76,8 +76,8 @@ function App() {
                         <AdminDependencies />
                       </User>
                     </Route>
-                    <Route path="/user">
-                      <User></User>
+                    <Route path="/user/:path?" 
+                      component={User}>
                     </Route>
 
                     <Route path="/productsbodega">
