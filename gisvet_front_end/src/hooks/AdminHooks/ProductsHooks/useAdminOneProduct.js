@@ -24,7 +24,7 @@ export function useAdminOneProduct(id_product, presentation) {
     setLoading(true);
     getProductDetail({ jwt, id_product, presentation })
       .then((res) => {
-        if (res.message === "") {
+        if (res.message !== undefined) {
           setLoading(false);
         } else {
           setLoading(false);

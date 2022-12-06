@@ -50,7 +50,13 @@ export default function AuditorPatients() {
           actionItem={showPatientMenu}
         />{" "}
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

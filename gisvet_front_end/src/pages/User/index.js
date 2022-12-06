@@ -77,7 +77,7 @@ export default function User({params,children}) {
 
   const bodySurgery=<div className={styles.general_admin}>
                       <Header />
-                      {children}
+                      <ProductsFarmacy></ProductsFarmacy>
                   </div>
 
   return (

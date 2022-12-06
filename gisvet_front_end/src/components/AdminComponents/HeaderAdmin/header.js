@@ -34,9 +34,9 @@ export default function HeaderAdmin() {
   );
 
   return (
-    <>
+    <div className={styles.header_admin}>
       <Menubar model={getItemsAdmin(navigate)} start={start} end={end} />
       {showMenuUser && <MenuUser></MenuUser>}
-    </>
+    </div>
   );
 }

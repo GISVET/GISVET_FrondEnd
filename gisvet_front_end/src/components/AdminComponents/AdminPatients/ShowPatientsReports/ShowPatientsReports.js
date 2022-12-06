@@ -63,10 +63,12 @@ export default function ShowPatientsReports({ onClose }) {
       setFirst(true);
       setSecond(false);
       setNoReport(false);
+      setSecondData(false);
     } else if (report == "SU" && patients != undefined) {
       setFirst(false);
       setSecond(true);
       setNoReport(false);
+      setSecondData(false);
     }
   }, [report, patients]);
 

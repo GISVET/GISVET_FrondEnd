@@ -160,6 +160,7 @@ export function useAuditorOneUser(document) {
        roles,
        updateUser,
        getUserById,
+       loadingUser,
        dependencies,
        dependeciesToTable
     }

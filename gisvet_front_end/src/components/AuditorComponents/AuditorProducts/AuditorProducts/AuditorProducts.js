@@ -42,7 +42,13 @@ export default function AuditorProducts() {
           actionItem={showProductsMenu}
         />{" "}
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

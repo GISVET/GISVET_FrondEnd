@@ -28,7 +28,7 @@ export function useAuditorOneDependency(id_dependencie) {
     setLoading(true);
     getDependencyDetails({ jwt, id_dependencie })
       .then((res) => {
-        if (res.message === "") {
+        if (res.message !== undefined) {
           setLoading(false);
         } else {
           setLoading(false);
@@ -46,6 +46,8 @@ export function useAuditorOneDependency(id_dependencie) {
     console.log(dataPersons)
     console.log("El res que llega al formatList de OneDependency")
     console.log(dependency)
+
+
     dataPersons.map((person) => {
       const gender_person = gender.find(
         (element) => element.id === person.persons.GENDER

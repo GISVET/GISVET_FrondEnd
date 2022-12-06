@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailProducts/TableDetailProducts";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useAuditorOneProduct } from "hooks/AuditorHooks/ProductsHooks/useAuditorOneProduct";
@@ -18,13 +19,11 @@ import { presentations } from "constants/constants";
 
 export default function ShowProducts({ dataProduct, onClose , isReport}) {
 
-  console.log("El data product que llega al showProducts es")
-  console.log(dataProduct)
 
   const presentation = presentations.find(
     (element) => element.name === dataProduct.presentation
   );
-  const { product } = useAuditorOneProduct(
+  const { product,loading } = useAuditorOneProduct(
     dataProduct.id_product,
     presentation.id
   );
@@ -150,7 +149,9 @@ export default function ShowProducts({ dataProduct, onClose , isReport}) {
                 </div>
               </div>
 
-              {dataReady ? (
+              {loading?
+              <Loading text="Consultando historial producto"></Loading>
+              :dataReady ? (
                 <>
                   <label className={styles.label_table_users}>
                     Caracteristicas del producto

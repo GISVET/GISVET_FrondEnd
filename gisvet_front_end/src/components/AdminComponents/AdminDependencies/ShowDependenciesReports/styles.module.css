@@ -2,18 +2,12 @@
 .form_add_user_general{
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0px 0px 3px var(--black-color);
-  background-color: var(--white-color);
-  top: 10;
-  left: 0;
-  margin-left: 5%;
-  width: 90%;
-  padding: 3% 3% 5% 2%;
+  height: 100%;
+  padding: 5% 3% 5%;
+  width: 60vw;
 }
 
 .graphic{
-
   margin-left: 30% ;
 }
 

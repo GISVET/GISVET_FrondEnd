@@ -138,7 +138,7 @@ export default function ShowUser({ document, onClose, isReport }) {
         <>{childModal}</>
       ) : (
         <div className={styleTable}>
-          {dataReady? (
+          {dataReady ? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_User_settings} width="40" height="40" />
@@ -292,23 +292,22 @@ export default function ShowUser({ document, onClose, isReport }) {
                       defaultValue={rol.name_rol}
                       disabled={true}
                     />
-                    
                   </>
                 ))}
-                <label className={styles.label_dependencie} htmlFor="rol">
-                  Dependencias Asignadas
-                </label>
+
                 {dependencies.length == 0 ? (
                   <div className={styles.form_horizontal}>
                     <div className={styles.input_horizontal}>
-                      <label className={styles.no_found_dependencie}>
+                      <label className={styles.label_error}>
                         No tiene dependencias asignadas
                       </label>
                     </div>
-                    
                   </div>
                 ) : (
                   <>
+                    <label className={styles.label_dependencie} htmlFor="rol">
+                      Dependencias Asignadas
+                    </label>
                     <Table
                       headers={headersDependencies}
                       data={dependeciesToTable(dependencies)}
@@ -351,9 +350,10 @@ export default function ShowUser({ document, onClose, isReport }) {
                   </div>
                 )}
               </form>
-            </>)
-            :<Loading text="Cargando Datos de Usuario"></Loading>
-          }
+            </>
+          ) : (
+            <Loading text="Cargando Datos de Usuario"></Loading>
+          )}
         </div>
       )}
     </>

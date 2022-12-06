@@ -27,7 +27,7 @@ export function useAuditorOnePatient(id_clinic_history) {
     setLoading(true);
     getPatientById({ jwt, id_clinic_history })
       .then((res) => {
-        if (res.message === "") {
+        if (res.message !== undefined) {
           setLoading(false);
         } else {
           setLoading(false);

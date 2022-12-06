@@ -4,7 +4,7 @@ export default function getPatientById({ jwt ,id_clinic_history }) {
   const objectBody = {
     "id_clinic_history": parseInt(id_clinic_history)
   }
-
+  let status
   return fetch(`${endpoint}/Auditor/getProductTracing`, {
     method: "POST",
     headers: {
@@ -13,11 +13,14 @@ export default function getPatientById({ jwt ,id_clinic_history }) {
     },body:JSON.stringify(objectBody)
   })
     .then((res) => {
-      if (!res.ok) throw new Error("Response is not Ok");
+      status= res.status
       return res.json();
     })
     .then((res) => {
       let data = [];
+      if (status !== 200) {
+        res["status"]= status
+      }
       data = res;
       return data;
     });

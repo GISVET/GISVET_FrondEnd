@@ -237,7 +237,6 @@ export default function ShowUserReports({ dataPatient, onClose }) {
                     type="pie"
                     data={chartData}
                     options={lightOptions}
-                    style={{ position: "relative", width: "60%" }}
                   />
                 </>
               )}

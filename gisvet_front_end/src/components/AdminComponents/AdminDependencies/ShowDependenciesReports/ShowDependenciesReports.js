@@ -240,7 +240,7 @@ export default function ShowDependenciesReports({ onClose }) {
                     type="pie"
                     data={chartData}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
+                    style={{ position: "relative", width: "60%" }}
                   />
                 </>
               )}

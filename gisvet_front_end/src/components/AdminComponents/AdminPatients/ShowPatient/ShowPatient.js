@@ -24,7 +24,7 @@ export default function ShowPatient({
   isReport,
 }) {
 
-  const { patient } = useAdminOnePatient(dataPatient.id_clinic_history);
+  const { patient, loading } = useAdminOnePatient(dataPatient.id_clinic_history);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [childModal, setchildModal] = useState(<></>);
@@ -98,7 +98,9 @@ export default function ShowPatient({
                   <Table data={patient}></Table>
                 </>
                 ):(
-                <h3>El paciente no tiene registro clinico</h3>
+                <h3 className={styles.label_error}>
+                  El paciente no tiene registro clinico
+                </h3>
               )}
               {!isReport && (
               <div className={styles.form_horizontal}>

@@ -17,11 +17,12 @@ import { usersByDependency } from "constants/headersTables";
 //===== Importaciones de componentes ====
 import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //===== Importaciones de componentes PrimeReact ====
 
 export default function ShowDependency({ id_dependencie, onClose, isReport }) {
-  const { dependency, persons, formatListUsers, updateDependencyFunction } =
+  const { dependency, persons, formatListUsers, updateDependencyFunction, loading} =
   useAuditorOneDependency(id_dependencie);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
@@ -97,7 +98,7 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
         <>{childModal}</>
       ) : (
         <div className={styleTable}>
-          {dataReady && (
+          {dataReady? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_dependencie_settings} width="40" height="40" />
@@ -137,7 +138,9 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
                   required={true}
                   type="text"
                 />
-                {isUsers ? (
+                {loading?
+                  <Loading text="Cargando usuarios de la dependencia"></Loading>
+                :isUsers ? (
                   <>
                     <label className={styles.label_table_users}>
                       Usuarios pertenecientes a la dependencia{" "}
@@ -145,7 +148,7 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
                     <Table headers={usersByDependency} data={persons} />
                   </>
                 ) : (
-                  <label className={styles.label_table_users}>
+                  <label className={styles.label_error}>
                     La dependencia no tiene usuarios asignados
                   </label>
                 )}
@@ -160,7 +163,9 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
                 </div>)}
               </form>
             </>
-          )}
+          )
+          :<Loading text="Cargando dependencia"></Loading>
+          }
         </div>
       )}
     </>

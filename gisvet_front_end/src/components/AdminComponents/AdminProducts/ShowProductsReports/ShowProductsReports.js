@@ -511,7 +511,6 @@ export default function ShowProductsReports({ onClose }) {
                     type="pie"
                     data={charPresentation}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
                   />
                 </>
               )}
@@ -526,7 +525,6 @@ export default function ShowProductsReports({ onClose }) {
                     type="pie"
                     data={charMeasurementUnit}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
                   />
                 </>
               )}
@@ -540,7 +538,6 @@ export default function ShowProductsReports({ onClose }) {
                     type="pie"
                     data={charType}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
                   />
                 </>
               )}

@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailProducts/TableDetailProducts";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useAdminOneProduct } from "hooks/AdminHooks/ProductsHooks/useAdminOneProduct";
@@ -20,7 +21,7 @@ export default function ShowProducts({ dataProduct, onClose , isReport}) {
   const presentation = presentations.find(
     (element) => element.name === dataProduct.presentation
   );
-  const { product } = useAdminOneProduct(
+  const { product, loading} = useAdminOneProduct(
     dataProduct.id_product,
     presentation.id
   );
@@ -146,7 +147,9 @@ export default function ShowProducts({ dataProduct, onClose , isReport}) {
                 </div>
               </div>
 
-              {dataReady ? (
+              {loading?
+                <Loading text="Cargando historial"></Loading>
+              :dataReady ? (
                 <>
                   <label className={styles.label_table_users}>
                     Caracteristicas del producto

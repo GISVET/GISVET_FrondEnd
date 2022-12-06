@@ -12,7 +12,6 @@
 .form_user_report {
   display: flex;
   flex-direction: column;
-  background-color: var(--white-color);
   left: 0;
   margin-left: 0%;
   width: 100%;
@@ -131,9 +130,8 @@
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user input[type="submit"]:nth-child(1) {
+.form_add_user input[type="submit"]{
   margin-top: 3%;
-  background-color: var(--shade-5-color);
   height: 45px;
   width: 12rem;
   text-align: center;
@@ -145,26 +143,12 @@
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user input[type="submit"]:nth-child(2) {
-  margin-top: 3%;
+.button_accept{
+  background-color: var(--shade-5-color);
+}
+
+.button_cancel {
   background-color: var(--error-button-color);
-  height: 45px;
-  width: 12rem;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  color: var(--black-color);
-  font-weight: bold;
-  border: 0;
-  box-shadow: 0px 1px 3px var(--black-color);
-}
-
-.form_report input[type="submit"]:nth-child(1) {
-  visibility: hidden;
-}
-
-.form_report input[type="submit"]:nth-child(2) {
-  visibility: hidden;
 }
 
 .form_report .input_horizontal > input {
@@ -255,6 +239,10 @@
 
 .label_dependencie {
   padding-bottom: 1rem;
+}
+.label_error {
+  color: var(--error-text-color);
+  font-weight: bold;
 }
 
 .error_message {

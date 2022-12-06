@@ -149,7 +149,7 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
                     <Table headers={usersByDependency} data={persons} />
                   </>
                 ) : (
-                  <label className={styles.label_table_users}>
+                  <label className={styles.label_error}>
                     La dependencia no tiene usuarios asignados
                   </label>
                 )}

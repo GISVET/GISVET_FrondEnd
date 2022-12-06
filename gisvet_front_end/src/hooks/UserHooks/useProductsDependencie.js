@@ -11,6 +11,7 @@ import adminProductsContext, {
 //=====Importaciones de servicios ====
 import getGroceryProducts from "services/UserServices/getGroceryProducts";
 import getFarmacyProducts from "services/UserServices/getFarmacyProducts";
+import getConsultoryProducts from "services/UserServices/getConsultoryProducts";
 
 //=====Importaciones de constantes ====
 import { productsAdmin } from "constants/headersTables";
@@ -45,7 +46,7 @@ export function useProductsDependencie() {
         break;
 
       case "C":
-        await getGroceryProducts({ jwt, name_dependencie }).then((res) => {
+        await getConsultoryProducts({ jwt, name_dependencie }).then((res) => {
           if (res.message === undefined) {
             response = res;
           }

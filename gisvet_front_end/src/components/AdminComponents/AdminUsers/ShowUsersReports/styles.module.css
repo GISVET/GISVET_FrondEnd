@@ -4,19 +4,26 @@
     box-sizing: border-box;
     justify-items: center;
     padding: 0 2% 5% 2%;
-    width: 50vw;
+    width: 60vw;
 }
 
 .graphic {
-    margin-left: 30%;
+    position: relative;
+    align-self: center;
+    width: 40%
 }
 
 .form_add_user {
     display: flex;
     justify-items: center;
     flex-direction: column;
-    width: 80%;
-    margin-left: 13%;
+    width: 90%;
+    margin-left: 10%;
+}
+
+.form_add_user >canvas{
+    justify-content: center;
+    align-items: center;
 }
 
 .title_image>h1 {

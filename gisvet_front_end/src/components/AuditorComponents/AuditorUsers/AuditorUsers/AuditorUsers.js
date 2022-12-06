@@ -61,7 +61,13 @@ export default function AuditorUsers() {
           actionItem={showUserMenu}
         />
       </div>
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

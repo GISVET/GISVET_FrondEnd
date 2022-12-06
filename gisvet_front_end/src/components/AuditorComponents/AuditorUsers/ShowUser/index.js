@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useRolesList } from "hooks/AuditorHooks/GeneralHooks/useRoles";
@@ -26,6 +27,7 @@ export default function ShowUser({ document, onClose, isReport }) {
     dependencies,
     dependeciesToTable,
     updateUser,
+    loadingUser,
   } = useAuditorOneUser(document);
 
   const { loading, listRoles } = useRolesList();
@@ -134,7 +136,7 @@ export default function ShowUser({ document, onClose, isReport }) {
         <>{childModal}</>
       ) : (
         <div className={styleTable}>
-          {dataReady && (
+          {dataReady ? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_User_settings} width="40" height="40" />
@@ -314,13 +316,13 @@ export default function ShowUser({ document, onClose, isReport }) {
                         </>*/}
                   </>
                 ))}
-                <label className={styles.label_dependencie} htmlFor="rol">
-                  Dependencias Asignadas
-                </label>
-                {dependencies.length == 0 ? (
+                
+                {loadingUser?
+                  <Loading text="cargando dependencias del usuario"></Loading>
+                :dependencies.length == 0 ? (
                   <div className={styles.form_horizontal}>
                     <div className={styles.input_horizontal}>
-                      <label className={styles.no_found_dependencie}>
+                      <label className={styles.label_error}>
                         No tiene dependencias asignadas
                       </label>
                     </div>
@@ -332,6 +334,9 @@ export default function ShowUser({ document, onClose, isReport }) {
                   </div>
                 ) : (
                   <>
+                  <label className={styles.label_dependencie} htmlFor="rol">
+                    Dependencias Asignadas
+                  </label>
                     <Table
                       headers={headersDependencies}
                       data={dependeciesToTable(dependencies)}
@@ -356,7 +361,9 @@ export default function ShowUser({ document, onClose, isReport }) {
                 )}
               </form>
             </>
-          )}
+          )
+          :<Loading text="Cargando datos de usuario"></Loading>
+          }
         </div>
       )}
     </>

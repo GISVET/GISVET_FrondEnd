@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailPatient/TableDetailPatient";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useAuditorOnePatient } from "hooks/AuditorHooks/PatientsHooks/useAuditorOnePatient";
@@ -19,7 +20,7 @@ export default function ShowPatient({
   isReport,
 }) {
 
-  const { patient } = useAuditorOnePatient(dataPatient.id_clinic_history);
+  const { patient,loading } = useAuditorOnePatient(dataPatient.id_clinic_history);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [childModal, setchildModal] = useState(<></>);
@@ -85,7 +86,9 @@ export default function ShowPatient({
                 type="text"
               />
 
-              {dataReady ? (
+              {loading?
+              <Loading text="Consultando registros clínicos del paciente"></Loading>
+              :dataReady ? (
                 <>
                   <label className={styles.label_table_users}>
                     Registro clínico del paciente
@@ -93,7 +96,7 @@ export default function ShowPatient({
                   <Table data={patient}></Table>
                 </>
               ) : (
-                <h3>El paciente no tiene registro clinico</h3>
+                <h3 className={styles.label_error}>El paciente no tiene registro clinico</h3>
               )}
               {!isReport && (
               <div className={styles.form_horizontal}>

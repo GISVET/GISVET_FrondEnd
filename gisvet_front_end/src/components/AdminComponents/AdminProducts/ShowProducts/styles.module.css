@@ -4,7 +4,8 @@
     box-sizing: border-box;
     justify-items: center;
     padding: 0 2% 5% 2%;
-    width: 45vw;
+    width: 100%;
+    min-width: 45vw;
 }
 .form_add_user {
     display: flex;
@@ -18,7 +19,6 @@
 .form_user_report {
   display: flex;
   flex-direction: column;
-  background-color: var(--white-color);
   left: 0;
   margin-left: 0%;
   width: 100%;

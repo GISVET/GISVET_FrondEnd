@@ -77,9 +77,9 @@ export default function HeaderUser() {
   }
 
   return (
-    <>
+    <div className={styles.header_admin}>
       <Menubar model={selectHeadder()} start={start} end={end} />
       {showMenuUser && <MenuUser></MenuUser>}
-    </>
+    </div>
   );
 }
