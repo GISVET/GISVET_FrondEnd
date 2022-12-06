@@ -28,7 +28,6 @@ export default function AdminDependencies() {
   } = useAdminDependencies();
 
   const showUserMenu = async (id_dependencie) => {
-    console.log(`El id en el showMenuUser es ${id_dependencie}`);
     setShowModal(true);
     setchildModal(
       <ShowDependency
@@ -56,7 +55,13 @@ export default function AdminDependencies() {
         />{" "}
         <SettingsAdminDepedencies />
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

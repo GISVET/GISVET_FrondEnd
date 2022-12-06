@@ -58,7 +58,6 @@ export default function HeaderUser() {
   );
 
   const selectHeadder = ()=>{
-    console.log(`Esta es el tipo weee ${dependencieActive.DEPENDECIE_TYPE}`)
     let fuctionToMenu = ()=>{}
     switch (dependencieActive.DEPENDECIE_TYPE) {
       case 'B':
@@ -74,7 +73,6 @@ export default function HeaderUser() {
       default:
         break;
     }
-    console.log(fuctionToMenu)
     return fuctionToMenu
   }
 

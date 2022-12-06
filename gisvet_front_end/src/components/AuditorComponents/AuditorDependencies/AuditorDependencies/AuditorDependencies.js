@@ -38,7 +38,13 @@ export default function AuditorDependencies() {
           actionItem={showUserMenu}
         />{" "}
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

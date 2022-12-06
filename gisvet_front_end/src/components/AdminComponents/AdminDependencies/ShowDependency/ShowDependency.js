@@ -18,6 +18,7 @@ import { usersByDependency } from "constants/headersTables";
 //===== Importaciones de componentes ====
 import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //===== Importaciones de componentes PrimeReact ====
 
@@ -29,7 +30,7 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
   const [isUsers, setIsUsers] = useState(false);
 
   const [textButtonUpdate, setTextButtonUpdate] = useState();
-  const [childModal, setchildModal] = useState(<></>);
+  const [childModal, setchildModal] = useState(<Loading text="Cargando dependencia"></Loading>);
   const [showModal, setShowModal] = useState(false);
   const [styleTable, setStyleTable] = useState();
   const [styleReportForm, setStyleReportForm] = useState();
@@ -64,6 +65,8 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
   const doSubmit = (event) => {
     event.preventDefault();
     if (textButtonUpdate === "Actualizar") {
+      setchildModal(<Loading text="Actualizando dependencia"></Loading>)
+      setShowModal(true)
       setDisable(true);
       updateDependencyFunction(data.id_dependencie, data.dependencie_name).then(
         (res) => {
@@ -98,7 +101,7 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
         <>{childModal}</>
       ) : (
         <div className={styleTable}>
-          {dataReady && (
+          {dataReady? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_dependencie_settings} width="40" height="40" />
@@ -166,7 +169,9 @@ export default function ShowDependency({ id_dependencie, onClose, isReport }) {
                 </div>)}
               </form>
             </>
-          )}
+          ):
+          <Loading text="Cargando dependencia"></Loading>
+          }
         </div>
       )}
     </>

@@ -16,7 +16,7 @@ import { Modal } from "components/GeneralComponents/Modal";
 import AddMark from "components/AdminComponents/AdminProducts/AddMark/AddMark";
 import AddProduct from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
-import AddItemProduct from "components/AdminComponents/AdminProducts/AddItemProduct";
+import AddItemProduct from "../AddItemProduct";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
@@ -190,7 +190,13 @@ export default function SettingsAdminProducts({
             <p> Enviar Productos </p>
           </div>
         </div>{" "}
-        {showModal && <Modal> {childModal} </Modal>}
+        {showModal && 
+          <Modal
+            onClose={handleCloseModal}
+            >
+            {childModal}
+          </Modal>
+        }
       </>
     );
   }

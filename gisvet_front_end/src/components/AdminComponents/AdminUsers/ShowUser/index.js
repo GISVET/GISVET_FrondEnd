@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "components/GeneralComponents/Table/Table";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
@@ -68,9 +69,10 @@ export default function ShowUser({ document, onClose, isReport }) {
 
   const doSubmit = (event) => {
     event.preventDefault();
+    setchildModal(<Loading text="Actualizando Usuario" sizeIn={80}></Loading>)
+    setShowModal(true)
     if (isMatchPassword && !isDisable) {
       updateUser(user, data).then((res) => {
-        setShowModal(true);
         setchildModal(
           <MessageConfirm
             onClose={onClose}
@@ -78,6 +80,7 @@ export default function ShowUser({ document, onClose, isReport }) {
             message={res.message}
           />
         );
+        setShowModal(true);
       });
     }
   };
@@ -135,7 +138,7 @@ export default function ShowUser({ document, onClose, isReport }) {
         <>{childModal}</>
       ) : (
         <div className={styleTable}>
-          {dataReady && (
+          {dataReady? (
             <>
               <div className={styles.title_image}>
                 <img src={icon_User_settings} width="40" height="40" />
@@ -289,30 +292,7 @@ export default function ShowUser({ document, onClose, isReport }) {
                       defaultValue={rol.name_rol}
                       disabled={true}
                     />
-                    {/*!isDisable && <>
-                            { roles.map(rol=>
-                                <>
-                                    <label htmlFor="id_rol">
-                                        Asignar Rol
-                                    </label>
-                                    <select className={styles.rol} 
-                                            onChange={handleChange}    
-                                            required={true} 
-                                            name="id_rol">
-
-                                    <option disabled={true} 
-                                            selected>
-                                    </option>
-                                            { listRoles.map(rol=>
-                                                    <option key={rol.ID_ROL} value={rol.ID_ROL}>
-                                                        {rol.NAME_ROL}
-                                                    </option>
-                                                )
-                                            }
-                                    </select>
-                                </> 
-                            )}
-                        </>*/}
+                    
                   </>
                 ))}
                 <label className={styles.label_dependencie} htmlFor="rol">
@@ -325,11 +305,7 @@ export default function ShowUser({ document, onClose, isReport }) {
                         No tiene dependencias asignadas
                       </label>
                     </div>
-                    {/*<div className={styles.input_horizontal}>
-                                    <input className={styles.button_add_dependencie} 
-                                            type="submit"
-                                            value="Agregar dependencia"/>
-                                </div>*/}
+                    
                   </div>
                 ) : (
                   <>
@@ -337,11 +313,6 @@ export default function ShowUser({ document, onClose, isReport }) {
                       headers={headersDependencies}
                       data={dependeciesToTable(dependencies)}
                     />
-                    {/*<div className={styles.form_horizontal}>
-                                <input className={styles.button_accept} 
-                                            type="submit"
-                                            value="Agregar dependencia"/>
-                            </div>*/}
                   </>
                 )}
                 {!isReport && (
@@ -380,8 +351,9 @@ export default function ShowUser({ document, onClose, isReport }) {
                   </div>
                 )}
               </form>
-            </>
-          )}
+            </>)
+            :<Loading text="Cargando Datos de Usuario"></Loading>
+          }
         </div>
       )}
     </>

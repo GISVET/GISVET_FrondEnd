@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "../TableUsers/TableUsers";
 import ShowUser from "../ShowUser";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de componentes PrimeReact ====
 import { Button } from "primereact/button";
@@ -137,8 +138,6 @@ export default function ShowUserReports({ dataPatient, onClose }) {
     });
   };
 
-  console.log("Los datos de user que llegan son ");
-  console.log(listUserToTable);
   const cols = [
     { field: "tipoDoc", header: "Tipo de Documento" },
     { field: "document", header: "Identificación" },
@@ -238,7 +237,7 @@ export default function ShowUserReports({ dataPatient, onClose }) {
                     type="pie"
                     data={chartData}
                     options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
+                    style={{ position: "relative", width: "60%" }}
                   />
                 </>
               )}

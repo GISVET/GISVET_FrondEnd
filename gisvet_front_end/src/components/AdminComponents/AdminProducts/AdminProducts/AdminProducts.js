@@ -44,7 +44,13 @@ export default function AdminProducts() {
         />{" "}
         <SettingsAdminProducts />
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

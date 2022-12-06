@@ -26,11 +26,7 @@ export default function AdminPatients() {
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<> </>);
 
-  console.log("Los patients que llegan al admin son ")
-  console.log(patients)
-
   const showPatientMenu = async (data) => {
-    console.log(`El id en el showPatient es ${data}`);
     setShowModal(true);
     setchildModal(
       <ShowPatient
@@ -58,7 +54,13 @@ export default function AdminPatients() {
         />{" "}
         <SettingsAdminPatients />
       </div>{" "}
-      {showModal && <Modal> {childModal} </Modal>}{" "}
+      {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
     </>
   );
 }

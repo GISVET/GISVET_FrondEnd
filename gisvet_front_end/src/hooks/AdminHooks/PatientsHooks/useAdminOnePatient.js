@@ -15,7 +15,7 @@ export function useAdminOnePatient(id_clinic_history) {
   const { jwt } = useContext(userContext);
   const [patient, setPatient] = useState();
   const [persons, setPersons] = useState();
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
 
   let errorMessage = "";
 
@@ -27,7 +27,7 @@ export function useAdminOnePatient(id_clinic_history) {
     setLoading(true);
     getPatientById({ jwt, id_clinic_history })
       .then((res) => {
-        if (res.message === "") {
+        if (res.message !== undefined) {
           setLoading(false);
         } else {
           setLoading(false);

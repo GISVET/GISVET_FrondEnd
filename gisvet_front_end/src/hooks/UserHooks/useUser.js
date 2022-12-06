@@ -7,6 +7,7 @@ import userContext from "context/UserContext/UserContext";
 //=====Importaciones de servicios ====
 import loginServices from "services/LoginServices/login"
 import changeRolService from "services/AdminServices/UsersServices/changeRol"
+import generateToken from "services/UserServices/generateToken";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
@@ -16,8 +17,9 @@ import { useLocation } from "wouter";
 export default function useUser() {
     const {jwt,
             role,
-            IdUser,
+            idUser,
             setRole,
+            email,
             rolesUser,
             dependencies,
             dependencieActive, 
@@ -25,6 +27,12 @@ export default function useUser() {
             setJWT} = useContext(userContext)
     const [errorMessage, setErrorMessage] = useState('')
     const [,navigate] = useLocation()
+
+    useEffect(()=>{
+        if (role === undefined || role === null) {
+            navigate("/")
+        }
+    },[role])
 
     const login = useCallback(({username, password})=>{
         loginServices({username, password})
@@ -48,6 +56,7 @@ export default function useUser() {
                     setErrorMessage(res.message) 
                 }else{ 
                     setJWT(res.token)
+                    navigateRol(name_rol)
                 }
             })
             .catch(err => {
@@ -56,27 +65,13 @@ export default function useUser() {
             })
     }, [setJWT])
 
-    const changeDependencie = (id_dependencie)=>{
-        let dependencieAux = dependencies.find(dep=>dep.ID_DEPENDECIE === id_dependencie)
-        if (dependencieAux !== undefined) {
-            setDependencieActive(dependencieAux)
-        }
-    }
-
-    const logout =  useCallback(()=>{
-        window.sessionStorage.removeItem('Auth')
-        setJWT(null)
-    }, [setJWT])
-
-
-
-    useEffect(()=>{
-        switch (role) {
+    const navigateRol = (rol_name)=>{
+        switch (rol_name) {
             case 'Administrador':
                 navigate("/AdminDependencies")
                 break;
             case 'Usuario':
-                navigate("/user")
+                navigate("/user/")
                 break;
             case 'Auditor':
                 navigate("/AuditorDependencies")
@@ -88,15 +83,47 @@ export default function useUser() {
                 navigate("/unauthorized")
                 break;
         }
-    },[role])
+
+    }
+
+    const changeDependencie = (id_dependencie)=>{
+        let dependencieAux = dependencies.find(dep=>dep.ID_DEPENDECIE === id_dependencie)
+        if (dependencieAux !== undefined) {
+            setDependencieActive(dependencieAux)
+        }
+    }
+
+    const generateTokenAuth = async ()=>{
+        let response={}
+        let res = await generateToken({jwt, idUser})
+        console.log(res)
+        response["status"]= res.status
+        if(res.status === 200){
+            response["message"]= "Token Generado y enviado exitosamente"
+        }else{
+            response["message"]= "Ocurrió un error intenta nuevamente" 
+        }
+        return response
+    }
+
+    const logout =  useCallback(()=>{
+        window.sessionStorage.removeItem('Auth')
+        setJWT(null)
+    }, [setJWT])
+
+  
+
+
 
     return {
         islogged: Boolean(jwt),
         login,
         role,
-        IdUser,
+        email,
+        idUser,
         dependencies,
         rolesUser,
+        generateTokenAuth,
         changeRol,
         dependencieActive,
         changeDependencie,

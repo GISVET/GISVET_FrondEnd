@@ -1,0 +1,19 @@
+.contentLoading {
+    padding: 1rem 0;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.contentLoading>h1 {
+    margin-left: 2%;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    color: var(--shade-7-color);
+}
+
+.contentLoading>img {
+    transform: scaleX(-1);
+}

@@ -6,22 +6,17 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableDetailPatient/TableDetailPatient";
-import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de componentes PrimeReact ====
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
 
 //=====Importaciones de hooks ====
-import { useRolesList } from "hooks/AdminHooks/GeneralHooks/useRoles";
 import { useAdminOnePatient } from "hooks/AdminHooks/PatientsHooks/useAdminOnePatient";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";
 
 //=====Importaciones de constantes ====
-import { typeDependencies, gender, role } from "constants/constants";
-import { patientshistory } from "constants/headersTables";
 
 export default function ShowPatient({
   onClose,
@@ -60,8 +55,6 @@ export default function ShowPatient({
     setData(newData);
   };
 
-
-
   return (
     <>
       {showModal ? (
@@ -95,14 +88,16 @@ export default function ShowPatient({
                 type="text"
               />
 
-              {dataReady ? (
+              {loading?
+                <Loading text="Cargando Registros"></Loading>
+              :dataReady? (
                 <>
                   <label className={styles.label_table_users}>
                     Registro clínico del paciente
                   </label>
                   <Table data={patient}></Table>
                 </>
-              ) : (
+                ):(
                 <h3>El paciente no tiene registro clinico</h3>
               )}
               {!isReport && (

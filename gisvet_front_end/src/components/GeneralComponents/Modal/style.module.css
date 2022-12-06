@@ -1,21 +1,42 @@
-.modal{
+.modal {
     padding-top: 5%;
     background-color: rgba(0, 0, 0, 0.632);
     position: fixed;
+    display: flex;
     backdrop-filter: blur(2px);
     bottom: 0;
     top: 0;
     left: 0;
     right: 0;
     z-index: 30;
+    width: 100%;
+    justify-content: center;
     overflow: scroll;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-.modal_context{
+.modal_content {
     position: absolute;
-    width: 80%;
+    align-items: center;
     z-index: 31;
-    padding: 2% 18%;
-    overflow: scroll;
+    padding: 1% 2%;
+    overflow: hidden;
+    width: auto;
+    min-width: 40vw;
+    background-color: var(--tinte-7-color);
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px var(--black-color);
+}
+
+.headerModal {
+    display: inline;
+    position: relative;
+    float: right;
+    z-index: 33;
+}
+
+.headerModal [class~=p-button]:hover {
+    border: 1px solid var(--error-text-color) !important;
 }

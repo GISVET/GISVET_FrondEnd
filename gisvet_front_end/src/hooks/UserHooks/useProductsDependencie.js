@@ -10,6 +10,7 @@ import adminProductsContext, {
 
 //=====Importaciones de servicios ====
 import getGroceryProducts from "services/UserServices/getGroceryProducts";
+import getFarmacyProducts from "services/UserServices/getFarmacyProducts";
 
 //=====Importaciones de constantes ====
 import { productsAdmin } from "constants/headersTables";
@@ -22,13 +23,10 @@ export function useProductsDependencie() {
     loading,
     setLoading,
     isUpdateProducts,
-    isUpdateBranches,
-    isUpdateFeatures,
   } = useContext(adminProductsContext);
-  let errorMessage = "";
 
+  
   const getDependencieProducts = async (type_dependencie, name_dependencie) => {
-    console.log(`${type_dependencie} y la depeneice ${name_dependencie}`);
     let response = [];
     switch (type_dependencie) {
       case "B":
@@ -38,7 +36,21 @@ export function useProductsDependencie() {
           }
         });
         break;
+      case "F":
+        await getFarmacyProducts({ jwt, name_dependencie }).then((res) => {
+          if (res.message === undefined) {
+            response = res;
+          }
+        });
+        break;
 
+      case "C":
+        await getGroceryProducts({ jwt, name_dependencie }).then((res) => {
+          if (res.message === undefined) {
+            response = res;
+          }
+        });
+        break;
       default:
         break;
     }

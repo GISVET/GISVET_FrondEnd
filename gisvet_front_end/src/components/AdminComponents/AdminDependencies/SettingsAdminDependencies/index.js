@@ -18,6 +18,7 @@ import { Modal } from "components/GeneralComponents/Modal";
 //=====Importaciones de componentes generales ====
 import AddDependency from "../AddDependency";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de hooks ====
 import { useAdminDependencies } from "hooks/AdminHooks/DependenciesHooks/useAdminDependencies";
@@ -61,6 +62,8 @@ export default function SettingsAdminDepedencies() {
   };
 
   const onsubmit = (data) => {
+    setchildModal(<Loading text="Creando Dependencia" sizeIn={80}></Loading>)
+    setShowModal(true)
     return addDependency(data).then((res) => {
       setchildModal(
         <MessageConfirm
@@ -120,7 +123,13 @@ export default function SettingsAdminDepedencies() {
             <p> Reportes </p>{" "}
           </div>{" "}
         </div>{" "}
-        {showModal && <Modal> {childModal} </Modal>}{" "}
+        {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+            {childModal}
+        </Modal>
+        }{" "}
       </>
     );
   }

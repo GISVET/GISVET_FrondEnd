@@ -11,7 +11,7 @@ import { Route, Router, Switch } from "wouter";
 import Login from "./pages/Login/login";
 
 //=====Importaciones del context general====
-import { UserContextProvider } from "./context/UserContext/UserContext";
+import { UserContextProvider } from "context/UserContext/UserContext";
 
 //=====Importaciones de los context de Admin====
 import { AdminPatientsContextProvider } from "./context/AdminContext/AdminPatientsContext";
@@ -88,8 +88,8 @@ function App() {
                                 <AdminDependencies />
                               </User>
                             </Route>
-                            <Route path="/user">
-                              <User></User>
+                            <Route path="/user/:path?" 
+                                component={User}>
                             </Route>
 
                             <Route path="/productsbodega">

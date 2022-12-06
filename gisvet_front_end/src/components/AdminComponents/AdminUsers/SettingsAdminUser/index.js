@@ -157,7 +157,13 @@ export default function SettingsAdminUser() {
             <p> Reportes </p>{" "}
           </div>{" "}
         </div>{" "}
-        {showModal && <Modal> {childModal} </Modal>}{" "}
+        {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
       </>
     );
   }

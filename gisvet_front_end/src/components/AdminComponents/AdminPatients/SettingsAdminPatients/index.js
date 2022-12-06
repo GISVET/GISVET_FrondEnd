@@ -124,7 +124,13 @@ export default function SettingsAdminPatients() {
             <p> Reportes </p>{" "}
           </div>{" "}
         </div>{" "}
-        {showModal && <Modal> {childModal} </Modal>}{" "}
+        {showModal && 
+        <Modal
+          onClose={handleCloseModal}
+          >
+          {childModal}
+        </Modal>
+      }{" "}
       </>
     );
   }
