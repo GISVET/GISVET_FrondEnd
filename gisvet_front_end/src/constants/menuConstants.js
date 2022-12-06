@@ -73,7 +73,7 @@ export function getItemsBodega(navigate){
       {
          label:'Mis Productos',
          icon:'img_products',
-         command:()=>{ navigate("/user") }
+         command:()=>{ navigate("/user/grocery") }
       }
    ];
 }
@@ -96,7 +96,7 @@ export function getItemsFarmacia(navigate){
       {
          label:'Mis Productos',
          icon:'img_products',
-         command:()=>{ navigate("/user") }
+         command:()=>{ navigate("/user/farmacy") }
       }
    ];
 }
@@ -120,7 +120,7 @@ export function getItemsConsultorio(navigate){
       {
          label:'Mis Productos',
          icon:'img_products',
-         command:()=>{ navigate("/user") }
+         command:()=>{ navigate("/user/consultory") }
       }
    ];
 }

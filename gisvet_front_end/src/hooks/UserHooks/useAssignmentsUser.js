@@ -12,6 +12,7 @@ import { useLocation } from "wouter";
 
 
 const filterDependencies= (listDep, currentDependencieType)=>{
+    console.log(`Esta es la dep actual ${currentDependencieType}`)
     let dependenciesFilter = []
     let typeDependencieToApply = 'F'
     switch (currentDependencieType) {
@@ -38,7 +39,7 @@ export default function useAssignmentsUser() {
         await getDependenciesByDocument({jwt, document})
             .then(res => {
                 if (res.message === undefined) {
-                    response = filterDependencies(res,dependencieActive.TYPE_DEPENDENCIE)
+                    response = filterDependencies(res,dependencieActive.DEPENDECIE_TYPE)
                 }else{
                     response = res
                 }

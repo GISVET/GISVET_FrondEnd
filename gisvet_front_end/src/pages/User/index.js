@@ -4,6 +4,8 @@ import React,{useState, useEffect} from "react";
 //=====Importaciones de enrutamiento====
 import { Route, Router, Switch } from "wouter";
 
+import { UserProductsContextProvider } from "context/UserContext/UserProductsContext";
+
 //=====Importaciones de componentes ====
 import Header from "components/UserComponents/HeaderUser/header";
 import Loading from "components/GeneralComponents/Loading";
@@ -25,10 +27,6 @@ export default function User({params,children}) {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const { islogged, role, dependencieActive } = useUser();
   const [location, navigate] = useLocation();
-
-  useEffect(()=>{
-    console.log(params)
-  },[])
 
   useEffect(() => {
     if (islogged && role === "Usuario") {
@@ -85,17 +83,19 @@ export default function User({params,children}) {
   return (
     <>
       {isAuthorized ? (
-        <Switch>
-          <Route path="/user/grocery">
-            {body}
-          </Route>
-          <Route path="/user/farmacy">
-            {body}
-          </Route>
-          <Route path="/user/consultory">
-            {body}
-          </Route>
-        </Switch>
+        <UserProductsContextProvider>
+          <Switch>
+            <Route path="/user/grocery">
+              {body}
+            </Route>
+            <Route path="/user/farmacy">
+              {body}
+            </Route>
+            <Route path="/user/consultory">
+              {body}
+            </Route>
+          </Switch>
+        </UserProductsContextProvider>
       ) : (
         <Loading text="Cargando Datos"></Loading>
       )}

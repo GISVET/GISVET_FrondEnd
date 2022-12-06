@@ -53,27 +53,29 @@ export default function ValidateDataSendProducts({ onSubmit, onClose }) {
   return (
     <div className={styles.form_add_user_general}>
       <div className={styles.title_image}>
-        <img src={icon_Product} width="55" height="55" />
+        <img src={icon_Product} alt="Products" width="55" height="55" />
         <h1> Confirmación de datos de envio </h1>
       </div>
 
-      <form className={styles.form_add_user} onSubmit={doSubmit}>
+        <div className={styles.form_add_user} >
+          <label htmlFor="document">Documento del responsable a recibir </label>
+          <div className="p-inputgroup">
+              <InputText name="document"
+                onChange={handleChange}
+                type="text"
+                placeholder="Documento destinatario"/>
 
-        
-        <label htmlFor="document">Documento del responsable a recibir </label>
-        <div className="p-inputgroup">
-            <InputText name="document"
-              onChange={handleChange}
-              type="text"
-              placeholder="Documento destinatario"/>
-
-            <Button 
-              label="consultar"
-              icon="pi pi-search"
-              onClick={findDocument}
-            />
-          
+              <Button 
+                label="consultar"
+                icon="pi pi-search"
+                onClick={findDocument}
+              />
+            
+          </div>
         </div>
+
+        <form className={styles.form_add_user} onSubmit={doSubmit}>
+        
         {lookingforDependencies?
           <Loading></Loading>
           :

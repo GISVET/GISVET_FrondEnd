@@ -9,12 +9,22 @@ import adminProductsContext, {
 
 //=====Importaciones de servicios ====
 import sendProductsToDependecie from "services/UserServices/ProductsServices/userGrocery/sendToDependencie";
+import addNewItem from "services/UserServices/ProductsServices/userGrocery/addNewItem";
 
 //=====Importaciones de constantes ====
 
 export function useGroceryProducts() {
-  const { jwt } = useContext(userContext);
+  const { jwt,dependencieActive } = useContext(userContext);
   const [updateProducts, setUpdateProducts] = useState(false);
+
+
+  const addNewItem = async({data})=>{
+    data["id_dependencie"]=dependencieActive.ID_DEPENDECIE;
+    let response
+    response = await addNewItem({jwt,data})
+    setUpdateProducts(true)
+    return response
+  }
 
 
   const sendTodependencie = async({document,token_tem,name_dependecie,dataProducts})=>{
@@ -24,10 +34,13 @@ export function useGroceryProducts() {
                         token_tem,
                         name_dependecie,
                         dataProducts})
+    setUpdateProducts(true)
     return response
   }
 
   return {
     updateProducts,
+    sendTodependencie,
+    addNewItem
   };
 }
