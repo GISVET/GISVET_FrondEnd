@@ -21,14 +21,18 @@ import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //===== Importaciones de componentes PrimeReact ====
 
-export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
+export default function ShowDependency({ id_dependencie, onClose, isReport }) {
   const { dependency, persons, formatListUsers, updateDependencyFunction } =
     useAdminOneDependency(id_dependencie);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
+  const [isUsers, setIsUsers] = useState(false);
+
   const [textButtonUpdate, setTextButtonUpdate] = useState();
   const [childModal, setchildModal] = useState(<></>);
   const [showModal, setShowModal] = useState(false);
+  const [styleTable, setStyleTable] = useState();
+  const [styleReportForm, setStyleReportForm] = useState();
 
   const [data, setData] = useState({
     id_dependencie: "",
@@ -37,21 +41,25 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
   });
 
   useEffect(() => {
+    setStyleTable(styles.form_add_user_general);
+    setStyleReportForm(styles.form_add_user);
     if (dependency != undefined) {
       setTextButtonUpdate("Modificar");
       formatListUsers();
 
       if (persons != undefined) {
-        showPersons();
         setDataReady(true);
+        if (persons.length != 0) {
+          setIsUsers(true);
+        }
+      }
+
+      if (isReport == true) {
+        setStyleTable(styles.form_user_report);
+        setStyleReportForm(styles.form_report);
       }
     }
   }, [dependency]);
-
-  const showPersons = () => {
-    console.log(persons);
-    persons.map((person) => {});
-  };
 
   const doSubmit = (event) => {
     event.preventDefault();
@@ -89,14 +97,14 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
       {showModal ? (
         <>{childModal}</>
       ) : (
-        <div className={styles.form_add_user_general}>
+        <div className={styleTable}>
           {dataReady && (
             <>
               <div className={styles.title_image}>
                 <img src={icon_dependencie_settings} width="40" height="40" />
                 <h1> Detalle Dependencia</h1>
               </div>
-              <form className={styles.form_add_user} onSubmit={doSubmit}>
+              <form className={styleReportForm} onSubmit={doSubmit}>
                 <label htmlFor="id_dependency">Id del Departamento </label>
                 <input
                   name="id_dependencie"
@@ -118,7 +126,6 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
                   type="text"
                 />
                 <label htmlFor="type_dependency">Tipo de dependencia </label>
-
                 <input
                   name="type_dependency"
                   disabled={true}
@@ -131,12 +138,19 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
                   required={true}
                   type="text"
                 />
-                <label className={styles.label_table_users}>
-                  {" "}
-                  Usuarios pertenecientes a la dependencia{" "}
-                </label>
-                <Table headers={usersByDependency} data={persons} />
-
+                {isUsers ? (
+                  <>
+                    <label className={styles.label_table_users}>
+                      Usuarios pertenecientes a la dependencia{" "}
+                    </label>
+                    <Table headers={usersByDependency} data={persons} />
+                  </>
+                ) : (
+                  <label className={styles.label_table_users}>
+                    La dependencia no tiene usuarios asignados
+                  </label>
+                )}
+                {!isReport&&(
                 <div className={styles.form_horizontal}>
                   <input
                     className={styles.button_accept}
@@ -149,7 +163,7 @@ export default function ShowDependency({ id_dependencie, onSubmit, onClose }) {
                     onClick={onClose}
                     value="Cancelar"
                   />
-                </div>
+                </div>)}
               </form>
             </>
           )}

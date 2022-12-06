@@ -19,8 +19,9 @@ import icon_reports from "./images/Icon_Reports.png";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
+import ShowPatientsReports from "../ShowPatientsReports/ShowPatientsReports";
 
-export default function SettingsAdminDepedencies() {
+export default function SettingsAdminPatients() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [, navigate] = useLocation();
@@ -41,6 +42,14 @@ export default function SettingsAdminDepedencies() {
     event.preventDefault();
     setchildModal(
       <AddPatient onClose={handleCloseModal} onSubmit={onsubmit} />
+    );
+    return setShowModal(true);
+  };
+
+  const showReport = async (event) => {
+    event.preventDefault();
+    setchildModal(
+      <ShowPatientsReports onClose={handleCloseModal} />
     );
     return setShowModal(true);
   };
@@ -107,7 +116,7 @@ export default function SettingsAdminDepedencies() {
             <input
               className={styles.add_user_form}
               type="image"
-              onClick={showAddPatientsMenu}
+              onClick={showReport}
               src={icon_reports}
               width="40"
               height="40"

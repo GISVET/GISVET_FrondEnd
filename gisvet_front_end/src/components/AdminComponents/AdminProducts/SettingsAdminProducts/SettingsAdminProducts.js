@@ -25,6 +25,7 @@ import icon_Register_Product from "./images/Icon_Register_Product.png";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
+import ShowProductsReports from "../ShowProductsReports/ShowProductsReports";
 
 export default function SettingsAdminProducts() {
   const [activeMenu, setActiveMenu] = useState(false);
@@ -67,6 +68,16 @@ export default function SettingsAdminProducts() {
     setShowModal(true);
     setchildModal(
       <AddItemProduct onClose={handleCloseModal} onSubmit={onsubmitAddItem} />
+    );
+  };
+
+  const showProductsRep = async (event) => {
+    event.preventDefault();
+    setShowModal(true);
+    setchildModal(
+      <ShowProductsReports
+        onClose={handleCloseModal}
+      />
     );
   };
 
@@ -191,7 +202,7 @@ export default function SettingsAdminProducts() {
             <input
               className={styles.add_user_form}
               type="image"
-              onClick={ShowAddItemProduct}
+              onClick={showProductsRep}
               src={icon_reports}
               width="32"
               height="32"

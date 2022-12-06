@@ -18,7 +18,8 @@ import icon_User_settings from "./images/Icon_settings.png";
 //=====Importaciones de constantes ====
 import { typeDoc, gender, role } from "constants/constants";
 
-export default function ShowUser({ id, onClose }) {
+export default function ShowUser({ document, onClose, isReport }) {
+  console.log(document);
   const {
     user,
     headersDependencies,
@@ -26,7 +27,7 @@ export default function ShowUser({ id, onClose }) {
     dependencies,
     dependeciesToTable,
     updateUser,
-  } = useAdminOneUser(id);
+  } = useAdminOneUser(document);
 
   const { loading, listRoles } = useRolesList();
   const [isMatchPassword, setIsMatchPassword] = useState(true);
@@ -37,6 +38,8 @@ export default function ShowUser({ id, onClose }) {
   const [classPassword, setClassPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
+  const [styleTable, setStyleTable] = useState();
+  const [styleReportForm, setStyleReportForm] = useState();
 
   const [data, setData] = useState({
     full_name: "",
@@ -48,10 +51,18 @@ export default function ShowUser({ id, onClose }) {
     password: "",
   });
   useEffect(() => {
+    setStyleTable(styles.form_add_user_general);
+    setStyleReportForm(styles.form_add_user);
     if (listRoles.length != 0) {
       if (user != undefined) {
         setDataReady(true);
       }
+      if (isReport == true) {
+        setStyleTable(styles.form_user_report);
+        setStyleReportForm(styles.form_report);
+      }
+      console.log("El style table final es  : ");
+      console.log(styleTable);
     }
   }, [loading, user]);
 
@@ -123,14 +134,14 @@ export default function ShowUser({ id, onClose }) {
       {showModal ? (
         <>{childModal}</>
       ) : (
-        <div className={styles.form_add_user_general}>
+        <div className={styleTable}>
           {dataReady && (
             <>
               <div className={styles.title_image}>
                 <img src={icon_User_settings} width="40" height="40" />
                 <h1> Detalle Usuario</h1>
               </div>
-              <form className={styles.form_add_user} onSubmit={doSubmit}>
+              <form className={styleReportForm} onSubmit={doSubmit}>
                 <label htmlFor="full_name">Nombre de Usuario</label>
                 <input
                   name="full_name"
@@ -333,40 +344,41 @@ export default function ShowUser({ id, onClose }) {
                             </div>*/}
                   </>
                 )}
+                {!isReport && (
+                  <div className={styles.form_horizontal}>
+                    {isDisable ? (
+                      <>
+                        <input
+                          className={styles.button_accept}
+                          type="submit"
+                          onClick={setDataUser}
+                          value="Actualizar Datos"
+                        />
+                        <input
+                          className={styles.button_cancel}
+                          type="submit"
+                          onClick={onClose}
+                          value="Cerrar"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <input
+                          className={styles.button_accept}
+                          type="submit"
+                          value="Confirmar Cambios"
+                        />
 
-                <div className={styles.form_horizontal}>
-                  {isDisable ? (
-                    <>
-                      <input
-                        className={styles.button_accept}
-                        type="submit"
-                        onClick={setDataUser}
-                        value="Actualizar Datos"
-                      />
-                      <input
-                        className={styles.button_cancel}
-                        type="submit"
-                        onClick={onClose}
-                        value="Cerrar"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <input
-                        className={styles.button_accept}
-                        type="submit"
-                        value="Confirmar Cambios"
-                      />
-
-                      <input
-                        className={styles.button_cancel}
-                        type="submit"
-                        onClick={cancelChanges}
-                        value="Cancelar"
-                      />
-                    </>
-                  )}
-                </div>
+                        <input
+                          className={styles.button_cancel}
+                          type="submit"
+                          onClick={cancelChanges}
+                          value="Cancelar"
+                        />
+                      </>
+                    )}
+                  </div>
+                )}
               </form>
             </>
           )}

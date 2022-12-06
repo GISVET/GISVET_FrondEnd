@@ -29,27 +29,27 @@ export function getItemsAuditor(navigate){
       {
          label:'Dependencias',
          icon:'img_dependencies',
-         command:()=>{ navigate("/AdminDependencies") }
+         command:()=>{ navigate("/AuditorDependencies") }
       },
       {
          label:'Usuarios',
          icon:'img_users',
-         command:()=>{ navigate("/AdminUser") }
+         command:()=>{ navigate("/AuditorUser") }
       },
       {
           label:'Pacientes',
           icon:'img_patients',
-          command:()=>{ navigate("/AdminPatients") }
+          command:()=>{ navigate("/AuditorPatients") }
        },
        {
           label:'Productos',
           icon:'img_products',
-          command:()=>{ navigate("/AdminProducts") }
+          command:()=>{ navigate("/AuditorProducts") }
        },
        {
          label:'Seguimiento',
          icon:'img_products',
-         command:()=>{ navigate("/AdminProducts") }
+         command:()=>{ navigate("/AuditorTableGeneral") }
       }
    ];
 }

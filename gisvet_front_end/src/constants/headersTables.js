@@ -10,6 +10,10 @@ export const patientsAdmin = [
     "Historia clinica",
     "Nombre del paciente"]
 
+    export const auditorTableGeneral = [
+        "Id del proceso",
+        "Fecha del proceso","Descripción del proceso"]
+
 export const dependenciesAdmin = [
     "Id de la dependencia",
     "Nombre de la dependencia",

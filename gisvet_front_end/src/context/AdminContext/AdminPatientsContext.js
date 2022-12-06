@@ -5,7 +5,7 @@ import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../UserContext/UserContext";
 
 //=====Importaciones de servicios ====
-import getPatientsList from "../../services/AdminServices/PatientsServices/getPatientsList";
+import getPatientsList from "services/AdminServices/PatientsServices/getPatientsList";
 
 const Context = React.createContext({});
 

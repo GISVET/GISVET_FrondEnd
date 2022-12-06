@@ -3,7 +3,7 @@ import { useContext, useCallback, useState } from "react";
 
 //=====Importaciones de contextos ====
 import userContext from "context/UserContext/UserContext";
-import adminDependencyContext from "context/AuditorContext/AuditorDependencyContext";
+import auditorDependencyContext from "context/AuditorContext/AuditorDependencyContext";
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";
@@ -11,7 +11,7 @@ import { dependenciesAdmin } from "constants/headersTables";
 //=====Importaciones de servicios ====
 import getDependenciesName from "services/AuditorServices/DependenciesServices/getDependenciesListAuditor";
 
-export function useAdminDependencies() {
+export function useAuditorDependencies() {
   const { jwt } = useContext(userContext);
   const {
     dependency,
@@ -22,7 +22,7 @@ export function useAdminDependencies() {
     loading,
     setLoading,
     isUpdateDependencies,
-  } = useContext(adminDependencyContext);
+  } = useContext(auditorDependencyContext);
   let errorMessage = "";
 
   return {

@@ -1,6 +1,8 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
 
 export default function getUsersByDocument({jwt, document}){
+    console.log("El document que llega al endpoint es ")
+    console.log(document)
   const objectBody = {
     "document": document
   }
@@ -19,3 +21,4 @@ export default function getUsersByDocument({jwt, document}){
         return data
     })
 }
+

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Table from "components/AdminComponents/AdminDependencies/TableDependencies/TableDependencies";
+import React, { useState } from "react";
+import Table from "components/AuditorComponents/AuditorDependencies/TableDependencies/TableDependencies";
 import styles from "./styles.module.css";
-import { useAdminDependencies } from "hooks/AuditorHooks/DependenciesHooks/useAuditorDependencies";
-import { typeDependencies } from "constants/constants";
+import { useAuditorDependencies } from "hooks/AuditorHooks/DependenciesHooks/useAuditorDependencies";
 import { Modal } from "components/GeneralComponents/Modal";
-import ShowDependency from "components/AdminComponents/AdminDependencies/ShowDependency/ShowDependency";
+import ShowDependency from "components/AuditorComponents/AuditorDependencies/ShowDependency/ShowDependency";
 
 export default function AuditorDependencies() {
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<> </>);
 
-  const { dependencies, headers } = useAdminDependencies();
+  const { dependencies, headers } = useAuditorDependencies();
 
   const showUserMenu = async (id_dependencie) => {
     setShowModal(true);

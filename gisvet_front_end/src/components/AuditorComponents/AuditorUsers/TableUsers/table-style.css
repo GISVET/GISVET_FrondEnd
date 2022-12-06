@@ -1,0 +1,55 @@
+
+.p-column-filter-overlay
+  .p-component
+  .p-fluid
+  .p-column-filter-overlay-menu
+  .p-connected-overlay-enter-done {
+    z-index: 10000;
+    background-color: var(--white-color) !important;
+}
+
+.p-column-filter-overlay-menu .p-column-filter-operator{
+    background-color: var(--white-color) !important;
+    height: 50px;
+    padding: 0px;
+}
+
+.p-column-filter-overlay-menu .p-column-filter-buttonbar{
+  padding: 0px 20px 10px 20px !important;
+}
+
+.p-fluid .p-dropdown .p-dropdown-label{
+    height: 25px;
+}
+
+.p-fluid .p-inputtext{
+    height: 25px !important;
+}
+
+.p-column-filter-buttonbar {
+  background-color: var(--white-color) !important;
+  color: purple !important;
+}
+
+.p-column-filter-menu-button:hover {
+  background-color: transparent !important;
+  background: transparent !important;
+}
+
+.p-column-filter-menu-button.p-column-filter-menu-button-open,
+.p-column-filter-menu-button.p-column-filter-menu-button-open:hover {
+  background: transparent !important;
+  color: #343a40;
+}
+
+.myTable {
+  border-collapse: collapse;
+  margin-left: 5%;
+  width: 90%;
+  margin-right: 5%;
+  font-family: var(--text-principal-font);
+  font-weight: normal;
+  font-size: 15px;
+  color: white;
+  margin-bottom: 3%;
+}

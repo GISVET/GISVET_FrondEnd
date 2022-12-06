@@ -16,7 +16,7 @@ import icon_dependencie_settings from "./images/icon_show_dep.png";
 //=====Importaciones de constantes ====
 import { presentations } from "constants/constants";
 
-export default function ShowProducts({ dataProduct, onClose }) {
+export default function ShowProducts({ dataProduct, onClose , isReport}) {
   const presentation = presentations.find(
     (element) => element.name === dataProduct.presentation
   );
@@ -33,10 +33,19 @@ export default function ShowProducts({ dataProduct, onClose }) {
     name_patient: "",
   });
 
+  const [styleTable, setStyleTable] = useState();
+  const [styleReportForm, setStyleReportForm] = useState();
+
   useEffect(() => {
+    setStyleTable(styles.form_add_user_general);
+    setStyleReportForm(styles.form_add_user);
     if (product != undefined) {
       if (product.length != 0) {
         setDataReady(true);
+      }
+      if (isReport == true) {
+        setStyleTable(styles.form_user_report);
+        setStyleReportForm(styles.form_report);
       }
     }
   }, [product]);
@@ -53,13 +62,13 @@ export default function ShowProducts({ dataProduct, onClose }) {
       {showModal ? (
         <>{childModal}</>
       ) : (
-        <div className={styles.form_add_user_general}>
+        <div className={styleTable}>
           <>
             <div className={styles.title_image}>
               <img src={icon_dependencie_settings} width="50" height="50" />
               <h1> Especificación del producto </h1>
             </div>
-            <form className={styles.form_add_user} onSubmit={""}>
+            <form className={styleReportForm} onSubmit={""}>
               <div className={styles.form_horizontal}>
                 <div className={styles.input_horizontal}>
                   <label htmlFor="id_clinic_history">Id del producto</label>
@@ -150,6 +159,8 @@ export default function ShowProducts({ dataProduct, onClose }) {
                 </h3>
               )}
 
+              {!isReport && (
+
               <div className={styles.form_horizontal}>
                 <input
                   className={styles.button_accept}
@@ -157,7 +168,7 @@ export default function ShowProducts({ dataProduct, onClose }) {
                   value="Volver"
                   onClick={onClose}
                 />
-              </div>
+              </div>)}
             </form>
           </>
         </div>

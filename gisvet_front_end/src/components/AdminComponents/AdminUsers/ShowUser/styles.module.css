@@ -1,5 +1,5 @@
-
-.form_add_user_general{
+/*Estilos de div general con cambios*/
+.form_add_user_general {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -11,22 +11,57 @@
   width: 60%;
   padding: 3% 3% 5% 2%;
 }
-.form_add_user{
+
+/*Estilos de div general para reporte*/
+.form_user_report {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-color);
+  left: 0;
+  margin-left: 0%;
+  width: 100%;
+  padding: 3% 0% 0% 0%;
+}
+
+/*Estilos de form general con cambios*/
+.form_add_user {
   display: flex;
   justify-items: center;
   flex-direction: column;
   width: 80%;
   margin-left: 13%;
 }
-.title_image > h1{
+
+/*Estilos de form para reportes*/
+.form_report {
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  width: 95%;
+  margin-left: 5%;
+}
+
+.form_report > input {
+  margin-top: 2%;
+  padding: 0px;
+  float: right;
+  border-radius: 3px;
+  width: 90%;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  border: 0;
+  box-shadow: 0px 1px 3px var(--black-color);
+}
+
+.title_image > h1 {
   margin-left: 2%;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: bold;
   font-size: 18px;
   color: black;
 }
 
-.title_image{
+.title_image {
   display: flex;
   flex-direction: row;
   justify-content: start;
@@ -34,78 +69,78 @@
   margin-left: 8%;
   margin-top: 2%;
 }
-.form_add_user > label:nth-child(1){
-    margin-top: 5%;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-}
-.form_add_user label{
-    margin-top: 2%;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 16px;
-}
-
-.button_addDept{
+.button_addDept {
   margin-left: 10%;
   margin-top: 3%;
-  background-color:var(--error-button-color);
+  background-color: var(--error-button-color);
   height: 45px;
   width: 12rem;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   color: var(--black-color);
   font-weight: bold;
 }
 
-.form_add_user > select{
+.form_add_user > label:nth-child(1) {
+  margin-top: 5%;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+.form_add_user label {
+  margin-top: 2%;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+}
+
+.form_add_user > select {
   margin-top: 2%;
   border-radius: 3px;
   height: 2rem;
   width: 95%;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   border: 0;
   padding: 0.5rem 1rem;
-  box-shadow: 0px 1px 3px var(--black-color); 
+  box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user option{
+.form_add_user option {
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: var(--shade-5-color);
 }
-.form_add_user option:hover{
+
+.form_add_user option:hover {
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   background-color: var(--shade-5-color);
   color: var(--shade-5-color);
 }
 
-.form_add_user > input{
+.form_add_user > input {
   margin-top: 2%;
   padding: 0.5rem 1rem;
   float: right;
   border-radius: 3px;
-  width:90%;
+  width: 90%;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   border: 0;
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-
-.form_add_user input[type=submit]:nth-child(1){
+.form_add_user input[type="submit"]:nth-child(1) {
   margin-top: 3%;
-  background-color:var(--shade-5-color);
+  background-color: var(--shade-5-color);
   height: 45px;
   width: 12rem;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   font-weight: bold;
   color: var(--white-color);
@@ -113,13 +148,13 @@
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user input[type=submit]:nth-child(2){
+.form_add_user input[type="submit"]:nth-child(2) {
   margin-top: 3%;
-  background-color:var(--error-button-color);
+  background-color: var(--error-button-color);
   height: 45px;
   width: 12rem;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   color: var(--black-color);
   font-weight: bold;
@@ -127,88 +162,107 @@
   box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.form_add_user > select{
+.form_report input[type="submit"]:nth-child(1) {
+  visibility: hidden;
+}
+
+.form_report input[type="submit"]:nth-child(2) {
+  visibility: hidden;
+}
+
+.form_report .input_horizontal > input {
+  box-sizing: border-box;
+  margin-top: 2%;
+  float: left;
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  width: 100%;
+  text-align: left;
+  font-family: "Inter", sans-serif;
+  box-shadow: 0px 1px 3px var(--black-color);
+}
+
+.form_add_user > select {
   width: 95%;
 }
 
-.form_horizontal{
+.form_horizontal {
   box-sizing: border-box;
   width: 95%;
   margin-top: 2%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-
 }
-.input_horizontal{
+.input_horizontal {
   display: inline-block;
   box-sizing: border-box;
   max-width: 90%;
 }
 
-.input_horizontal:nth-child(even){
+.input_horizontal:nth-child(even) {
   padding-left: 1rem;
 }
 
-.input_horizontal > select{
+.input_horizontal > select {
   margin-top: 2%;
   border-radius: 3px;
   height: 2rem;
   width: 100%;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   border: 0;
   padding: 0.5rem 1rem;
-  box-shadow: 0px 1px 3px var(--black-color); 
+  box-shadow: 0px 1px 3px var(--black-color);
 }
 
-.input_horizontal option{
+.input_horizontal option {
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   color: var(--shade-5-color);
 }
-.input_horizontal option:hover{
+.input_horizontal option:hover {
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   background-color: var(--shade-5-color);
   color: var(--shade-5-color);
 }
 
-.input_horizontal > input{
+.input_horizontal > input {
   box-sizing: border-box;
   margin-top: 2%;
   float: left;
   padding: 0.5rem 1rem;
   border-radius: 3px;
-  width:100%;
+  width: 100%;
   text-align: left;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   box-shadow: 0px 1px 3px var(--black-color);
 }
-.input_horizontal > input:not(.error_message_input){
+
+.input_horizontal > input:not(.error_message_input) {
   border: 0;
 }
 
-.input_horizontal > select[name=gender]{
+.input_horizontal > select[name="gender"] {
   margin-top: 2%;
   float: right;
   padding: 0.5rem 7rem 0.5rem 1rem;
 }
 
-.error_message_input{
+.error_message_input {
   border: 1px solid var(--error-text-color);
 }
 
-.label_dependencie{
+.label_dependencie {
   padding-bottom: 1rem;
 }
 
-.error_message{
+.error_message {
   margin-top: 5%;
   text-align: left;
   width: 100%;
   color: var(--error-text-color);
 }
-

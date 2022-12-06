@@ -33,9 +33,9 @@ export default function AdminUsers() {
   const [childModal, setchildModal] = useState(<> </>);
   const [orderBy, setOrderBy] = useState();
 
-  const showUserMenu = async (identifier) => {
+  const showUserMenu = async (document) => {
     setShowModal(true);
-    setchildModal(<ShowUser id={identifier} onClose={handleCloseModal} />);
+    setchildModal(<ShowUser document={document} onClose={handleCloseModal} />);
   };
   const handleChange = (event) => {
     setOrderBy(event.target.value);
@@ -60,9 +60,9 @@ export default function AdminUsers() {
           data={listUserToTable}
           keyName={"document"}
           actionItem={showUserMenu}
-        />{" "}
+        />
         <SettingsAdminUser />
-      </div>{" "}
+      </div>
       {showModal && <Modal> {childModal} </Modal>}{" "}
     </>
   );

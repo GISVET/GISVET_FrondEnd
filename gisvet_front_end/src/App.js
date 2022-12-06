@@ -21,6 +21,10 @@ import { AdminProductsContextProvider } from "./context/AdminContext/AdminProduc
 
 //=====Importaciones de los context de Auditor====
 import { AuditorDependencyContextProvider } from "./context/AuditorContext/AuditorDependencyContext";
+import { AuditorPatientsContextProvider } from "./context/AuditorContext/AuditorPatientsContext";
+import { AuditorUsersContextProvider } from "./context/AuditorContext/AuditorUserContext";
+import { AuditorProductsContextProvider } from "./context/AuditorContext/AuditorProductsContext";
+import { AuditorTableGeneralContext } from "./context/AuditorContext/AuditorTableGeneralContext";
 
 //=====Importacioens de los componentes del Admin====
 import Admin from "./pages/Admin/Admin";
@@ -36,6 +40,10 @@ import ProductsGrocery from "./components/UserComponents/UserGrocery/ProductsGro
 //=====Importaciones de los componentesd de Auditor====
 import Auditor from "./pages/Auditor/Auditor";
 import AuditorDependencies from "components/AuditorComponents/AuditorDependencies/AuditorDependencies/AuditorDependencies";
+import AuditorPatients from "components/AuditorComponents/AuditorPatients/AuditorPatient/AuditorPatient";
+import AuditorUsers from "components/AuditorComponents/AuditorUsers/AuditorUsers/AuditorUsers";
+import AuditorProducts from "components/AuditorComponents/AuditorProducts/AuditorProducts/AuditorProducts";
+import AuditorTableGeneral from "components/AuditorComponents/AuditorTableGeneral/AuditorTableGeneral/AuditorTableGeneral";
 
 //=====Importaciones de las paginas generales====
 import Error from "pages/Error/Error";
@@ -68,71 +76,79 @@ function App() {
           <AdminProductsContextProvider>
             <AdminPatientsContextProvider>
               <AuditorDependencyContextProvider>
-                <div className="App">
-                  <Switch>
-                    <Route component={Login} path="/" />
-                    <Route path="/test">
-                      <User>
-                        <AdminDependencies />
-                      </User>
-                    </Route>
-                    <Route path="/user">
-                      <User></User>
-                    </Route>
+                <AuditorPatientsContextProvider>
+                  <AuditorUsersContextProvider>
+                    <AuditorProductsContextProvider>
+                      <AuditorTableGeneralContext>
+                        <div className="App">
+                          <Switch>
+                            <Route component={Login} path="/" />
+                            <Route path="/test">
+                              <User>
+                                <AdminDependencies />
+                              </User>
+                            </Route>
+                            <Route path="/user">
+                              <User></User>
+                            </Route>
 
-                    <Route path="/productsbodega">
-                      <User>
-                        <ProductsGrocery />
-                      </User>
-                    </Route>
-                    <Route path="/AdminUser">
-                      <Admin>
-                        <AdminUser />
-                      </Admin>
-                    </Route>
-                    <Route path="/AdminDependencies">
-                      <Admin>
-                        <AdminDependencies />
-                      </Admin>
-                    </Route>
-                    <Route path="/AdminPatients">
-                      <Admin>
-                        <AdminPatients />
-                      </Admin>
-                    </Route>
-                    <Route path="/AdminProducts">
-                      <Admin>
-                        <AdminProducts />
-                      </Admin>
-                    </Route>
-                    <Route path="/AuditorUser">
-                      <Admin>
-                        <AdminUser />
-                      </Admin>
-                    </Route>
-                    <Route path="/AuditorDependencies">
-                      <Auditor>
-                        <AuditorDependencies />
-                      </Auditor>
-                    </Route>
-                    <Route path="/AuditorPatients">
-                      <Auditor>
-                        <AdminPatients />
-                      </Auditor>
-                    </Route>
-                    <Route path="/AuditorProducts">
-                      <Auditor>
-                        <AdminProducts />
-                      </Auditor>
-                    </Route>
-                    <Route path="/AuditorReports">
-                      <Auditor>
-                        <AdminProducts />
-                      </Auditor>
-                    </Route>
-                    <Route component={Error}></Route>
-                  </Switch>
-                </div>
+                            <Route path="/productsbodega">
+                              <User>
+                                <ProductsGrocery />
+                              </User>
+                            </Route>
+                            <Route path="/AdminUser">
+                              <Admin>
+                                <AdminUser />
+                              </Admin>
+                            </Route>
+                            <Route path="/AdminDependencies">
+                              <Admin>
+                                <AdminDependencies />
+                              </Admin>
+                            </Route>
+                            <Route path="/AdminPatients">
+                              <Admin>
+                                <AdminPatients />
+                              </Admin>
+                            </Route>
+                            <Route path="/AdminProducts">
+                              <Admin>
+                                <AdminProducts />
+                              </Admin>
+                            </Route>
+                            <Route path="/AuditorUser">
+                              <Auditor>
+                                <AuditorUsers />
+                              </Auditor>
+                            </Route>
+                            <Route path="/AuditorDependencies">
+                              <Auditor>
+                                <AuditorDependencies />
+                              </Auditor>
+                            </Route>
+                            <Route path="/AuditorPatients">
+                              <Auditor>
+                                <AuditorPatients />
+                              </Auditor>
+                            </Route>
+                            <Route path="/AuditorProducts">
+                              <Auditor>
+                                <AuditorProducts />
+                              </Auditor>
+                            </Route>
+                            <Route path="/AuditorTableGeneral">
+                              <Auditor>
+                                <AuditorTableGeneral />
+                              </Auditor>
+                            </Route>
+                            <Route component={Error}></Route>
+                          </Switch>
+                        </div>
+                      </AuditorTableGeneralContext>
+                    </AuditorProductsContextProvider>
+                  </AuditorUsersContextProvider>
+                </AuditorPatientsContextProvider>
               </AuditorDependencyContextProvider>
             </AdminPatientsContextProvider>
           </AdminProductsContextProvider>

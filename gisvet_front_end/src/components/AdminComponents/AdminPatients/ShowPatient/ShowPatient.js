@@ -1,5 +1,5 @@
 //=====Importaciones de React ====
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //=====Importaciones de estilos ====
 import styles from "./styles.module.css";
@@ -23,24 +23,33 @@ import icon_dependencie_settings from "./images/icon_show_dep.png";
 import { typeDependencies, gender, role } from "constants/constants";
 import { patientshistory } from "constants/headersTables";
 
+export default function ShowPatient({
+  onClose,
+  dataPatient,
+  isReport,
+}) {
 
-export default function ShowPatient({ dataPatient, onClose }) {
   const { patient } = useAdminOnePatient(dataPatient.id_clinic_history);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
-  const [textButtonUpdate, setTextButtonUpdate] = useState();
   const [childModal, setchildModal] = useState(<></>);
   const [showModal, setShowModal] = useState(false);
+  const [styleTable, setStyleTable] = useState();
+  const [styleReportForm, setStyleReportForm] = useState();
   const [data, setData] = useState({
     id_clinic_history: "",
     name_patient: "",
   });
 
   useEffect(() => {
+    setStyleTable(styles.form_add_user_general);
+    setStyleReportForm(styles.form_add_user);
     if (patient != undefined) {
-      console.log("El patient en ShowPatient es ");
-      console.log(patient);
       setDataReady(true);
+    }
+    if (isReport == true) {
+      setStyleTable(styles.form_user_report);
+      setStyleReportForm(styles.form_report);
     }
   }, [patient]);
 
@@ -51,21 +60,20 @@ export default function ShowPatient({ dataPatient, onClose }) {
     setData(newData);
   };
 
-  console.log("El paciente completo de respuesta que lelga al ShowPatient es ");
-  console.log(patient);
+
 
   return (
     <>
       {showModal ? (
         <>{childModal}</>
       ) : (
-        <div className={styles.form_add_user_general}>
+        <div className={styleTable}>
           <>
             <div className={styles.title_image}>
               <img src={icon_dependencie_settings} width="50" height="50" />
               <h1> Registro clinico del paciente </h1>
             </div>
-            <form className={styles.form_add_user} onSubmit={""}>
+            <div className={styleReportForm} >
               <label htmlFor="id_clinic_history">
                 Id de la Historia clinica{" "}
               </label>
@@ -97,7 +105,7 @@ export default function ShowPatient({ dataPatient, onClose }) {
               ) : (
                 <h3>El paciente no tiene registro clinico</h3>
               )}
-
+              {!isReport && (
               <div className={styles.form_horizontal}>
                 <input
                   className={styles.button_accept}
@@ -110,8 +118,8 @@ export default function ShowPatient({ dataPatient, onClose }) {
                   onClick={onClose}
                   value="Cancelar"
                 />
-              </div>
-            </form>
+              </div>)}
+            </div>
           </>
         </div>
       )}

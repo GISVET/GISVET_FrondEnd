@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import Table from "../TableUsers/TableUsers";
+import ShowUser from "../ShowUser";
 
 //=====Importaciones de componentes PrimeReact ====
 import { Button } from "primereact/button";
@@ -16,22 +17,22 @@ import { Column } from "primereact/column";
 
 //=====Importaciones de hooks ====
 import { useUsersAdmin } from "hooks/AdminHooks/UsersHooks/useAdminUsers";
+import { useAdminOneUser } from "hooks/AdminHooks/UsersHooks/useAdminOneUser";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";
 
 export default function ShowUserReports({ dataPatient, onClose }) {
-  const [report, setReport] = useState("");
-
+  const [report, setReport] = useState();
+  const [user, setUser] = useState();
   const [usersRoles, setUserRoles] = useState();
-
   const { users, listUserToTable, headers } = useUsersAdmin();
-
+  const [idUser, setIdUser] = useState();
   const [noReport, setNoReport] = useState(true);
   const [first, setFirst] = useState(false);
   const [second, setSecond] = useState(false);
   const [third, setThird] = useState(false);
-
+  const [thirdData, setThirdData] = useState(false);
   const [textButtonUpdate, setTextButtonUpdate] = useState();
   const [childModal, setchildModal] = useState(<></>);
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +40,6 @@ export default function ShowUserReports({ dataPatient, onClose }) {
     id_clinic_history: "",
     name_patient: "",
   });
-
   const [chartData, setChart] = useState();
   const [lightOptions] = useState({
     plugins: {
@@ -51,14 +51,11 @@ export default function ShowUserReports({ dataPatient, onClose }) {
     },
   });
   const toast = useRef(null);
-
   function usersByRol() {
     let dataFormated = [];
-
     let general = 0;
     let auditors = 0;
     let admins = 0;
-
     for (let i = 0; i < listUserToTable.length; i++) {
       if (listUserToTable[i].rol === "Administrador") {
         admins++;
@@ -68,15 +65,12 @@ export default function ShowUserReports({ dataPatient, onClose }) {
         auditors++;
       }
     }
-
     let personData = {
       admins: admins,
       users: general,
       auditors: auditors,
     };
-
     dataFormated.push(personData);
-
     setChart({
       labels: [
         "Cantidad de Administradores",
@@ -91,7 +85,6 @@ export default function ShowUserReports({ dataPatient, onClose }) {
         },
       ],
     });
-
     setUserRoles(dataFormated);
     return dataFormated;
   }
@@ -103,30 +96,32 @@ export default function ShowUserReports({ dataPatient, onClose }) {
   ];
 
   useEffect(() => {
-    console.log("El dato de report es  :");
-    console.log(report);
     if (report == "UL" && users != undefined) {
       setFirst(true);
       setSecond(false);
       setThird(false);
       setNoReport(false);
+      setThirdData(false);
     } else if (report == "CR" && users != undefined) {
-      console.log("Entra a reporte CR");
       usersByRol();
       setFirst(false);
       setSecond(true);
       setThird(false);
-
+      setThirdData(false);
       setNoReport(false);
-      console.log("Los usuarios por rol ");
-      console.log(usersRoles);
     } else if (report == "SU" && users != undefined) {
       setFirst(false);
       setSecond(false);
-      setThird(true);
       setNoReport(false);
+      setThird(true);
     }
-  }, [report, users]);
+  }, [report, users, thirdData]);
+
+  useEffect(() => {
+    if (third == true && idUser != undefined) {
+      setThirdData(true);
+    }
+  }, [idUser, third]);
 
   const exportPdf = () => {
     import("jspdf").then((jsPDF) => {
@@ -151,6 +146,14 @@ export default function ShowUserReports({ dataPatient, onClose }) {
     { field: "professional_id", header: "Tarjeta Profesional" },
     { field: "rol", header: "Rol" },
   ];
+
+  const handleChange = (event) => {
+    console.log("Lo que capta el handle es ");
+    let { value } = event.target;
+    console.log("El evento value es -...");
+    setThirdData(false);
+    setIdUser(value);
+  };
 
   const exportColumns = cols.map((col) => ({
     title: col.header,
@@ -197,7 +200,11 @@ export default function ShowUserReports({ dataPatient, onClose }) {
                   >
                     Generar Pdf
                   </Button>
-                  <Table headers={headers} data={listUserToTable}></Table>
+                  <Table
+                    headers={headers}
+                    data={listUserToTable}
+                    isReport={true}
+                  ></Table>
                 </>
               )}
               {second && (
@@ -240,36 +247,26 @@ export default function ShowUserReports({ dataPatient, onClose }) {
                   <label className={styles.label_table_users}>
                     Busqueda de usuario especifico
                   </label>
-                  <div className={styles.table_data}>
-                    <DataTable
-                      className="myTable"
-                      headerClassName="header-table-style"
-                      rowClassName="row-accessories"
-                      value={usersRoles}
-                    >
-                      <Column
-                        field="admins"
-                        header="Total de Administradores"
-                      ></Column>
-                      <Column
-                        field="auditors"
-                        header="Total de Auditores"
-                      ></Column>
-                      <Column field="users" header="Total de Usuarios"></Column>
-                    </DataTable>
-                  </div>
-                  <label className={styles.label_table_users}>
-                    Grafico generado - Usuarios por rol
-                  </label>
-                  <Chart
-                    className={styles.graphic}
-                    type="pie"
-                    data={chartData}
-                    options={lightOptions}
-                    style={{ position: "relative", width: "40%" }}
-                  />
+
+                  <label htmlFor="id_person">Seleccione el usuario</label>
+
+                  <select
+                    className={styles.document_type}
+                    onChange={handleChange}
+                    required={true}
+                    name="id_person"
+                  >
+                    <option disabled={true} selected></option>
+                    {users.map((user) => (
+                      <option key={user.ID_PERSON} value={user.DOCUMENT}>
+                        {user.DOCUMENT + " " + user.FULL_NAME}
+                      </option>
+                    ))}
+                  </select>
                 </>
               )}
+
+              {thirdData && <ShowUser document={idUser} isReport={true} />}
 
               {noReport && (
                 <h3 className={styles.no_selected_report}>

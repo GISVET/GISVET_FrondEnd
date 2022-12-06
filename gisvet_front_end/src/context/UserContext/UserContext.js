@@ -15,7 +15,6 @@ export function UserContextProvider({children}){
         if(jwt !== null){
             window.sessionStorage.setItem('Auth',jwt)
             const token = decode(jwt)
-            console.log(token.object[0])
             setRole(token.object[0].NAME_ROL)
             setIdUser(token.object[0].ID_USER)
             setDependencies(token.object[0].DEPENDECIES)
