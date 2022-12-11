@@ -83,19 +83,21 @@ export default function User({params,children}) {
   return (
     <>
       {isAuthorized ? (
-        <UserProductsContextProvider>
-          <Switch>
-            <Route path="/user/grocery">
-              {body}
-            </Route>
-            <Route path="/user/farmacy">
-              {body}
-            </Route>
-            <Route path="/user/consultory">
-              {body}
-            </Route>
-          </Switch>
-        </UserProductsContextProvider>
+        <div className={styles.general_admin+` ${styles[dependencieActive.DEPENDECIE_TYPE]}`}>
+          <UserProductsContextProvider>
+            <Switch>
+              <Route path="/user/grocery">
+                {body}
+              </Route>
+              <Route path="/user/farmacy">
+                {body}
+              </Route>
+              <Route path="/user/consultory">
+                {body}
+              </Route>
+            </Switch>
+          </UserProductsContextProvider>
+        </div>
       ) : (
         <Loading text="Cargando Datos"></Loading>
       )}

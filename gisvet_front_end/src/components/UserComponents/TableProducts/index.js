@@ -67,6 +67,7 @@ export default function TableProducts({
   };
 
   const setActiveRowIndex = (index, isActive) => {
+    console.log(dataBody[index])
     let _editingRows = {
       ...editingRows,
       ...{ [`${dataBody[index].ID_ITEM}`]: isActive },
@@ -80,10 +81,10 @@ export default function TableProducts({
 
   const changeSelectedOneProducts = (e, data) => {
     let valueaux = e.value;
+    console.log(data)
     const index = seletedProducts.findIndex(
       (item) => item.ID_ITEM === data.rowData.ID_ITEM
     );
-    setActiveRowIndex(5);
     const newData = seletedProducts.slice();
     newData[index][data.field] = valueaux;
     setSelectedProducts(newData);

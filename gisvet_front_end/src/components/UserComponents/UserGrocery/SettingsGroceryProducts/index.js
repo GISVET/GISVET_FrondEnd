@@ -17,6 +17,7 @@ import AddMark from "components/AdminComponents/AdminProducts/AddMark/AddMark";
 import AddProduct from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 import AddItemProduct from "../AddItemProduct";
+import Loading from "components/GeneralComponents/Loading";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
@@ -32,7 +33,7 @@ export default function SettingsAdminProducts({
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<> </>);
   const [, navigate] = useLocation();
-  const { addMark, addProduct, addItem } = useGroceryProducts();
+  const { addMark, addProduct, addNewItem } = useGroceryProducts();
 
   const setVisibleMenu = async (event) => {
     event.preventDefault();
@@ -85,8 +86,10 @@ export default function SettingsAdminProducts({
     });
   };
 
-  const onsubmitAddItem = (dataForm) => {
-    return addItem(dataForm).then((res) => {
+  const onsubmitAddItem = async(dataForm) => {
+    setchildModal(<Loading text="Añadiendo los productos"></Loading>)
+
+    return await addNewItem(dataForm).then((res) => {
       console.log(res);
       setchildModal(
         <MessageConfirm

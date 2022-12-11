@@ -40,7 +40,6 @@ export default function AddItemProduct({onSubmit, onClose}){
     useEffect(()=>{
         if(products !== undefined && brands !== undefined){
             setDataReady(true)
-            console.log(products)
         }
         
     },[products, brands])
@@ -69,14 +68,16 @@ export default function AddItemProduct({onSubmit, onClose}){
     }
 
     const handleChange = (event)=>{
+        console.log(event)
         let {name, value} = event.target;
+        console.log(`Esto se wa a actualizar name: ${name} ,Value: ${value} `)
         let newData = {...data, [name]: value}
         setData(newData)
     }
 
     const handleChangeProduct = (event)=>{
         let {name, value} = event.target;
-        let newData = {...data, [name]: value}
+        let newData = {...data, [name]: name}
         setData(newData)
         setProduct(value)
         
@@ -113,7 +114,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                             <Dropdown name="product_name"
                                     value={data.product_name} 
                                     options={products} 
-                                    onChange={handleChangeProduct} 
+                                    onChange={handleChange} 
                                     className="w-full"
                                     optionLabel="PRODUCT_NAME" 
                                     optionValue="ID_PRODUCT"
@@ -159,6 +160,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                                     className="w-full"
                                     optionLabel="name" 
                                     optionValue="id"
+                                    required={true} 
                                     placeholder="Seleccione una presentación" />
                             </div>
                             <div className="field col-12 md:col-7">
@@ -166,12 +168,12 @@ export default function AddItemProduct({onSubmit, onClose}){
                                     Cantidad unidades por presentación
                                 </label>
                                 <InputNumber name="quantity_per_unit"
-                                           value={data.quantity_per_unit} 
-                                           required={true} 
+                                           value={data.quantity_per_unit}
                                            onChange={handleChange}
                                            className="w-full"
                                            mode="decimal" 
                                            showButtons
+                                           required={true} 
                                            buttonLayout="horizontal" 
                                            min={1}
                                 /> 
@@ -188,7 +190,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                                     onChange={handleChange}
                                     className="w-full"
                                     dateFormat="yy-mm-dd"
-                                    touchUI 
+                                    touchUI
                                     showIcon/>
                             </div>
                             <div className="field col">
@@ -198,9 +200,9 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 <Calendar name="expiration_date"
                                     value={data.expiration_date} 
                                     onChange={handleChange}
-                                    className="w-full"
                                     dateFormat="yy-mm-dd"
-                                    touchUI 
+                                    className="w-full"
+                                    touchUI
                                     showIcon/>
                             </div>
                         </div>
@@ -213,10 +215,10 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 <span className="p-inputgroup-addon">$</span>
                                 <InputNumber name="price"
                                         value={data.price} 
-                                        required={true} 
                                         onChange={handleChange}
                                         className="w-full"
                                         mode="decimal" 
+                                        required={true} 
                                         placeholder="Precio por unidad"
                                 /> 
                             </div>
@@ -228,11 +230,11 @@ export default function AddItemProduct({onSubmit, onClose}){
                             </label>
                             <InputNumber name="quantity"
                                         value={data.quantity} 
-                                        required={true} 
                                         onChange={handleChange}
                                         className="w-full"
                                         mode="decimal" 
                                         showButtons
+                                        required={true} 
                                         buttonLayout="horizontal" 
                                         min={1}
                             /> 

@@ -33,10 +33,6 @@ import AdminProducts from "./components/AdminComponents/AdminProducts/AdminProdu
 import AdminDependencies from "./components/AdminComponents/AdminDependencies/AdminDependencies/AdminDependencies";
 import AdminPatients from "./components/AdminComponents/AdminPatients/AdminPatients/AdminPatients";
 
-//=====Importaciones de los componentes de User====
-import User from "pages/User";
-import ProductsGrocery from "./components/UserComponents/UserGrocery/ProductsGrocery";
-
 //=====Importaciones de los componentesd de Auditor====
 import Auditor from "./pages/Auditor/Auditor";
 import AuditorDependencies from "components/AuditorComponents/AuditorDependencies/AuditorDependencies/AuditorDependencies";
@@ -44,6 +40,12 @@ import AuditorPatients from "components/AuditorComponents/AuditorPatients/Audito
 import AuditorUsers from "components/AuditorComponents/AuditorUsers/AuditorUsers/AuditorUsers";
 import AuditorProducts from "components/AuditorComponents/AuditorProducts/AuditorProducts/AuditorProducts";
 import AuditorTableGeneral from "components/AuditorComponents/AuditorTableGeneral/AuditorTableGeneral/AuditorTableGeneral";
+
+
+//=====Importaciones de los componentes de User====
+import User from "pages/User";
+import ProductsGrocery from "./components/UserComponents/UserGrocery/ProductsGrocery";
+
 
 //=====Importaciones de las paginas generales====
 import Error from "pages/Error/Error";

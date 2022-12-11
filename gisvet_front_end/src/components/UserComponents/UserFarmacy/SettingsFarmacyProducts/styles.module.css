@@ -4,7 +4,7 @@
     z-index: 6;
     top: 80%;
     left: 2%;
-    background-color: var(--shade-6-color);
+    background-color: var(--shade-0-color);
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
@@ -22,7 +22,7 @@
     top: 80%;
     left: 2%;
     width: fit-content;
-    background-color: var(--shade-6-color);
+    background-color: var(--shade-0-color);
     height: 4rem;
     padding-right: 2vh;
     border-bottom-left-radius: 50px;

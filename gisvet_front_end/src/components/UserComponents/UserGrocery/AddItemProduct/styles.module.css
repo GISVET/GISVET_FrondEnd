@@ -88,6 +88,12 @@
     font-weight: bold;
 }
 
+div [class~=p-datepicker][class~=p-component][class~=p-connected-overlay-enter-done]{
+    z-index: 1200 !important;
+}
+
+
+
 .button_cancel {
     background-color: var(--error-button-color);
 }

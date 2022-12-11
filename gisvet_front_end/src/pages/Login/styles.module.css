@@ -8,7 +8,7 @@
 }
 .rigth {
   display: inline-flex;
-  background-color: var(--shade-6-color);
+  background-color: var(--shade-0-color);
   margin: 0;
   padding: 0;
   width: 45%;
@@ -27,7 +27,7 @@
   margin-top: 5%;
   width: 70%;
   height: 80%;
-  background-color: var(--shade-6-color);
+  background-color: var(--shade-0-color);
   box-shadow: 0px 0px 5px var(--black-color);
   justify-content: end;
   justify-content: center;
@@ -53,7 +53,7 @@
   text-align: left;
 }
 .login_div > h4 {
-  color: var(--shade-6-color);
+  color: var(--shade-0-color);
 }
 .login_div > h3:nth-child(1) {
   margin-top: 25%;
@@ -111,7 +111,7 @@ h3.error_message {
 }
 
 .login_div > a:hover {
-  color: var(--shade-6-color);
+  color: var(--shade-0-color);
 }
 
 
