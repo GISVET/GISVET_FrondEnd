@@ -63,13 +63,8 @@ export default function ProductsFarmacy() {
             name_dependecie: dataToSendProducts.name_dependecie,
             dataProducts: productsAux
         })
-
-        if (result.status === 200) {
-            setSendProducts(false)
-            toast.current.show({ severity: 'success', summary: 'Realizado', detail: 'Productos enviados Exitosamente', life: 3000 });
-        } else {
-            toast.current.show({ severity: 'error', summary: 'Ha ocurrido un error', detail: 'Valide los datos e intente nuevamente', life: 3000 });
-        }
+        setSendProducts(result.status !== 200)
+        
         return result
     }
 

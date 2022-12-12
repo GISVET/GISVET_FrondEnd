@@ -14,15 +14,17 @@ import { InputNumber } from "primereact/inputnumber";
 //=====Importaciones de hooks ====
 import useUser from "hooks/UserHooks/useUser";
 import { Modal } from "components/GeneralComponents/Modal";
+import Loading from "components/GeneralComponents/Loading";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de constantes ====
 import {presentations, measurement_units, type_product } from "constants/constants"
-import ValidateDataSendProducts from "components/UserComponents/ValidateDataSendProducts";
+import ValidateDataApplyProducts from "../ValidateApplyProduct";
 
 export default function TableProducts({
-  actionSendProducts,
-  sendProducts,
+  actionApplyProducts,
   data,
+  patient,
   actionItem,
 }) {
   const [dataBody, setDataBody] = useState(data);
@@ -30,18 +32,14 @@ export default function TableProducts({
   const [globalFilter, setGlobalFilter] = useState(null);
   const [editingRows, setEditingRows] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [selectedTable, setSelectedTable] = useState(true);
   const [childModal, setchildModal] = useState(<></>);
-  const {
-    logout,
-    islogged,
-    role,
-    dependencies,
-    rolesUser,
-    changeRol,
-    changeDependencie,
-    dependencieActive,
-    errorMessage,
-  } = useUser();
+  const {idUser} = useUser();
+
+  useEffect(() => {
+    console.log(patient)
+  }, [patient]);
+  
 
   useEffect(() => {
     setDataBody(data);
@@ -60,20 +58,32 @@ export default function TableProducts({
   const ShowConfirmSend = () => {
     setShowModal(true);
     setchildModal(
-      <ValidateDataSendProducts
+      <ValidateDataApplyProducts
         onClose={handleCloseModal}
         onSubmit={getDataToSendProducts}
       />
     );
   };
 
-  const getDataToSendProducts = (dataToSend) => {
-    dataToSend["dataProducts"] = seletedProducts;
-    const res = actionSendProducts(dataToSend);
-    if (res === 200) {
-      setEditingRows(null);
-      setSelectedProducts(null);
+  const getDataToSendProducts = async(dataToSend) => {
+    setShowModal(true);
+    dataToSend["id_clinic_history"] = patient.id_clinic_history;
+    dataToSend["id_person"] = idUser;
+    dataToSend["products"] = seletedProducts;
+    setchildModal(<Loading text={"Aplicando productos a paciente"}></Loading>)
+    const res = await actionApplyProducts(dataToSend);
+    if (res.status === 200) {
+      setEditingRows([]);
+      setSelectedProducts([]);
     }
+    setchildModal(
+      <MessageConfirm
+        onClose={handleCloseModal}
+        isCorrect={res.status == 200 ? true : false}
+        message={res.message}
+      />
+    );
+    
   };
 
   const setActiveRowIndex = (index, isActive) => {
@@ -88,14 +98,10 @@ export default function TableProducts({
     setShowModal(false);
   };
 
-  const changeSelectedOneProducts = (e, data) => {
-    let valueaux = e.value;
-    const index = seletedProducts.findIndex(
-      (item) => item.ID_ITEM === data.rowData.ID_ITEM
-    );
-    setActiveRowIndex(5);
+  const changeSelectedOneProducts = (e, index) => {
+    let {name,value} = e.target;
     const newData = seletedProducts.slice();
-    newData[index][data.field] = valueaux;
+    newData[index][name] = value;
     setSelectedProducts(newData);
     e.originalEvent.preventDefault();
   };
@@ -109,21 +115,22 @@ export default function TableProducts({
 
   const cellEditor = (options) => {
     const maxValue = options.value;
-    if (
-      seletedProducts.some(
-        (element) => element.ID_ITEM === options.rowData.ID_ITEM
-      )
-    ) {
-      return (
-        <InputNumber
-          value={options.value}
-          onValueChange={(e) => changeSelectedOneProducts(e, options)}
-          showButtons
-          buttonLayout="horizontal"
-          min={1}
-          max={maxValue}
-        />
-      );
+    if (seletedProducts.some(
+            (element) => element.ID_ITEM === options.rowData.ID_ITEM
+          )
+        ) {
+          let indexSelectedProduct = seletedProducts.findIndex(
+            (item) => item.ID_ITEM === options.rowData.ID_ITEM
+          );
+          return (
+            <InputNumber
+              value={options.value}
+              name="QUANTITY"
+              onValueChange={(e) => changeSelectedOneProducts(e, indexSelectedProduct)}
+              min={1}
+              max={maxValue}
+            />
+          );
     } else {
       return options.value;
     }
@@ -148,6 +155,23 @@ export default function TableProducts({
     setEditingRows(e.data);
   };
 
+  //valida los productos aptos para seleccionar
+  const isSelectable = (row) => {
+    let isSelectable = (row.QUANTITY > 0 && !(row.DATE_EXPIRATION.startsWith("Producto vencido")))
+    return isSelectable;
+  }
+
+//Permite Validar que productos son seleccionables
+  const isRowSelectable = (event) => {
+    const data = event.data;
+    return isSelectable(data);
+  }
+
+//Activa los estilos de celda desactivada a los productos que no se pueden seleccionar
+  const rowClassName = (data) => {
+    return isSelectable(data) ? '' : 'p-disabled';
+  }
+
   const onRowSelect = (event) => {
     const isSelected = (item) => item.ID_ITEM === event.data.ID_ITEM;
     const index = dataBody.findIndex(isSelected);
@@ -161,28 +185,45 @@ export default function TableProducts({
   };
 
   const header = (
-    <div className={styles.table_header}>
-      <h1 className={styles.title_header_ask}>
-        Gestión de {dependencieActive.DEPENDECIE_NAME}
-      </h1>
-      <div>
-        <span className="p-input-icon-left">
-          <i className="pi pi-search" />
-          <InputText
-            className={styles.myask}
-            type="search"
-            onInput={(e) => setGlobalFilter(e.target.value)}
-            placeholder="Buscar ..."
-          />
-        </span>
-        {sendProducts && (
-          <Button
-            label="Enviar Productos"
-            icon="pi pi-upload"
-            className="p-button-success mr-2"
-            onClick={ShowConfirmSend}
-          />
-        )}
+    <div className="card">
+      <div className="grid">
+        <div className={styles.table_header}>
+          <div className="col">
+            <div className="card">
+              <div className="flex flex-column card-container green-container">
+                  <h1>
+                    Historia Clinica {patient.id_clinic_history}
+                  </h1>
+                  <h1 className={styles.title_header_ask}>
+                    Paciente :{patient.name_patient}
+                  </h1>
+                </div>
+              <div>
+            </div>
+            </div>
+          </div>
+          <div className={"col "}>
+            <div className="card">
+            <div className="flex flex-row card-container">
+              <span className="p-input-icon-left">
+                <i className="pi pi-search" />
+                <InputText
+                  className={styles.myask}
+                  type="search"
+                  onInput={(e) => setGlobalFilter(e.target.value)}
+                  placeholder="Buscar ..."
+                />
+              </span>
+              <Button
+                  label="Aplicar productos"
+                  icon="pi pi-upload"
+                  className="p-button-success mr-2"
+                  onClick={ShowConfirmSend}
+              />
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -210,22 +251,22 @@ export default function TableProducts({
         globalFilter={globalFilter}
         paginator
         rows={9}
-        value={dataBody}
+        value={dataBody.filter(item =>item.QUANTITY >0)}
         responsiveLayout="stack"
         selectionMode="checkbox"
-        selection={sendProducts ? seletedProducts : null}
+        selection={seletedProducts}
         onSelectionChange={selectionChange}
         onRowSelect={onRowSelect}
         onRowUnselect={onRowUnselect}
         selectOnEdit={false}
+        isDataSelectable={isRowSelectable}
+        rowClassName={rowClassName}
         editMode="row"
-        editingRows={sendProducts ? editingRows : null}
+        editingRows={editingRows}
         onRowEditChange={onRowEditChange}
         dataKey="ID_ITEM"
       >
-        {sendProducts && (
-          <Column selectionMode="multiple" exportable={false}></Column>
-        )}
+        <Column selectionMode="multiple" exportable={false}></Column>
         <Column
           field="IUP"
           header="Identificador producto"
@@ -280,14 +321,6 @@ export default function TableProducts({
           header="Tiempo Expiración"
           sortable
         ></Column>
-
-        {!sendProducts && (
-          <Column
-            header="Ver detalles"
-            body={actionDetails}
-            exportable={false}
-          ></Column>
-        )}
       </DataTable>
       {showModal && 
         <Modal

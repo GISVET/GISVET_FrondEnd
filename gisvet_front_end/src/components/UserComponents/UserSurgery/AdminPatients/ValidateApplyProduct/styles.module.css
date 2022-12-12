@@ -1,0 +1,114 @@
+.form_add_user_general {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    justify-items: center;
+    padding: 0 2% 5% 2%;
+    width: 50vw;
+}
+
+.form_add_user {
+    padding-top: 4vh;
+    display: flex;
+    justify-items: center;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 13%;
+}
+
+.title_image>h1 {
+    margin-left: 2%;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    color: black;
+}
+
+.title_image {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-left: 8%;
+    margin-top: 2%;
+}
+
+.form_add_user label {
+    margin-top: 2%;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.form_add_user [class~=p-highlight] {
+    color: var(--shade-5-color) !important;
+    background-color: var(--dye-6-color) !important;
+}
+
+.form_add_user [class~=p-inputgroup] {
+    box-shadow: 0px 1px 3px var(--black-color);
+    border-radius: 6px;
+}
+
+.form_add_user [class~=p-inputgroup]>button {
+    background: var(--shade-5-color);
+    border: 1px solid var(--shade-5-color);
+}
+
+.form_add_user [class~=p-inputgroup]>button:hover {
+    background: var(--shade-2-color) !important;
+    border: 1px solid var(--shade-2-color);
+}
+
+.form_add_user [class~=p-inputgroup]>button:focus {
+    box-shadow: 0 0 0px 1px var(--dye-0-color) !important;
+}
+
+.form_add_user [class~=p-inputtext]:focus {
+    box-shadow: 0 0 2px 1px var(--dye-0-color) !important;
+}
+
+.form_add_user [class~=p-inputtext]:hover {
+    border: 1px solid var(--shade-0-color) !important;
+}
+
+.form_add_user [class~=p-dropdown] [class~=p-inputtext]:hover {
+    border: 0px solid var(--shade-0-color) !important;
+}
+
+.form_add_user [class~=p-dropdown][class~=p-focus] {
+    box-shadow: 0 0 2px 1px var(--dye-0-color) !important;
+}
+
+.form_add_user input[type=submit] {
+    box-shadow: 0px 1px 3px var(--black-color);
+    border-color: rgba(0, 255, 255, 0);
+    height: 45px;
+    width: 12rem;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--white-color);
+    font-weight: bold;
+}
+
+.button_cancel {
+    background-color: var(--error-button-color);
+}
+
+.button_accept {
+    background-color: var(--shade-5-color);
+}
+
+.input_horizontal {
+    padding: 2%;
+}
+
+.form_horizontal {
+    width: 100%;
+    margin-top: 2%;
+    padding-top: 4vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

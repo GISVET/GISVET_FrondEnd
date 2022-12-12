@@ -73,9 +73,7 @@ export default function AddItemProduct({onSubmit, onClose}){
         setData (newData)
     }
 
-    useEffect(()=>{
-        console.log(data)
-    },[data])
+    
 
     const doSubmit = (event)=>{
         event.preventDefault();
@@ -98,16 +96,6 @@ export default function AddItemProduct({onSubmit, onClose}){
         let newData = {...data, [name]: value}
         setData(newData)
     }
-
-    const handleChangeCalendar = (event)=>{
-        let {name, value} = event.target;
-        const regex = /\//g
-        const formatDate = (value.toLocaleDateString()).replace(regex,"-")
-        console.log(value)
-        let newData = {...data, [name]: formatDate}
-        setData(newData)
-    }
-
 
 
     return (

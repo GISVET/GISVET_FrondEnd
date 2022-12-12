@@ -6,7 +6,6 @@ import styles from "./styles.module.css";
 
 //=====Importaciones de componentes generales ====
 import { Modal } from "components/GeneralComponents/Modal";
-import AddPatient from "../AddPatient";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
@@ -19,7 +18,6 @@ import icon_reports from "./images/Icon_Reports.png";
 
 //=====Importaciones de enrutamiento ====
 import { useLocation } from "wouter";
-import ShowPatientsReports from "../ShowPatientsReports/ShowPatientsReports";
 
 export default function SettingsAdminPatients() {
   const [activeMenu, setActiveMenu] = useState(false);
@@ -40,16 +38,14 @@ export default function SettingsAdminPatients() {
 
   const showAddPatientsMenu = async (event) => {
     event.preventDefault();
-    setchildModal(
-      <AddPatient onClose={handleCloseModal} onSubmit={onsubmit} />
-    );
+    
     return setShowModal(true);
   };
 
   const showReport = async (event) => {
     event.preventDefault();
     setchildModal(
-      <ShowPatientsReports onClose={handleCloseModal} />
+      <></>
     );
     return setShowModal(true);
   };
@@ -110,8 +106,8 @@ export default function SettingsAdminPatients() {
               width="40"
               height="40"
             />
-            <p> Agregar </p>{" "}
-          </div>{" "}
+            <p> Aplicar productos </p>
+          </div>
           <div className={styles.item_floatMenu}>
             <input
               className={styles.add_user_form}
@@ -121,16 +117,16 @@ export default function SettingsAdminPatients() {
               width="40"
               height="40"
             />
-            <p> Reportes </p>{" "}
-          </div>{" "}
-        </div>{" "}
+            <p> Reportes </p>
+          </div>
+        </div>
         {showModal && 
         <Modal
           onClose={handleCloseModal}
           >
           {childModal}
         </Modal>
-      }{" "}
+      }
       </>
     );
   }

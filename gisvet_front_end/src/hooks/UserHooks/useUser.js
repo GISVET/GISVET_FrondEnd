@@ -31,6 +31,8 @@ export default function useUser() {
     useEffect(()=>{
         if (role === undefined || role === null) {
             navigate("/")
+        }else{
+            navigateRol(role.name_rol)
         }
     },[role])
 
@@ -68,16 +70,16 @@ export default function useUser() {
     const navigateRol = (rol_name)=>{
         switch (rol_name) {
             case 'Administrador':
+                navigate("/AdminDependencies")
                 break;
             case 'Usuario':
+                navigate("/user/")
                 break;
             case 'Auditor':
+                navigate("/AuditorDependencies")
                 break;
             case null:
                 navigate("/")
-                break;
-            default:
-                navigate("/unauthorized")
                 break;
         }
 
@@ -114,6 +116,7 @@ export default function useUser() {
 
     return {
         islogged: Boolean(jwt),
+        jwt,
         login,
         role,
         email,

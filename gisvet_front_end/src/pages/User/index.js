@@ -11,7 +11,9 @@ import Header from "components/UserComponents/HeaderUser/header";
 import Loading from "components/GeneralComponents/Loading";
 import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGrocery";
 import ProductsFarmacy from "components/UserComponents/UserFarmacy/ProductsFarmacy";
-import AdminPatients from "components/UserComponents/UserFarmacy/AdminPatients/AdminPatients/AdminPatients";
+import ProductsSurgery from "components/UserComponents/UserSurgery/ProductsSurgery";
+import AdminPatientsFarmacy from "components/UserComponents/UserFarmacy/AdminPatients/AdminPatients/AdminPatients";
+import AdminPatientsSurgery from "components/UserComponents/UserSurgery/AdminPatients/AdminPatients/AdminPatients";
 
 //=====Importaciones de estilos ====
 import styles from './styles.module.css';
@@ -76,14 +78,17 @@ export default function User({params,children}) {
               </Route>
 
               <Route path="/user/patients">
-                <AdminPatients/>
+                <AdminPatientsFarmacy/>
               </Route>
 
               <Route path="/user/farmacy">
                 <ProductsFarmacy></ProductsFarmacy>
               </Route>
               <Route path="/user/consultory">
-                  <ProductsFarmacy></ProductsFarmacy>
+                  <ProductsSurgery></ProductsSurgery>
+              </Route>
+              <Route path="/user/assignPatients">
+                  <AdminPatientsSurgery></AdminPatientsSurgery>
               </Route>
 
             </Switch>

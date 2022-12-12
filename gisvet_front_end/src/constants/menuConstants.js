@@ -112,11 +112,6 @@ export function getItemsConsultorio(navigate){
          label:'Productos en Bodega',
          icon:'img_bodega',
          command:()=>{ navigate("/AdminDependencies") }
-      },
-      {
-         label:'Productos en Consultorios',
-         icon:'img_consultory',
-         command:()=>{ navigate("/AdminUser")}
       }
 
    ]
@@ -126,6 +121,11 @@ export function getItemsConsultorio(navigate){
          label:'Mis Productos',
          icon:'img_products',
          command:()=>{ navigate("/user/consultory") }
+      },
+      {
+         label:'Pacientes',
+         icon:'img_patients',
+         command:()=>{ navigate("/user/assignPatients")}
       }
    ];
 }

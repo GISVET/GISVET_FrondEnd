@@ -11,7 +11,8 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { FilterMatchMode } from "primereact/api";
 
-export default function TablePatients({ headers, data, actionItem, isReport }) {
+export default function TablePatients({ headers, data, actionItem, isReport, applyProducts }) {
+  
   const [dataBody, setDataBody] = useState(data);
 
   useEffect(() => {
@@ -83,8 +84,19 @@ export default function TablePatients({ headers, data, actionItem, isReport }) {
     return (
       <Button
         icon="pi pi-arrow-right"
-        className="p-button-rounded p-button-details"
+        className="p-button-rounded p-button-secondary p-button-details"
         onClick={() => actionItem(rowData)}
+      />
+    );
+  };
+
+
+  const actionApplyProducts = (rowData) => {
+    return (
+      <Button
+        icon="pi pi-heart"
+        className="p-button-rounded p-button-secondary p-button-details"
+        onClick={() => applyProducts(rowData)}
       />
     );
   };
@@ -135,6 +147,11 @@ export default function TablePatients({ headers, data, actionItem, isReport }) {
           <Column
             header="Ver detalles"
             body={actionDetails}
+            exportable={false}
+          ></Column>
+          <Column
+            header="Aplicar productos"
+            body={actionApplyProducts}
             exportable={false}
           ></Column>
         </DataTable>

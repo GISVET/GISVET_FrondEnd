@@ -83,6 +83,7 @@ function App() {
                     <AuditorProductsContextProvider>
                       <AuditorTableGeneralContext>
                         <div className="App">
+                        <Router base="/GISVET_FrondEnd">
                           <Switch>
                             <Route component={Login} path="/" />
                             <Route path="/test">
@@ -146,6 +147,7 @@ function App() {
                             </Route>
                             <Route component={Error}></Route>
                           </Switch>
+                          </Router>
                         </div>
                       </AuditorTableGeneralContext>
                     </AuditorProductsContextProvider>
