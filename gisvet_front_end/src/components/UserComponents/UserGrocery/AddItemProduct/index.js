@@ -2,7 +2,7 @@ import React, { useContext,useEffect, useState } from "react";
 import styles from './styles.module.css';
 import UserProductsContext  from "context/UserContext/UserProductsContext";
 import icon_User_Form from "./images/Icon_Add_User_Form.png";
-import { presentations } from "constants/constants";
+import { presentations,measurement_units } from "constants/constants";
 import Loading from "components/GeneralComponents/Loading";
 
 
@@ -13,11 +13,25 @@ import { InputText } from 'primereact/inputtext';
 import { InputNumber } from 'primereact/inputnumber';
 import { Calendar } from 'primereact/calendar';
 
+const formatProducts = (dataProducts)=>{
+    let productsFormated = []
+    dataProducts.map(productItem =>{
+        if(!productsFormated.some(item => item.ID_PRODUCT === productItem.ID_PRODUCT)){
+            let productAux = Object.assign({}, productItem)
+            delete productAux.TOTAL_PRODUCT
+            delete productAux.PRESENTATION
+            productsFormated.push(productAux);
+        }
+    })
+    return productsFormated
+}
+
 
 
 export default function AddItemProduct({onSubmit, onClose}){
     const {products,brands,loading} = useContext(UserProductsContext);
-    const [product, setProduct] = useState()
+    const [productSelected, setProductSelected] = useState()
+    const [productFormated, setProductFormated] = useState([])
 
 
     const [dataReady, setDataReady] = useState(false)
@@ -38,10 +52,17 @@ export default function AddItemProduct({onSubmit, onClose}){
     });
 
     useEffect(()=>{
-        if(products !== undefined && brands !== undefined){
-            setDataReady(true)
+        if(productSelected !== undefined){
+            addProductData(productSelected)
         }
         
+    },[productSelected])
+
+    useEffect(()=>{
+        if(products !== undefined && brands !== undefined){
+            setProductFormated(formatProducts(products))
+            setDataReady(true)
+        }
     },[products, brands])
 
     const addProductData = (id)=>{
@@ -53,35 +74,41 @@ export default function AddItemProduct({onSubmit, onClose}){
     }
 
     useEffect(()=>{
-        if(product !== undefined){
-            addProductData(product)
-        }
-    },[product])
-
-    useEffect(()=>{
         console.log(data)
     },[data])
 
     const doSubmit = (event)=>{
         event.preventDefault();
+        const regex = /\//g
+        data.manufacturing_date = (data.manufacturing_date.toLocaleDateString()).replace(regex,"-")
+        data.expiration_date = (data.expiration_date.toLocaleDateString()).replace(regex,"-")
         onSubmit(data)
     }
 
+    const getUnitsData = ()=>{
+        let unitsName = ' '
+        if(data.measurement_units !== ''){
+            unitsName = unitsName+ measurement_units.find(unit => unit.id === data.measurement_units).name
+        }
+        return unitsName
+    }
+
     const handleChange = (event)=>{
-        console.log(event)
         let {name, value} = event.target;
-        console.log(`Esto se wa a actualizar name: ${name} ,Value: ${value} `)
         let newData = {...data, [name]: value}
         setData(newData)
     }
 
-    const handleChangeProduct = (event)=>{
+    const handleChangeCalendar = (event)=>{
         let {name, value} = event.target;
-        let newData = {...data, [name]: name}
+        const regex = /\//g
+        const formatDate = (value.toLocaleDateString()).replace(regex,"-")
+        console.log(value)
+        let newData = {...data, [name]: formatDate}
         setData(newData)
-        setProduct(value)
-        
     }
+
+
 
     return (
             <div className={styles.form_add_item_general}>
@@ -105,19 +132,21 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 className="w-full"
                                 optionLabel="NAME_BRAND" 
                                 optionValue="NAME_BRAND"
+                                required={true}
                                 placeholder="Seleccione una marca" />
                         </div>
                         <div className="field">
                             <label htmlFor="product_name">
                                 Seleccione el producto
                             </label>
-                            <Dropdown name="product_name"
-                                    value={data.product_name} 
-                                    options={products} 
-                                    onChange={handleChange} 
+                            <Dropdown 
+                                    value={productSelected} 
+                                    options={productFormated} 
+                                    onChange={(e)=>{setProductSelected(e.value)}} 
                                     className="w-full"
                                     optionLabel="PRODUCT_NAME" 
                                     optionValue="ID_PRODUCT"
+                                    required={true}
                                     placeholder="Seleccione un producto" />
                         </div>
                     </div>
@@ -169,13 +198,14 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 </label>
                                 <InputNumber name="quantity_per_unit"
                                            value={data.quantity_per_unit}
-                                           onChange={handleChange}
+                                           onValueChange={handleChange}
                                            className="w-full"
-                                           mode="decimal" 
+                                           mode="decimal"
+                                           suffix={getUnitsData()}
+                                           buttonLayout="horizontal"  
                                            showButtons
-                                           required={true} 
-                                           buttonLayout="horizontal" 
                                            min={1}
+                                           required={true} 
                                 /> 
                             </div>
                         </div>
@@ -186,11 +216,13 @@ export default function AddItemProduct({onSubmit, onClose}){
                                     Fecha de Fabricación
                                 </label>
                                 <Calendar name="manufacturing_date"
-                                    value={data.manufacturing_date} 
+                                    value={data.manufacturing_date}
                                     onChange={handleChange}
                                     className="w-full"
-                                    dateFormat="yy-mm-dd"
+                                    showOnFocus	
+                                    baseZIndex={1201}
                                     touchUI
+                                    required={true}
                                     showIcon/>
                             </div>
                             <div className="field col">
@@ -200,9 +232,11 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 <Calendar name="expiration_date"
                                     value={data.expiration_date} 
                                     onChange={handleChange}
-                                    dateFormat="yy-mm-dd"
+                                    showOnFocus	
                                     className="w-full"
+                                    baseZIndex={1201}
                                     touchUI
+                                    required={true}
                                     showIcon/>
                             </div>
                         </div>
@@ -215,7 +249,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                                 <span className="p-inputgroup-addon">$</span>
                                 <InputNumber name="price"
                                         value={data.price} 
-                                        onChange={handleChange}
+                                        onValueChange={handleChange}
                                         className="w-full"
                                         mode="decimal" 
                                         required={true} 
@@ -230,7 +264,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                             </label>
                             <InputNumber name="quantity"
                                         value={data.quantity} 
-                                        onChange={handleChange}
+                                        onValueChange={handleChange}
                                         className="w-full"
                                         mode="decimal" 
                                         showButtons

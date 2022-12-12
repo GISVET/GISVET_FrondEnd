@@ -1,5 +1,5 @@
 const endpoint = process.env.REACT_APP_ENDPOINT
-export default function addNewMark({jwt,product_name,measurement_units,type_product}){
+export default function addNewProduct({jwt,product_name,measurement_units,type_product}){
 
     let product = {
         product_name: product_name,

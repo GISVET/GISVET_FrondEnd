@@ -8,7 +8,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1200;
+    z-index: 1500;
     width: 100%;
     justify-content: center;
     overflow: scroll;
@@ -34,7 +34,7 @@
     display: inline;
     position: relative;
     float: right;
-    z-index: 33;
+    z-index: 1500;
 }
 
 .headerModal [class~=p-button]:hover {

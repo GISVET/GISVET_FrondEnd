@@ -9,7 +9,7 @@ import getPatientById from "services/AuditorServices/PatientsServices/getPatient
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";
-import { presentations } from "constants/constants";
+import { presentations, measurement_units, destiny_end_product } from "constants/constants";
 
 export function useAuditorOnePatient(id_clinic_history) {
   const { jwt } = useContext(userContext);
@@ -41,9 +41,17 @@ export function useAuditorOnePatient(id_clinic_history) {
   function formatListHistory(dataBody) {
     let dataFormated = [];
     dataBody.map((history) => {
-      const measurement = presentations.find(
+      let measurement = measurement_units.find(
         (element) => element.id === history.UNIT_MEASUREMENT
       );
+      if (measurement === undefined) {
+        measurement = presentations.find(
+          (element) => element.id === history.UNIT_MEASUREMENT
+        );
+      }
+      const destiny = destiny_end_product.find(
+        (item) => item.id === history.DESTINY_SERVICE
+      )
       let historyData = {
         ID_CLINIC_HISTORY: history.ID_CLINIC_HISTORY,
         DATE_PRODUCT_TRACING: history.DATE_PRODUCT_TRACING,
@@ -53,7 +61,7 @@ export function useAuditorOnePatient(id_clinic_history) {
         UNIT_MEASUREMENT: measurement.name,
         PRODUCT_NAME: history.PRODUCT_NAME,
         QUANTITY_USED: history.QUANTITY_USED,
-        DESTINY_SERVICE: "Control",
+        DESTINY_SERVICE: destiny.name,
       };
       dataFormated.push(historyData);
     });

@@ -28,7 +28,10 @@ export default function TableDetailPatient({ headers, data, actionItem }) {
 
   return (
     <div className={styles.table_data}>
-      <DataTable value={dataBody}>
+      <DataTable 
+          value={dataBody}
+          paginator
+          rows={6}>
         <Column
           dataType="date"
           body={formatDate}
@@ -36,7 +39,6 @@ export default function TableDetailPatient({ headers, data, actionItem }) {
         ></Column>
         <Column field="DOCUMENT_PERSON" header="Id Médico"></Column>
         <Column field="FULL_NAME_PERSON" header="Nombre médico"></Column>
-        <Column field="ID_PRODUCT_TC" header="Id registro"></Column>
         <Column field="PRODUCT_NAME" header="Nombre producto"></Column>
         <Column field="UNIT_MEASUREMENT" header="Unidad de medida"></Column>
         <Column field="QUANTITY_USED" header="Cantidad usada"></Column>

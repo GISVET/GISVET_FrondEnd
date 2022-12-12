@@ -89,7 +89,12 @@
 }
 
 div [class~=p-datepicker][class~=p-component][class~=p-connected-overlay-enter-done]{
-    z-index: 1200 !important;
+    position: fixed;
+    top: 50% !important;
+}
+div [class~=p-datepicker][class~=p-component][class~=p-connected-overlay-enter-active]{
+    position: fixed;
+    top: 50% !important;
 }
 
 

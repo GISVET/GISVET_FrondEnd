@@ -11,6 +11,7 @@ import Header from "components/UserComponents/HeaderUser/header";
 import Loading from "components/GeneralComponents/Loading";
 import ProductsGrocery from "components/UserComponents/UserGrocery/ProductsGrocery";
 import ProductsFarmacy from "components/UserComponents/UserFarmacy/ProductsFarmacy";
+import AdminPatients from "components/UserComponents/UserFarmacy/AdminPatients/AdminPatients/AdminPatients";
 
 //=====Importaciones de estilos ====
 import styles from './styles.module.css';
@@ -23,7 +24,6 @@ import { useLocation } from "wouter";
 
 
 export default function User({params,children}) {
-  const [body, setBody] = useState();
   const [isAuthorized, setIsAuthorized] = useState(false);
   const { islogged, role, dependencieActive } = useUser();
   const [location, navigate] = useLocation();
@@ -46,17 +46,14 @@ export default function User({params,children}) {
         case "B":
           setIsAuthorized(true);
           navigate("/user/grocery");
-          setBody(bodyGrocery);
           break;
         case "F":
           setIsAuthorized(true);
           navigate("/user/farmacy");
-          setBody(bodyPharmacy);
           break;
         case "C":
           setIsAuthorized(true);
           navigate("/user/consultory");
-          setBody(bodySurgery);
           break;
         default:
           navigate("/unauthorized");
@@ -64,38 +61,33 @@ export default function User({params,children}) {
       }
     }
   }
-  const bodyGrocery= <div className={styles.general_admin}>
-                  <Header />
-                  <ProductsGrocery></ProductsGrocery>
-              </div>
 
-
-  const bodyPharmacy=<div className={styles.general_admin}>
-                          <Header />
-                          <ProductsFarmacy></ProductsFarmacy>
-                      </div>
-
-  const bodySurgery=<div className={styles.general_admin}>
-                      <Header />
-                      <ProductsFarmacy></ProductsFarmacy>
-                  </div>
 
   return (
     <>
       {isAuthorized ? (
         <div className={styles.general_admin+` ${styles[dependencieActive.DEPENDECIE_TYPE]}`}>
           <UserProductsContextProvider>
+          <div className={styles.general_admin}>
+            <Header />
             <Switch>
               <Route path="/user/grocery">
-                {body}
+                  <ProductsGrocery></ProductsGrocery>
               </Route>
+
+              <Route path="/user/patients">
+                <AdminPatients/>
+              </Route>
+
               <Route path="/user/farmacy">
-                {body}
+                <ProductsFarmacy></ProductsFarmacy>
               </Route>
               <Route path="/user/consultory">
-                {body}
+                  <ProductsFarmacy></ProductsFarmacy>
               </Route>
+
             </Switch>
+          </div>
           </UserProductsContextProvider>
         </div>
       ) : (

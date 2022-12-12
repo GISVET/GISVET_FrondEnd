@@ -7,9 +7,10 @@ import styles from "./styles.module.css";
 //=====Importaciones de componentes generales ====
 import Table from "../../TableProducts";
 import SettingsProducts from "../SettingsGroceryProducts";
+import { Modal } from "components/GeneralComponents/Modal";
+import Loading from "components/GeneralComponents/Loading";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
-//=====Importaciones de componentes de PrimeReact ====
-import { Toast } from 'primereact/toast';
 
 //=====Importaciones de hooks ====
 import { useProductsDependencie } from "hooks/UserHooks/useProductsDependencie";
@@ -23,6 +24,8 @@ export default function ProductsGrocery() {
     const { getDependencieProducts } = useProductsDependencie();
     const { updateProducts, sendTodependencie } = useGroceryProducts()
     const [products, setProducts] = useState([])
+    const [showModal, setShowModal] = useState(false);
+    const [childModal, setchildModal] = useState(<> </>);
     const [sendProducts, setSendProducts] = useState(false)
     const toast = useRef(null);
     const {
@@ -63,13 +66,8 @@ export default function ProductsGrocery() {
             name_dependecie: dataToSendProducts.name_dependecie,
             dataProducts: productsAux
         })
-
-        if (result.status === 200) {
-            setSendProducts(false)
-            toast.current.show({ severity: 'success', summary: 'Realizado', detail: 'Productos enviados Exitosamente', life: 3000 });
-        } else {
-            toast.current.show({ severity: 'error', summary: 'Ha ocurrido un error', detail: 'Valide los datos e intente nuevamente', life: 3000 });
-        }
+        setSendProducts(result.status !== 200)
+        
         return result
     }
 
@@ -77,11 +75,18 @@ export default function ProductsGrocery() {
 
     const showUserMenu = async(id_dependencie) => {};
 
-
-
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
     return ( <div className = { styles.general_users } >
-        <Toast ref = { toast }/> 
+        {showModal && 
+          <Modal
+            onClose={handleCloseModal}
+            >
+            {childModal}
+          </Modal>
+        } 
         <Table data = { products }
           keyName = { "id_product" }
           actionItem = { showUserMenu }

@@ -14,6 +14,8 @@ import { InputNumber } from "primereact/inputnumber";
 //=====Importaciones de hooks ====
 import useUser from "hooks/UserHooks/useUser";
 import { Modal } from "components/GeneralComponents/Modal";
+import Loading from "components/GeneralComponents/Loading";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de constantes ====
 import {presentations, measurement_units, type_product } from "constants/constants"
@@ -28,7 +30,7 @@ export default function TableProducts({
   const [dataBody, setDataBody] = useState(data);
   const [seletedProducts, setSelectedProducts] = useState([]);
   const [globalFilter, setGlobalFilter] = useState(null);
-  const [editingRows, setEditingRows] = useState({});
+  const [editingRows, setEditingRows] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
   const {dependencieActive} = useUser();
@@ -58,16 +60,25 @@ export default function TableProducts({
   };
 
   const getDataToSendProducts = async(dataToSend) => {
+    setShowModal(true);
     dataToSend["dataProducts"] = seletedProducts;
+    setchildModal(<Loading text={"Enviando productos"}></Loading>)
     const res = await actionSendProducts(dataToSend);
-    if (res === 200) {
-      setEditingRows(null);
-      setSelectedProducts(null);
+    if (res.status === 200) {
+      setEditingRows([]);
+      setSelectedProducts([]);
     }
+    setchildModal(
+      <MessageConfirm
+        onClose={handleCloseModal}
+        isCorrect={res.status == 200 ? true : false}
+        message={res.message}
+      />
+    );
+    
   };
 
   const setActiveRowIndex = (index, isActive) => {
-    console.log(dataBody[index])
     let _editingRows = {
       ...editingRows,
       ...{ [`${dataBody[index].ID_ITEM}`]: isActive },
@@ -75,18 +86,15 @@ export default function TableProducts({
     setEditingRows(_editingRows);
   };
 
+
   const handleCloseModal = () => {
     setShowModal(false);
   };
 
-  const changeSelectedOneProducts = (e, data) => {
-    let valueaux = e.value;
-    console.log(data)
-    const index = seletedProducts.findIndex(
-      (item) => item.ID_ITEM === data.rowData.ID_ITEM
-    );
+  const changeSelectedOneProducts = (e, index) => {
+    let {name,value} = e.target;
     const newData = seletedProducts.slice();
-    newData[index][data.field] = valueaux;
+    newData[index][name] = value;
     setSelectedProducts(newData);
     e.originalEvent.preventDefault();
   };
@@ -100,21 +108,22 @@ export default function TableProducts({
 
   const cellEditor = (options) => {
     const maxValue = options.value;
-    if (
-      seletedProducts.some(
-        (element) => element.ID_ITEM === options.rowData.ID_ITEM
-      )
-    ) {
-      return (
-        <InputNumber
-          value={options.value}
-          onValueChange={(e) => changeSelectedOneProducts(e, options)}
-          showButtons
-          buttonLayout="horizontal"
-          min={1}
-          max={maxValue}
-        />
-      );
+    if (seletedProducts.some(
+            (element) => element.ID_ITEM === options.rowData.ID_ITEM
+          )
+        ) {
+          let indexSelectedProduct = seletedProducts.findIndex(
+            (item) => item.ID_ITEM === options.rowData.ID_ITEM
+          );
+          return (
+            <InputNumber
+              value={options.value}
+              name="QUANTITY"
+              onValueChange={(e) => changeSelectedOneProducts(e, indexSelectedProduct)}
+              min={1}
+              max={maxValue}
+            />
+          );
     } else {
       return options.value;
     }
@@ -138,6 +147,23 @@ export default function TableProducts({
   const onRowEditChange = (e) => {
     setEditingRows(e.data);
   };
+
+  //valida los productos aptos para seleccionar
+  const isSelectable = (row) => {
+    let isSelectable = (row.QUANTITY > 0 && !(row.DATE_EXPIRATION.startsWith("Producto vencido")))
+    return isSelectable;
+  }
+
+//Permite Validar que productos son seleccionables
+  const isRowSelectable = (event) => {
+    const data = event.data;
+    return isSelectable(data);
+  }
+
+//Activa los estilos de celda desactivada a los productos que no se pueden seleccionar
+  const rowClassName = (data) => {
+    return isSelectable(data) ? '' : 'p-disabled';
+  }
 
   const onRowSelect = (event) => {
     const isSelected = (item) => item.ID_ITEM === event.data.ID_ITEM;
@@ -201,7 +227,7 @@ export default function TableProducts({
         globalFilter={globalFilter}
         paginator
         rows={9}
-        value={dataBody}
+        value={dataBody.filter(item =>item.QUANTITY >0)}
         responsiveLayout="stack"
         selectionMode="checkbox"
         selection={sendProducts ? seletedProducts : null}
@@ -209,8 +235,10 @@ export default function TableProducts({
         onRowSelect={onRowSelect}
         onRowUnselect={onRowUnselect}
         selectOnEdit={false}
+        isDataSelectable={sendProducts && isRowSelectable}
+        rowClassName={sendProducts && rowClassName}
         editMode="row"
-        editingRows={sendProducts ? editingRows : null}
+        editingRows={sendProducts && editingRows}
         onRowEditChange={onRowEditChange}
         dataKey="ID_ITEM"
       >
@@ -240,14 +268,6 @@ export default function TableProducts({
           body={presentationItemTemplate}
           sortable
         ></Column>
-        {/*<Column
-          filter
-          filterMatchMode="contains"
-          field="MEASUREMENT_UNITS"
-          header="Medida"
-          body={MeasureItemTemplate}
-          sortable
-  ></Column>*/}
         <Column
           filter
           filterMatchMode="contains"

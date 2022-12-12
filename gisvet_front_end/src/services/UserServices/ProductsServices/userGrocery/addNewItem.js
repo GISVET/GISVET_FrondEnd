@@ -19,7 +19,7 @@ export default function addNewItem({jwt,data}){
 
     let jsonUser = JSON.stringify(dataAux)
     let statusRes =0
-    return fetch(`${endpoint}/Users/Bodega/createItem`, {
+    return fetch(`${endpoint}/Users/Bodega/Item/createItem`, {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

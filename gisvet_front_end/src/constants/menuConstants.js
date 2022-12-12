@@ -97,6 +97,11 @@ export function getItemsFarmacia(navigate){
          label:'Mis Productos',
          icon:'img_products',
          command:()=>{ navigate("/user/farmacy") }
+      },
+      {
+         label:'Pacientes',
+         icon:'img_patients',
+         command:()=>{ navigate("/user/patients") }
       }
    ];
 }

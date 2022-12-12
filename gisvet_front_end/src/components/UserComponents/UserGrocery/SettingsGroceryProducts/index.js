@@ -13,8 +13,8 @@ import icon_Register_Product from "./images/Icon_Register_Product.png";
 
 //=====Importaciones de componentes generales ====
 import { Modal } from "components/GeneralComponents/Modal";
-import AddMark from "components/AdminComponents/AdminProducts/AddMark/AddMark";
-import AddProduct from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
+import AddMarkComponent from "components/AdminComponents/AdminProducts/AddMark/AddMark";
+import AddProductComponent from "components/AdminComponents/AdminProducts/AddProduct/AddProduct";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 import AddItemProduct from "../AddItemProduct";
 import Loading from "components/GeneralComponents/Loading";
@@ -44,7 +44,7 @@ export default function SettingsAdminProducts({
     event.preventDefault();
     setShowModal(true);
     setchildModal(
-      <AddMark onClose={handleCloseModal} onSubmit={onsubmitAddMark} />
+      <AddMarkComponent onClose={handleCloseModal} onSubmit={onsubmitAddMark} />
     );
   };
 
@@ -52,7 +52,7 @@ export default function SettingsAdminProducts({
     event.preventDefault();
     setShowModal(true);
     setchildModal(
-      <AddProduct onClose={handleCloseModal} onSubmit={onsubmitAddProduct} />
+      <AddProductComponent onClose={handleCloseModal} onSubmit={onsubmitAddProduct} />
     );
   };
 
@@ -74,6 +74,7 @@ export default function SettingsAdminProducts({
   };
 
   const onsubmitAddMark = (dataForm) => {
+    setchildModal(<Loading text="Registrando Marca nueva"></Loading>)
     return addMark(dataForm).then((res) => {
       setchildModal(
         <MessageConfirm
@@ -88,8 +89,7 @@ export default function SettingsAdminProducts({
 
   const onsubmitAddItem = async(dataForm) => {
     setchildModal(<Loading text="Añadiendo los productos"></Loading>)
-
-    return await addNewItem(dataForm).then((res) => {
+    return await addNewItem({"data":dataForm}).then((res) => {
       console.log(res);
       setchildModal(
         <MessageConfirm
@@ -103,6 +103,7 @@ export default function SettingsAdminProducts({
   };
 
   const onsubmitAddProduct = (dataForm) => {
+    setchildModal(<Loading text="Registrando el producto"></Loading>)
     return addProduct(dataForm).then((res) => {
       setchildModal(
         <MessageConfirm

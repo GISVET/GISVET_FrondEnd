@@ -221,4 +221,24 @@ export const presentations = [
     }
 ]
 
+
+export const destiny_end_product = [
+    {
+        'id':'PA',
+        'name': "Práctica Académica"
+    },
+    {
+        'id':'EX',
+        'name': "Extensión"
+    },
+    {
+        'id':'MC',
+        'name': "Medicamentos de control"
+    },
+    {
+        'id':'UN',
+        'name': "Medicamentos de control"
+    }
+]
+
 export const loginErrorMessage = "Usuario o contraseña incorrectos por favor verifique nuevamente";

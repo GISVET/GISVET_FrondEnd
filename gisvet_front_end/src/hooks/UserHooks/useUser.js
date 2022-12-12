@@ -68,13 +68,10 @@ export default function useUser() {
     const navigateRol = (rol_name)=>{
         switch (rol_name) {
             case 'Administrador':
-                navigate("/AdminDependencies")
                 break;
             case 'Usuario':
-                navigate("/user/")
                 break;
             case 'Auditor':
-                navigate("/AuditorDependencies")
                 break;
             case null:
                 navigate("/")
