@@ -1,8 +1,8 @@
 {
   "name": "gisvet_front_end",
-  "homepage":"https://GISVET.github.io/GISVET_FrondEnd",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://GISVET.github.io/GISVET_FrondEnd",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
