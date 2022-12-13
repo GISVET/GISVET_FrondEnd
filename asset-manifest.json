@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/GISVET_FrondEnd/static/css/main.dba3b09f.css",
+    "main.css": "/GISVET_FrondEnd/static/css/main.e52985c1.css",
     "main.js": "/GISVET_FrondEnd/static/js/main.2044da1c.js",
     "static/js/125.8852e0a6.chunk.js": "/GISVET_FrondEnd/static/js/125.8852e0a6.chunk.js",
     "static/js/52.c7ff39e8.chunk.js": "/GISVET_FrondEnd/static/js/52.c7ff39e8.chunk.js",
@@ -22,7 +22,7 @@
     "static/media/Icon_Add_Patient.png": "/GISVET_FrondEnd/static/media/Icon_Add_Patient.44e74a0685582c9462e1.png",
     "static/media/token_icon.svg": "/GISVET_FrondEnd/static/media/token_icon.646c6d1cb51851eec233a66088a41fd8.svg",
     "index.html": "/GISVET_FrondEnd/index.html",
-    "main.dba3b09f.css.map": "/GISVET_FrondEnd/static/css/main.dba3b09f.css.map",
+    "main.e52985c1.css.map": "/GISVET_FrondEnd/static/css/main.e52985c1.css.map",
     "main.2044da1c.js.map": "/GISVET_FrondEnd/static/js/main.2044da1c.js.map",
     "125.8852e0a6.chunk.js.map": "/GISVET_FrondEnd/static/js/125.8852e0a6.chunk.js.map",
     "52.c7ff39e8.chunk.js.map": "/GISVET_FrondEnd/static/js/52.c7ff39e8.chunk.js.map",
@@ -33,7 +33,7 @@
     "513.9e5b0f36.chunk.js.map": "/GISVET_FrondEnd/static/js/513.9e5b0f36.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dba3b09f.css",
+    "static/css/main.e52985c1.css",
     "static/js/main.2044da1c.js"
   ]
 }
