@@ -10,6 +10,7 @@ import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
+import { Fieldset } from 'primereact/fieldset';
 
 //=====Importaciones de hooks ====
 import useUser from "hooks/UserHooks/useUser";
@@ -34,20 +35,71 @@ export default function TableProducts({
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<></>);
   const {dependencieActive} = useUser();
+  const [expandedRows, setExpandedRows] = useState(null);
 
   useEffect(() => {
     setDataBody(data);
   }, [data]);
 
+  
+
+
   const actionDetails = (rowData) => {
+    
     return (
       <Button
         icon="pi pi-arrow-right"
         className="p-button-rounded p-button-details"
-        onClick={() => actionItem(rowData.id_dependencie)}
+        onClick={() => setExpandedRows(rowData)}
       />
     );
   };
+
+  const formatFabDate = (rowData) => {
+    const time = new Date(rowData.MANUFACTURING_DATE);
+    time.setHours(time.getHours() + 5);
+    return time.toLocaleString();
+  };
+
+  const formatExpDate = (rowData) => {
+    const time = new Date(rowData.EXPIRATION_DATE);
+    time.setHours(time.getHours() + 5);
+    return time.toLocaleString();
+  };
+
+
+  const rowExpansionTemplate = (data) => {
+    return (
+      <Fieldset legend={"Detalles de "+data.PRODUCT_NAME}>
+        <div class="grid">
+          <div class="col">
+            <h6>Registro sanitario</h6>
+            <p>{data.INVIMA}</p>
+          </div>
+          <div class="col">
+            <h5>Precio Unitario</h5>
+            <p>{amountBodyTemplate(data)}</p>
+          </div>
+          <div class="col">
+            <h5>Tipo de producto</h5>
+            <p>{TypeItemTemplate(data)}</p>
+          </div>
+          <div class="col">
+            <h5>Unidad de medida</h5>
+            <p>{MeasureItemTemplate(data)}</p>
+          </div>
+          <div class="col">
+            <h5>Fecha de Fabricación</h5>
+            <p>{formatFabDate(data)}</p>
+          </div>
+          <div class="col">
+            <h5>Fecha de expiración</h5>
+            <p>{formatExpDate(data)}</p>
+          </div>
+      </div>
+      </Fieldset>
+    );
+}
 
   const ShowConfirmSend = () => {
     setShowModal(true);
@@ -105,6 +157,14 @@ export default function TableProducts({
     if (isPositiveInteger(newValue)) rowData[field] = newValue;
     else event.preventDefault();
   };
+
+  const formatCurrency = (value) => {
+    return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
+  }
+
+  const amountBodyTemplate = (rowData) => {
+      return formatCurrency(rowData.PRICE_PER_UNIT);
+  }
 
   const cellEditor = (options) => {
     const maxValue = options.value;
@@ -219,6 +279,10 @@ export default function TableProducts({
     return type_product.find((item) => item.id === rowdata.TYPE_PRODUCT).name;
   };
 
+  const allowExpansion = (rowData) => {
+    return rowData.QUANTITY > 0;
+  };
+
   return (
     <div className={styles.table_data}>
       <DataTable
@@ -234,12 +298,15 @@ export default function TableProducts({
         onSelectionChange={selectionChange}
         onRowSelect={onRowSelect}
         onRowUnselect={onRowUnselect}
+        expandedRows={expandedRows}
+        rowExpansionTemplate={rowExpansionTemplate}
         selectOnEdit={false}
         isDataSelectable={sendProducts && isRowSelectable}
         rowClassName={sendProducts && rowClassName}
         editMode="row"
         editingRows={sendProducts && editingRows}
         onRowEditChange={onRowEditChange}
+        onRowToggle={!sendProducts? (e) => setExpandedRows(e.data) :null}
         dataKey="ID_ITEM"
       >
         {sendProducts && (
@@ -295,7 +362,9 @@ export default function TableProducts({
         {!sendProducts && (
           <Column
             header="Ver detalles"
-            body={actionDetails}
+            // body={actionDetails}
+            expander={allowExpansion}
+            style={{ width: '3em' }}
             exportable={false}
           ></Column>
         )}

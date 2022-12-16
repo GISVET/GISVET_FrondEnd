@@ -15,9 +15,10 @@ import Table from "../TablePatients/TablePatients";
 import TableProducts from "../TableProducts"
 import SettingsAdminPatients from "../SettingsAdminPatients";
 import ShowPatient from "../ShowPatient/ShowPatient";
+import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useAdminPatients } from "hooks/AdminHooks/PatientsHooks/useAdminPatients";
+import { useUserPatients } from "hooks/UserHooks/PatientsHooks/useUserPatients";
 import useUser from "hooks/UserHooks/useUser";
 import { useGroceryProducts } from "hooks/UserHooks/useGroceryProducts";
 import assignProductsToPatient from "services/UserServices/ProductsServices/createTracingProducts";
@@ -29,7 +30,7 @@ import { setIn } from "formik";
 
 export default function AdminPatients() {
   const { getDependencieProducts } = useProductsDependencie();
-  const { patients, headers } = useAdminPatients();
+  const { patients, headers,isUpdatePatient } = useUserPatients();
   const [showModal, setShowModal] = useState(false);
   const [childModal, setchildModal] = useState(<> </>);
   const [showProducts, setShowProducts] = useState(false);
@@ -40,12 +41,17 @@ export default function AdminPatients() {
 
   useEffect(() => {
     getDependencieProducts(dependencieActive.DEPENDECIE_TYPE, dependencieActive.DEPENDECIE_NAME)
-        .then(res => {
-            if (res.lenght !== 0) {
-                setProducts(res)
-            }
-        })
-}, [updateProducts, dependencieActive])
+          .then(res => {
+              if (res.lenght !== 0) {
+                  setProducts(res)
+              }
+          })
+  }, [updateProducts, dependencieActive])
+
+  useEffect(() => {
+    isUpdatePatient(true)
+  }, [showProducts, dependencieActive])
+
 
   const showPatientMenu = async (data) => {
     setShowModal(true);
@@ -70,6 +76,13 @@ export default function AdminPatients() {
     })
     productsToApply.products=productsAux
     let result = await assignProductsToPatient({jwt,data:productsToApply})
+    setchildModal(
+      <MessageConfirm
+        onClose={handleCloseModal}
+        isCorrect={result.status == 200 ? true : false}
+        message={result.status == 200 ?"Productos aplicados exitosamente":result.message}
+      />
+    );
     setShowProducts(result.status !== 200)
     setShowModal(true);
     return result

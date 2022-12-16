@@ -3,18 +3,18 @@ import { useContext, useCallback, useState } from "react";
 
 //=====Importaciones de contextos ====
 import userContext from "context/UserContext/UserContext";
-import adminPatientContext from "context/AdminContext/AdminPatientsContext";
+import userPatientContext from "context/UserContext/UserPatientsContext";
 
 //=====Importaciones de servicios ====
-import addNewPatient from "services/AdminServices/PatientsServices/addNewPatient";
+import addNewPatient from "services/UserServices/PatientsServices/addNewPatient";
 
 //=====Importaciones de constantes ====
 import { patientsAdmin } from "constants/headersTables";
 
-export function useAdminPatients() {
+export function useUserPatients() {
   const { jwt } = useContext(userContext);
   const { patients, setPatients, loading, setLoading, isUpdatePatient } =
-    useContext(adminPatientContext);
+    useContext(userPatientContext);
 
   const addPatient = useCallback(
     async ({ id_clinic_history, name_patient }) => {
@@ -42,6 +42,7 @@ export function useAdminPatients() {
   return {
     loading,
     patients,
+    isUpdatePatient,
     headers: patientsAdmin,
     addPatient,
   };

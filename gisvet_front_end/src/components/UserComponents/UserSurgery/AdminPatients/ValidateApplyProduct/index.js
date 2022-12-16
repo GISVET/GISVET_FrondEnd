@@ -62,11 +62,11 @@ export default function ValidateDataApplyProducts({ onSubmit, onClose }) {
             <div className="field-radiobutton" >
               <RadioButton inputId="destiny_id"
                          name="destiny_service" 
-                         value={destiny_end_product[3].id} 
+                         value={destiny_end_product[2].id} 
                          onChange={handleChange}
                          required={true}
-                         checked={data.destiny_service === destiny_end_product[3].id} />
-              <label htmlFor="destiny_id">{destiny_end_product[3].name}</label>
+                         checked={data.destiny_service === destiny_end_product[2].id} />
+              <label htmlFor="destiny_id">{destiny_end_product[2].name}</label>
             </div>
         </div>
         <div className="field col-12 ">

@@ -90,7 +90,6 @@ export default function SettingsAdminProducts({
   const onsubmitAddItem = async(dataForm) => {
     setchildModal(<Loading text="Añadiendo los productos"></Loading>)
     return await addNewItem({"data":dataForm}).then((res) => {
-      console.log(res);
       setchildModal(
         <MessageConfirm
           onClose={handleCloseModal}

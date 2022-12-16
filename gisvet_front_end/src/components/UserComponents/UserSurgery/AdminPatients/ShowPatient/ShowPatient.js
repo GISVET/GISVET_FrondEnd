@@ -11,7 +11,7 @@ import Loading from "components/GeneralComponents/Loading";
 //=====Importaciones de componentes PrimeReact ====
 
 //=====Importaciones de hooks ====
-import { useAdminOnePatient } from "hooks/UserHooks/PatientsHooks/useAdminOnePatient";
+import { useUserOnePatient } from "hooks/UserHooks/PatientsHooks/useUserOnePatient";
 
 //=====Importaciones de imagenes ====
 import icon_dependencie_settings from "./images/icon_show_dep.png";
@@ -24,7 +24,7 @@ export default function ShowPatient({
   isReport,
 }) {
 
-  const { patient, loading } = useAdminOnePatient(dataPatient.id_clinic_history);
+  const { patient, loading } = useUserOnePatient(dataPatient.id_clinic_history);
   const [dataReady, setDataReady] = useState(false);
   const [isDisable, setDisable] = useState(true);
   const [childModal, setchildModal] = useState(<></>);

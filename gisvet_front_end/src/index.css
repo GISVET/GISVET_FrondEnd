@@ -21,6 +21,10 @@ body {
   width: 100%;
 }
 
+.p-component-overlay.p-datepicker-mask.p-datepicker-mask-scrollblocker.p-component-overlay-enter{
+  z-index: 500 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

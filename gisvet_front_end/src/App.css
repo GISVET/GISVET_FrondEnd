@@ -85,3 +85,7 @@ h4 {
     font-weight: normal;
     font-size: 14px;
 }
+
+div .p-component-overlay.p-datepicker-mask.p-datepicker-mask-scrollblocker.p-component-overlay-enter{
+    z-index: 500 !important;
+}

@@ -13,6 +13,9 @@ import Login from "./pages/Login/login";
 //=====Importaciones del context general====
 import { UserContextProvider } from "context/UserContext/UserContext";
 
+//=====Importaciones de los context de User====
+import {UserPatientsContextProvider} from "context/UserContext/UserPatientsContext";
+
 //=====Importaciones de los context de Admin====
 import { AdminPatientsContextProvider } from "./context/AdminContext/AdminPatientsContext";
 import { AdminUserContextProvider } from "./context/AdminContext/AdminUserContext";
@@ -77,13 +80,14 @@ function App() {
         <AdminDependencyContextProvider>
           <AdminProductsContextProvider>
             <AdminPatientsContextProvider>
+              <UserPatientsContextProvider>
               <AuditorDependencyContextProvider>
                 <AuditorPatientsContextProvider>
                   <AuditorUsersContextProvider>
                     <AuditorProductsContextProvider>
                       <AuditorTableGeneralContext>
                         <div className="App">
-                        <Router base="/GISVET_FrondEnd">
+                        {/* <Router base="/GISVET_FrondEnd"> */}
                           <Switch>
                             <Route component={Login} path="/" />
                             <Route path="/test">
@@ -147,13 +151,14 @@ function App() {
                             </Route>
                             <Route component={Error}></Route>
                           </Switch>
-                          </Router>
+                          {/* </Router> */}
                         </div>
                       </AuditorTableGeneralContext>
                     </AuditorProductsContextProvider>
                   </AuditorUsersContextProvider>
                 </AuditorPatientsContextProvider>
               </AuditorDependencyContextProvider>
+              </UserPatientsContextProvider>
             </AdminPatientsContextProvider>
           </AdminProductsContextProvider>
         </AdminDependencyContextProvider>

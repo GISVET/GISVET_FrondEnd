@@ -15,8 +15,8 @@ export default function TableDetailPatient({ headers, data, actionItem }) {
   const dataHeaders = headers;
   const [dataBody, setDataBody] = useState(data);
 
-  console.log("Entrando al Tabledetail");
   useEffect(() => {
+    console.log(data)
     setDataBody(data);
   }, [data]);
 

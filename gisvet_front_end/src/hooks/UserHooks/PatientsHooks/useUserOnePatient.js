@@ -5,7 +5,7 @@ import { useContext, useCallback, useState, useEffect } from "react";
 import userContext from "context/UserContext/UserContext";
 
 //=====Importaciones de servicios ====
-import getPatientById from "services/AdminServices/PatientsServices/getPatientById";
+import getPatientById from "services/UserServices/PatientsServices/getPatientById";
 
 //=====Importaciones de constantes ====
 import { dependenciesAdmin } from "constants/headersTables";
@@ -42,7 +42,7 @@ function formatListHistory(dataBody) {
   return dataFormated;
 }
 
-export function useAdminOnePatient(id_clinic_history) {
+export function useUserOnePatient(id_clinic_history) {
   const { jwt } = useContext(userContext);
   const [patient, setPatient] = useState();
   const [patientOrigin, setPatientOrigin] = useState();

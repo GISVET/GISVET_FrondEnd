@@ -154,7 +154,7 @@ export default function AddItemProduct({onSubmit, onClose}){
                             </div>
                             <div className="field col">
                                 <label htmlFor="invima">
-                                    Invima
+                                    Registro Sanitario
                                 </label>
                                 <InputText name="invima"
                                             value={data.invima} 

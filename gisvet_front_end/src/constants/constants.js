@@ -149,6 +149,18 @@ export const measurement_units = [
         'name': "Unidad"
     },
     {
+        'id':'AM',
+        'name': "Ampolleta"
+    },
+    {
+        'id':'YR',
+        'name': "Yarda"
+    },
+    {
+        'id':'MT',
+        'name': "Metro"
+    },
+    {
         'id':'ML',
         'name': "Mililitros"
     },
@@ -176,8 +188,12 @@ export const measurement_units = [
 
 export const presentations = [
     {
-        'id':'U',
+        'id':'UN',
         'name': "Unidad"
+    },
+    {
+        'id':'TB',
+        'name': "Tubo"
     },
     {
         'id':'C',
@@ -233,10 +249,6 @@ export const destiny_end_product = [
     },
     {
         'id':'MC',
-        'name': "Medicamentos de control"
-    },
-    {
-        'id':'UN',
         'name': "Medicamentos de control"
     }
 ]

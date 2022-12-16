@@ -9,7 +9,7 @@ import { Modal } from "components/GeneralComponents/Modal";
 import MessageConfirm from "components/GeneralComponents/MessageConfirm";
 
 //=====Importaciones de hooks ====
-import { useAdminPatients } from "hooks/AdminHooks/PatientsHooks/useAdminPatients";
+import { useUserPatients } from "hooks/UserHooks/PatientsHooks/useUserPatients";
 
 //=====Importaciones de imagenes ====
 import icon_Settings from "./images/Icon_Settings.png";
@@ -23,7 +23,7 @@ export default function SettingsAdminPatients() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [, navigate] = useLocation();
-  const { loading, addPatient } = useAdminPatients();
+  const { loading, addPatient } = useUserPatients();
   const [childModal, setchildModal] = useState(<> </>);
 
   const [data, setData] = useState({

@@ -7,6 +7,8 @@ import UserProductsContext from "context/UserContext/UserProductsContext";
 
 //=====Importaciones de servicios ====
 import sendProductsToDependecie from "services/UserServices/ProductsServices/userGrocery/sendToDependencie";
+import sendProductsToConsultory from "services/UserServices/ProductsServices/userFarmacy/sendToconsultory";
+import returnProductsFarmacy from "services/UserServices/ProductsServices/userSurgery/returnProductsFarmacy";
 import addNewItemService from "services/UserServices/ProductsServices/userGrocery/addNewItem";
 import addNewMark from "services/UserServices/ProductsServices/userGrocery/addNewMark";
 import addNewProduct from "services/UserServices/ProductsServices/userGrocery/addNewProduct";
@@ -78,18 +80,45 @@ export function useGroceryProducts() {
     let response
     response = await addNewItemService({jwt,data})
     setUpdateProducts(true)
+    isUpdateProducts(true)
     return response
   }
 
 
   const sendTodependencie = async({document,token_tem,name_dependecie,dataProducts})=>{
     let response
-    response = await sendProductsToDependecie({jwt, 
-                        document,
-                        token_tem,
-                        name_dependecie,
-                        dataProducts})
+    console.log(dependencieActive)
+    switch (dependencieActive.DEPENDECIE_TYPE) {
+      case 'B':
+        console.log("enviamos a farmacia")
+        response = await sendProductsToDependecie({jwt, 
+                          document,
+                          token_tem,
+                          name_dependecie,
+                          dataProducts})
+        break;
+        
+      case 'F':
+        console.log("enviamos a consultorio")
+        response = await sendProductsToConsultory({jwt, 
+                          document,
+                          token_tem,
+                          name_dependecie,
+                          dataProducts})
+        break;
+
+        
+      case 'C':
+        console.log("devolvemos a farmacia")
+        response = await returnProductsFarmacy({jwt, 
+                          document,
+                          token_tem,
+                          name_dependecie,
+                          dataProducts})
+        break;
+    }
     setUpdateProducts(true)
+    isUpdateProducts(true)
     return response
   }
 

@@ -76,14 +76,6 @@ export default function TableProducts({
       setEditingRows([]);
       setSelectedProducts([]);
     }
-    setchildModal(
-      <MessageConfirm
-        onClose={handleCloseModal}
-        isCorrect={res.status == 200 ? true : false}
-        message={res.message}
-      />
-    );
-    
   };
 
   const setActiveRowIndex = (index, isActive) => {

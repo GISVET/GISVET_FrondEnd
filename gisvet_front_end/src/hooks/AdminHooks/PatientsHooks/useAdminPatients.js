@@ -42,6 +42,7 @@ export function useAdminPatients() {
   return {
     loading,
     patients,
+    isUpdatePatient,
     headers: patientsAdmin,
     addPatient,
   };
